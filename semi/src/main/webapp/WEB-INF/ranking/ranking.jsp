@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
-
+	<h1>오늘은 날씨가 좋다</h1>
+	<h2>테스트</h2>
 </body>
 </html>
