@@ -12,7 +12,7 @@ public class UserDto {
 	private String UserID;
 	private String name;
 	private String password;
-	private String tier;
+	private String tier;     
 	private String hp;
 	private String email;
 	private String photo;
