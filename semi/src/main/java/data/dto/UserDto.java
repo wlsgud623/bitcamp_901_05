@@ -16,7 +16,7 @@ public class UserDto {
 	private String hp;
 	private String email;
 	private String photo;
-	private String intro;
+	private String intro;// 자기소개
 	private String ownrecipe;
 	private String currentrecipe;
 	private String scraprecipe;
