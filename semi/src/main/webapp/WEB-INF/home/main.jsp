@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
-<h1>홈</h1>
+<h1>홈testttttttttt</h1>
 <h1>데이터베이스 테스트 : ${num}</h1>
 </body>
 </html>
