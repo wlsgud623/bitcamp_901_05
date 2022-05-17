@@ -5,7 +5,7 @@ spring:
     livereload:
       enabled: true
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://spoonsemiproject.c8g4wislhsyf.ap-northeast-2.rds.amazonaws.com:3306/spoon?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: admin
     password: spoon123
