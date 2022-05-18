@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mapper.RecipeMapperInter">
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM recipe
+	</select>
+	
+	<select id="getAllRecipe" resultType="recipe">
+		SELECT * FROM recipe
+	</select>
+	<select id="getRecipeList" parameterType="Map" resultType="recipe">
+		SELECT * FROM recipe LIMIT #{startnum}, #{limit}
+	</select>
+	<select id="getRecipe" parameterType="int" resultType="recipe">
+		SELECT * FROM recipe WHERE RECIPE_IDX=#{idx}
+	</select>
+	
+	<update id="addRecommend" parameterType="int">
+		UPDATE recipe SET total_recom = total_recom + 1 WHERE RECIPE_IDX=#{idx}
+	</update>
+	<update id="addRate" parameterType="Map">
+		UPDATE recipe SET total_volunteer = total_volunteer + 1, total_rate = total_rate + #{rate} WHERE RECIPE_IDX=#{idx}
+	</update>
+	<update id="addView" parameterType="int">
+		UPDATE recipe SET viewCount = viewCount + 1 WHERE RECIPE_IDX=#{idx}
+	</update>
+	
+	<select id="findCategory" parameterType="String" resultType="recipe">
+		SELECT * FROM recipe WHERE category = #{category}
+	</select>
+	<select id="findCooking" parameterType="String" resultType="recipe">
+		SELECT * FROM recipe WHERE cooking = #{cooking}
+	</select>
+	
+	<select id="getRankingList" parameterType="Map" resultType="recipe">
+		SELECT * FROM recipe ORDER BY total_recom DESC LIMIT #{startnum}, #{limit}
+	</select>
+</mapper>
