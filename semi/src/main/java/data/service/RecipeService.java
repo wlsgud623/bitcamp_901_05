@@ -85,5 +85,17 @@ public class RecipeService implements RecipeServiceInter {
 		return recipeMapperInter.getRankingList(map);
 	}
 
+	@Override
+	public void updateRecipe(RecipeDto dto) {
+		// TODO Auto-generated method stub
+		recipeMapperInter.updateRecipe(dto);
+	}
+
+	@Override
+	public void deleteRecipe(int idx) {
+		// TODO Auto-generated method stub
+		recipeMapperInter.deleteRecipe(idx);
+	}
+
 
 }
