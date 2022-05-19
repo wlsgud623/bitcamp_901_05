@@ -42,13 +42,14 @@ public class CommentService implements CommentServiceInter {
 	@Override
 	public void insertComment(CommentDto dto) {
 		// TODO Auto-generated method stub
+		mapper.insertComment(dto);
 		
 	}
 
 	@Override
 	public void deleteComment(int num) {
 		// TODO Auto-generated method stub
-		
+		mapper.deleteComment(num);
 	}
 
 }
