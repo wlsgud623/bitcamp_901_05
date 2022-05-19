@@ -58,8 +58,6 @@ header{
      text-align: center;
    }
    
-   
-   
     table tr td{
    	padding-top: 20px;
    } 
@@ -69,6 +67,16 @@ header{
    }
 
 </style>
+<script type="text/javascript">
+	/* $(function() {
+		
+		
+	});
+	
+	function check() {
+		var a = 
+	} */
+</script>
 
 </head>
 <body>
@@ -83,7 +91,7 @@ header{
 			<div class="memberform">
 			   <h3>회원가입</h3><br><br>
 			   <form action="insert" method="post" class="form-inline"
-			   		onsubmit="return check()" style="border-top: 1px solid black; height: 1000px;">
+			   		 style="border-top: 1px solid black; height: 1000px;">
 			   		<br>
 			   		<table style="width: 600px;" class="mem">
 			   			<tr>
@@ -96,7 +104,7 @@ header{
 			   			<tr>
 			   				<th style="width: 130px;">아이디</th>
 			   				<td>
-			   					<input type="text" name="id" id="id" style="width: 300px;" class="form-control"
+			   					<input type="text" name="UserID" id="UserID" style="width: 300px;" class="form-control"
 			   					required="required">
 			   					&nbsp;
 			   					<button type="button" class="btn btn-sm btn-danger" id="idcheck"
@@ -108,10 +116,10 @@ header{
 			   			<tr rowspan="2">
 			   				<th style="width: 130px;">비밀번호</th>
 			   				<td>
-			   					<input type="password" name="pass" id="pass1" style="width: 300px;" class="form-control"
+			   					<input type="password" name="password" id="password1" style="width: 300px;" class="form-control"
 			   					required="required" placeholder="비밀번호">
 							<br><br>
-			   					<input type="password" id="pass2" style="width: 300px;" class="form-control"
+			   					<input type="password" id="password2" style="width: 300px;" class="form-control"
 			   					required="required" placeholder="한번 더 입력">
 			   					&nbsp;
 			   					<b class="passok"></b>

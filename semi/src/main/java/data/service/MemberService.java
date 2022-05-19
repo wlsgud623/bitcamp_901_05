@@ -39,7 +39,7 @@ public class MemberService implements MemberServiceInter{
 	public int login(String UserID, String password) {
 		// TODO Auto-generated method stub
 		Map<String, String> map = new HashMap<>();
-		map.put("userid", UserID);
+		map.put("UserID", UserID);
 		map.put("password", password);
 		
 		return memberMapperInter.login(map);

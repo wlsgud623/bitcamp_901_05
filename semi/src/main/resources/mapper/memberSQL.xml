@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.MemberMapperInter">
-	<insert id="insertMember" parameterMap="user">
-		INSERT INTO user (name,UserID,password,hp,email) VALUES (#{name},#{userid},#{password},#{hp},#{email})
+	<insert id="insertMember" parameterType="user">
+		INSERT INTO User (name,UserID,password,hp,email,joinday) VALUES (#{name},#{UserID},#{password},#{hp},#{email},now())
 	</insert>	
 	<select id="getSearchId" parameterType="String" resultType="int">
-		SELECT count(*) FROM user WHERE UserID=#{id}	
+		SELECT count(*) FROM user WHERE UserID=#{UserID}	
 	</select>
 	<select id="getSearchName" parameterType="String" resultType="String">
-		SELECT name FROM user WHERE UserID=#{userid}
+		SELECT name FROM user WHERE UserID=#{UserID}
 	</select>
 	<select id="login" parameterType="Map" resultType="int">
-		SELECT count(*) FROM user WHERE UserID=#{userid} and password=#{password}
+		SELECT count(*) FROM user WHERE UserID=#{UserID} and password=#{password}
 	</select>
 </mapper>

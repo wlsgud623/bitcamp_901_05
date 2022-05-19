@@ -1,7 +1,5 @@
 package data.inter;
 
-import java.util.Map;
-
 import data.dto.UserDto;
 
 public interface MemberServiceInter {

@@ -13,4 +13,10 @@ public class LoginController {
 	{
 		return "/sign/login/login";
 	}
+	
+	@GetMapping("/aftersignup_login")
+	public String aftersignup_login()
+	{
+		return "/sign/login/aftersignup_login";
+	}
 }
