@@ -5,12 +5,12 @@
 		INSERT INTO User (name,UserID,password,hp,email,joinday) VALUES (#{name},#{UserID},#{password},#{hp},#{email},now())
 	</insert>	
 	<select id="getSearchId" parameterType="String" resultType="int">
-		SELECT count(*) FROM user WHERE UserID=#{UserID}	
+		SELECT count(*) FROM User WHERE UserID=#{UserID}	
 	</select>
 	<select id="getSearchName" parameterType="String" resultType="String">
-		SELECT name FROM user WHERE UserID=#{UserID}
+		SELECT name FROM User WHERE UserID=#{UserID}
 	</select>
 	<select id="login" parameterType="Map" resultType="int">
-		SELECT count(*) FROM user WHERE UserID=#{UserID} and password=#{password}
+		SELECT count(*) FROM User WHERE UserID=#{UserID} and password=#{password}
 	</select>
 </mapper>

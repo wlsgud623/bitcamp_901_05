@@ -68,14 +68,66 @@ header{
 
 </style>
 <script type="text/javascript">
-	/* $(function() {
-		
-		
+$(function() {	 
+//아이디 중복 체크
+	$("#idcheck").click(function() {
+		$.ajax({
+			type: "get",
+			dataType: "json",
+			url: "idcheck",
+			data: {"UserID":$("#UserID").val()},
+			success: function(data) {
+				if(data.count == 0){
+					$("b.idok").text("사용 가능한 아이디 입니다.").css("color","green");
+				}else {
+					$("b.idok").text("이미 존재하는 아이디 입니다.").css("color","red");
+					$("#UserID").val("");
+					$("#UserID").focus();
+				}	
+			}
+		});
 	});
+
+//비밀번호 일치하는지 체크
+	$("#password2").keyup(function (){
+		var pass1 = $("#password1").val();
+		var pass2 = $("#password2").val();
+		if(pass1 == pass2){
+			$("b.passok").text("비밀번호가 일치합니다.").css("color","green");
+		}else{
+			$("b.passok").text("비밀번호가 일치하지 않습니다.").css("color","red");
+		}
+	});
+//이메일 선택
+	$("#email3").change(function() {
+		var s = $(this).val();
+		if (s == "-"){
+			$("#email2").val("");
+			$("#email2").focus();
+		}else{
+			$("#email2").val(s);
+		}
+	});	
+});
+
+function check() {
+	var a = $("b.idok").text();
+	var b = $("b.passok").text();
 	
-	function check() {
-		var a = 
-	} */
+	if(a != '사용 가능한 아이디 입니다.'){
+		alert("아이디체크 버튼을 눌러서 중복 확인을 해주세요.");
+		$("b.idok").text("아이디 중복 체크가 필요합니다.").css("color","red");
+		return false;
+	}else if(b != '비밀번호가 일치합니다.'){
+		alert("비밀번호를 제대로 입력해주세요.");
+		$("#password1").val("");
+		$("#password2").val("");
+		$("#password1").focus();
+		return false;
+	}else{
+		return true;
+	}
+}  
 </script>
 
 </head>
@@ -91,7 +143,8 @@ header{
 			<div class="memberform">
 			   <h3>회원가입</h3><br><br>
 			   <form action="insert" method="post" class="form-inline"
-			   		 style="border-top: 1px solid black; height: 1000px;">
+			   		 style="border-top: 1px solid black; height: 1000px;"
+			   		 onsubmit="return check()">
 			   		<br>
 			   		<table style="width: 600px;" class="mem">
 			   			<tr>
@@ -108,8 +161,9 @@ header{
 			   					required="required">
 			   					&nbsp;
 			   					<button type="button" class="btn btn-sm btn-danger" id="idcheck"
-			   					style="width: 100px;">아이디체크</button>
+			   					style="width: 100px;" >아이디체크</button>
 			   					&nbsp;
+			   					<br>
 			   					<b class="idok"></b>
 			   				</td>
 			   			</tr>
@@ -122,6 +176,7 @@ header{
 			   					<input type="password" id="password2" style="width: 300px;" class="form-control"
 			   					required="required" placeholder="한번 더 입력">
 			   					&nbsp;
+			   					<br>
 			   					<b class="passok"></b>
 			   				</td>
 			   			</tr>
