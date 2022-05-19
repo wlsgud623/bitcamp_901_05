@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.RecipeMapperInter">
+
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(*) FROM recipe
 	</select>
-	
 	<select id="getAllRecipe" resultType="recipe">
 		SELECT * FROM recipe
 	</select>
@@ -12,7 +12,7 @@
 		SELECT * FROM recipe LIMIT #{startnum}, #{limit}
 	</select>
 	<select id="getRecipe" parameterType="int" resultType="recipe">
-		SELECT * FROM recipe WHERE RECIPE_IDX=#{idx}
+		SELECT * FROM recipe WHERE RECIPE_IDX = #{idx}
 	</select>
 	
 	<update id="addRecommend" parameterType="int">
@@ -24,6 +24,14 @@
 	<update id="addView" parameterType="int">
 		UPDATE recipe SET viewCount = viewCount + 1 WHERE RECIPE_IDX=#{idx}
 	</update>
+	
+	<update id="updateRecipe" parameterType="recipe">
+		UPDATE recipe SET name = #{name}, intro = #{intro}, category = #{category}, main_ing = #{main_ing}, cooking = #{cooking}, portion = #{portion}, level = #{level}, main_photo = #{main_photo}, complete_photo = #{complete_photo}, tags = #{tags} WHERE RECIPE_IDX = #{RECIPE_IDX}
+	</update>
+	
+	<delete id="deleteRecipe" parameterType="int">
+		DELETE FROM recipe WHERE RECIPE_IDX=#{idx}
+	</delete>
 	
 	<select id="findCategory" parameterType="String" resultType="recipe">
 		SELECT * FROM recipe WHERE category = #{category}

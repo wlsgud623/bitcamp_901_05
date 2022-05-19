@@ -18,12 +18,11 @@ public interface RecipeMapperInter {
 	public void addRate(Map<String, Integer> map); 
 	public void addView(int idx); 
 	
+	public void updateRecipe(RecipeDto dto);
+	public void deleteRecipe(int idx);
+	
 	public List<RecipeDto> findCategory(String category);
 	public List<RecipeDto> findCooking(String cooking);
 	
 	public List<RecipeDto> getRankingList(Map<String, Integer> map); 
-	
-	
-	
-	
 }
