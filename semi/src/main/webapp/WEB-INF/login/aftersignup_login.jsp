@@ -126,22 +126,9 @@ input[type=submit]{
 			<img src="../img/logo.png">
 			</a>
 		</header>
-		<!-- container -->
-		<div class="container" id="container">
-			<div class="login_wrap" id="login_wrap">
-		   		<h2>로그인</h2> 
-		   		<form action="" method="POST"> 
-		   		<div class="input-box"> 
-		   		<input id="username" type="text" name="username" placeholder="아이디"> 
-		   		<label for="username">아이디</label> 
-		   		</div> <div class="input-box"> 
-		   		<input id="password" type="password" name="password" placeholder="비밀번호"> 
-		   		<label for="password">비밀번호</label> 
-		   		</div> <div id="forgot">비밀번호 찾기</div> 
-		   		<input type="submit" value="로그인"> </form>
-			</div>
-		</div>
-		<!-- //container -->
+		<h2>회원가입이 완료되었습니다.</h2>
+		<h2><a href="../login/login">로그인하러 가기</a></h2>
+		
 	</div>
 </body>
 </html>
