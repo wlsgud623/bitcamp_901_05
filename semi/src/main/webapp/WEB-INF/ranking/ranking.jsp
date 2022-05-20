@@ -26,7 +26,7 @@
 	
 	<div class="ranking1">
 		<div class="">
-			<img src="../imgfood/1.jpg" style="width: 350px;height: 250px; alt="">
+			<img src="../imgfood/111.jpg" style="width: 350px;height: 250px; alt="">
 		</div>
 		<div class="">
 		
@@ -37,16 +37,16 @@
 	
 	<div class="ranking2">
 		<div class="">
-			<img src="../imgfood/2.jpg" style="width: 350px;height: 250px; alt="">
+			<img src="../imgfood/112.jpg" style="width: 350px;height: 250px; alt="">
 		</div>
 		<div class="">
-			<img src="../imgfood/3.jpg" style="width: 350px;height: 250px; alt="">
+			<img src="../imgfood/113.jpg" style="width: 350px;height: 250px; alt="">
 		</div>
 		
 	</div>
 	
 	<h2 class="main">Welcome to London</h2>
-		<c:forEach var="a" begin="4" end="12">
+		<c:forEach var="a" begin="115" end="123">
 		<img src="/imgfood/${a}.jpg" style="width: 350px;height: 250px; class="contents">
 		<c:if test="${a%3==0}"><br></c:if>
 		</c:forEach>
@@ -55,47 +55,47 @@
 	
 	<div class="gallery">
 		<div class="card">
-			<img src="../imgfood/4.jpg" alt="">
+			<img src="../imgfood/114.jpg" alt="">
 			<p></p>
 		</div>
 		
 		<div class="card">
-			<img src="../imgfood/5.jpg" alt="">
+			<img src="../imgfood/115.jpg" alt="">
 			<p></p>
 		</div>
 		
 		<div class="card">
-			<img src="../imgfood/6.jpg" alt="">
+			<img src="../imgfood/116.jpg" alt="">
 			<p></p>
 		</div>
 		
 		<div class="card">
-			<img src="../imgfood/7.jpg" alt="">
+			<img src="../imgfood/117.jpg" alt="">
 			<p></p>
 		</div>
 		
 		<div class="card">
-			<img src="../imgfood/8.jpg" alt="">
+			<img src="../imgfood/118.jpg" alt="">
 			<p></p>
 		</div>
 		
 		<div class="card">
-			<img src="../imgfood/9.jpg" alt="">
+			<img src="../imgfood/119.jpg" alt="">
 			<p></p>
 		</div>
 		
 		<div class="card">
-			<img src="../imgfood/10.jpg" alt="">
+			<img src="../imgfood/120.jpg" alt="">
 			<p></p>
 		</div>
 		
 		<div class="card">
-			<img src="../imgfood/11.jpg" alt="">
+			<img src="../imgfood/121.jpg" alt="">
 			<p></p>
 		</div>
 		
 		<div class="card">
-			<img src="../imgfood/12.jpg" alt="">
+			<img src="../imgfood/122.jpg" alt="">
 			<p></p>
 		</div>
 		
