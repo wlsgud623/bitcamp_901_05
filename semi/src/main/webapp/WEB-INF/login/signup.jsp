@@ -71,7 +71,7 @@ header{
    	background-position: 70px center;
    	background-repeat: no-repeat;
    	
-   } 
+   }   
    
    #address_search::placeholder{
    	color: black;

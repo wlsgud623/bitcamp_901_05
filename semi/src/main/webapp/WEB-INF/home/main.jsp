@@ -124,7 +124,7 @@
 <div class="rec_recipe" width="600px;">
 	<h1 style="padding-left: 20px;">&nbsp;추천 레시피</h1>
 	<br>
-	
+	  
 	<c:forEach var="a" begin="1" end="15">
 		<img src="img/main/${a}.jpg" class="mainimage" style="width: 30%;">
 		 <%-- <c:if test="${a%3 == 0}"><br></c:if>  --%>

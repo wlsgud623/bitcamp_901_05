@@ -13,4 +13,4 @@
 	<select id="login" parameterType="Map" resultType="int">
 		SELECT count(*) FROM User WHERE UserID=#{UserID} and password=#{password}
 	</select>
-</mapper>
+</mapper>  
