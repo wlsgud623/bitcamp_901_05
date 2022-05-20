@@ -16,6 +16,7 @@ public class UserDto {
 	private String tier; // 사용자 티어
 	private String hp; // 사용자 전화번호
 	private String email; // 사용자 이메일
+	private String address; //사용자 주소 
 	private String photo; // 사용자 사진
 	private String intro; // 사용자 자기소개
 	private String ownrecipe; // 사용자가 등록한 레시피
