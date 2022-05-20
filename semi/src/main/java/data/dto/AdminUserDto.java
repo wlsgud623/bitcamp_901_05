@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Alias("admin")
 public class AdminUserDto {
-	public int num; // 운영자 번호
-	public String userID; // 운영자 ID
-	public String name; // 운영자 이름
+	private int num; // 운영자 번호
+	private String userID; // 운영자 ID
+	private String name; // 운영자 이름
 }
