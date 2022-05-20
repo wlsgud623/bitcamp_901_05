@@ -131,7 +131,7 @@
 	</c:forEach>
 </div>
 <br><br><br><br>
-
+    
 <div class="content">
 	<div class="content_text">
 	<b>모두의 밥상은 수만가지의 레시피를 종류별, 재료별, 난이도별로 분류하여 각자의 라이프스타일에 맞는 레시피를 <br>쉽고 편리하게 찾을 수 있는 서비스를 제공하고 있습니다. 

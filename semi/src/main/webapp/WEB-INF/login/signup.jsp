@@ -62,6 +62,21 @@ header{
    	padding-top: 20px;
    } 
    
+   
+   
+   #address_search{
+   	text-align: center;
+   	background-image: url(../img/search_icon.png);
+   	background-size: 10%;
+   	background-position: 70px center;
+   	background-repeat: no-repeat;
+   	
+   } 
+   
+   #address_search::placeholder{
+   	color: black;
+   }
+   
    table.mem{
 		margin-left: 80px;
    }
@@ -78,7 +93,7 @@ $(function() {
 			data: {"UserID":$("#UserID").val()},
 			success: function(data) {
 				if(data.count == 0){
-					$("b.idok").text("사용 가능한 아이디 입니다.").css("color","green");
+					$("b.idok").text("사용 가능한 아이디 입니다.").css("color","blue");
 				}else {
 					$("b.idok").text("이미 존재하는 아이디 입니다.").css("color","red");
 					$("#UserID").val("");
@@ -93,7 +108,7 @@ $(function() {
 		var pass1 = $("#password1").val();
 		var pass2 = $("#password2").val();
 		if(pass1 == pass2){
-			$("b.passok").text("비밀번호가 일치합니다.").css("color","green");
+			$("b.passok").text("비밀번호가 일치합니다.").css("color","blue");
 		}else{
 			$("b.passok").text("비밀번호가 일치하지 않습니다.").css("color","red");
 		}
@@ -187,6 +202,8 @@ function check() {
 			   					required="required">
 			   				</td>
 			   			</tr>
+
+			   			
 			   			<tr>
 			   				<th style="width: 130px;">이메일</th>
 			   				<td>
@@ -203,6 +220,20 @@ function check() {
 			   					</select>
 			   				</td>
 			   			</tr>
+			   				<tr rowspan="2">
+			   				<th style="width: 130px;">주소</th>
+			   				<td>
+			   					<input type="text" id="address_search" name="address" readonly style="width: 300px;" class="form-control"
+			   					placeholder="주소 검색"/>		
+							<br><br>
+			   					<input type="text" name="address_detail" style="width: 300px;" class="form-control
+			   					required="required" placeholder="상세주소를 입력하세요">
+			   					
+			   					&nbsp;
+			   					<br>
+			   					<b class="passok"></b>
+			   				</td>
+			   			</tr>
 			   		</table>
 			   		<br>
 					<button type="submit" class="btn btn-warning"
@@ -211,6 +242,34 @@ function check() {
 			 </div>
 		</div>
 		<!-- //container -->
+		 <table>
+        <tr>
+            <th>이름</th>
+            <td><input type="text" name="user_name"></td>
+        </tr>
+        <tr>
+            <th>주소</th>
+            <td><input type="text" id="address_search" name="address" readonly /></td>
+        </tr>
+        <tr>
+            <th>상세 주소</th>
+            <td><input type="text" name="address_detail" /></td>
+        </tr>
+    </table>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    window.onload = function(){
+    document.getElementById("address_search").addEventListener("click", function(){ //주소입력칸을 클릭하면
+        //카카오 지도 발생
+        new daum.Postcode({
+            oncomplete: function(data) { //선택시 입력값 세팅
+                document.getElementById("address_search").value = data.address; // 주소 넣기
+                document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+            }
+        }).open();
+    });
+}
+</script>
 	</div>
 </body>
 </html>
