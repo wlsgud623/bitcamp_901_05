@@ -11,5 +11,5 @@ public class RankingController {
 		return "/ranking/ranking";
 	}
 	
-	 
+	  
 }
