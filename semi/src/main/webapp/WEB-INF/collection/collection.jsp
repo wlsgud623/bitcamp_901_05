@@ -32,6 +32,7 @@
 	<div class="colloction_body">
 	<h1> 모두의 밥상 </h1>
 	<h2> 콘치즈 </h2>
+	<h3>커밋 체크</h3>
 
 	<img src="../imgfood/1.jpg" width="300" height="300" >
 	<div> 집에서 맥주가 땡기는 날, 간단하지만 퀄리티있는 안주가 필요한 분들께 추천드려요.
