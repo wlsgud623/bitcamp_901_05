@@ -16,11 +16,13 @@
 	}
 </style>
 <script type="text/javascript">
+/***************************전역 변수***************************/
 	var ingClass=2; //다음에 추가될 재료묶음
 	var stepCount=2; //다음에 추가될 요리단계
 	var tag = {}; //태그
 	var tagCounter = 0; //태그 idx
-	
+
+/***************************각종 이벤트***************************/
 	$(function() {
 		//메인 사진
 		$("#inputPhoto").change(function() {
@@ -204,7 +206,8 @@
 		 	$("#tag-hidden").val(tags);
 		});
 	});
-	
+
+/***************************전역 함수***************************/
 	//사진 미리보기
 	function img_preview(id, w, h) {
 		var reg=/(.*?)\/(jpg|jpeg|png|gif)$/;
@@ -396,12 +399,18 @@
 	    			style="width: 150px;">
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">종류별</option>
-	    				<option value="밥">밥</option>
-	    				<option value="밑반찬">반찬</option>
+	    				<option value="밥/죽">밥/죽</option>
+	    				<option value="반찬">반찬</option>
 	    				<option value="국물">국물</option>
 	    				<option value="면">면</option>
 	    				<option value="디저트">디저트</option>
-	    				<option value="분식">분식</option>
+	    				<option value="양식">양식</option>
+	    				<option value="일식">일식</option>
+	    				<option value="중식">중식</option>
+	    				<option value="퓨전">퓨전</option>
+	    				<option value="떡/만두">떡/만두</option>
+	    				<option value="빵/과자">빵/과자</option>
+	    				<option value="양념/소스">양념/소스</option>
 	    				<option value="샐러드">샐러드</option>
 	    				<option value="음료">음료</option>
 	    				<option value="기타">기타</option>
@@ -413,13 +422,15 @@
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">재료별</option>
 	    				<option value="소고기">소고기</option>
-	    				<option value="밑반찬">반찬</option>
-	    				<option value="국물">국물</option>
-	    				<option value="면">면</option>
-	    				<option value="디저트">디저트</option>
-	    				<option value="분식">분식</option>
-	    				<option value="샐러드">샐러드</option>
-	    				<option value="음료">음료</option>
+	    				<option value="돼지고기">돼지고기</option>
+	    				<option value="닭고기">닭고기</option>
+	    				<option value="육류">육류</option>
+	    				<option value="해물">해물</option>
+	    				<option value="채소류/버섯">채소류/버섯</option>
+	    				<option value="계란/유제품">계란/유제품</option>
+	    				<option value="쌀">쌀</option>
+	    				<option value="밀가루">밀가루</option>
+	    				<option value="콩/견과류">콩/견과류</option>
 	    				<option value="기타">기타</option>
 	    			</select>
 	    		</td>
@@ -430,12 +441,17 @@
 	    				style="display: none;">방법별</option>
 	    				<option value="구이">구이</option>
 	    				<option value="찜">찜</option>
-	    				<option value="국/탕/찌개">국/탕/찌개</option>
+	    				<option value="끓임">끓임</option>
 	    				<option value="볶음">볶음</option>
-	    				<option value="조림">조림</option>
 	    				<option value="튀김">튀김</option>
+	    				<option value="조림">조림</option>
+	    				<option value="부침">부침</option>
 	    				<option value="무침">무침</option>
 	    				<option value="비빔">비빔</option>
+	    				<option value="삶음">삶음</option>
+	    				<option value="회">회</option>
+	    				<option value="절임">절임</option>
+	    				<option value="데치기">데치기</option>
 	    				<option value="기타">기타</option>
 	    			</select>
 	    		</td>
@@ -450,8 +466,7 @@
 	    				<option value=1>1인분</option>
 	    				<option value=2>2인분</option>
 	    				<option value=3>3인분</option>
-	    				<option value=4>4인분</option>
-	    				<option value=5>5인분 이상</option>
+	    				<option value=4>4인분 이상</option>
 	    			</select>
 	    		</td>
 	    		<td>
