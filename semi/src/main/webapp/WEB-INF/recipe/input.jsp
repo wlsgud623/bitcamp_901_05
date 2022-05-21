@@ -14,6 +14,19 @@
 	body *{
 		border: 0px solid black;
 	}
+	#tag-list{
+		list-style: none;
+	}
+	#tag-list li{
+		font-size: 22.5px;
+		float: left;
+		margin-right: 20px;
+		margin-top: 15px;
+		border: 3px groove black;
+		border-radius: 22.5px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
 </style>
 <script type="text/javascript">
 /***************************전역 변수***************************/
@@ -45,7 +58,6 @@
 			var value=$(this).val();
 			var className=".ing_hidden"+$(this).attr("idx");
 			$(className).val(value);
-			console.log($(className).val());
 		})
 		
 		//재료 지우기
@@ -164,8 +176,10 @@
 					})
 					
 					if (result.length == 0) {
-		  				$("#tag-list").append("<li class='tag-item'>" + tagValue +
-		  					"&ensp;<span class='del-btn' idx='" + tagCounter + "'>x</span></li>");
+		  				$("#tag-list").append("<li class='tag-item'>" + "#" + tagValue
+		  					+ "&ensp;<span class='del-btn glyphicon glyphicon-remove'"
+		  					+ "style='color: crimson; cursor: pointer; font-size: 18px;'"
+		  					+ "idx='" + tagCounter + "'></span></li>");
 		       			addTag(tagValue);
 		       			//submit 목록에 추가
 						var tags=$("#tag-hidden").val();
@@ -256,7 +270,7 @@
 		stepCount++;
 	}
 	
-	//요리 단계 순서 조정 : 올릴땐 -1, 내릴땐 +1
+	//요리 단계 순서 조정 : 올릴땐 sign=-1, 내릴땐 sign=1
 	function stepOrder(tr, sign) {
 		var th=tr.children().eq(0);
 		var td2=tr.children().eq(2);
@@ -279,7 +293,7 @@
 		tagCounter++;
 	}
 	
-	//재료 추가 html
+	//재료 추가 html : 첫행 first=0, 그 외 first=아무 값
 	function ingTr(idx, val, first) {
 		if (first==1) {
 			return '<tr>'
@@ -573,7 +587,6 @@
 	    	<button type="button" class="btn btn-default" onclick="step_append()">step 추가</button>
 	    </div>
 	    <br><br>
-	    
 
 	    <h3>완성된 요리 사진</h3>
 	    <h5>(선택)다양한 구도에서 찍은 완성된 음식 사진을 올릴 수 있습니다</h5>
@@ -597,18 +610,18 @@
 	    
 		<div style="margin-top: 40px; margin-left: 40px;" class="content">
       		<div style="display: flex;">
-    			<h1 style="width: 150px; margin-right:30px; font-size: 20px;">태그 입력</h1>
-     			<input type="text" id="tag" style="width: 350px;"
+    			<h3 style="width: 150px; margin-right:30px;">태그 입력</h3>
+     			<input type="text" id="tag" style="width: 350px; border: 1px solid gray;"
      			placeholder="입력한 태그를 저장하려면 spacebar를 눌러주세요">
         	</div>
         	<input type="hidden" id="tag-hidden" name="tags" class="form-control" value="">
         	<ul id="tag-list" style="font-size: 15px;">
         	</ul>
 		</div>
-	    <br><br>
+	    <br><br><br><br>
 	    
 	    <div style="text-align: center; width: 850px;">
-	    	<button type="button" class="btn btn-default" onclick="">임시저장</button>&emsp;
+	    	<button type="button" class="btn btn-default" disabled="disabled">중간저장(시간 남으면?)</button>&emsp;
 	    	<button type="submit" class="btn btn-default">업로드</button>&emsp;
 	    	<button type="button" class="btn btn-default" onclick="location.href='/'">취소</button>
 	    </div>
