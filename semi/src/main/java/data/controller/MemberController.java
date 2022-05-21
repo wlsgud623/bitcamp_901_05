@@ -5,11 +5,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,8 +16,9 @@ import data.dto.UserDto;
 import data.mapper.MemberMapperInter;
 import data.service.MemberService;
 
+
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/member")
 public class MemberController {
 	
 		@Autowired
@@ -33,12 +32,20 @@ public class MemberController {
 		{
 			return "/sign/login/signup";
 		}
+		
+		@GetMapping("/aftersignup_login")
+		public String aftersignup_login()
+		{
+			return "/sign/login/aftersignup_login";
+		}
 	
 		@PostMapping("/insert")
 		public String insert(@ModelAttribute UserDto dto,
-				@RequestParam String email1, @RequestParam String email2) 
+				@RequestParam String email1, @RequestParam String email2,
+				@RequestParam String address1, @RequestParam String address2) 
 		{
 				dto.setEmail(email1 + "@" + email2);
+				dto.setAddress(address1 + " " + address2);
 				service.insertMember(dto);		
 				return "redirect:aftersignup_login"; // 회원가입을 완료하면 로그인 페이지로 이동
 		}

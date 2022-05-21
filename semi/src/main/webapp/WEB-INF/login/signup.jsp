@@ -61,25 +61,18 @@ header{
     table tr td{
    	padding-top: 20px;
    } 
-   
-   
-   
-   #address_search{
+    
+  /*  #search_btn{
    	text-align: center;
    	background-image: url(../img/search_icon.png);
-   	background-size: 10%;
-   	background-position: 70px center;
+   	background-size: 20%;
+   	background-position: right;
    	background-repeat: no-repeat;
-   	
-   }   
-   
-   #address_search::placeholder{
-   	color: black;
-   	background-color: 
-   }
+   }  
+ */
    
    table.mem{
-		margin-left: 80px;
+		margin-left: 130px;
    }
 
 </style>
@@ -177,7 +170,7 @@ function check() {
 			   					required="required">
 			   					&nbsp;
 			   					<button type="button" class="btn btn-sm btn-danger" id="idcheck"
-			   					style="width: 100px;" >아이디체크</button>
+			   					style="width: 100px;">아이디체크</button>
 			   					&nbsp;
 			   					<br>
 			   					<b class="idok"></b>
@@ -204,7 +197,7 @@ function check() {
 			   				</td>
 			   			</tr>
 
-			   			
+			   			  
 			   			<tr>
 			   				<th style="width: 130px;">이메일</th>
 			   				<td>
@@ -224,52 +217,43 @@ function check() {
 			   				<tr rowspan="2">
 			   				<th style="width: 130px;">주소</th>
 			   				<td>
-			   					<input type="text" id="address_search" name="address" readonly style="width: 300px;" class="form-control"
-			   					placeholder="주소 검색"/>		
+			   					<input type="text" id="address_search" name="address1" readonly style="width: 300px;" class="form-control"
+			   					placeholder="주소를 입력해주세요"/>		
+			   					&nbsp;
+			   					<button type="button" class="btn btn-sm btn-primary" id="search_btn"
+			   					style="width: 100px;">주소 검색&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span></button>
+			   					&nbsp;
 							<br><br>
-			   					<input type="text" name="address_detail" style="width: 300px;" class="form-control
+			   					<input type="text" name="address2" style="width: 300px;" class="form-control
 			   					required="required" placeholder="상세주소를 입력하세요">
-			   					
 			   					&nbsp;
 			   					<br>
-			   					<b class="passok"></b>
 			   				</td>
 			   			</tr>
+			   			
 			   		</table>
 			   		<br>
 					<button type="submit" class="btn btn-warning"
-					style="width: 700px; height: 50px; margin-top: 20px;">회원가입</button>
+					style="width: 700px; height: 50px; margin: 20px 40px;">회원가입</button>
 			   </form>
 			 </div>
 		</div>
-		<!-- //container -->
-		 <table>
-        <tr>
-            <th>이름</th>
-            <td><input type="text" name="user_name"></td>
-        </tr>
-        <tr>
-            <th>주소</th>
-            <td><input type="text" id="address_search" name="address" readonly /></td>
-        </tr>
-        <tr>
-            <th>상세 주소</th>
-            <td><input type="text" name="address_detail" /></td>
-        </tr>
-    </table>
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     window.onload = function(){
-    document.getElementById("address_search").addEventListener("click", function(){ //주소입력칸을 클릭하면
+   		$("#address_search,#search_btn").click(function(){	
+   	 	//주소입력칸을 클릭하면
         //카카오 지도 발생
         new daum.Postcode({
-            oncomplete: function(data) { //선택시 입력값 세팅
+            	oncomplete: function(data) { //선택시 입력값 세팅
                 document.getElementById("address_search").value = data.address; // 주소 넣기
-                document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+                document.querySelector("input[name=address2]").focus(); //상세입력 포커싱
+                console.log(data);
             }
         }).open();
     });
-}
+   }
 </script>
 	</div>
 </body>
