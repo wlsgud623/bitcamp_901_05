@@ -43,6 +43,7 @@
 			var value=$(this).val();
 			var className=".ing_hidden"+$(this).attr("idx");
 			$(className).val(value);
+			console.log($(className).val());
 		})
 		
 		//재료 지우기
@@ -164,16 +165,16 @@
 		  				$("#tag-list").append("<li class='tag-item'>" + tagValue +
 		  					"&ensp;<span class='del-btn' idx='" + tagCounter + "'>x</span></li>");
 		       			addTag(tagValue);
+		       			//submit 목록에 추가
+						var tags=$("#tag-hidden").val();
+						if (tags!="")
+							tags+=",";
+						tags+=tagValue;
+						$("#tag-hidden").val(tags);
+						console.log($("#tag-hidden").val());
 		 			} else {
 		 				alert("태그값이 중복됩니다.");
 		 			}
-					//submit 목록에 추가
-					var tags=$("#tag-hidden").val();
-					if (tags!="")
-						tags+=",";
-					tags+=tagValue;
-					$("#tag-hidden").val(tags);
-					console.log($("#tag-hidden").val());
 				}
 				
 				e.preventDefault();
@@ -280,7 +281,7 @@
 		if (first==1) {
 			return '<tr>'
 				+'<th id="choose_class'+idx+'" rowspan="2" style="width: 240px;">'
-				+'<input type="text" class="ing_class" required="required"'
+				+'<input type="text" class="ing_class" idx="'+idx+'" required="required"'
 				+'placeholder="재료묶음">'
 				+'<br><br>'
 				+'<button type="button" class="btn btn-default tab_delete"'
@@ -301,8 +302,8 @@
 		} else {
 			return '<tr>'
 				+'<td>'
-				+'<input type="hidden" name="ing_class" class="form-control ing_hidden'+idx+'"'
-				+'value="'+val+'">'
+				+'<input type="hidden" name="ing_class"'
+				+'class="form-control ing_hidden'+idx+'" value="'+val+'">'
 				+'<input type="text" name="ing_name" class="form-control"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
@@ -324,21 +325,21 @@
 	function stepTr(idx) {
 		return '<tr>'
 			+'<th>Step'
-			+'<input type="text" name="steps_step" class="form-control"'
+			+'<input type="text" name="step_sec" class="form-control"'
     		+'value="'+idx+'" readonly="readonly"'
 	    	+'style="border: none; background-color: transparent; width: 40px;">'
 			+'</th>'
 			+'<td>'
-			+'<textarea name="steps_text" style="resize: none; width: 400px; height: 150px;"'
+			+'<textarea name="step_text" style="resize: none; width: 400px; height: 150px;"'
 			+'class="form-control" required="required"'
 			+'placeholder="조리법을 단계별로 자세히 적어주세요"></textarea>'
 			+'</td>'
 			+'<td>'
 			+'<label for="'+idx+'" style="text-align: center;'
 			+'background-color: lightgray; width: 200px; height: 150px; cursor: pointer;">'
-			+'<br><br><img src="image/Upload-Icon.png" style="width: 70px;">'
+			+'<br><br><img src="../image/Upload-Icon.png" style="width: 70px;">'
 			+'</label>'
-			+'<input type="file" name="steps_photo" id="'+idx+'" required="required"'
+			+'<input type="file" name="upload_step" id="'+idx+'" required="required"'
 			+'class="form-control smallPhoto"'
 			+'style="opacity: 0; font-size: 0px;" accept=".jpg, .jpeg, .png">'
 			+'</td>'
@@ -366,10 +367,10 @@
 	<form action="insert" method="post" class="form-inline" enctype="multipart/form-data">
 		<label for="inputPhoto" style="text-align: center; background-color: lightgray;
 		width: 800px; height: 450px; cursor: pointer;">
-			<br><br><img src="image/Upload-Icon.png" style="width: 200px;">
+			<br><br><img src="../image/Upload-Icon.png" style="width: 200px;">
 			<br><br><span style="font-size: 40px;">대표 사진을 등록해주세요</span>
 		</label>
-	    <input type="file" id="inputPhoto" name="main_photo" accept=".jpg, .jpeg, .png"
+	    <input type="file" id="inputPhoto" name="upload_main" accept=".jpg, .jpeg, .png"
 	    style="opacity: 0; font-size: 0px;" class="form-control" required="required">
 	    
 	    <table class="table table-default" style="width: 800px;">
@@ -476,12 +477,12 @@
 		    <table class="table table-bordered" id="write_ing1" style="width: 800px;">
 		    	<tr>
 		    		<th id="choose_class1" rowspan="2" style="width: 240px;">
-		    			<input type="text" class="ing_class" required="required"
+		    			<input type="text" class="ing_class" idx="1" required="required"
 		    			placeholder="재료묶음">
 		    		</th>
 		    		<td>
-		    			<input type="hidden" name="ing_class" class="form-control ing_hidden1"
-		    			value="">
+		    			<input type="hidden" name="ing_class"
+		    			class="form-control ing_hidden1" value="">
 		    			<input type="text" name="ing_name" class="form-control"
 		    			placeholder="예)돼지고기" required="required">
 		    		</td>
@@ -493,8 +494,8 @@
 		    	</tr>
 		    	<tr>
 			    	<td>
-			    		<input type="hidden" name="ing_class" class="form-control ing_hidden1"
-			    		value="">
+			    		<input type="hidden" name="ing_class"
+			    		class="form-control ing_hidden1" value="">
 			    		<input type="text" name="ing_name" class="form-control"
 			    		placeholder="예)돼지고기" required="required">
 			    	</td>
@@ -519,21 +520,21 @@
 	    	<tr>
 	    		<th style="width: 100px;">
 	    			Step
-	    			<input type="text" name="steps_step" class="form-control"
+	    			<input type="text" name="step_sec" class="form-control"
 	    			value="1" readonly="readonly"
 	    			style="border: none; background-color: transparent; width: 40px;">
 	    		</th>
 	    		<td>
-	    			<textarea name="steps_text" class="form-control" required="required"
+	    			<textarea name="step_text" class="form-control" required="required"
 	    			style="resize: none; width: 400px; height: 150px;"
 	    			placeholder="조리법을 단계별로 자세히 적어주세요"></textarea>
 	    		</td>
 	    		<td>
 	    			<label for="1" style="text-align: center; background-color: lightgray;
 					width: 200px; height: 150px; cursor: pointer;">
-						<br><br><img src="image/Upload-Icon.png" style="width: 70px;">
+						<br><br><img src="../image/Upload-Icon.png" style="width: 70px;">
 					</label>
-	    			<input type="file" name="steps_photo" id="1" accept=".jpg, .jpeg, .png"
+	    			<input type="file" name="upload_step" id="1" accept=".jpg, .jpeg, .png"
 	    			style="opacity: 0; font-size: 0px;" class="form-control smallPhoto"
 	    			required="required">
 	    		</td>
@@ -568,9 +569,9 @@
 		    			<label for="com_photo${num}" style="text-align: center;
 		    			background-color: lightgray; width: 192px; height: 144px;
 		    			cursor: pointer;">
-							<br><br><img src="image/Upload-Icon.png" style="width: 70px;">
+							<br><br><img src="../image/Upload-Icon.png" style="width: 70px;">
 						</label>
-		    			<input type="file" name="complete_photo" accept=".jpg, .jpeg, .png"
+		    			<input type="file" name="upload_complete" accept=".jpg, .jpeg, .png"
 		    			id="com_photo${num}" style="opacity: 0; font-size: 0px;"
 		    			class="form-control miniPhoto">
 	    			</td>
