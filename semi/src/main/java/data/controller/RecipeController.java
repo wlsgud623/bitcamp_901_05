@@ -1,6 +1,8 @@
 package data.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,25 +11,31 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import data.dto.CommentDto;
 import data.dto.RecipeDto;
+import data.dto.StepsDto;
 import data.inter.CommentServiceInter;
 import data.service.CommentService;
 import data.service.RecipeService;
+import data.service.StepsService;
 
 @Controller
 @RequestMapping("/recipe")
 public class RecipeController {
 	
+
 	@Autowired
 	private RecipeService recipeService;
-	
+
 	@Autowired
 	private CommentService commentService;
 	
-	/*
+	@Autowired
+	private StepsService stepsService;
+
 	@GetMapping("/detail") // 디테일 페이지
 	public ModelAndView showRecipe(@RequestParam int idx) {
 		ModelAndView mView = new ModelAndView();
@@ -35,14 +43,17 @@ public class RecipeController {
 		recipeService.addView(idx); // 조회수 증가
 		
 		RecipeDto dto = recipeService.getRecipe(idx);
-		List<CommentDto> list = commentService.getAllComment(dto.getRECIPE_IDX());
+		List<StepsDto> steps = stepsService.getStepList(idx);
+		List<CommentDto> comments = commentService.getAllComment(idx);
 		
 		mView.addObject("dto", dto);
-		mView.addObject("list", list);
+		mView.addObject("steps", steps);
+		mView.addObject("comments", comments);
 		mView.setViewName("/recipe/detail");
 		return mView;
 	}
 	
+	/*
 	//스크랩, 추천, 평점
 	@PostMapping("/scrap") // 레시피 스크랩
 	public void scrapRecipe(@RequestParam int idx
@@ -51,14 +62,31 @@ public class RecipeController {
 		//스크랩 기능 구현
 	}
 	
+	*/
 	@PostMapping("/addrecom") //레시피 추천
-	public void addRecommend(@RequestParam int idx) {
+	@ResponseBody
+	public Map<String, Integer> addRecommend(@RequestParam int idx) {
 		recipeService.addRecommend(idx);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		
+		int recom = recipeService.getRecipeRec(idx);
+		map.put("recom", recom);
+		return map;
 	}
 	
 	@PostMapping("/addrate") //레시피 평점 추가
-	public void addRate(@RequestParam int idx, @RequestParam int rate) {
+	@ResponseBody
+	public Map<String, Integer> addRate(@RequestParam int idx, @RequestParam int rate) {
 		recipeService.addRate(idx, rate);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		
+		int currate = recipeService.getRecipeRate(idx);
+		int volunteer = recipeService.getRecipeVolunteer(idx);
+		
+		map.put("rate", currate);
+		map.put("volunteer", volunteer);
+		
+		return map;
 	}
 	
 	//수정, 삭제
@@ -93,11 +121,4 @@ public class RecipeController {
 	public void deleteComment(@RequestParam int num) {
 		commentService.deleteComment(num);
 	}
-	*/
-
-	@GetMapping("/detail")
-	public String recipe() {
-		return "/recipe/detail";
-	}
-
 }

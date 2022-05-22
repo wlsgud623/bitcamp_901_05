@@ -42,6 +42,24 @@ public class RecipeService implements RecipeServiceInter {
 		// TODO Auto-generated method stub
 		return recipeMapperInter.getRecipe(idx);
 	}
+	
+	@Override
+	public int getRecipeRec(int idx) {
+		// TODO Auto-generated method stub
+		return recipeMapperInter.getRecipeRec(idx);
+	}
+	
+	@Override
+	public int getRecipeRate(int idx) {
+		// TODO Auto-generated method stub
+		return recipeMapperInter.getRecipeRate(idx);
+	}
+
+	@Override
+	public int getRecipeVolunteer(int idx) {
+		// TODO Auto-generated method stub
+		return recipeMapperInter.getRecipeVolunteer(idx);
+	}
 
 	@Override
 	public void addRecommend(int idx) {
@@ -96,6 +114,7 @@ public class RecipeService implements RecipeServiceInter {
 		// TODO Auto-generated method stub
 		recipeMapperInter.deleteRecipe(idx);
 	}
+
 
 
 }

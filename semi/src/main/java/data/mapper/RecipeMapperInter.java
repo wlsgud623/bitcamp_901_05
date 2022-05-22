@@ -12,7 +12,10 @@ public interface RecipeMapperInter {
 	public int getTotalCount();
 	public List<RecipeDto> getAllRecipe(); 
 	public List<RecipeDto> getRecipeList(Map<String, Integer> map);
-	public RecipeDto getRecipe(int idx); 
+	public RecipeDto getRecipe(int idx);
+	public int getRecipeRec(int idx);
+	public int getRecipeRate(int idx);
+	public int getRecipeVolunteer(int idx);
 	
 	public void addRecommend(int idx); 
 	public void addRate(Map<String, Integer> map); 
