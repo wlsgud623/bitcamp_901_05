@@ -10,6 +10,7 @@ import data.dto.CommentDto;
 @Mapper
 public interface CommentMapperInter {
 	public int getTotalCount(int idx);
+	public int getTotalGroupCount(int idx);
 	public List<CommentDto> getAllComment(int idx);
 	public CommentDto getComment(Map<String, Integer> map);
 	public void insertComment(CommentDto dto);

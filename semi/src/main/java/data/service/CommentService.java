@@ -23,7 +23,12 @@ public class CommentService implements CommentServiceInter {
 		// TODO Auto-generated method stub
 		return mapper.getTotalCount(idx);
 	}
-
+	@Override
+	public int getTotalGroupCount(int idx) {
+		// TODO Auto-generated method stub
+		return mapper.getTotalGroupCount(idx);
+	}
+	
 	@Override
 	public List<CommentDto> getAllComment(int idx) {
 		// TODO Auto-generated method stub
