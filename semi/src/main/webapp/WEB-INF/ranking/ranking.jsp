@@ -11,6 +11,19 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
+
+.wrap_ranking{	
+	width: 1200px;
+	text-align: center;
+}
+
+div{
+	border: 1px solid black;
+}
+
+.ranking1{
+	
+}
 </style>
 
 
@@ -19,10 +32,7 @@
 
 <body>
 	
-		
-	<div class="header">
-	</div>
-	
+<div class="wrap_ranking">		
 	
 	<div class="ranking1">
 		<div class="">
@@ -100,13 +110,9 @@
 		</div>
 		
 	</div>
-	
 
 	
-	<div class="footer">
-	</div>
-	
-	
+</div>	
 </body>
 </html>
 
