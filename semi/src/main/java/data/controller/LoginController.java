@@ -67,7 +67,7 @@ public class LoginController {
 
 			return "redirect:login"; //다시 로그인 폼으로 이동
 		}
-	}
+	}   
 	
 	// 메뉴바 로그아웃 클릭시
 	@GetMapping("/logout")
