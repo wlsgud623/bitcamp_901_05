@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mapper.StepsMapperInter">
+	<select id="getStepCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM Steps WHERE RECIPE_IDX = #{idx}
+	</select>
+	<select id="getStepList" parameterType="int" resultType="steps">
+		SELECT * FROM Steps WHERE RECIPE_IDX = #{idx}
+	</select>
+</mapper>
