@@ -1,1 +1,291 @@
-@charset "EUC-KR";
+	@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+	}
+	
+	@font-face {
+    	font-family: 'BinggraeMelona-Bold';
+    	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BinggraeMelona-Bold.woff') format('woff');
+    	font-weight: normal;
+    	font-style: normal;
+	}
+	
+	@font-face {
+    	font-family: 'BinggraeMelona';
+    	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BinggraeMelona.woff') format('woff');
+    	font-weight: normal;
+   		font-style: normal;
+	}
+	
+	body {
+		height: 100%;
+	}
+	
+	ul {
+		list-style: none;
+	}
+	
+	div {
+		max-width: 100%;
+	}
+	
+	img{
+		max-width: 100%;
+	}
+			
+	#content{
+		padding-top: 50px;
+		padding-bottom: 50px;
+		padding-left: 100px;
+		padding-right: 100px;
+		border: 2px solid #ff001d;
+		margin-left : 300px;
+		margin-right : 300px;
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
+	
+	#main_area {
+		font-family : 'BinggraeMelona-Bold';
+		
+	}
+	
+	#subject_area {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr 1fr;
+	}
+	
+	#name_section h1{
+		font-size: 45px;
+		font-family: 'BinggraeMelona-Bold';
+		margin: 50px;	
+	}
+	
+	#star_section {
+		align-content : center;
+		align-items : center;
+		justify-content: center;
+	}	
+	
+	.star-rating {
+  		display:flex;	
+  		flex-direction: row-reverse;
+  		font-size:1.5em;
+  		justify-content:space-around;
+  		padding:0 .2em;
+  		width:5em;
+  		border: 1px solid black;
+	}
+
+	.star-rating input {
+  		display:none;
+	}
+
+	.star-rating label {
+  		color:#ccc;
+  		cursor:pointer;
+	}
+
+	.star-rating :checked ~ label {
+  		color:#f90;
+	}
+
+	.star-rating label:hover,
+	.star-rating label:hover ~ label {
+  		color:#fc0;
+	}
+	
+	#scrap_button {
+		margin-right: 50px;
+	}
+	
+	#image_area{
+		margin-top: 50px;
+	}
+	
+	#image_area img {
+		border: 3px double #f64646;
+	}
+	
+	#tag_area {
+		display : flex;
+		margin-top: 45px;
+    	margin-bottom: 40px;
+    	justify-content: center;
+	}
+	
+	#tag_area b{
+		font-size: 20px;
+		font-weight: bold;
+	}
+	
+	#tag_area li {
+    	display: inline-block;
+    	margin: 5px 2px;
+    	min-height: 40px;
+	}
+	
+	#tag_area li a {
+    	font-size: 20px;
+    	line-height: 25px;
+    	color: #777777;
+    	padding: 5px 20px 7px;
+    	border: 1px solid #c1c1c1;
+    	background: #fff;
+    	border-radius: 50px;
+    	text-decoration: none;
+	}
+	
+	#tag_area li a:hover{
+		background: #f64646; 
+		color: #fff;
+		border:1px solid #f64646;
+	}
+		
+	#explain_area {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(20%, 35%));
+		row-gap : 50px;
+		column-gap : 200px;
+		justify-content: center;
+		margin-top : 50px;
+		margin-bottom: 40px;
+	}
+	
+	#explain_area h3 {
+		color: #e9ecef;
+	}
+	
+	#explain_area h1 {
+		float: right;
+		font-weight: bold;
+	}
+	
+	#ingredient_area {
+		display : flex;
+		font-size: 20px;
+		color : #fff;
+		background: #bf132b;
+		position: relative;
+		padding-left: 50px;
+		padding-top: 20px;
+	}
+	
+	#ingredient_area:before{
+		position: absolute; 
+		left:10px; top:-5px; 
+		width:28px; 
+		height: 39px; 
+		display: block; 
+		content: ''; 
+		background:url('/image/stats_i.png')no-repeat;
+	}
+	
+	#level_area {
+		font-size: 20px;
+		color : #fff;
+		background: #bf132b;
+		position: relative;
+		padding-left: 50px;
+		padding-right : 50px;
+		padding-top: 20px;
+	}
+	
+	#level_area:before{
+		position: absolute; 
+		left:10px; top:-5px; 
+		width:28px; 
+		height: 39px; 
+		display: block; 
+		content: ''; 
+		background:url('/image/stats_i.png')no-repeat; 
+	}
+	#level_area h1 {
+		float: right;
+		margin-left: auto;
+		padding-bottom: 20px;	
+	}
+	
+	#level_section {
+		display: flex;
+	}
+	
+	#portion_section { 
+		display: flex;
+	}
+	
+	#recipe_area {
+		font-family : 'BinggraeMelona';
+		border: 1px solid black;
+		margin-bottom: 200px;
+		padding-left: 55px;
+		padding-right: 55px;
+		padding-bottom: 30px;		
+	}
+	
+	#recipe_board p {
+		font-size: 24px;
+	}
+	
+	.step_section b{
+		color: rgb(191, 19, 43);
+		
+	}
+	
+	.explain_section {
+	}
+	
+	.image_section {
+		
+	}
+	
+	#complete_photos { 
+		display: flex;
+	}
+	
+
+	
+	.recipebtn { 
+		height: 50px;
+	}
+	
+	.recipebtn span{
+		font-weight : bold; 
+		font-size : 20px;
+		height: 50px;
+	}
+	
+	#comment_area {
+		font-family : 'BinggraeMelona';
+		border: 2px solid #ff001d;
+		margin-left: 300px;
+		margin-right: 300px;
+		margin-top: 50px;
+		margin-bottom: 50px;
+		padding-top: 50px;
+		padding-bottom: 50px;
+		padding-left: 100px;
+		padding-right: 100px; 
+	}
+	
+	.comment_board {
+		background-color: #e9ecef;
+		padding-top: 30px;
+		padding-bottom: 30px;
+		padding-left: 20px;
+		padding-right: 20px; 
+	}
+	
+	
+	.comment_form textarea{
+		width : 100%;
+		resize: vertical;
+		
+	}
+	
+	#commentbutton {
+		position: relative;
+	}
+	
