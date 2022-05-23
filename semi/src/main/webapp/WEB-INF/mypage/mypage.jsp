@@ -42,6 +42,7 @@ myphoto{
 	border-radius: 100%;
 	width: 200px;
 	height: 200px;
+	
 
 }
 </style>
@@ -66,7 +67,8 @@ myphoto{
 	  
 	  
 	 $(function() {
-	      //비번체크
+	     console.log(${dto}); 
+		 //비번체크
 	      $(".userPassword1").keyup(function() {
 	         var p1 = $("#userPassword1").val();
 	         var p2 = $(this).val();
@@ -135,7 +137,7 @@ myphoto{
 
 <!-- 회원정보수정 -->
 <div class="container">
-	<form method="post" action="/mypage"></form>
+	<form method="post" action="updateform"></form>
 	<img src="../img/logo.png" class="myphoto"  >
 		<table class="table table-bordered table-hover" style="text-align: center; border: 1px solid gray;">
 			<thead>
@@ -145,7 +147,7 @@ myphoto{
 			</thead>
 			<tbody>
 				<tr>
-					<td style="width: 110px;"><h5>아이디</h5></td>
+					<td style="width: 110px;"><h5>${dto.UserID}</h5></td>
 					<td><h5>
 						</h5>
 						<input type="hidden" name="UserID" value="">
@@ -179,23 +181,14 @@ myphoto{
 					<td style="width: 110px;"><h5>이름 : </h5></td>
 					<td colspan="2"><input 
 					class="form-control" id="username" type="text" name="username" 
-					maxlength="20" placeholder="이름"><h5>
+					maxlength="20" placeholder="이름" value="${dto.name}"><h5>
 						</h5></td>
 					
-				</tr>
-				
-				<tr>
-					<td style="width: 110px;"><h5>나이 : </h5></td>
-					<td colspan="2"><input 
-					class="form-control" id="userage" type="number" name="userage"
-					maxlength="20" placeholder="나이" value=""></td>
-					
-				</tr>
-				
+				</tr>				
 				<tr>
 					<td style="width: 110px;"><h5>전화번호 : </h5></td>
 					<td colspan="2"><input class="form-control" id="userhp" type="text" name="userhp"
-					maxlength="20" placeholder="***-****-****" value=""></td>
+					maxlength="20" placeholder="***-****-****" value="${dto.hp}"></td>
 					
 				</tr>
 				

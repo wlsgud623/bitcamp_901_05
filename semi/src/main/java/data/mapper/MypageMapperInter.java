@@ -17,15 +17,6 @@ public interface MypageMapperInter {
 	public void updateUser(UserDto dto); //유저수정
 	public void deleteUser(int UserID); //유저삭제
 	
-	public String userName(String UserID); //이름가져오기
-	public int userAge(String UserID); //나이
-	public String userPassword(String UserID);//비번
-	public String userHP(String UserID);//폰
-	public String userEmail(String UserID);//이메일
-	public String userAddress(String UserID); //주소
-	public String userPhoto(String UserID);// 사진
-	public String userIntro(String UserID); //소개
-	
 	public String getUserRecipeList(String UserID); //유저 레시피 정보
 	public String getscraprecipeList(String UserID); //스크랩한 레시피 
 	

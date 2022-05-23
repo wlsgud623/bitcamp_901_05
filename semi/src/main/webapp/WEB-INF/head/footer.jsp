@@ -19,7 +19,7 @@ html {
 
     margin: 0;
 
-    background: yellow;
+   
 
 }
 
@@ -45,7 +45,7 @@ body {
 
 	color: white;
 
-	background: blue;
+	background: red;
 }
 
 

@@ -98,10 +98,10 @@ body {
 </style>
 </head>
 <script type="text/javascript">
-function () {
-	var wind = $(window),
-	header = $('.page-header'),
-	headerOffsetTop = header.offset().top;
+/*$(function() {
+	var wind = $(window);
+	var header = $('.page-header');
+	var headerOffsetTop = header.offset().top;
 	
 	wind.scroll(function () {
 		if(this.scrollTop() >= headerOffsetTop){ 
@@ -110,23 +110,15 @@ function () {
 			header.removeClass('sticky');
 		}
 	});
-</script>
+	
+	var menubarTop = $("#menubar").position().top;
+	var height = $("#menubar").height();
+	var subMenuTop = menubarTop + height;
 
-<script type="text/javascript">
-	$(function() {
-		var menubarTop = $("#menubar").position().top;
-		var height = $("#menubar").height();
-		var subMenuTop = menubarTop + height;
-
-		$("#menubar-menus li").click(function(event) {
-			
-			$(this).find("#menu").css("top", subMenuTop).slideDown();
-		
-			});
-		});
-
-		
-
+	$("#menubar-menus li").click(function(event) {
+		$(this).find("#menu").css("top", subMenuTop).slideDown();
+	});
+});*/
 </script>
 <body>
 <div class="high">
