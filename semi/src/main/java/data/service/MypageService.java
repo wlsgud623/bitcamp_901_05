@@ -1,6 +1,7 @@
 package data.service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,96 +9,74 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import data.dto.RecipeDto;
 import data.dto.UserDto;
 import data.inter.MemberServiceInter;
 import data.inter.MypageServiceInter;
 import data.mapper.MemberMapperInter;
+import data.mapper.MypageMapperInter;
+import data.mapper.RecipeMapperInter;
 
 @Service
 public class MypageService implements MypageServiceInter{
 
+	@Autowired
+	private MypageMapperInter mypageMapperInter;
+	@Autowired
+	private RecipeMapperInter recipeMapperInter;
+	
 	@Override
-	public UserDto getUserID(String UserID) {
+	public UserDto getUser(String UserID) {
 		// TODO Auto-generated method stub
-		return null;
+		return mypageMapperInter.getUser(UserID);
 	}
 
 	@Override
 	public void updateUser(UserDto dto) {
 		// TODO Auto-generated method stub
+		mypageMapperInter.updateUser(dto);
+	}
+
+	@Override
+	public void deleteUser(String UserID) {
+		// TODO Auto-generated method stub
+		mypageMapperInter.deleteUser(UserID);
+	}
+
+	
+
+	@Override
+	public List<RecipeDto> getUserRecipeList(String UserID) { //레시피dto에서 가져오기
+		// TODO Auto-generated method stub
+		String ownrecipe = mypageMapperInter.getUserRecipeList(UserID); //own에 넣기
+		String [] recipes = ownrecipe.split(","); //string인걸 가져왓으니 배열로
 		
-	}
-
-	@Override
-	public int deleteUser(int UserID) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void userpassword(String password) {
-		// TODO Auto-generated method stub
+		List<RecipeDto> list = new ArrayList<>(); //list 정의
+		for(String idx:recipes) {
+			RecipeDto dto = recipeMapperInter.getRecipe(Integer.parseInt(idx));
+			//가져온걸 int 타입으로 변환
+			list.add(dto);
+		}
 		
+		return list;
 	}
 
 	@Override
-	public void userhp(String hp) {
+	public List<RecipeDto> getscraprecipe(String UserID) {
 		// TODO Auto-generated method stub
+		String scraprecipe = mypageMapperInter.getscraprecipeList(UserID);
+		String [] scraprecipes = scraprecipe.split(",");
 		
+		List<RecipeDto> list = new ArrayList<>();
+		for(String idx :scraprecipes) {
+			RecipeDto dto = recipeMapperInter.getRecipe(Integer.parseInt(idx));
+			list.add(dto);
+			
+		}
+		return list;
 	}
 
-	@Override
-	public void useremail(String email) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void useraddress(String address) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void userphoto(String photo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void userintro(String intro) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateChu(int USERID) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<UserDto> getUserRecipeList(int startnum, int perpage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<UserDto> getscraprecipeList(int startnum, int perpage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void username(String name) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int userage(int age) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
 }
