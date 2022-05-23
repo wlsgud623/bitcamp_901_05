@@ -20,7 +20,6 @@ import data.dto.StepsDto;
 import data.inter.CommentServiceInter;
 import data.service.CommentService;
 import data.service.RecipeService;
-import data.service.StepsService;
 
 @Controller
 @RequestMapping("/recipe")
@@ -33,8 +32,8 @@ public class RecipeController {
 	@Autowired
 	private CommentService commentService;
 	
-	@Autowired
-	private StepsService stepsService;
+//	@Autowired
+//	private StepsService stepsService;
 
 	@GetMapping("/detail") // 디테일 페이지
 	public ModelAndView showRecipe(@RequestParam int idx) {

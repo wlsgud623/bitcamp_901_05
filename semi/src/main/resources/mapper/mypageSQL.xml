@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mapper.MypageMapperInter">
+<select id="getUser" parameterType="String" resultType="user">
+<!--  user id   -->
+select * from user where UserID=#{UserID}
+</select>
+<select id="updateUser" parameterType="user">
+<!--  user 수정  -->
+select user set name=#{name},password=#{password},hp=#{hp}, email=#{email} intro=#{intro} tier=#{tier} where UserID=#{UserID}
+</select>
+<delete id="deleteUser" parameterType="String">
+<!--  user 삭제  -->
+delete from user where UserID=#{UserID}
+</delete>
+<select id="getUserRecipeList" parameterType="map" resultMap="user">
+<!--  유저 레시피처음s부터끝까지 등록된것가져오기  -->
+select * from user order by ownrecipe desc limit #{start}, #{limit}
+</select>
+<update id="getscraprecipeList" parameterType="map">
+<!--  유저 스크랩한 레시피  -->
+update user set scraprecipe = scraprecipe + 1 where UserID=#{UserID}
+<!--  UserID가 기본키  -->
+</update>
+<select id="updateChu" parameterType="String" resultMap="user">
+<!--  총레시피 업로드개수  -->
+select user set ownrecipe=#{ownrecipe} where UserID=#{UserID}
+</select>
+</mapper>
