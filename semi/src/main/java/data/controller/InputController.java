@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import data.dto.IngredientDto;
 import data.dto.RecipeDto;
 import data.dto.StepsDto;
 import data.service.InputService;
+import data.service.RecipeService;
 import utility.FileUpload;
 
 @Controller
@@ -26,6 +28,9 @@ public class InputController {
 
 	@Autowired
 	InputService service;
+	
+	@Autowired
+	RecipeService recipeService;
 	
 	@GetMapping("/input")
 	public String input() {
@@ -94,4 +99,12 @@ public class InputController {
 		
 		return "redirect:/";
 	}
+	
+	@GetMapping("/update")
+	public ModelAndView update(@RequestParam int RECIPE_IDX) {
+		ModelAndView mav=new ModelAndView();
+		RecipeDto reDto=recipeService.getRecipe(RECIPE_IDX);
+		return mav;
+	}
+	
 }
