@@ -20,7 +20,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
    font-size: 100%; 
    font: inherit; 
    vertical-align: baseline; 
-} 
+}   
 
 body { 
    line-height: 1; 
@@ -52,11 +52,15 @@ header{
 	padding-top: 50px;
 }
 
+.login_wrap{
+	width: 600px;
+	margin-left: 260px;
+	margin-top: 50px;
+}
+
 /*로그인 폼*/
 
-for m{
-    padding:10px;
-}
+
 
 .input-box{
     position:relative;
@@ -116,6 +120,15 @@ input[type=submit]{
     color:rgb(164, 164, 164);
     margin:10px 0px;
 }
+
+#login_btn{
+	height: 60px;
+	width: 280px;
+}
+
+#naver_id_login{
+	margin-top: 10px;
+}
 </style>
 
 </head>
@@ -126,22 +139,71 @@ input[type=submit]{
 			<img src="../img/logo.png">
 			</a>
 		</header>
+		<!-- java -->
+		<c:if test="${sessionScope.saveid == 'yes'}">
+			<c:set var ="loginid" value="${sessionScope.loginid}"/>
+		</c:if>
+		<c:if test="${sessionScope.saveid == 'null' || sessionScope.saveid == 'no'}">
+			<c:set var ="loginid" value=""/>
+		</c:if>
 		<!-- container -->
 		<div class="container" id="container">
 			<div class="login_wrap" id="login_wrap">
 		   		<h2>로그인</h2> 
-		   		<form action="" method="POST"> 
+		   		<form action="process" method="post"> 
 		   		<div class="input-box"> 
-		   		<input id="username" type="text" name="username" placeholder="아이디"> 
-		   		<label for="username">아이디</label> 
+		   		<input id="UserID" type="text" name="UserID" placeholder="아이디"
+		   		value="${loginid}"> 
+		   		<label for="UserID">아이디</label> 
 		   		</div> <div class="input-box"> 
 		   		<input id="password" type="password" name="password" placeholder="비밀번호"> 
 		   		<label for="password">비밀번호</label> 
-		   		</div> <div id="forgot">비밀번호 찾기</div> 
-		   		<input type="submit" value="로그인"> </form>
+		   		</div>
+		   		<div id="forgot">
+		   		<input type="checkbox" name="chkid" ${loginid == ""?"":"checked"}>
+   						 아이디 저장</div> 
+		   		<input type="submit" value="로그인" id="login_btn"> </form>
+		   		<!-- 네이버 아이디로 로그인 버튼 -->
+		   		<div id = "naver_id_login"></div>
 			</div>
+			
 		</div>
 		<!-- //container -->
 	</div>
+<script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+ 
+
+ 
+<script type="text/javascript">
+ 
+         var naver_id_login = new naver_id_login("bE43jdaj6ZKwPRwdWSzJ", "http://localhost:9000/");    // Client ID, CallBack URL 삽입
+                                            // 단 'localhost'가 포함된 CallBack URL
+         var state = naver_id_login.getUniqState();
+        
+         naver_id_login.setButton("green", 3, 60);
+         naver_id_login.setDomain("http://localhost:9000/login/login");    //  URL
+         naver_id_login.setState(state);
+      /*    naver_id_login.setPopup(); */
+         naver_id_login.init_naver_id_login();
+ 
+</script>
+
+<script type="text/javascript">
+        var naver_id_login = new naver_id_login("bE43jdaj6ZKwPRwdWSzJ", "http://localhost:9000/"); // 역시 마찬가지로 'localhost'가 포함된 CallBack URL
+        
+        // 접근 토큰 값 출력
+        alert(naver_id_login.oauthParams.access_token);
+        
+        // 네이버 사용자 프로필 조회
+        naver_id_login.get_naver_userprofile("naverSignInCallback()");
+        
+        // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+        function naverSignInCallback() {
+            alert(naver_id_login.getProfileData('email'));
+            alert(naver_id_login.getProfileData('nickname'));
+            alert(naver_id_login.getProfileData('age'));
+            
+        }
+</script>
 </body>
 </html>

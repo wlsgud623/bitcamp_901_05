@@ -9,8 +9,8 @@ import lombok.Data;
 public class StepsDto {
 	private int num; // 요리 step의 고유 키
 	private int RECIPE_IDX; // 요리 step이 속한 레시피의 번호
-	private int step_step; // 요리 step 번호
-	private String step_text; // 세부 내용
-	private String step_photo; // 사진
+	private int step; // 요리 step 번호, sql 사용시 int로 형변환
+	private String text; // 세부 내용
+	private String photo; // 사진
 	private String step_sec; //요리 step 번호 모음
 }

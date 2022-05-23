@@ -81,15 +81,15 @@ public class InputController {
 		
 		//단계 정보 모음을 1개씩 분리
 		String[] step_sec=stDto.getStep_sec().split(",");
-		String[] step_text=stDto.getStep_text().split(",split,");
+		String[] step_text=stDto.getText().split(",split,");
 		String[] step_photo=stepPhotoList.split(",");
 			
 		//한단계씩 등록
 		for (int i = 0; i < step_photo.length; i++) {
 			stDto.setRECIPE_IDX(RECIPE_IDX);
-			stDto.setStep_step(Integer.parseInt(step_sec[i]));
-			stDto.setStep_text(step_text[i]);
-			stDto.setStep_photo(step_photo[i]);
+			stDto.setStep(Integer.parseInt(step_sec[i]));
+			stDto.setText(step_text[i]);
+			stDto.setPhoto(step_photo[i]);
 			
 			service.insertSteps(stDto);
 		}
