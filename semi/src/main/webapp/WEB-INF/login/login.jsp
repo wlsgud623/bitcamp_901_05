@@ -183,7 +183,7 @@ input[type=submit]{
          naver_id_login.setButton("green", 3, 60);
          naver_id_login.setDomain("http://localhost:9000/login/login");    //  URL
          naver_id_login.setState(state);
-         naver_id_login.setPopup();
+      /*    naver_id_login.setPopup(); */
          naver_id_login.init_naver_id_login();
  
 </script>
@@ -202,6 +202,7 @@ input[type=submit]{
             alert(naver_id_login.getProfileData('email'));
             alert(naver_id_login.getProfileData('nickname'));
             alert(naver_id_login.getProfileData('age'));
+            
         }
 </script>
 </body>

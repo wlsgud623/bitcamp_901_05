@@ -12,8 +12,8 @@
   
 <style type="text/css">
 	.container{
-		text-align: center;
-		width: 1200px;
+	 	text-align: center; 
+		width: 100%;
 		
 	}
 
@@ -60,6 +60,11 @@
 		border-radius: 80%;
 	} */
 	
+/* 	.img_{
+		float: left;
+		display: inline;
+	} */
+	
 /* 	div.sub_item2{
 		width: 100px;
 		height: 100px;
@@ -67,12 +72,30 @@
 		border-radius: 50px;
 	}
 	 */
+	 
+
 
 	
 </style>
 </head>
+
 <body>
+<c:set var="root" value="<%=request.getContextPath()%>"></c:set>
 <div class="container">  
+	<div class="login">
+		<c:if test="${sessionScope.loginok == null}">
+			<button type="button" class="btn btn-success" 
+			onclick="location.href='${root}/login/login'">로그인</button>
+		</c:if>
+		
+		<c:if test="${sessionScope.loginok != null}">
+			<b>${sessionScope.loginid}(${sessionScope.loginname}) 님</b>
+			&nbsp;
+			<button type="button" class="btn btn-success" 
+			onclick="logout()">로그아웃</button>
+		</c:if>
+	
+	</div>
 	<br><br><br><br>
    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 1200px;">
     <!-- <!-- Indicators -->
@@ -120,15 +143,46 @@
     </a>
   </div>
 </div>
-<br><br><br>
-<div class="rec_recipe" width="600px;">
-	<h1 style="padding-left: 20px;">&nbsp;추천 레시피</h1>
-	<br>
 	
-	<c:forEach var="a" begin="1" end="15">
-		<img src="img/main/${a}.jpg" class="mainimage" style="width: 30%;">
-		 <%-- <c:if test="${a%3 == 0}"><br></c:if>  --%>
+<br><br><br>
+<h1>&nbsp;추천 레시피</h1>
+<br><br>
+<div class="rec_recipe" style="width: 1500px;">
+	<c:forEach var="dto" items="${list}" varStatus="i">
+	<div class="box" style=" float: left; width: 400px;">
+	<div class="rec_img">
+		<a href="/recipe/detail?RECIPE_IDX=${dto.RECIPE_IDX}">
+			<img src="../img/main/${dto.main_photo}" class="mainimage" style="width: 90%;">
+		</a>
+	</div>
+	<br>
+	<div class="info">
+		<div class="info_tag">
+			<span>#${dto.tags}</span>
+	</div>
+	</div>
+	<div class="info_title">	
+		<a href="">
+			<span>${dto.name}</span>
+		</a>
+	</div>
+	</div>
 	</c:forEach>
+</div>
+	
+<%-- 	<c:forEach var="a" begin="1" end="15">
+		<img src="img/main/${a}.jpg" class="mainimage" style="width: 30%;"> 
+		<c:if test="${a%3 == 0}"><br></c:if>  
+		 
+		 <c:forTokens var="tags" items="${dto.tags}" delims="," varStatus="n">
+		 	<b>${dto.tags}</b>
+				<a href="../save/${photo}" target="_new" style="cursor: pointer;">
+				<img src="../save/${photo}"
+				style="max-width: 300px; border: 1px solid black;">
+				<c:if test="${n.count%2==0}"><br><br></c:if> 
+				</a>
+			</c:forTokens>
+	</c:forEach> --%>
 </div>
 <br><br><br><br>
 
@@ -139,7 +193,8 @@
 	<br>번거로운 재료준비는 줄이고 쉽고 간단한 방법으로 모두의 밥상이 풍요로워지는 경험을 해보세요!</b>
 	<img src="img/main/logo2.png">
 </div>
-	<div class="home_category">
+</div>
+	<%-- <div class="home_category">
 	 <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 1200px;">
     <!-- <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -164,9 +219,13 @@
 			</c:forEach>
       </div>
 	</div>
+</div> 
+	</div>
+</div>--%>
 </div>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script> 
 
+<!-- 
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script> 
 <script> var naverLogin = new naver.LoginWithNaverId( { 
 	clientId: "bE43jdaj6ZKwPRwdWSzJ", 
 	callbackUrl: "http://localhost:9000/", 
@@ -190,9 +249,19 @@
 						console.log("callback 처리에 실패하였습니다."); 
 					} }); 
 				}); 
-	</script>
-
-
-
+</script> -->
+<script type="text/javascript">
+	function logout()
+	{
+		$.ajax({
+			type: "get",
+			dataType: "text",
+			url: "${root}/login/logout",
+			success: function() {
+				location.reload();
+			} 
+		});
+	}
+</script>
 </body>
 </html>
