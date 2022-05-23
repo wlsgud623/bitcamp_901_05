@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mapper.InputMapperInter">
+	<insert id="insertRecipe" parameterType="recipe">
+		INSERT INTO Recipe (USERID, name, intro, category, main_ing, cooking, portion, level,
+		main_photo, complete_photo, tags, writeday) VALUES (#{userID}, #{name}, #{intro}, 
+		#{category}, #{main_ing}, #{cooking}, #{portion}, #{level}, 
+		#{main_photo}, #{complete_photo}, #{tags}, now())
+	</insert>
+	<select id="getLastRecipeIdx" resultType="int">
+		SELECT RECIPE_IDX FROM Recipe ORDER BY RECIPE_IDX DESC LIMIT 1
+	</select>
+	<insert id="insertIngredient" parameterType="ingredient">
+		INSERT INTO Ingredient (RECIPE_IDX, bundle, name, quantity) VALUES (#{RECIPE_IDX}, 
+		#{bundle}, #{name}, #{quantity})
+	</insert>
+	<insert id="insertSteps" parameterType="steps">
+		INSERT INTO Steps (RECIPE_IDX, step, text, photo) VALUES (#{RECIPE_IDX}, 
+		#{step_step}, #{step_text}, #{step_photo})
+	</insert>
+	<update id="updateOwnRecipe" parameterType="Map">
+		UPDATE User SET 
+		<if test="ownrecipe=='none'">
+			ownrecipe=#{RECIPE_IDX}
+		</if>
+		<if test="ownrecipe!='none'">
+			ownrecipe=CONCAT(ownrecipe, ",", #{RECIPE_IDX})
+		</if>
+		 WHERE USERID=#{userID}
+	</update>
+</mapper>

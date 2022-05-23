@@ -27,6 +27,9 @@
 		padding-left: 15px;
 		padding-right: 15px;
 	}
+	.ing_class{
+		border: 1px solid gray;
+	}
 </style>
 <script type="text/javascript">
 /***************************전역 변수***************************/
@@ -219,6 +222,22 @@
 			}
 		 	$("#tag-hidden").val(tags);
 		});
+		
+		//재료 칸 (,) 입력 방지
+		$(document).on("keydown", ".ing_class, .ing_name, .ing_quantity", function(e) {
+	    	if ( e.keyCode == 188 ) {
+	    		var value=$(this).val();
+	    		$(this).val(value.replace(",",""));
+	    	}
+		});
+		
+		//재료 칸 (,) 입력 방지
+		$(document).on("keyup", ".ing_class, .ing_name, .ing_quantity", function(e) {
+	    	if ( e.keyCode == 188 ) {
+	    		var value=$(this).val();
+	    		$(this).val(value.replace(",",""));
+	    	}
+		});
 	});
 
 /***************************전역 함수***************************/
@@ -307,11 +326,11 @@
 				+'<td>'
 				+'<input type="hidden" name="ing_class"'
 				+'class="form-control ing_hidden'+idx+'" value="">'
-				+'<input type="text" name="ing_name" class="form-control"'
+				+'<input type="text" name="ing_name" class="form-control ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
 				+'<td>'
-				+'<input type="text" name="ing_quantity" class="form-control"'
+				+'<input type="text" name="ing_quantity" class="form-control ing_quantity"'
 				+'required="required" placeholder="예)300g">'
 				+'</td>'
 				+'<td style="width: 40px;"></td>'
@@ -321,11 +340,11 @@
 				+'<td>'
 				+'<input type="hidden" name="ing_class"'
 				+'class="form-control ing_hidden'+idx+'" value="'+val+'">'
-				+'<input type="text" name="ing_name" class="form-control"'
+				+'<input type="text" name="ing_name" class="form-control ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
 				+'<td>'
-				+'<input type="text" name="ing_quantity" class="form-control"'
+				+'<input type="text" name="ing_quantity" class="form-control ing_quantity"'
 				+'required="required" placeholder="예)300g">'
 				+'</td>'
 				+'<td>'
@@ -350,6 +369,7 @@
 			+'<textarea name="step_text" style="resize: none; width: 400px; height: 150px;"'
 			+'class="form-control" required="required"'
 			+'placeholder="조리법을 단계별로 자세히 적어주세요"></textarea>'
+			+'<input type="hidden" name="step_text" value="split">'
 			+'</td>'
 			+'<td>'
 			+'<label for="'+idx+'" style="text-align: center;'
@@ -510,26 +530,26 @@
 		    			placeholder="재료묶음">
 		    		</th>
 		    		<td>
-		    			<input type="hidden" name="ing_class"
-		    			class="form-control ing_hidden1" value="">
-		    			<input type="text" name="ing_name" class="form-control"
+		    			<input type="hidden" name="ing_class" class="form-control ing_hidden1"
+		    			value="">
+		    			<input type="text" name="ing_name" class="form-control ing_name"
 		    			placeholder="예)돼지고기" required="required">
 		    		</td>
 		    		<td>
-		    			<input type="text" name="ing_quantity" class="form-control"
+		    			<input type="text" name="ing_quantity" class="form-control ing_quantity"
 		    			placeholder="예)300g" required="required">
 		    		</td>
 		    		<td style="width: 40px;"></td>
 		    	</tr>
 		    	<tr>
 			    	<td>
-			    		<input type="hidden" name="ing_class"
-			    		class="form-control ing_hidden1" value="">
-			    		<input type="text" name="ing_name" class="form-control"
+			    		<input type="hidden" name="ing_class" class="form-control ing_hidden1"
+			    		value="">
+			    		<input type="text" name="ing_name" class="form-control ing_name"
 			    		placeholder="예)돼지고기" required="required">
 			    	</td>
 			    	<td>
-			    		<input type="text" name="ing_quantity" class="form-control"
+			    		<input type="text" name="ing_quantity" class="form-control ing_quantity"
 			    		placeholder="예)300g" required="required">
 			    	</td>
 			    	<td>
@@ -557,6 +577,7 @@
 	    			<textarea name="step_text" class="form-control" required="required"
 	    			style="resize: none; width: 400px; height: 150px;"
 	    			placeholder="조리법을 단계별로 자세히 적어주세요"></textarea>
+	    			<input type="hidden" name="step_text" value="split">
 	    		</td>
 	    		<td>
 	    			<label for="1" style="text-align: center; background-color: lightgray;
