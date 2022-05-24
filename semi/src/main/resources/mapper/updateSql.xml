@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mapper.UpdateMapperInter">
+	<select id="getRecipe" parameterType="int" resultType="recipe">
+		SELECT * FROM Recipe WHERE RECIPE_IDX = #{RECIPE_IDX}
+	</select>
+	<select id="getIngredient" parameterType="int" resultType="ingredient">
+		SELECT * FROM Ingredient WHERE RECIPE_IDX = #{RECIPE_IDX} ORDER BY bundle
+	</select>
+	<select id="getBundleCount" parameterType="int" resultType="Integer">
+		SELECT COUNT(bundle) cnt from Ingredient WHERE RECIPE_IDX = #{RECIPE_IDX} GROUP BY bundle
+	</select>
+	<select id="getSteps" parameterType="int" resultType="steps">
+		SELECT * FROM Steps WHERE RECIPE_IDX = #{RECIPE_IDX} ORDER BY step
+	</select>
+	<select id="getPhotoByNum" parameterType="int" resultType="String">
+		SELECT photo FROM Steps WHERE num = #{num}
+	</select>
+	<update id="updateRecipe" parameterType="recipe">
+		UPDATE Recipe SET name = #{name}, intro = #{intro}, category = #{category}, 
+		main_ing = #{main_ing}, cooking = #{cooking}, portion = #{portion}, level = #{level}, 
+		main_photo = #{main_photo}, complete_photo = #{complete_photo}, tags = #{tags} 
+		WHERE RECIPE_IDX = #{RECIPE_IDX}
+	</update>
+	<update id="updateIngredient" parameterType="ingredient">
+		UPDATE Ingredient SET bundle=#{bundle}, name=#{name}, 
+		quantity=#{quantity} WHERE num = #{num}
+	</update>
+	<update id="updateSteps" parameterType="steps">
+		UPDATE Steps SET step=#{step}, text=#{text}, 
+		photo=#{photo} WHERE num = #{num}
+	</update>
+	<delete id="deleteIngredient" parameterType="int">
+		DELETE from Ingredient WHERE num = #{num}
+	</delete>
+	<delete id="deleteSteps" parameterType="int">
+		DELETE from Steps WHERE num = #{num}
+	</delete>
+</mapper>

@@ -16,7 +16,7 @@
 	</insert>
 	<insert id="insertSteps" parameterType="steps">
 		INSERT INTO Steps (RECIPE_IDX, step, text, photo) VALUES (#{RECIPE_IDX}, 
-		#{step_step}, #{step_text}, #{step_photo})
+		#{step}, #{text}, #{photo})
 	</insert>
 	<update id="updateOwnRecipe" parameterType="Map">
 		UPDATE User SET 

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileUpload {
 
+	//파일명 설정 : 년_월일_시분초_밀리초.확장자
 	public String fileUploadName(String originalName) {
 		int dot=originalName.lastIndexOf(".");
 		String extension=originalName.substring(dot, originalName.length());
@@ -31,6 +32,7 @@ public class FileUpload {
 		return name;
 	}
 	
+	//파일 업로드 후 업로드된 파일명 반환, 업로드하지 않으면 no image
 	public String fileUploadEvent(ArrayList<MultipartFile> upload, HttpServletRequest request) {
 		if (upload.size()==0) {
 			return "no image";
@@ -56,6 +58,39 @@ public class FileUpload {
 		
 		imgList=imgList.substring(0, imgList.length()-1);
 		return imgList;
+	}
+	
+	//파일 업데이트 : 업로드 안할 시 기존 파일 유지
+	public String fileUpdateEvent(String existingFile, MultipartFile upload,
+			HttpServletRequest request) {
+		String img=existingFile;
+		String path=request.getServletContext().getRealPath("/upload");
+		
+		if (upload.getOriginalFilename()!="") {
+			deleteFile(existingFile, request);
+			String name=fileUploadName(upload.getOriginalFilename());
+			img=name;
+			File file=new File(path+"\\"+name);
+			try {
+				upload.transferTo(file);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return img;
+	}
+	
+	//파일 삭제
+	public void deleteFile(String existingFile, HttpServletRequest request) {
+		String path=request.getServletContext().getRealPath("/upload");
+		File file=new File(path+"\\"+existingFile);
+		if (file.exists()) {
+			file.delete();
+			System.out.println(existingFile+"파일 삭제 성공");
+		} else {
+			System.out.println("파일이 없음");
+		}
 	}
 	
 }
