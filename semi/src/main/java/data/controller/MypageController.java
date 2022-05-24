@@ -103,8 +103,8 @@ public class MypageController {
 	  public ModelAndView scraprecipeList(@RequestParam String UserID) 
 	  {
 		ModelAndView mView = new ModelAndView();
-		List<RecipeDto> list = mypageService.getscraprecipe(UserID);
-		mView.addObject("list",list);
+		List<RecipeDto> scraprecipeList = mypageService.getscraprecipe(UserID);
+		mView.addObject("scraprecipeList",scraprecipeList);
 		mView.setViewName("mypage/mypage");	
 		return mView;
 	   }
@@ -114,8 +114,8 @@ public class MypageController {
 	 public ModelAndView ownrecipeList(@RequestParam String UserID) 
 	  {
 		ModelAndView mview = new ModelAndView();
-		List<RecipeDto> list = mypageService.getUserRecipeList(UserID);
-		mview.addObject("list",list);
+		List<RecipeDto> ownrecipeList = mypageService.getUserRecipeList(UserID);
+		mview.addObject("ownrecipeList",ownrecipeList);
 		mview.setViewName("mypage/mypage");
 
 		

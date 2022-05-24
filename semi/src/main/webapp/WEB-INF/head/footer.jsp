@@ -54,6 +54,7 @@ body {
 
 
 <body>
+<!-- 
 	<div id="footer" class="footer">
 	
 		
@@ -80,6 +81,6 @@ body {
 			</div>
 		</div>
 
-	</div>
+	</div> -->
 </body>
 </html>

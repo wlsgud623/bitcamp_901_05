@@ -84,6 +84,7 @@ if(a != '사용 가능한 아이디 입니다.'){
 
 </script>
 <body>
+
 	<div class="body">
 		<header class="header">
 			<a href="../">
