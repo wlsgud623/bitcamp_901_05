@@ -11,8 +11,63 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
-	body *{
-		border: 0px solid black;
+	@font-face {
+	    font-family: 'CookieRun-Regular';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	@font-face {
+	    font-family: 'Yeongdo-Rg';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	@font-face {
+	    font-family: 'Donoun-Medium';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Donoun-Medium.woff2') format('woff2');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	@font-face {
+	    font-family: 'Cafe24SsurroundAir';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	@font-face {
+	    font-family: 'Cafe24Ohsquareair';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	div.inputMain{
+		position: relative;
+		margin-bottom: 300px;
+		top: 30px;
+		left: 100px;
+	}
+	h1.inputTitle{
+		font-family: 'CookieRun-Regular';
+		font-size: 50px;
+	}
+	label.inputMainLabel{
+		font-family: 'Cafe24SsurroundAir';
+		text-align: center;
+		width: 800px;
+		height: 450px;
+		cursor: pointer;
+	}
+	img.inputMainLabel{
+		width: 800px;
+		height: 450px;
+		object-fit: cover;
+		margin-bottom: -250px;
+		opacity: 0.5;
+	}
+	div.inputMain th{
+		font-family: 'Cafe24Ohsquareair';
+		font-size: 25px;
 	}
 	#tag-list{
 		list-style: none;
@@ -398,29 +453,30 @@
 </script>
 </head>
 <body>
-<div style="position: relative; margin-bottom: 300px; top: 30px; left: 100px;">
-	<h1>레시피 등록</h1>
+<div class="inputMain">
+	<h1 class="inputTitle">레시피 작성하기</h1>
+	<br>
 	<form action="insert" method="post" class="form-inline" enctype="multipart/form-data">
-		<label for="inputPhoto" style="text-align: center; background-color: lightgray;
-		width: 800px; height: 450px; cursor: pointer;">
-			<br><br><img src="../image/Upload-Icon.png" style="width: 200px;">
-			<br><br><span style="font-size: 40px;">대표 사진을 등록해주세요</span>
+		<label for="inputPhoto" class="inputMainLabel">
+			<img src="../img/blog-6.jpg" class="inputMainLabel">
+			<span style="font-size: 40px;">대표 사진을 등록해주세요</span>
 		</label>
 	    <input type="file" id="inputPhoto" name="upload_main" accept=".jpg, .jpeg, .png"
 	    style="opacity: 0; font-size: 0px;" class="form-control" required="required">
+	    <br><br>
 	    
 	    <table class="table table-default" style="width: 800px;">
 	    	<tr>
-	    		<th>레시피 제목</th>
+	    		<th style="width: 150px;">레시피 제목</th>
 	    		<td colspan="3">
-	    			<input type="text" name="name" class="form-control" style="width: 690px;"
+	    			<input type="text" name="name" class="form-control" style="width: 640px;"
 	    			placeholder="레시피의 이름을 적어주세요" required="required">
 	    		</td>
 	    	</tr>
 	    	<tr>
 	    		<th>레시피 소개</th>
 	    		<td colspan="3">
-	    			<textarea name="intro" style="resize: none; width: 690px; height: 75px;"
+	    			<textarea name="intro" style="resize: none; width: 640px; height: 80px;"
 	    			class="form-control" placeholder="레시피에 대한 소개를 적어주세요"
 	    			required="required"></textarea>
 	    		</td>
