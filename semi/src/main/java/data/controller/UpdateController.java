@@ -71,7 +71,6 @@ public class UpdateController {
 			@RequestParam ArrayList<MultipartFile> upload_main,
 			@RequestParam ArrayList<MultipartFile> upload_step,
 			@RequestParam ArrayList<MultipartFile> upload_complete,
-			HttpSession session,
 			HttpServletRequest request) {
 		/*ingDel, stepDel, compDel
 		d : 기존 db 정보를 삭제
