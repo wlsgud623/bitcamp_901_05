@@ -5,10 +5,16 @@
 		SELECT * FROM Recipe WHERE RECIPE_IDX = #{RECIPE_IDX}
 	</select>
 	<select id="getIngredient" parameterType="int" resultType="ingredient">
-		SELECT * FROM Ingredient WHERE RECIPE_IDX = #{RECIPE_IDX}
+		SELECT * FROM Ingredient WHERE RECIPE_IDX = #{RECIPE_IDX} ORDER BY bundle
+	</select>
+	<select id="getBundleCount" parameterType="int" resultType="Integer">
+		SELECT COUNT(bundle) cnt from Ingredient WHERE RECIPE_IDX = #{RECIPE_IDX} GROUP BY bundle
 	</select>
 	<select id="getSteps" parameterType="int" resultType="steps">
-		SELECT * FROM Steps WHERE RECIPE_IDX = #{RECIPE_IDX}
+		SELECT * FROM Steps WHERE RECIPE_IDX = #{RECIPE_IDX} ORDER BY step
+	</select>
+	<select id="getPhotoByNum" parameterType="int" resultType="String">
+		SELECT photo FROM Steps WHERE num = #{num}
 	</select>
 	<update id="updateRecipe" parameterType="recipe">
 		UPDATE Recipe SET name = #{name}, intro = #{intro}, category = #{category}, 
@@ -21,8 +27,13 @@
 		quantity=#{quantity} WHERE num = #{num}
 	</update>
 	<update id="updateSteps" parameterType="steps">
-		UPDATE Steps SET step_step=#{step_step}, step_text=#{step_text}, 
-		step_photo=#{step_photo} WHERE num = #{num}
+		UPDATE Steps SET step=#{step}, text=#{text}, 
+		photo=#{photo} WHERE num = #{num}
 	</update>
-	<delete id=""></delete>
+	<delete id="deleteIngredient" parameterType="int">
+		DELETE from Ingredient WHERE num = #{num}
+	</delete>
+	<delete id="deleteSteps" parameterType="int">
+		DELETE from Steps WHERE num = #{num}
+	</delete>
 </mapper>

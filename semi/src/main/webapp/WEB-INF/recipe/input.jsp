@@ -162,7 +162,7 @@
 		$(document).on("click", "#del_btn_popup", function() {
 			$(this).prev().val("");
 			$(this).prev().prev()
-				.html('<br><br><img src="image/Upload-Icon.png" style="width: 70px;">');
+				.html('<br><br><img src="../image/Upload-Icon.png" style="width: 70px;">');
 		});
 		
 		//태그
@@ -324,13 +324,13 @@
 	    		+'style="font-size: 0.8rem; height: 25px;">삭제</button>'
 				+'</th>'
 				+'<td>'
-				+'<input type="hidden" name="ing_class"'
+				+'<input type="hidden" name="bundle"'
 				+'class="form-control ing_hidden'+idx+'" value="">'
-				+'<input type="text" name="ing_name" class="form-control ing_name"'
+				+'<input type="text" name="ingName" class="form-control ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
 				+'<td>'
-				+'<input type="text" name="ing_quantity" class="form-control ing_quantity"'
+				+'<input type="text" name="quantity" class="form-control ing_quantity"'
 				+'required="required" placeholder="예)300g">'
 				+'</td>'
 				+'<td style="width: 40px;"></td>'
@@ -338,13 +338,13 @@
 		} else {
 			return '<tr>'
 				+'<td>'
-				+'<input type="hidden" name="ing_class"'
+				+'<input type="hidden" name="bundle"'
 				+'class="form-control ing_hidden'+idx+'" value="'+val+'">'
-				+'<input type="text" name="ing_name" class="form-control ing_name"'
+				+'<input type="text" name="ingName" class="form-control ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
 				+'<td>'
-				+'<input type="text" name="ing_quantity" class="form-control ing_quantity"'
+				+'<input type="text" name="quantity" class="form-control ing_quantity"'
 				+'required="required" placeholder="예)300g">'
 				+'</td>'
 				+'<td>'
@@ -361,23 +361,22 @@
 	function stepTr(idx) {
 		return '<tr>'
 			+'<th>Step'
-			+'<input type="text" name="step_sec" class="form-control"'
+			+'<input type="text" name="stepSec" class="form-control"'
     		+'value="'+idx+'" readonly="readonly"'
 	    	+'style="border: none; background-color: transparent; width: 40px;">'
 			+'</th>'
 			+'<td>'
-			+'<textarea name="step_text" style="resize: none; width: 400px; height: 150px;"'
+			+'<textarea name="text" style="resize: none; width: 400px; height: 150px;"'
 			+'class="form-control" required="required"'
 			+'placeholder="조리법을 단계별로 자세히 적어주세요"></textarea>'
-			+'<input type="hidden" name="step_text" value="split">'
+			+'<input type="hidden" name="text" value="split">'
 			+'</td>'
 			+'<td>'
 			+'<label for="'+idx+'" style="text-align: center;'
 			+'background-color: lightgray; width: 200px; height: 150px; cursor: pointer;">'
 			+'<br><br><img src="../image/Upload-Icon.png" style="width: 70px;">'
 			+'</label>'
-			+'<input type="file" name="upload_step" id="'+idx+'" required="required"'
-			+'class="form-control smallPhoto"'
+			+'<input type="file" name="upload_step" id="'+idx+'" class="form-control smallPhoto"'
 			+'style="opacity: 0; font-size: 0px;" accept=".jpg, .jpeg, .png">'
 			+'</td>'
 			+'<td>'
@@ -399,7 +398,7 @@
 </script>
 </head>
 <body>
-<div style="position: absolute; top: 30px; left: 100px;">
+<div style="position: relative; margin-bottom: 300px; top: 30px; left: 100px;">
 	<h1>레시피 등록</h1>
 	<form action="insert" method="post" class="form-inline" enctype="multipart/form-data">
 		<label for="inputPhoto" style="text-align: center; background-color: lightgray;
@@ -530,26 +529,26 @@
 		    			placeholder="재료묶음">
 		    		</th>
 		    		<td>
-		    			<input type="hidden" name="ing_class" class="form-control ing_hidden1"
+		    			<input type="hidden" name="bundle" class="form-control ing_hidden1"
 		    			value="">
-		    			<input type="text" name="ing_name" class="form-control ing_name"
+		    			<input type="text" name="ingName" class="form-control ing_name"
 		    			placeholder="예)돼지고기" required="required">
 		    		</td>
 		    		<td>
-		    			<input type="text" name="ing_quantity" class="form-control ing_quantity"
+		    			<input type="text" name="quantity" class="form-control ing_quantity"
 		    			placeholder="예)300g" required="required">
 		    		</td>
 		    		<td style="width: 40px;"></td>
 		    	</tr>
 		    	<tr>
 			    	<td>
-			    		<input type="hidden" name="ing_class" class="form-control ing_hidden1"
+			    		<input type="hidden" name="bundle" class="form-control ing_hidden1"
 			    		value="">
-			    		<input type="text" name="ing_name" class="form-control ing_name"
+			    		<input type="text" name="ingName" class="form-control ing_name"
 			    		placeholder="예)돼지고기" required="required">
 			    	</td>
 			    	<td>
-			    		<input type="text" name="ing_quantity" class="form-control ing_quantity"
+			    		<input type="text" name="quantity" class="form-control ing_quantity"
 			    		placeholder="예)300g" required="required">
 			    	</td>
 			    	<td>
@@ -569,15 +568,15 @@
 	    	<tr>
 	    		<th style="width: 100px;">
 	    			Step
-	    			<input type="text" name="step_sec" class="form-control"
+	    			<input type="text" name="stepSec" class="form-control"
 	    			value="1" readonly="readonly"
 	    			style="border: none; background-color: transparent; width: 40px;">
 	    		</th>
 	    		<td>
-	    			<textarea name="step_text" class="form-control" required="required"
+	    			<textarea name="text" class="form-control" required="required"
 	    			style="resize: none; width: 400px; height: 150px;"
 	    			placeholder="조리법을 단계별로 자세히 적어주세요"></textarea>
-	    			<input type="hidden" name="step_text" value="split">
+	    			<input type="hidden" name="text" value="split">
 	    		</td>
 	    		<td>
 	    			<label for="1" style="text-align: center; background-color: lightgray;
@@ -585,8 +584,7 @@
 						<br><br><img src="../image/Upload-Icon.png" style="width: 70px;">
 					</label>
 	    			<input type="file" name="upload_step" id="1" accept=".jpg, .jpeg, .png"
-	    			style="opacity: 0; font-size: 0px;" class="form-control smallPhoto"
-	    			required="required">
+	    			style="opacity: 0; font-size: 0px;" class="form-control smallPhoto">
 	    		</td>
 	    		<td style="width: 40px;">
 	    			<button type="button" class="step_up btn btn-info">

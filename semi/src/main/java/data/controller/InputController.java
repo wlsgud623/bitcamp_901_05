@@ -1,6 +1,8 @@
 package data.controller;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,7 +21,7 @@ import data.dto.IngredientDto;
 import data.dto.RecipeDto;
 import data.dto.StepsDto;
 import data.service.InputService;
-import data.service.RecipeService;
+import data.service.UpdateService;
 import utility.FileUpload;
 
 @Controller
@@ -30,7 +32,7 @@ public class InputController {
 	InputService service;
 	
 	@Autowired
-	RecipeService recipeService;
+	UpdateService updateService;
 	
 	@GetMapping("/input")
 	public String input() {
@@ -41,6 +43,8 @@ public class InputController {
 	public String insert(@ModelAttribute RecipeDto reDto,
 			@ModelAttribute IngredientDto inDto,
 			@ModelAttribute StepsDto stDto,
+			@RequestParam String ingName,
+			@RequestParam String stepSec,
 			@RequestParam ArrayList<MultipartFile> upload_main,
 			@RequestParam ArrayList<MultipartFile> upload_step,
 			@RequestParam ArrayList<MultipartFile> upload_complete,
@@ -52,59 +56,216 @@ public class InputController {
 		
 		//메인, 완성사진 업로드
 		FileUpload fileUpload=new FileUpload();
-		String main_photo=fileUpload.fileUploadEvent(upload_main, request);
-		String complete_photo=fileUpload.fileUploadEvent(upload_complete, request);
-		reDto.setMain_photo(main_photo);
-		reDto.setComplete_photo(complete_photo);
+		String mainPhoto=fileUpload.fileUploadEvent(upload_main, request);
+		String completePhoto=fileUpload.fileUploadEvent(upload_complete, request);
+		reDto.setMain_photo(mainPhoto);
+		reDto.setComplete_photo(completePhoto);
+		
+		//태그를 입력하지 않았을 경우
+		if (reDto.getTags()==null) {
+			reDto.setTags("no tag");
+		}
 		
 		//레시피 등록 후, 생성된 idx값 추출
 		service.insertRecipe(reDto);
 		int RECIPE_IDX=service.getLastRecipeIdx();
 		
 		//재료 정보 모음을 1개씩 분리
-		String[] ing_class=inDto.getBundle().split(",");
-		String[] ing_name=inDto.getName().split(",");
-		String[] ing_quantity=inDto.getQuantity().split(",");
+		String[] bundle=inDto.getBundle().split(",");
+		String[] ingredientName=ingName.split(",");
+		String[] quantity=inDto.getQuantity().split(",");
 		
 		//재료를 1개씩 등록
-		for (int i = 0; i < ing_quantity.length; i++) {
-			inDto.setRECIPE_IDX(RECIPE_IDX);
-			inDto.setBundle(ing_class[i]);
-			inDto.setName(ing_name[i]);
-			inDto.setQuantity(ing_quantity[i]);
+		for (int i = 0; i < quantity.length; i++) {
+			IngredientDto dto=new IngredientDto();
+			dto.setRECIPE_IDX(RECIPE_IDX);
+			dto.setBundle(bundle[i]);
+			dto.setName(ingredientName[i]);
+			dto.setQuantity(quantity[i]);
 			
-			service.insertIngredient(inDto);
+			service.insertIngredient(dto);
 		}
 		
 		//단계별 사진 업로드
 		String stepPhotoList=fileUpload.fileUploadEvent(upload_step, request);
 		
 		//단계 정보 모음을 1개씩 분리
-		String[] step_sec=stDto.getStep_sec().split(",");
-		String[] step_text=stDto.getText().split(",split,");
-		String[] step_photo=stepPhotoList.split(",");
+		String[] stepsSec=stepSec.split(",");
+		String[] text=stDto.getText().split(",split,");
+		String[] stepPhoto=stepPhotoList.split(",");
 			
 		//한단계씩 등록
-		for (int i = 0; i < step_photo.length; i++) {
-			stDto.setRECIPE_IDX(RECIPE_IDX);
-			stDto.setStep(Integer.parseInt(step_sec[i]));
-			stDto.setText(step_text[i]);
-			stDto.setPhoto(step_photo[i]);
+		for (int i = 0; i < stepPhoto.length; i++) {
+			StepsDto dto=new StepsDto();
+			dto.setRECIPE_IDX(RECIPE_IDX);
+			dto.setStep(Integer.parseInt(stepsSec[i]));
+			if (i == stepPhoto.length-1) {
+				text[i]=text[i].substring(0, text[i].length()-6);
+			}
+			dto.setText(text[i]);
+			dto.setPhoto(stepPhoto[i]);
 			
-			service.insertSteps(stDto);
+			service.insertSteps(dto);
 		}
 		
 		//user의 ownrecipe 목록 업데이트
 		service.updateOwnRecipe(RECIPE_IDX, userID);
 		
-		return "redirect:/";
+		return "redirect:/"; //리다이렉트 디테일페이지(예정)
 	}
 	
-	@GetMapping("/update")
-	public ModelAndView update(@RequestParam int RECIPE_IDX) {
+	@GetMapping("/updateform")
+	public ModelAndView updateform(@RequestParam int RECIPE_IDX) {
 		ModelAndView mav=new ModelAndView();
-		RecipeDto reDto=recipeService.getRecipe(RECIPE_IDX);
+		RecipeDto reDto=updateService.getRecipe(RECIPE_IDX);
+		
+		List<IngredientDto> inList=new Vector<>();
+		List<Integer> bdCount=new Vector<>();
+		List<StepsDto> stList=new Vector<>();
+		inList=updateService.getIngredient(RECIPE_IDX);
+		bdCount=updateService.getBundleCount(RECIPE_IDX);
+		stList=updateService.getSteps(RECIPE_IDX);
+		
+		mav.addObject("recipe", reDto);
+		mav.addObject("ingredient", inList);
+		mav.addObject("bundleCount", bdCount);
+		mav.addObject("steps", stList);
+		mav.addObject("ingClass", bdCount.size());
+		mav.addObject("stepCount", stList.size());
+		
+		mav.setViewName("/recipe/update");
 		return mav;
+	}
+	
+	@PostMapping("/update")
+	public String update(@ModelAttribute RecipeDto reDto,
+			@ModelAttribute IngredientDto inDto,
+			@ModelAttribute StepsDto stDto,
+			@RequestParam String ingName,
+			@RequestParam String stepSec,
+			@RequestParam String ingNum,
+			@RequestParam String stepNum,
+			@RequestParam String ingDel,
+			@RequestParam String stepDel,
+			@RequestParam String compDel,
+			@RequestParam ArrayList<MultipartFile> upload_main,
+			@RequestParam ArrayList<MultipartFile> upload_step,
+			@RequestParam ArrayList<MultipartFile> upload_complete,
+			HttpSession session,
+			HttpServletRequest request) {
+		/*ingDel, stepDel, compDel
+		d : 기존 db 정보를 삭제
+		u : 기존 db 정보 업데이트
+		n : 새로 등록한 정보*/
+		
+		//레시피 기본 정보
+		int idx=reDto.getRECIPE_IDX();
+		
+		//태그를 입력하지 않았을 경우
+		if (reDto.getTags()==null) {
+			reDto.setTags("no tag");
+		}
+		
+		//메인사진 업데이트
+		FileUpload fileUpload=new FileUpload();
+		String oldMainPhoto=updateService.getRecipe(idx).getMain_photo();
+		String mainPhoto=fileUpload.fileUpdateEvent(oldMainPhoto, upload_main.get(0), request);
+		reDto.setMain_photo(mainPhoto);
+		
+		//완성사진 업데이트
+		String[] ifCompDel=compDel.split(",");
+		String[] oldCompPhoto=updateService.getRecipe(idx).getComplete_photo().split(",");
+		String newCompPhoto="";
+		
+		for (int i = 0; i < 4; i++) {
+			if (ifCompDel[i].equals("d")) {
+				fileUpload.deleteFile(oldCompPhoto[i], request);
+				newCompPhoto+="no image";
+			} else if (ifCompDel[i].equals("u")) {
+				newCompPhoto+=fileUpload.fileUpdateEvent(oldCompPhoto[i],
+						upload_complete.get(i), request);
+			}
+			if (i != 3) {
+				newCompPhoto+=",";
+			}
+		}
+		reDto.setComplete_photo(newCompPhoto);
+		
+		//레시피 업데이트
+		updateService.updateRecipe(reDto);
+		
+		//재료 정보 모음을 1개씩 분리
+		String[] ingredientNum=ingNum.split(",");
+		String[] bundle=inDto.getBundle().split(",");
+		String[] ingredientName=ingName.split(",");
+		String[] quantity=inDto.getQuantity().split(",");
+		String[] ifIngDel=ingDel.split(",");
+		
+		//재료를 1개씩 업데이트
+		for (int i = 0; i < quantity.length; i++) {
+			IngredientDto dto=new IngredientDto();
+			dto.setBundle(bundle[i]);
+			dto.setName(ingredientName[i]);
+			dto.setQuantity(quantity[i]);
+			
+			if (ifIngDel[i].equals("n")) {
+				dto.setRECIPE_IDX(idx);
+				service.insertIngredient(dto);
+			} else if (ifIngDel[i].equals("u")) {
+				dto.setNum(Integer.parseInt(ingredientNum[i]));
+				updateService.updateIngredient(dto);
+			} else if (ifIngDel[i].equals("n")) {
+				int num=Integer.parseInt(ingredientNum[i]);
+				updateService.deleteIngredient(num);
+			}
+		}
+		
+		//단계 정보 모음을 1개씩 분리
+		String[] stepsSec=stepSec.split(",");
+		String[] text=stDto.getText().split(",split,");
+		String[] stepsNum=stepNum.split(",");
+		String[] ifStepDel=stepDel.split(",");
+		String[] newStepPhoto=new String[ifStepDel.length];
+		
+		//단계별 사진 업데이트
+		for (int i = 0; i < ifStepDel.length; i++) {
+			if (ifStepDel[i].equals("d")) {
+				String oldStepPhoto=updateService.getPhotoByNum(Integer.parseInt(stepsNum[i]));
+				fileUpload.deleteFile(oldStepPhoto, request);
+				newStepPhoto[i]="deleted";
+			} else if (ifStepDel[i].equals("u")) {
+				String oldStepPhoto=updateService.getPhotoByNum(Integer.parseInt(stepsNum[i]));
+				newStepPhoto[i]=fileUpload.fileUpdateEvent(oldStepPhoto,
+						upload_step.get(i), request);
+			} else if (ifStepDel[i].equals("n")) {
+				newStepPhoto[i]=fileUpload.fileUpdateEvent("no image",
+						upload_step.get(i), request);
+			}
+		}
+					
+		//한단계씩 업데이트
+		for (int i = 0; i < ifStepDel.length; i++) {
+			StepsDto dto=new StepsDto();
+			dto.setStep(Integer.parseInt(stepsSec[i]));
+			if (i == ifStepDel.length-1) {
+				text[i]=text[i].substring(0, text[i].length()-6);
+			}
+			dto.setText(text[i]);
+			dto.setPhoto(newStepPhoto[i]);
+			
+			if (ifStepDel[i].equals("n")) {
+				dto.setRECIPE_IDX(idx);
+				service.insertSteps(dto);
+			} else if (ifStepDel[i].equals("u")) {
+				dto.setNum(Integer.parseInt(stepsNum[i]));
+				updateService.updateSteps(dto);
+			} else if (ifStepDel[i].equals("d")) {
+				int num=Integer.parseInt(stepsNum[i]);
+				updateService.deleteSteps(num);
+			}
+		}
+		
+		return "redirect:/"; //리다이렉트 디테일페이지(예정)
 	}
 	
 }

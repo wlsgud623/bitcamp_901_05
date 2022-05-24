@@ -1,15 +1,12 @@
-package data.mapper;
+package data.inter;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 
 import data.dto.IngredientDto;
 import data.dto.RecipeDto;
 import data.dto.StepsDto;
 
-@Mapper
-public interface UpdateMapperInter {
+public interface UpdateServiceInter {
 
 	public RecipeDto getRecipe(int RECIPE_IDX);
 	public List<IngredientDto> getIngredient(int RECIPE_IDX);
