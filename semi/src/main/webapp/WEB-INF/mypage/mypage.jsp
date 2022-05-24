@@ -13,6 +13,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <style>
+footer{
+  position : relative;
+  transform : translateY(-100%);
+}
 
 </style>
 <script type="text/javascript">
@@ -43,7 +47,7 @@ $(".racipego").click(function(){
 			<button type="button" class="btn btn-success revise">정보수정하기</button>
 	</div>	
 
-<br>
+
 </form>
 <h3>내 레시피</h3>
 
@@ -62,18 +66,18 @@ $(".racipego").click(function(){
 		<div class="carousel-inner" style="width: 1290px;">
 		    <div class="item active">
 		      	<div class="sub_item">
-		      		<c:forEach var="dto" items="${ownrecipeList}" begin="2" end="4">
-		      			<a href="/recipe/detail?idx=${dto.RECIPE_IDX}">
-		        			<img src="img/main/${dto.main_photo}" alt="food_img" style="width:33%;">
+		      		<c:forEach var="a" begin="2" end="4">
+		      			<a href="/recipe/detail?idx=${dto.password}">
+		        			<img src="../img/main/${a}.jpg" alt="food_img" style="width:33%;">
 		        		</a>
 	        		</c:forEach>
 		   		</div>
 			</div>
 			 <div class="item">
 		      	<div class="sub_item">
-		      		<c:forEach var="dto" items="${ownrecipeList}" begin="5" end="7">
-		      			<a href="/recipe/detail?idx=${dto.RECIPE_IDX}">
-		        			<img src="img/main/${dto.main_photo}" alt="food_img" style="width:33%;">
+		      		<c:forEach var="a" begin="2" end="4">
+		      			<a href="/recipe/detail?idx=${dto.hp}">
+		        			<img src="../img/main/${a}.jpg" alt="food_img" style="width:33%;">
 		        		</a>
 	        		</c:forEach>
 		   		</div>
@@ -82,7 +86,7 @@ $(".racipego").click(function(){
 		      	<div class="sub_item">
 		      		<c:forEach var="dto" items="${ownrecipeList}" begin="8" end="10">
 		      			<a href="/recipe/detail?idx=${dto.RECIPE_IDX}">
-		        			<img src="img/main/1.jpg" alt="food_img" style="width:33%;">
+		        			<img src="../img/main/1.jpg" alt="food_img" style="width:33%;">
 		        		</a>
 	        		</c:forEach>
 		   		</div>

@@ -30,7 +30,7 @@ s .page-header{
 	top: 0;
 	left: 0;
 	right: 0;
-	width: 100%;s
+	width: 100%;
 	height: 300px;
 	min-width : 960px;
 	box-shadow:0 1px 1px rgba(0,0,0,0.25);
@@ -153,7 +153,10 @@ ul.menu li{
  }
 
 </style>
+<script type="text/javascript">
 
+
+</script>
 
 <br><br>
 
@@ -164,7 +167,9 @@ ul.menu li{
 		
 		<!-- 검색창 -->
 		<div class="search" style="width: 1500px;">
-		<img alt="logo" src="../img/logo.png" style="width:150px; position: absolute; top:70px; left: 200px;" >
+			<a href="/">
+				<img alt="logo" src="../img/logo.png" style="width:150px; position: absolute; top:70px; left: 200px;" >
+			</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="text" name="s_value" id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." style="width: 600px;height: 70px;border-radius: 50px; border: 2px solid gray; text-align: center;">&nbsp;&nbsp;&nbsp;
 			<button type="button" style="border-style: none; background-color:white;"><b class="glyphicon glyphicon-search" style="width: 70px; height: 70px;"></b> </button>
@@ -206,13 +211,13 @@ ul.menu li{
 			<li><a href="#">난이도</a></li>
 		 </ul>
 		 </li>
-	    <li><a href="#">랭킹</a>
+	    <li><a href="/ranking">랭킹</a>
 	    
 		</li>
-		<li style="float: right;"><a href="#">회원가입</a>
+		<li style="float: right;"><a href="member/signup">회원가입</a>
 	    
 		</li><!-- 아아 -->
-		<li style="float: right;"><a href="#">로그인</a>
+		<li style="float: right;"><a href="/login/login">로그인</a>
 	    
 		</li>
 		

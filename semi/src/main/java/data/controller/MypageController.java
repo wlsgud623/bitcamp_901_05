@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.rsocket.context.RSocketPortInfoApplicationContextInitializer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,7 @@ import data.mapper.MemberMapperInter;
 import data.mapper.MypageMapperInter;
 import data.service.MemberService;
 import data.service.MypageService;
+import data.service.RecipeService;
 import utility.FileUpload;
 
 
@@ -46,6 +48,9 @@ public class MypageController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	RecipeService recipeService;
 	
 	@GetMapping("/mypage")
 	public ModelAndView myPageInfo(
@@ -63,9 +68,10 @@ public class MypageController {
 	public ModelAndView update(
 			@RequestParam String UserID) 
 	{
-		System.out.println(UserID);
+	
 		ModelAndView mView = new ModelAndView();
 		UserDto dto = mypageService.getUser(UserID);
+		
 		mView.addObject("dto",dto);
 		mView.setViewName("/mypage/updateform");
 		return mView;
@@ -105,6 +111,8 @@ public class MypageController {
 		ModelAndView mView = new ModelAndView();
 		List<RecipeDto> scraprecipeList = mypageService.getscraprecipe(UserID);
 		mView.addObject("scraprecipeList",scraprecipeList);
+		
+	
 		mView.setViewName("mypage/mypage");	
 		return mView;
 	   }
