@@ -71,11 +71,11 @@ body {
 				</select>
 				<ul>
 					<li><a href="https://blog.naver.com/ottogitoday1" target="_blank">
-					<i class="insta"></i></a><img alt="없음" src="../img/insta.png" style="width: 50px;height: 50px;"></li>
+					<i class="insta"></i></a><img alt="없음" src="../image/insta.png" style="width: 50px;height: 50px;"></li>
 					<li><a href="https://www.facebook.com/Ottogitoday" target="_blank">
-					<i class="facebook"></i></a><img alt="없음" src="../img/Facebook.png" style="width: 50px;height: 50px;"></li>
+					<i class="facebook"></i></a><img alt="없음" src="../image/Facebook.png" style="width: 50px;height: 50px;"></li>
 					<li><a href="https://www.instagram.com/ottogi_daily/" target="_blank">
-					<i class="insta"></i></a><img alt="없음" src="../img/kakao.png" style="width: 50px;height: 50px;"></li>
+					<i class="insta"></i></a><img alt="없음" src="../image/kakao.png" style="width: 50px;height: 50px;"></li>
 				</ul>
 			</div>
 		</div>

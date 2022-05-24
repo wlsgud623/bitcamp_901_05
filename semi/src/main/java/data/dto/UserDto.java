@@ -12,7 +12,7 @@ import lombok.Data;
 @Alias("user")
 public class UserDto {
 
-	private String UserID; //사용자 ID
+	private String userid; //사용자 ID
 	private String name; // 사용자 이름
 	private String password; //사용자 비밀번호
 	private String tier; // 사용자 티어

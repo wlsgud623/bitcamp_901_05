@@ -15,6 +15,10 @@ body {
  font-size: 2rem;
  font-family: 'Jua';
  }
+ 
+.header{
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -26,25 +30,28 @@ body {
 		</header>
 		<!-- container -->
 		<div class="container" id="container">
-			<div class="memberform">
-			   <h3>회원가입</h3><br><br>
-			   <form action="insert" method="post" class="form-inline"
+			<div class="member_form">
+			   <h3 >회원가입수정</h3><br><br>
+			   <form action="update" method="post" class="form-inline"
 			   		 style="border-top: 1px solid black; height: 1000px;"
 			   		 onsubmit="return check()">
 			   		<br>
 			   		<table style="width: 600px;" class="mem">
+			   			
 			   			<tr>
-			   				<th style="width: 130px;">이 름</th>
+			   				<th style="width: 130px;">사진수정</th>
 			   				<td>
-			   					<input type="text" name="name" style="width: 300px;" class="form-control"
+			   					<input type="file" name="photo" style="width: 300px;" class="form-control"
 			   					required="required">
 			   				</td>
 			   			</tr>
+			   			
+			   			
 			   			<tr>
 			   				<th style="width: 130px;">아이디</th>
 			   				<td>
 			   					<input type="text" name="UserID" id="UserID" style="width: 300px;" class="form-control"
-			   					required="required">
+			   					required="required" value="${dto.userid}">
 			   					&nbsp;
 			   					<button type="button" class="btn btn-sm btn-danger" id="idcheck"
 			   					style="width: 100px;">아이디체크</button>
@@ -54,11 +61,11 @@ body {
 			   				</td>
 			   			</tr>
 			   			<tr rowspan="2">
-			   				<th style="width: 130px;">비밀번호</th>
+			   				<th style="width: 130px;">비밀번호수정</th>
 			   				<td>
 			   					<input type="password" name="password" id="password1" style="width: 300px;" class="form-control"
-			   					required="required" placeholder="비밀번호">
-							<br><br>
+			   					required="required" placeholder="비밀번호" value="${dto.password}">
+							
 			   					<input type="password" id="password2" style="width: 300px;" class="form-control"
 			   					required="required" placeholder="한번 더 입력">
 			   					&nbsp;
@@ -73,8 +80,7 @@ body {
 			   					required="required">
 			   				</td>
 			   			</tr>
-
-			   			  
+					 
 			   			<tr>
 			   				<th style="width: 130px;">이메일</th>
 			   				<td>
@@ -91,6 +97,7 @@ body {
 			   					</select>
 			   				</td>
 			   			</tr>
+			   			
 			   				<tr rowspan="2">
 			   				<th style="width: 130px;">주소</th>
 			   				<td>
@@ -100,11 +107,19 @@ body {
 			   					<button type="button" class="btn btn-sm btn-primary" id="search_btn"
 			   					style="width: 100px;">주소 검색&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span></button>
 			   					&nbsp;
-							<br><br>
+							
 			   					<input type="text" name="address2" style="width: 300px;" class="form-control
 			   					required="required" placeholder="상세주소를 입력하세요">
 			   					&nbsp;
 			   					<br>
+			   				</td>
+			   			</tr>
+			   			
+			   				<tr>
+			   				<th style="width: 130px;">자기소개</th>
+			   				<td>
+			   					<input type="text" name="intro" style="width: 300px;" class="form-control"
+			   					required="required">
 			   				</td>
 			   			</tr>
 			   			
@@ -117,21 +132,7 @@ body {
 		</div>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    window.onload = function(){
-   		$("#address_search,#search_btn").click(function(){	
-   	 	//주소입력칸을 클릭하면
-        //카카오 지도 발생
-        new daum.Postcode({
-            	oncomplete: function(data) { //선택시 입력값 세팅
-                document.getElementById("address_search").value = data.address; // 주소 넣기
-                document.querySelector("input[name=address2]").focus(); //상세입력 포커싱
-                console.log(data);
-            }
-        }).open();
-    });
-   }
-</script>
+
 	</div>
 </body>
 </html>
