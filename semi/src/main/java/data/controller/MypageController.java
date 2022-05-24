@@ -87,7 +87,7 @@ public class MypageController {
 				String UserID="test"; //(String)session.getAttribute("로그인아이디EL");
 				dto.setUserid(UserID);
 	
-			//메인, 완성사진 업로드
+			//메인, 완성사진 업로드ek
 			FileUpload fileUpload=new FileUpload();
 			String photo=fileUpload.fileUploadEvent(upload_photo, request);
 			
