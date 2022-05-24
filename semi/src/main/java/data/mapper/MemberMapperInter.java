@@ -12,4 +12,5 @@ public interface MemberMapperInter {
 	public int getSearchId(String UserID); 
 	public String getSearchName(String name); 
 	public int login(Map<String, String> map); 
+	public void updateScrapRecipe(Map<String, String> map);
 }

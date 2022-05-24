@@ -13,4 +13,14 @@
 	<select id="login" parameterType="Map" resultType="int">
 		SELECT count(*) FROM User WHERE UserID=#{UserID} and password=#{password}
 	</select>
+	<update id="updateScrapRecipe" parameterType="Map">
+		UPDATE User SET >
+		<if test="scraprecipe==null"> 
+			scraprecipe=#{RECIPE_IDX}
+		</if>
+		<if test="scraprecipe!=null">
+			scraprecipe=CONCAT(scraprecipe, ",", #{RECIPE_IDX})
+		</if>
+		 WHERE USERID=#{userID}
+	</update>
 </mapper>  
