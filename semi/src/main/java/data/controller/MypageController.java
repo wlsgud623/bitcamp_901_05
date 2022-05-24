@@ -82,7 +82,7 @@ public class MypageController {
 		
 		    
 		//현재 로그인한 userID
-				String UserID="test"; //(String)session.getAttribute("로그인아이디");
+				String UserID="test"; //(String)session.getAttribute("로그인아이디EL");
 				dto.setUserID(UserID);
 	
 			//메인, 완성사진 업로드
