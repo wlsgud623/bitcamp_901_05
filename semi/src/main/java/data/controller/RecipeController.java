@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import data.dto.CommentDto;
+import data.dto.IngredientDto;
 import data.dto.RecipeDto;
 import data.dto.StepsDto;
 import data.inter.CommentServiceInter;
 import data.service.CommentService;
+import data.service.IngredientService;
 import data.service.RecipeService;
 import data.service.StepsService;
 
@@ -35,6 +37,9 @@ public class RecipeController {
 	
 	@Autowired
 	private StepsService stepsService;
+	
+	@Autowired
+	private IngredientService ingredientService;
 
 	@GetMapping("/detail") // 디테일 페이지
 	public ModelAndView showRecipe(@RequestParam int idx) {
@@ -45,10 +50,12 @@ public class RecipeController {
 		RecipeDto dto = recipeService.getRecipe(idx);
 		List<StepsDto> steps = stepsService.getStepList(idx);
 		List<CommentDto> comments = commentService.getAllComment(idx);
+		List<IngredientDto> ingredients = ingredientService.getAllIngredient(idx);
 		
 		mView.addObject("dto", dto);
 		mView.addObject("steps", steps);
 		mView.addObject("comments", comments);
+		mView.addObject("ingredients",ingredients);
 		mView.setViewName("/recipe/detail");
 		return mView;
 	}

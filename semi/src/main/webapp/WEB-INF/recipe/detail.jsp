@@ -8,34 +8,59 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/detail.css">
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <c:set var="root" value="<%=request.getContextPath()%>"/>
-
+<style type="text/css">
+	.comphoto {
+		max-width: 100%;
+	}
+</style>
 <script type="text/javascript">
 $(function(){
 	var login = '${sessionScope.loginok}';
+	
 	$("#rate_button").click(function() {
 		if (login == null || login !='yes'){
-			alert("먼저 로그인해 주세요");
+			$("#loginModal").modal('show');
 		}
 		else{
-			addRate();
+			addRate();	
 		}
 	});
+
 	
 	$("#recom_button").click(function() {
 		if (login == null || login !='yes'){
-			alert("먼저 로그인해 주세요");
+			$("#loginModal").modal('show');
 		}
 		else{
 			addRecommend();	
 		}
 	});
-
+	
+	$("#commentbutton").click(function() {
+		if (login == null || login !='yes'){
+			$("#loginModal").modal('show');
+		}
+		else if ($("#comment_content").val() == ""){
+			alert("댓글 내용을 입력하여 주십시오");
+		}
+		else{
+			console.log($("content").val());
+			submitComment();
+		}
+	});
+	
+	$("#scrap_button").click(function() {
+		if (login == null || login !='yes'){
+			$("#loginModal").modal('show');
+		}
+		else{
+			scrapRecipe();
+		}
+	});
 });
 
 function addRate() {
@@ -69,13 +94,55 @@ function showComment() {
 	
 }
 
+function submitComment(){
+	
+}
+
+function scrapRecipe(){
+	var id = '${sessionScope.login}';
+	$.ajax({
+		type: "GET",
+		dataType: "JSON",
+		url: "scrap" ,
+		data: {"idx":${dto.RECIPE_IDX}, "id":id},
+		success: function() {
+			$("#scrap_button").html("구독");
+		}
+	});
+}
+
+function editRecipe(){
+	location.href = "/updateform?idx=${idx}"
+}
+
+function deleteRecipe(){
+	location.href = "/delete?idx=${idx}"
+}
+
 
 </script>
 </head>
 <body>
-	<c:set var="comment_number" value="6"/>
-	<c:set var="portion" value="3" />
-	<c:set var="level" value="어려움" />
+	<!-- 모달 부분 -->
+	<!-- Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  		<div class="modal-dialog" role="document">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        		<h4 class="modal-title" id="myModalLabel" style="font-weight: bold;">알림</h4>
+      			</div>
+      			<div class="modal-body">
+        			로그인 후 이용햐여 주십시오
+      			</div>
+      			<div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+        		<button type="button" class="btn btn-success" onclick="location.href='../login/login'">로그인</button>
+        		<button type="button" class="btn btn-primary" onclick="location.href='../member/signup'">회원가입</button>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+	
 	<!-- 레시피 부분 -->
 	<div id="content">
 		<!-- 레시피 소개 부분 -->
@@ -163,10 +230,10 @@ function showComment() {
 				</c:forEach>		
 			</div>
 			<c:if test="${dto.complete_photo != Null}">
+				<h3>완성 사진</h3>
 				<div id="complete_photos">
-					<h3>완성 사진</h3>
 					<c:forEach var="photo" items="${fn:split(dto.complete_photo, ':')}">
-						<img src="${photo}">
+						<img src="${photo}" class="comphoto">
 					</c:forEach>
 				</div>
 			</c:if>
@@ -177,9 +244,9 @@ function showComment() {
 			<span id="total_recommendation">${dto.total_recom}</span>
 		</div>
 		<div class="btn-group btn-group-justified">
-    			<a href="#" class="btn btn-danger recipebtn"><span>목록</span></a>
-    			<a href="#" class="btn btn-danger recipebtn"><span>수정</span></a>
-    			<a href="#" class="btn btn-danger recipebtn"><span>삭제</span></a>
+    			<a href="#" class="btn btn-danger recipebtn" id=""><span>목록</span></a>
+    			<a href="#" class="btn btn-danger recipebtn" id="editbtn"><span>수정</span></a>
+    			<a href="#" class="btn btn-danger recipebtn" id="delbtn"><span>삭제</span></a>
   		</div>
 	</div>		
 		<div id="comment_area">
@@ -192,10 +259,9 @@ function showComment() {
 				<form class="comment_form" action="addcom" method="post">
 					<input type="hidden" name="RECIPE_IDX" value="${idx}">
 					<input type="hidden" name="userID" value="${sessionScope.loginid}">
-					<input type="hidden" name="depth" value="1">
-					<textarea class="form-control" rows="3" name="content" placeholder="후기를 남겨주세요!"></textarea>
+					<textarea class="form-control" rows="3" id="comment_content" name="content" placeholder="후기를 남겨주세요!"></textarea>
 				</form>
-				<button type="submit" id="commentbutton">등록</button>
+				<button type="button" id="commentbutton">등록</button>
 			</div>
 		
 		</div>
