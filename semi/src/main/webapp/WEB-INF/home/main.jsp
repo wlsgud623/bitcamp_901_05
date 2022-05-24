@@ -8,369 +8,193 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
 <style type="text/css">
+div.container{
+ 	text-align: center; 
+	width: 100%;	
+}
 
-
-	 div.container{
-	 	text-align: center; 
-		width: 100%;
-		
-	} 
-	
-	/* .rec_recipe{
-	text-align: center; 
-	} */
-	
-	/* .wrap2{
-		text-align: center;
-	} */
-	/* 
-	.carousel slide{
-		padding-right: 0px;
-	} */
-/* 	
-	div.carousel-inner{
-		text-align: center;
-	} */
-	
-	div.sub_item{
-	 	/* float: left;  */
-		/* margin: 0 auto; */
-	}
-	
-	/* .mainimage{
-		margin-top: 20px;
-		margin-left: 10px;
-	} */
-	 
-/* 	.content{
-		position: absolute;
-		left: 50px;
-		top: 1700px;
-	}  */
-
-	.wrap{
-		text-align: center;
+.wrap{
+	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	}
-	
- 	.wrap2{
-		padding-left: 20px;
+}
 
-		
-	} 
+.wrap2{
+	padding-left: 20px;	
+} 
 
 .rec_recipe{
 	margin-left: 50px;
 }
 	
- 	.content_text{
- 		margin-top: 800px;
- 		margin-left: 120px;
-		width: 1100px;
-		height: 600px;
-		
-		padding: 100px 100px;
-		font-size: 20px; 
-		border: 5px solid #CD1F48;
-		
-	} 
-	
-	
-	/* .content_text img {
-		float: right;
-	} */
-	/* 
- 	.sub_item2 img{
-		width: 200px;
-		height: 200px;
-		border: 1px solid white;
-		border-radius: 80%;
-	} */
-	 
+.content_text{
+ 	margin-top: 1200px;
+	height: 650px;
+	width: 1320px;
+	padding: 100px 100px;
+	border: 5px solid #CD1F48;	
+	text-align: left;
+} 
 
- */
-	
+.content_text b{
+	font-size: 25px; 
+}
+
+div.icon{	
+    bottom: 0;
+    z-index: 2;
+    text-align: right;
+    height: 48px;
+    width: 370px;
+    margin-top: 10px;
+}
+
+div{
+	display: block;
+}
+
+i.icon_chu{
+	background: url(../img/chu.png)no-repeat;
+	width: 48px;
+    height: 48px;
+    content: '';
+    display: inline-block;
+    font-size: 0;
+    margin-left: 3px;
+}
+
+i.icon_best{
+	background: url(../img/best.png)no-repeat;
+	width: 48px;
+    height: 48px;
+    content: '';
+    display: inline-block;
+    font-size: 0;
+    margin-left: 3px;
+}
 </style>
 </head>
 <body>
-	<br><br><br><br>
-	<div class="container" style="width: 1500px;"> 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-      <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-    </ol> 
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" style="width: 1290px;">
-    
-      <div class="item active">
-      	<div class="sub_item">
-      		
-      			<a href="/">
-        			<img src="img/main/1.jpg" alt="food_img" style="width:33%;">
-        		</a>
-        	
-      			<a href="/">
-        			<img src="img/main/2.jpg" alt="food_img" style="width:33%;">
-        		</a>
-        	
-      			<a href="/">
-        			<img src="img/main/3.jpg" alt="food_img" style="width:33%;">
-        		</a>
-        	
-      </div>
-   </div>
-
-      <div class="item">
-	      <div class="sub_item">
-	     		
-	      			<a href="/">
-	        			<img src="img/main/4.jpg" alt="food_img" style="width:33%;">
-	        		</a>
-	        	
-	      			<a href="/">
-	        			<img src="img/main/5.jpg" alt="food_img" style="width:33%;">
-	        		</a>
-	        	
-	      			<a href="/">
-	        			<img src="img/main/6.jpg" alt="food_img" style="width:33%;">
-	        		</a>
-	        	
-	      </div>
-      </div>
-    
-      <div class="item">
-   		<div class="sub_item">
-     		
-      			<a href="/">
-        			<img src="img/main/7.jpg" alt="food_img" style="width:33%;">
-        		</a>
-        	
-      			<a href="/">
-        			<img src="img/main/8.jpg" alt="food_img" style="width:33%;">
-        		</a>
-        	
-      			<a href="/">
-        			<img src="img/main/9.jpg" alt="food_img" style="width:33%;">
-        		</a>
-        	
-	     </div>
-    </div>
-    </div>
-   
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-
-
-	
-<br><br><br>
-
-<script type="text/javascript">
-	let arr;
-</script>
-
-<h1>&nbsp;추천 레시피</h1>
 <br><br>
-<div class="rec_recipe">
-	
-		<div class="box" style=" float: left; width: 400px;">
-		<div class="rec_img">
-			<a href="/recipe/detail?idx=4">
-				<img src="../img/main/메인사진" class="mainimage" style="width: 90%;">
-			</a>
-		</div>
-		<br>
-		<div class="info">
-			<div class="info_tag">
-				<span><script type="text/javascript">
-					var tags = "태그";
-					arr = tags.split(":");
-					for(var tag of arr){
-						document.write("#" + tag + " ");
-					}
-				</script>#태그 </span>
-		</div>
-		</div>
-		<div class="info_title">	
-			<a href="">
-				<span>이름</span>
-			</a>
-		</div>
-		</div>
-	
-		<div class="box" style=" float: left; width: 400px;">
-		<div class="rec_img">
-			<a href="/recipe/detail?idx=5">
-				<img src="../img/main/1.jpg" class="mainimage" style="width: 90%;">
-			</a>
-		</div>
-		<br>
-		<div class="info">
-			<div class="info_tag">
-				<span><script type="text/javascript">
-					var tags = "음식";
-					arr = tags.split(":");
-					for(var tag of arr){
-						document.write("#" + tag + " ");
-					}
-				</script>#음식 </span>
-		</div>
-		</div>
-		<div class="info_title">	
-			<a href="">
-				<span>라면</span>
-			</a>
-		</div>
-		</div>
-	
-		<div class="box" style=" float: left; width: 400px;">
-		<div class="rec_img">
-			<a href="/recipe/detail?idx=6">
-				<img src="../img/main/2.jpg" class="mainimage" style="width: 90%;">
-			</a>
-		</div>
-		<br>
-		<div class="info">
-			<div class="info_tag">
-				<span><script type="text/javascript">
-					var tags = "요리:음식";
-					arr = tags.split(":");
-					for(var tag of arr){
-						document.write("#" + tag + " ");
-					}
-				</script>#요리 #음식 </span>
-		</div>
-		</div>
-		<div class="info_title">	
-			<a href="">
-				<span>햄마요덮밥</span>
-			</a>
-		</div>
-		</div>
-	
-		<div class="box" style=" float: left; width: 400px;">
-		<div class="rec_img">
-			<a href="/recipe/detail?idx=7">
-				<img src="../img/main/3.jpg" class="mainimage" style="width: 90%;">
-			</a>
-		</div>
-		<br>
-		<div class="info">
-			<div class="info_tag">
-				<span><script type="text/javascript">
-					var tags = "가지:요리";
-					arr = tags.split(":");
-					for(var tag of arr){
-						document.write("#" + tag + " ");
-					}
-				</script>#가지 #요리 </span>
-		</div>
-		</div>
-		<div class="info_title">	
-			<a href="">
-				<span>가지볶음</span>
-			</a>
-		</div>
-		</div>
-	
-		<div class="box" style=" float: left; width: 400px;">
-		<div class="rec_img">
-			<a href="/recipe/detail?idx=8">
-				<img src="../img/main/4.jpg" class="mainimage" style="width: 90%;">
-			</a>
-		</div>
-		<br>
-		<div class="info">
-			<div class="info_tag">
-				<span><script type="text/javascript">
-					var tags = "김치:요리";
-					arr = tags.split(":");
-					for(var tag of arr){
-						document.write("#" + tag + " ");
-					}
-				</script>#김치 #요리 </span>
-		</div>
-		</div>
-		<div class="info_title">	
-			<a href="">
-				<span>김치볶음밥</span>
-			</a>
-		</div>
-		</div>
-	
-		<div class="box" style=" float: left; width: 400px;">
-		<div class="rec_img">
-			<a href="/recipe/detail?idx=12">
-				<img src="../img/main/2022_0523_132620_131.jpg" class="mainimage" style="width: 90%;">
-			</a>
-		</div>
-		<br>
-		<div class="info">
-			<div class="info_tag">
-				<span><script type="text/javascript">
-					var tags = "모두의밥상";
-					arr = tags.split(":");
-					for(var tag of arr){
-						document.write("#" + tag + " ");
-					}
-				</script>#모두의밥상 </span>
-		</div>
-		</div>
-		<div class="info_title">	
-			<a href="">
-				<span>육회</span>
-			</a>
-		</div>
-		</div>
-	
-	</div>
+<div class="container" style="width: 1500px;"> 
 
-		<div class="content_text">
-			<b>모두의 밥상은 수만가지의 레시피를 종류별, 재료별, 난이도별로 분류하여 각자의 라이프스타일에 맞는 레시피를 <br>쉽고 편리하게 찾을 수 있는 서비스를 제공하고 있습니다. 
-			<br>백주부님 레시피를 하나하나 찾기 힘든 주부님들을 위해! 배달 음식으로 지갑이 가벼워진 자취생들을 위해!
-			<br>번거로운 재료준비는 줄이고 쉽고 간단한 방법으로 모두의 밥상이 풍요로워지는 경험을 해보세요!</b>
-			<img src="img/main/logo2.png">
+	<!-- 슬라이더 시작 -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+	    <!-- <!-- Indicators -->
+	    <ol class="carousel-indicators">
+	      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	      <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+	      <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+	    </ol> 
+	
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" style="width: 1290px;">
+		    <div class="item active">
+		      	<div class="sub_item">
+		      		<c:forEach var="dto" items="${list}" begin="2" end="4">
+		      			<a href="/recipe/detail?idx=${dto.RECIPE_IDX}">
+		        			<img src="img/main/${dto.main_photo}" alt="food_img" style="width:33%;">
+		        		</a>
+	        		</c:forEach>
+		   		</div>
+			</div>
+			 <div class="item">
+		      	<div class="sub_item">
+		      		<c:forEach var="dto" items="${list}" begin="5" end="7">
+		      			<a href="/recipe/detail?idx=${dto.RECIPE_IDX}">
+		        			<img src="img/main/${dto.main_photo}" alt="food_img" style="width:33%;">
+		        		</a>
+	        		</c:forEach>
+		   		</div>
+			</div>
+			 <div class="item">
+		      	<div class="sub_item">
+		      		<c:forEach var="dto" items="${list}" begin="8" end="10">
+		      			<a href="/recipe/detail?idx=${dto.RECIPE_IDX}">
+		        			<img src="img/main/${dto.main_photo}" alt="food_img" style="width:33%;">
+		        		</a>
+	        		</c:forEach>
+		   		</div>
+			</div>
+		</div>
+	    <!-- Left and right controls -->
+	    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+	      <span class="glyphicon glyphicon-chevron-left"></span>
+	      <span class="sr-only">Previous</span>
+	    </a>
+	    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+	      <span class="glyphicon glyphicon-chevron-right"></span>
+	      <span class="sr-only">Next</span>
+	    </a>
+	</div>	
+	<!-- 슬라이더 끝 -->
+
+	<br><br><br>	
+	<script type="text/javascript">
+	let arr;
+	</script>
+	
+	<!-- 추천레시피 시작 -->
+	<h1>&nbsp;추천 레시피</h1>
+	<br><br>
+	<div class="rec_recipe">
+		<c:forEach var="dto" items="${list}" varStatus="i" begin="2" end="10">
+		<div class="box" style=" float: left; width: 400px;">
+			<div class="rec_img">
+				<a href="/recipe/detail?idx=${dto.RECIPE_IDX}">
+					<img src="../img/main/${dto.main_photo}" class="mainimage" style="width: 90%;">
+				</a>
+			</div>
+			<div class="icon">
+				<i class="icon_chu"></i>
+				<i class="icon_best"></i>
+			</div>
+			<div class="info">
+				<div class="info_tag">
+					<span><script type="text/javascript">
+						var tags = "<c:out value='${dto.tags}'/>";
+						arr = tags.split(":");
+						for(var tag of arr){
+							document.write("#" + tag + " ");
+						}
+					</script></span>
+				</div>
+			</div>
+			<div class="info_title">	
+				<a href="/recipe/detail?idx=${RECIPE_IDX}">
+					<span>${dto.name}</span>
+				</a>
+			</div>
+		<br>
 		</div> 
+		</c:forEach>
+	</div>
+	<!-- 추천레시피 끝 -->	
+		
+	<!-- 소개글 시작-->	
+	<div class="content_text">
+		<b>모두의 밥상은 수만가지의 레시피를 종류별, 재료별, 난이도별로 분류하여 각자의 라이프스타일에 맞는 레시피를 쉽고 편리하게 찾을 수 있는 서비스를 제공하고 있습니다. 
+		<br>백주부님 레시피를 하나하나 찾기 힘든 주부님들을 위해! 배달 음식으로 지갑이 가벼워진 자취생들을 위해!
+		<br>번거로운 재료준비는 줄이고 쉽고 간단한 방법으로 모두의 밥상이 풍요로워지는 경험을 해보세요!</b>
+		<img src="img/main/logo2.png" style="float: right">
+	</div> 
 	
-</div>
-
-
-<script type="text/javascript">
-	function logout()
-	{
-		$.ajax({
-			type: "get",
-			dataType: "text",
-			url: "/login/logout",
-			success: function() {
-				location.reload();
-			} 
-		});
-	}
-</script>
-
-
-
+	<!-- 카테고리 시작 -->
+	<div class="category">
+		<div class="">
+		
+		</div>	
+	</div> 
+	<!-- 카테고리 끝 -->
 	
+</div> 	
+<br><br><br><br>
+
 <!-- 
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script> 
 <script> var naverLogin = new naver.LoginWithNaverId( { 
@@ -397,8 +221,5 @@
 					} }); 
 				}); 
 </script> -->
-	</div>
-	
-
 </body>
 </html>
