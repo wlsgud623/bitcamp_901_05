@@ -28,7 +28,10 @@ import data.dto.IngredientDto;
 import data.dto.RecipeDto;
 import data.dto.StepsDto;
 import data.dto.UserDto;
+import data.inter.MypageServiceInter;
+import data.mapper.MemberMapperInter;
 import data.mapper.MypageMapperInter;
+import data.service.MemberService;
 import data.service.MypageService;
 import utility.FileUpload;
 
@@ -40,7 +43,10 @@ public class MypageController {
 	@Autowired
 	MypageService mypageService;
 	
-	@GetMapping("/")
+	@Autowired
+	MemberService memberService;
+	
+	@GetMapping("/mypage")
 	public ModelAndView myPageInfo(
 			@RequestParam String UserID) 
 	{
@@ -73,24 +79,31 @@ public class MypageController {
 		return "/mypage/updateform";
 	}
 	
-	@GetMapping("/scrap") //레시피 스크랩
-	  public String scrap(@RequestParam String UserID) 
-	  
+	
+	@GetMapping("/scraprecipe") //레시피 스크랩
+	  public ModelAndView scraprecipeList(@RequestParam String UserID) 
 	  {
-		return "/scrap";
-		
+		ModelAndView mView = new ModelAndView();
+		List<RecipeDto> list = mypageService.getscraprecipe(UserID);
+		mView.addObject("list",list);
+		mView.setViewName("mypage/mypage");	
+		return mView;
 	   }
 	
-	@GetMapping("/insert") //레시피 등록한거
-	  public String insert(@RequestParam String UserID) 
-	  
+	
+	@GetMapping("/ownrecipe") //레시피 등록한거
+	 public ModelAndView ownrecipeList(@RequestParam String UserID) 
 	  {
-		return "/insert";
-		
-	   }
+		ModelAndView mview = new ModelAndView();
+		List<RecipeDto> list = mypageService.getUserRecipeList(UserID);
+		mview.addObject("list",list);
+		mview.setViewName("mypage/mypage");
 
-	
-	}
+		
+		return mview;
+		
+	   }
+}
 
 
 	
