@@ -2,6 +2,7 @@ package data.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -57,17 +58,32 @@ public class MypageController {
 		return mView;
 	}
 	
-	@PostMapping("/updateform") //유저수정
+	@GetMapping("/updateform")
+	public ModelAndView update(
+			@RequestParam String UserID) 
+	{
+		ModelAndView mView = new ModelAndView();
+		UserDto dto = mypageService.getUser(UserID);
+		mView.addObject("dto",dto);
+		mView.setViewName("/mypage/updateform");
+		return mView;
+	}
+	
+	
+	
+	
+	@PostMapping("/update") //유저수정
 	public String update(@ModelAttribute UserDto dto,
 			
 			@RequestParam ArrayList<MultipartFile> upload_photo,
 			HttpSession session,
 			HttpServletRequest request) {
-		mypageService.updateUser(dto);
+		    mypageService.updateUser(dto);
 		
+		    
 		//현재 로그인한 userID
-				String userID="tester"; //(String)session.getAttribute("로그인아이디");
-				dto.setUserID(userID);
+				String UserID="test"; //(String)session.getAttribute("로그인아이디");
+				dto.setUserID(UserID);
 	
 			//메인, 완성사진 업로드
 			FileUpload fileUpload=new FileUpload();
@@ -76,7 +92,8 @@ public class MypageController {
 			dto.setPhoto(photo);
 			
 			
-		return "/mypage/updateform";
+		return "redirect:mypage?UserID="+UserID;
+		
 	}
 	
 	
