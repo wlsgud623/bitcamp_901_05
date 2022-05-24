@@ -154,37 +154,7 @@ ul.menu li{
 
 </style>
 
- <script type="text/javascript">
-function () {
-	var wind = $(window),
-	header = $('.page-header'),
-	headerOffsetTop = header.offset().top;
-	
-	wind.scroll(function () {
-		if(this.scrollTop() >= headerOffsetTop){ 
-			header.addClass('sticky');
-		}else{
-			header.removeClass('sticky');
-		}
-	});
-</script> 
 
-<script type="text/javascript">
-	$(function() {
-		var menubarTop = $("#menubar").position().top;
-		var height = $("#menubar").height();
-		var subMenuTop = menubarTop + height;
-
-		$("#menubar-menus li").click(function(event) {
-			
-			$(this).find("#menu").css("top", subMenuTop).slideDown();
-		
-			});
-		});
-
-		
-
-</script>
 <br><br>
 
 		<!-- 로고 -->
@@ -197,7 +167,7 @@ function () {
 		<img alt="logo" src="../img/logo.png" style="width:150px; position: absolute; top:70px; left: 200px;" >
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="text" name="s_value" id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." style="width: 600px;height: 70px;border-radius: 50px; border: 2px solid gray; text-align: center;">&nbsp;&nbsp;&nbsp;
-			<button type="button" style="border-style: none; background-color:white;"><img src="../img/sch_btn.png" style="width: 50px; height: 45px;"></button>
+			<button type="button" style="border-style: none; background-color:white;"><b class="glyphicon glyphicon-search" style="width: 70px; height: 70px;"></b> </button>
 	
 		
 		<!-- 해쉬테그 -->
@@ -241,7 +211,7 @@ function () {
 		</li>
 		<li style="float: right;"><a href="#">회원가입</a>
 	    
-		</li>
+		</li><!-- 아아 -->
 		<li style="float: right;"><a href="#">로그인</a>
 	    
 		</li>
