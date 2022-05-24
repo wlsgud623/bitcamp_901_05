@@ -211,7 +211,7 @@ ul.menu li{
 		</li>
 		<li style="float: right;"><a href="#">회원가입</a>
 	    
-		</li>
+		</li><!-- 아아 -->
 		<li style="float: right;"><a href="#">로그인</a>
 	    
 		</li>
