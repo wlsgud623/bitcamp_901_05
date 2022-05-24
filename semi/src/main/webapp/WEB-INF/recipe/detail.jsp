@@ -40,7 +40,7 @@ $(function(){
 		}
 	});
 	
-	$("#commentbutton").click(function() {
+	$("#commentbtn").click(function() {
 		if (login == null || login !='yes'){
 			$("#loginModal").modal('show');
 		}
@@ -95,14 +95,18 @@ function showComment() {
 }
 
 function submitComment(){
+	$("commentform").submit();
+}
+
+function submitRecomment(){
 	
 }
 
-function scrapRecipe(){
-	var id = '${sessionScope.login}';
+function scrapRecipe(){	
+	var id = '${sessionScope.loginid}';
+	console.log(id);
 	$.ajax({
 		type: "GET",
-		dataType: "JSON",
 		url: "scrap" ,
 		data: {"idx":${dto.RECIPE_IDX}, "id":id},
 		success: function() {
@@ -256,12 +260,12 @@ function deleteRecipe(){
 				<c:forEach var="cmt" items="${comments }">
 										
 				</c:forEach>
-				<form class="comment_form" action="addcom" method="post">
+				<form name="commentform" action="addcom" method="post">
 					<input type="hidden" name="RECIPE_IDX" value="${idx}">
 					<input type="hidden" name="userID" value="${sessionScope.loginid}">
 					<textarea class="form-control" rows="3" id="comment_content" name="content" placeholder="후기를 남겨주세요!"></textarea>
 				</form>
-				<button type="button" id="commentbutton">등록</button>
+				<button type="button" id="commentbtn">등록</button>
 			</div>
 		
 		</div>
