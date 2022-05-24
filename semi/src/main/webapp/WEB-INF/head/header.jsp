@@ -154,37 +154,6 @@ ul.menu li{
 
 </style>
 
- <script type="text/javascript">
-function () {
-	var wind = $(window),
-	header = $('.page-header'),
-	headerOffsetTop = header.offset().top;
-	
-	wind.scroll(function () {
-		if(this.scrollTop() >= headerOffsetTop){ 
-			header.addClass('sticky');
-		}else{
-			header.removeClass('sticky');
-		}
-	});
-</script> 
-
-<script type="text/javascript">
-	$(function() {
-		var menubarTop = $("#menubar").position().top;
-		var height = $("#menubar").height();
-		var subMenuTop = menubarTop + height;
-
-		$("#menubar-menus li").click(function(event) {
-			
-			$(this).find("#menu").css("top", subMenuTop).slideDown();
-		
-			});
-		});
-
-		
-
-</script>
 <br><br>
 
 		<!-- 로고 -->
