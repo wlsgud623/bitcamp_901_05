@@ -51,6 +51,7 @@ public class MypageController {
 	public ModelAndView myPageInfo(
 			@RequestParam String UserID) 
 	{
+		
 		ModelAndView mView = new ModelAndView();
 		UserDto dto = mypageService.getUser(UserID);
 		mView.addObject("dto",dto);
@@ -62,6 +63,7 @@ public class MypageController {
 	public ModelAndView update(
 			@RequestParam String UserID) 
 	{
+		System.out.println(UserID);
 		ModelAndView mView = new ModelAndView();
 		UserDto dto = mypageService.getUser(UserID);
 		mView.addObject("dto",dto);
@@ -83,7 +85,7 @@ public class MypageController {
 		    
 		//현재 로그인한 userID
 				String UserID="test"; //(String)session.getAttribute("로그인아이디EL");
-				dto.setUserID(UserID);
+				dto.setUserid(UserID);
 	
 			//메인, 완성사진 업로드
 			FileUpload fileUpload=new FileUpload();
