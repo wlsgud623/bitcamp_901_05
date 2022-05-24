@@ -68,12 +68,18 @@ public class MypageService implements MypageServiceInter{
 		String [] scraprecipes = scraprecipe.split(",");
 		
 		List<RecipeDto> list = new ArrayList<>();
+		
 		for(String idx :scraprecipes) {
 			RecipeDto dto = recipeMapperInter.getRecipe(Integer.parseInt(idx));
 			list.add(dto);
 			
 		}
 		return list;
+	}
+
+	@Override
+	public int getTotalCount() {
+		return mypageMapperInter.getTotalCount();
 	}
 
 	

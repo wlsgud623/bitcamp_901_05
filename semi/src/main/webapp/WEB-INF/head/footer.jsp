@@ -7,79 +7,65 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
-
-html {
-
+.footer{
     position: relative;
-
-    min-height: 100%;
-
-    margin: 0;
-
-   
-
-}
-
-body {
-
-    min-height: 100%;
-
-}
-
-.footer {
-
-    position: absolute;
-
-    left: 0;
-
-    bottom: 0;
-
     width: 100%;
-
-	padding: 15px 0;
-
-	text-align: center;
-
-	color: white;
-
-	background: red;
+    min-width: 1300px;
+    display: block;
+    clear: both;
+    padding-bottom: 40px;
+    background: #bf132b;
+    color: white;
+    border: 2px solid bf132b;
 }
-
-
+.f_info content{
+	color: white;
+	font-weight: bolder;
+	
+}
+li {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+    
+}
 </style>
 </head>
 
-
 <body>
-	<div id="footer" class="footer">
-	
-		
+<!-- footer -->
+<footer class="footer">
+     	
 		<div class="f_info content">
 			<div class="f_info_left">
-				<h3>(주)비트4조</h3>
+			<br>
+				<h3>(주)비트캠프</h3>
 				
 				<span>서울 강남구</span>
-				<span class="copy">Copyright ⓒ semi co.,Ltd All Rights Reserved.</span>
+				<span class="copy">Copyright ⓒ bitcamp co.,Ltd All Rights Reserved.</span>
 			</div>
 			<div class="f_info_right">
-				<select name="racipy" id="racipy" title="패밀리 사이트 바로가기" onchange="if(this.value) window.open(this.value);">
-					
-					<option value="/">레시피사이트</option>
-				</select>
+			
 				<ul>
-					<li><a href="https://blog.naver.com/ottogitoday1" target="_blank">
-					<i class="insta"></i></a><img alt="없음" src="../img/insta.png" style="width: 50px;height: 50px;"></li>
-					<li><a href="https://www.facebook.com/Ottogitoday" target="_blank">
-					<i class="facebook"></i></a><img alt="없음" src="../img/Facebook.png" style="width: 50px;height: 50px;"></li>
-					<li><a href="https://www.instagram.com/ottogi_daily/" target="_blank">
-					<i class="insta"></i></a><img alt="없음" src="../img/kakao.png" style="width: 50px;height: 50px;"></li>
+					<li style="text-align: right;"><a href="https://www.facebook.com" target="_blank"></a><img alt="no" src="../image/Facebook.png" 
+					style="width: 40px;height: 40px; text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+					<li><a href="https://www.kakao.com" target="_blank"></a><img alt="no" src="../image/kakao.png"
+					style="width: 40px;height: 40px; text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+					<li><a href="https://www.instagram.com" target="_blank"></a><img alt="no" src="../image/insta.png"
+					style="width: 40px;height: 40px; text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
 				</ul>
 			</div>
 		</div>
 
-	</div>
+</footer>
+
+
+
 </body>
 </html>

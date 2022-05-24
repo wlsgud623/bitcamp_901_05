@@ -7,7 +7,7 @@ import data.dto.RecipeDto;
 import data.dto.UserDto;
 
 public interface MypageServiceInter {
-	
+	public int getTotalCount();
 	public UserDto getUser(String UserID);
 	 //유저 정보를 id로 가져옴
 	public void updateUser(UserDto dto);//유저수정

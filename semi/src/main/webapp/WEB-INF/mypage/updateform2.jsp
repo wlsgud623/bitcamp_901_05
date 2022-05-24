@@ -32,9 +32,8 @@ header{
 }
 
 .container{
-	
+	height: 800px;
 	padding-top: 100px;
-	background-color: white;
 }
 
  .memberform{
@@ -121,15 +120,14 @@ function check() {
 
 </head>
 <body>
-
-<div class="body" >
+	<div class="body">
 		<header class="header">
 			<a href="../">
 			<img src="../img/logo.png">
 			</a>
 		</header>
 		<!-- container -->
-		<div class="container" id="container" style="width: 1350px; text-align: center; height: 1119px; background-color: white;">
+		<div class="container" id="container">
 			<div class="memberform">
 			   <h3>회원가입</h3><br><br>
 			   <form action="insert" method="post" class="form-inline"

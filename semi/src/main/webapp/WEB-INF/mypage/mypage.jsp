@@ -9,113 +9,105 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <style>
-.r_mine1,.r_mine2 {
-	text-align: center;
-	
+footer{
+  position : relative;
+  transform : translateY(-100%);
 }
 
-.slideshow_nav{
-	text-align: center;
-
-}
-img{
-	padding-left: 40px;
-}
-thead th{
-	background-color: #006DCC;
-	color: white;
-	text-align: center;
-	
-}
-
-tr td:first-child,
-tr td:last-child{
-border-top-right-radius: 6px;
-border-bottom-right-radius: 6px;
-	
-}
-
-myphoto{
-	border-radius: 100%;
-	width: 200px;
-	height: 200px;
-	
-
-}
 </style>
 <script type="text/javascript">
-	$(function(){
-	 var container = $('.own'),
-	  slideGroup = container.find('.r_mine'),
-	  slides = slideGroup.find('a'),
-	  nav = container.find('.slideshow_nav'),
-	  indicator = container.find('.indicator'),
-	  slideCount = slides.length,
-	  indicatorHtml = '',
-	  currentIndex = 0,
-	  duration = 500, /*시간 0.5초*/
-	  easing = 'easeInOutExpo' /*2진*/
-	  interval = 3500,  /*3.5초*/
-	  timer;  /*마우스올리면 멈추기*/ /*여기까지 이름만지정*/
-	  
-	  //슬라이드 가로로배열
-	  //slides 마다 할일필요 0,100,200,300 % left순서로
-	  //console.log(slides);
-	  
-	  
-	});
+$(".racipego").click(function(){
+    var ok = confirm("레시피를 작성하러 가겠습니까?");
+    
+    if(ok){
+    location.assign(ok);
+    alert("");
+    };
+    });
 
 </script>
 <body>
-<br><br><br><br>
-<hr><hr><hr><hr>
-<hr><hr><hr><hr>
-<hr><hr><hr><hr>
 
 	
 	
 	
-	
 <!-- 사진슬라이드 -->
-<h2>내 레시피</h2>
-	<div class="own">
-		<div class="r_mine1">
-			<a href=""><img alt="slide1" src="../image/food1.jpg"></a> 
-			<a href=""><img alt="slide2" src="../image/food3.jpg"></a> 
-			<a href=""><img alt="slide3" src="../image/food2.jpg"></a>
-			<a href=""><img alt="slide4" src="../image/food3.jpg"></a>
-		</div><!-- r_mine -->
+
+
+<form action="insert" method="get" class="UserPhoto" enctype="multipart/form-data" >
+	<div class="userinfo" style="background-color: white; width: 600px; height: 800px; text-align: center;">	
+			<img src="../image/per__son.png" style="text-align:center; cursor:pointer; width: 250px; height:200px; border-radius: 100%; text-align: center;">
+		<span class="glyphicon glyphicon-camera" style="font-size: 20px;"></span>
 		<br>
-		<div class="slideshow_nav" style="font-size: 20px;">
-			<a href="" class="prev">prev</a>
-			<a href="" class="next">next</a>
-		</div><!-- slideshow_nav -->
-		<div class="indicator">
-			
-		</div><!-- indicator -->
-	</div><!-- own -->
+			<button type="button" class="btn btn-success racipego">레시피작성go</button>
+			<button type="button" class="btn btn-success revise">정보수정하기</button>
+	</div>	
+
+
+</form>
+<h3>내 레시피</h3>
+
+<!-- 내 레시피 -->
+<div class="container" style="width: 1500px;">
+	<!-- 슬라이더 시작 -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+	    <!-- <!-- Indicators -->
+	    <ol class="carousel-indicators">
+	      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	      <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+	      <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+	    </ol> 
 	
-	
-<!-- 사진슬라이드 -->
-<h2>내가 찜한 레시피</h2>
-	<div class="own">
-		<div class="r_mine2">
-			<a href=""><img alt="slide1" src="../image/food1.jpg"></a> 
-			<a href=""><img alt="slide2" src="../image/food3.jpg"></a> 
-			<a href=""><img alt="slide3" src="../image/food2.jpg"></a>
-			<a href=""><img alt="slide4" src="../image/food3.jpg"></a>
-		</div><!-- r_mine -->
-		<br>
-		<div class="slideshow_nav" style="font-size: 20px;">
-			<a href="" class="prev">prev</a>
-			<a href="" class="next">next</a>
-		</div><!-- slideshow_nav -->
-		<div class="indicator">
-			
-		</div><!-- indicator -->
-	</div><!-- own -->
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" style="width: 1290px;">
+		    <div class="item active">
+		      	<div class="sub_item">
+		      		<c:forEach var="a" begin="2" end="4">
+		      			<a href="/recipe/detail?idx=${dto.password}">
+		        			<img src="../img/main/${a}.jpg" alt="food_img" style="width:33%;">
+		        		</a>
+	        		</c:forEach>
+		   		</div>
+			</div>
+			 <div class="item">
+		      	<div class="sub_item">
+		      		<c:forEach var="a" begin="2" end="4">
+		      			<a href="/recipe/detail?idx=${dto.hp}">
+		        			<img src="../img/main/${a}.jpg" alt="food_img" style="width:33%;">
+		        		</a>
+	        		</c:forEach>
+		   		</div>
+			</div>
+			 <div class="item">
+		      	<div class="sub_item">
+		      		<c:forEach var="dto" items="${ownrecipeList}" begin="8" end="10">
+		      			<a href="/recipe/detail?idx=${dto.RECIPE_IDX}">
+		        			<img src="../img/main/1.jpg" alt="food_img" style="width:33%;">
+		        		</a>
+	        		</c:forEach>
+		   		</div>
+			</div>
+		</div>
+		
+		
+	    <!-- Left and right controls -->
+	    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+	      <span class="glyphicon glyphicon-chevron-left"></span>
+	      <span class="sr-only">Previous</span>
+	    </a>
+	    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+	      <span class="glyphicon glyphicon-chevron-right"></span>
+	      <span class="sr-only">Next</span>
+	    </a>
+	</div>	
+</div>
+
+
+
+
 </body>
 </html>
