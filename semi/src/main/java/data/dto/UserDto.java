@@ -1,8 +1,10 @@
 package data.dto;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import org.apache.ibatis.type.Alias;
+
 
 import lombok.Data;
 

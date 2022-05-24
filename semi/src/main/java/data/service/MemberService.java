@@ -44,5 +44,13 @@ public class MemberService implements MemberServiceInter{
 		return memberMapperInter.login(map);
 	}
 	
+	@Override
+	public void updateScrapRecipe(int RECIPE_IDX, String UserID) {
+		Map<String, String> map=new HashMap<>();
+		map.put("RECIPE_IDX", ""+RECIPE_IDX);
+		map.put("UserID", UserID);
+		memberMapperInter.updateScrapRecipe(map);
+	}
+	
 	
 }
