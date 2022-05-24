@@ -46,9 +46,8 @@ li {
 			<div class="f_info_left">
 			<br>
 				<h3>(주)비트캠프</h3>
-				<!--<span>사업자등록번호 : 138-81-03238</span><br class="m_none">-->
-				<span>서울 강남구</span><!--<span>오뚜기 고객상담실 : 080-024-2311</span><br class="m_none">
-				<span>오뚜기라면 고객상담실 : 080-088-1212 (월~금 08:30~17:30)</span>-->
+				
+				<span>서울 강남구</span>
 				<span class="copy">Copyright ⓒ bitcamp co.,Ltd All Rights Reserved.</span>
 			</div>
 			<div class="f_info_right">
