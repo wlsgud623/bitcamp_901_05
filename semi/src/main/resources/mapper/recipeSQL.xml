@@ -14,7 +14,7 @@
 	<select id="getRecipe" parameterType="int" resultType="recipe">
 		SELECT * FROM Recipe WHERE RECIPE_IDX = #{idx}
 	</select>
-	<select id="getRecipeRec" parameterType="int" resultType="recipe">
+	<select id="getRecipeRec" parameterType="int" resultType="int">
 		SELECT total_recom FROM Recipe WHERE RECIPE_IDX = #{idx}
 	</select>
 	<select id="getRecipeRate" parameterType="int" resultType="int">

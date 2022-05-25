@@ -8,14 +8,17 @@
 		SELECT COUNT(*) FROM Comment WHERE RECIPE_IDX = ${idx} GROUP BY cgroup 
 	</select>
 	<select id="getAllComment" resultType="comment">
-		SELECt * FROM Comment WHERE RECIPE_IDX = ${idx} ORDER BY cgroup, NUM
+		SELECt * FROM Comment WHERE RECIPE_IDX = ${idx} ORDER BY cgroup, seq
 	</select>
 	<select id="getComment" parameterType="Map" resultType="comment">
 		SELECT * FROM Comment WHERE RECIPE_IDX = ${idx} AND NUM = #{num}
 	</select>
 	<insert id="insertComment" parameterType="comment">
-		INSERT into Comment (RECIPE_IDX, USERID, content, depth, seq, cgroup, writeday) VALUES (#{RECIPE_IDX}, #{UserID}, #{content}, #{depth}, #{seq}, #{cgroup}, now()) 
+		INSERT into Comment (RECIPE_IDX, USERID, content, depth, seq, cgroup, writeday) VALUES (#{RECIPE_IDX}, #{userID}, #{content}, #{depth}, #{seq}, #{cgroup}, now()) 
 	</insert>
+	<update id="updateComment" parameterType="comment">
+		UPDATE Comment SET content=#{content} WHERE NUM = #{NUM}
+	</update>
 	<delete id="deleteComment" parameterType="int">
 		DELETE FROM Comment WHERE NUM = #{num}
 	</delete>

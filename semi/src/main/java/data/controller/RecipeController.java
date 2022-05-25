@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,7 @@ import data.dto.StepsDto;
 import data.inter.CommentServiceInter;
 import data.service.CommentService;
 import data.service.IngredientService;
+import data.service.MemberService;
 import data.service.RecipeService;
 import data.service.StepsService;
 
@@ -41,8 +44,11 @@ public class RecipeController {
 	@Autowired
 	private IngredientService ingredientService;
 
-	@GetMapping("/detail") // 디테일 페이지
-	public ModelAndView showRecipe(@RequestParam int idx) {
+	@Autowired
+	private MemberService memberService;
+	
+	@GetMapping("/detail") // 디테일 페이지, 세션은 삭제 예정
+	public ModelAndView showRecipe(@RequestParam int idx, HttpSession session) {
 		ModelAndView mView = new ModelAndView();
 		
 		recipeService.addView(idx); // 조회수 증가
@@ -52,6 +58,7 @@ public class RecipeController {
 		List<CommentDto> comments = commentService.getAllComment(idx);
 		List<IngredientDto> ingredients = ingredientService.getAllIngredient(idx);
 		
+		session.setAttribute("loginid", "test");
 		mView.addObject("dto", dto);
 		mView.addObject("steps", steps);
 		mView.addObject("comments", comments);
@@ -60,16 +67,14 @@ public class RecipeController {
 		return mView;
 	}
 	
-	/*
+	
 	//스크랩, 추천, 평점
-	@PostMapping("/scrap") // 레시피 스크랩
-	public void scrapRecipe(@RequestParam int idx
-			//, @RequestParam String id
-			) {
-		//스크랩 기능 구현
+	@GetMapping("/scrap") // 레시피 스크랩
+	public void scrapRecipe(@RequestParam int idx, @RequestParam String id) {
+		memberService.updateScrapRecipe(idx, id);
 	}
 	
-	*/
+	
 	@PostMapping("/addrecom") //레시피 추천
 	@ResponseBody
 	public Map<String, Integer> addRecommend(@RequestParam int idx) {
@@ -119,12 +124,34 @@ public class RecipeController {
 	}
 	
 	//comment
-	@PostMapping("/addcom") //후기 추가
+	@GetMapping("/cmtlist")
+	@ResponseBody
+	public List<CommentDto> listComment(@RequestParam int idx) {
+		return commentService.getAllComment(idx);
+	}
+	
+	@PostMapping("/addcom") //댓글 추가
+	@ResponseBody
 	public void addComment(@ModelAttribute CommentDto dto) {
+		System.out.println(dto);
 		commentService.insertComment(dto);
 	}
 	
+	@PostMapping("/addreply") //대댓글 추가
+	@ResponseBody
+	public void addRecomment(@ModelAttribute CommentDto dto) {
+		commentService.insertRecomment(dto);
+	}
+	
+	@PostMapping("/updatecom") // 댓글 수정
+	@ResponseBody
+	public void updateComment(@ModelAttribute CommentDto dto) {
+		System.out.println("controller");
+		commentService.updateComment(dto);
+	}
+	
 	@PostMapping("/delcom") // 후기 삭제
+	@ResponseBody
 	public void deleteComment(@RequestParam int num) {
 		commentService.deleteComment(num);
 	}

@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/detail.css">
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <c:set var="root" value="<%=request.getContextPath()%>"/>
@@ -20,6 +21,7 @@
 <script type="text/javascript">
 $(function(){
 	var login = '${sessionScope.loginok}';
+	showComment();
 	
 	$("#rate_button").click(function() {
 		if (login == null || login !='yes'){
@@ -39,18 +41,32 @@ $(function(){
 			addRecommend();	
 		}
 	});
-	
+	/*
 	$("#commentbtn").click(function() {
 		if (login == null || login !='yes'){
 			$("#loginModal").modal('show');
 		}
 		else if ($("#comment_content").val() == ""){
 			alert("댓글 내용을 입력하여 주십시오");
+			$("#comment_content").focus();
 		}
 		else{
-			console.log($("content").val());
+			console.log($("#comment_content").val());
 			submitComment();
 		}
+	});
+	*/
+	$("#commentbtn").click(function() {
+		//console.log($("#comment_content").val());
+		submitComment();
+	});
+	
+	$(document).on("click","#replybtn" ,function() {
+		submitRecomment();
+	});
+	
+	$(document).on("click","#editbtn" ,function() {
+		updateComment();
 	});
 	
 	$("#scrap_button").click(function() {
@@ -61,6 +77,7 @@ $(function(){
 			scrapRecipe();
 		}
 	});
+	
 });
 
 function addRate() {
@@ -91,20 +108,142 @@ function addRecommend() {
 }
 
 function showComment() {
-	
+	$.ajax({
+		type: "get",
+		url: "cmtlist",
+		data: {"idx": ${dto.RECIPE_IDX}},
+		success: function(data) {
+			var s = "";
+			$.each(data, function(index, element) {
+				s += '<div id="commentArea'+element.num+'" class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';                
+				s += '<div id="commentInfo'+element.num+'">'+'댓글번호 : '+(index+1) + ' / 작성자 : '+element.userID;                
+				s += '<button type="button" onclick="showEditInput('+element.num+');">수정</button>&nbsp&nbsp';
+				s += '<button type="button" onclick="deleteComment('+ element.num + ');">삭제</button>&nbsp&nbsp';
+				s += '<button type="button" onclick="showReplyInput('+element.num+');">답글</button>';
+				s += '<div class="commentContent'+element.num+'"> <p> 내용 : '+element.content +'</p>';                
+				s += '</div>';
+			});
+			$("#cmboard").html(s);
+		}
+	});
+}
+
+function showReplyInput(num){
+	$.ajax({
+		type: "get",
+		url: "cmtlist",
+		data: {"idx": ${dto.RECIPE_IDX}},
+		success: function(data) {
+			var s = "";
+			$.each(data, function(index, element) {
+				s += '<div id="commentArea'+element.num+'" class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';                
+				s += '<div id="commentInfo'+element.num+'">'+'댓글번호 : '+(index+1) + ' / 작성자 : '+element.userID + '<br>';                
+				s += '<button type="button" onclick="showEditInput('+element.num+');">수정</button>&nbsp&nbsp';
+				s += '<button type="button" onclick="deleteComment('+ element.num + ');">삭제</button>&nbsp&nbsp';
+				s += '<button type="button" onclick="showReplyInput('+element.num+');">답글</button>';      
+				s += '<div class="commentContent'+element.num+'"> <p> 내용 : '+element.content +'</p>';    
+				if (element.num == num) {
+					s+= '<form id="replyform" name="replyform" action="addreply" method="post">';
+					s+= '<input type="hidden" name="RECIPE_IDX" value="${dto.RECIPE_IDX}">';
+					s+= '<input type="hidden" name="userID" value="${sessionScope.loginid}">';
+					s+= '<input type="hidden" name="cgroup" value="'+element.cgroup+'">';
+					s+= '<input type="hidden" name="seq" value="'+(element.seq+1)+'">';
+					s+= '<input type="hidden" name="depth" value="'+(element.depth+1)+'">';
+					s+= "<textarea class='form-control' rows='3' name='content' placeholder='"+element.userID +"님의 댓글에 대댓글 작성'></textarea>";
+					s+= "<button type='button' id='replybtn'>등록</button>";
+					s+= '</form>';
+				}            
+				s += '</div></div>';
+			});
+			$("#cmboard").html(s);
+		}
+	});
+}
+function showEditInput(num){
+	$.ajax({
+		type: "get",
+		url: "cmtlist",
+		data: {"idx": ${dto.RECIPE_IDX}},
+		success: function(data) {
+			var s = "";
+			$.each(data, function(index, element) {
+				s += '<div id="commentArea'+element.num+'" class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';                
+				s += '<div id="commentInfo'+element.num+'">'+'댓글번호 : '+(index+1) + ' / 작성자 : '+element.userID + '<br>';                
+				s += '<button type="button" onclick="showEditInput('+element.num+');">수정</button>&nbsp&nbsp';
+				s += '<button type="button" onclick="deleteComment('+ element.num + ');">삭제</button>&nbsp&nbsp';
+				s += '<button type="button" onclick="showReplyInput('+element.num+');">답글</button>';  
+				if (element.num == num) {
+					s+= '<form id="editform" name="editform" action="updatecom" method="post">';
+					s+= '<input type="hidden" name="NUM" value="'+ element.num +'">';
+					s+= '<input type="hidden" name="RECIPE_IDX" value="${dto.RECIPE_IDX}">';
+					s+= "<textarea class='form-control' rows='3' name='content'>"+element.content+"</textarea>";
+					s+= "<button type='button' id='editbtn'>등록</button>";
+					s+= '</form>';
+				} else {
+					s += '<div class="commentContent'+element.num+'"> <p> 내용 : '+element.content +'</p>';  
+				}                    
+				s += '</div></div>';
+			});
+			$("#cmboard").html(s);
+		}
+	});
 }
 
 function submitComment(){
-	$("commentform").submit();
+	var formdata = $("#commentform").serialize();
+	$.ajax({
+		type: "POST",
+		url: "addcom",
+		data: formdata,
+		success: function(data) {
+			showComment();
+		}
+	});
 }
 
+
 function submitRecomment(){
-	
+	var formdata = $("#replyform").serialize();
+	$.ajax({
+		type: "POST",
+		url: "addreply",
+		data: formdata,
+		success: function(data) {
+			showComment();
+		}
+	});
 }
+function deleteComment(num){
+	var ans = confirm("댓글을 삭제하시겠습니까?");
+	if (ans){
+		$.ajax({
+			type: "POST",
+			url: "delcom",
+			data: {"num":num},
+			success: function(data) {
+				showComment();
+			}
+		});
+	}
+}
+
+function updateComment(){
+	console.log("update");
+	var formdata = $("#editform").serialize();
+	$.ajax({
+		type: "POST",
+		url: "updatecom",
+		data: formdata,
+		success: function(data) {
+			showComment();
+		}
+	});
+}
+
 
 function scrapRecipe(){	
 	var id = '${sessionScope.loginid}';
-	console.log(id);
+	//console.log(id);
 	$.ajax({
 		type: "GET",
 		url: "scrap" ,
@@ -257,11 +396,11 @@ function deleteRecipe(){
 			<h3><span class="glyphicon glyphicon-comment"></span> 댓글 (${fn:length(comments)})</h3>
 			<hr>
 			<div class="comment_board">
-				<c:forEach var="cmt" items="${comments }">
-										
-				</c:forEach>
-				<form name="commentform" action="addcom" method="post">
-					<input type="hidden" name="RECIPE_IDX" value="${idx}">
+				<div id="cmboard">
+				
+				</div>
+				<form id="commentform" name="commentform" action="addcom" method="post">
+					<input type="hidden" name="RECIPE_IDX" value="${dto.RECIPE_IDX}">
 					<input type="hidden" name="userID" value="${sessionScope.loginid}">
 					<textarea class="form-control" rows="3" id="comment_content" name="content" placeholder="후기를 남겨주세요!"></textarea>
 				</form>

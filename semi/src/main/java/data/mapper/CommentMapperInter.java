@@ -15,6 +15,7 @@ public interface CommentMapperInter {
 	public CommentDto getComment(Map<String, Integer> map);
 	
 	public void insertComment(CommentDto dto);
+	public void updateComment(CommentDto dto);
 	public void deleteComment(int num); 
 	
 	public void updateSeq(int seq);
