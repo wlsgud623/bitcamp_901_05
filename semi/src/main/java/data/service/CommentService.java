@@ -48,8 +48,6 @@ public class CommentService implements CommentServiceInter {
 	public void insertComment(CommentDto dto) {
 		// TODO Auto-generated method stub
 		dto.setCgroup(mapper.getMaxCgroup() + 1);
-		dto.setSeq(1);
-		dto.setDepth(0);
 		mapper.insertComment(dto);
 	}
 	

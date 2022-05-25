@@ -43,6 +43,10 @@ $(function(){
 	});
 	/*
 	$("#commentbtn").click(function() {
+=======
+	
+	$("#commentbutton").click(function() {
+>>>>>>> branch 'main' of https://github.com/wlsgud623/bitcamp_901_05.git
 		if (login == null || login !='yes'){
 			$("#loginModal").modal('show');
 		}
@@ -241,11 +245,11 @@ function updateComment(){
 }
 
 
-function scrapRecipe(){	
-	var id = '${sessionScope.loginid}';
-	//console.log(id);
+function scrapRecipe(){
+	var id = '${sessionScope.login}';
 	$.ajax({
 		type: "GET",
+		dataType: "JSON",
 		url: "scrap" ,
 		data: {"idx":${dto.RECIPE_IDX}, "id":id},
 		success: function() {
@@ -399,12 +403,12 @@ function deleteRecipe(){
 				<div id="cmboard">
 				
 				</div>
-				<form id="commentform" name="commentform" action="addcom" method="post">
-					<input type="hidden" name="RECIPE_IDX" value="${dto.RECIPE_IDX}">
+				<form class="comment_form" action="addcom" method="post">
+					<input type="hidden" name="RECIPE_IDX" value="${idx}">
 					<input type="hidden" name="userID" value="${sessionScope.loginid}">
 					<textarea class="form-control" rows="3" id="comment_content" name="content" placeholder="후기를 남겨주세요!"></textarea>
 				</form>
-				<button type="button" id="commentbtn">등록</button>
+				<button type="button" id="commentbutton">등록</button>
 			</div>
 		
 		</div>
