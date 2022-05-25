@@ -42,11 +42,9 @@ $(function(){
 		}
 	});
 	/*
-	$("#commentbtn").click(function() {
-=======
+
 	
 	$("#commentbutton").click(function() {
->>>>>>> branch 'main' of https://github.com/wlsgud623/bitcamp_901_05.git
 		if (login == null || login !='yes'){
 			$("#loginModal").modal('show');
 		}
@@ -61,7 +59,6 @@ $(function(){
 	});
 	*/
 	$("#commentbtn").click(function() {
-		//console.log($("#comment_content").val());
 		submitComment();
 	});
 	
@@ -128,6 +125,8 @@ function showComment() {
 				s += '</div>';
 			});
 			$("#cmboard").html(s);
+			var c = "댓글(" + data.length + ")";
+			$("#comment_count").html(c);
 		}
 	});
 }
@@ -160,6 +159,7 @@ function showReplyInput(num){
 				s += '</div></div>';
 			});
 			$("#cmboard").html(s);
+
 		}
 	});
 }
@@ -189,6 +189,7 @@ function showEditInput(num){
 				s += '</div></div>';
 			});
 			$("#cmboard").html(s);
+
 		}
 	});
 }
@@ -201,6 +202,7 @@ function submitComment(){
 		data: formdata,
 		success: function(data) {
 			showComment();
+			$("#comment_content").val("");
 		}
 	});
 }
@@ -397,18 +399,20 @@ function deleteRecipe(){
   		</div>
 	</div>		
 		<div id="comment_area">
-			<h3><span class="glyphicon glyphicon-comment"></span> 댓글 (${fn:length(comments)})</h3>
+			<h3><span class="glyphicon glyphicon-comment"></span> <span id="comment_count">댓글 (${fn:length(comments)})</span></h3>
 			<hr>
 			<div class="comment_board">
 				<div id="cmboard">
 				
 				</div>
-				<form class="comment_form" action="addcom" method="post">
-					<input type="hidden" name="RECIPE_IDX" value="${idx}">
+				<form id="commentform" action="addcom" method="post">
+					<input type="hidden" name="RECIPE_IDX" value="${dto.RECIPE_IDX}">
 					<input type="hidden" name="userID" value="${sessionScope.loginid}">
+					<input type="hidden" name="seq" value="0">
+					<input type="hidden" name="depth" value="0">
 					<textarea class="form-control" rows="3" id="comment_content" name="content" placeholder="후기를 남겨주세요!"></textarea>
 				</form>
-				<button type="button" id="commentbutton">등록</button>
+				<button type="button" id="commentbtn">등록</button>
 			</div>
 		
 		</div>

@@ -130,10 +130,9 @@ public class RecipeController {
 		return commentService.getAllComment(idx);
 	}
 	
-	@PostMapping("/addcom") //댓글 추가
+	@PostMapping("/addcom")  	//댓글 추가
 	@ResponseBody
 	public void addComment(@ModelAttribute CommentDto dto) {
-		System.out.println(dto);
 		commentService.insertComment(dto);
 	}
 	
@@ -146,7 +145,6 @@ public class RecipeController {
 	@PostMapping("/updatecom") // 댓글 수정
 	@ResponseBody
 	public void updateComment(@ModelAttribute CommentDto dto) {
-		System.out.println("controller");
 		commentService.updateComment(dto);
 	}
 	
