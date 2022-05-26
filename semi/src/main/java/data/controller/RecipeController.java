@@ -48,7 +48,7 @@ public class RecipeController {
 	private MemberService memberService;
 	
 	@GetMapping("/detail") // 디테일 페이지, 세션은 삭제 예정
-	public ModelAndView showRecipe(@RequestParam int idx, HttpSession session) {
+	public ModelAndView showRecipe(@RequestParam int idx) {
 		ModelAndView mView = new ModelAndView();
 		
 		recipeService.addView(idx); // 조회수 증가
@@ -58,7 +58,6 @@ public class RecipeController {
 		List<CommentDto> comments = commentService.getAllComment(idx);
 		List<IngredientDto> ingredients = ingredientService.getAllIngredient(idx);
 		
-		session.setAttribute("loginid", "test");
 		mView.addObject("dto", dto);
 		mView.addObject("steps", steps);
 		mView.addObject("comments", comments);
