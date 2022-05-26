@@ -38,7 +38,7 @@ public class LoginController {
 		return "/sign/login/aftersignup_login";
 	}
 	
-	@PostMapping("/process")
+	@PostMapping("/login")
 	public String loginProcess(
 				@RequestParam String UserID,
 				@RequestParam String password,
@@ -46,10 +46,6 @@ public class LoginController {
 				HttpSession session) 
 	{
 		System.out.println("chkid:" + chkid);
-		//로그인 성공 여부
-//		Map<String, String> map = new HashMap<>();
-//		map.put("UserID", UserID);
-//		map.put("password", password);
 		int n = loginService.login(UserID,password);
 		if(n == 1) {
 			//세션 유지시간 지정
@@ -77,6 +73,20 @@ public class LoginController {
 		//session에서 loginok 삭제
 		session.removeAttribute("loginok");
 	}
+	
+	//네이버 로그인
+	@PostMapping("/naver_login")
+	@ResponseBody
+	public Map<String, String> naverLogin(
+				@RequestParam String name
+				) 
+	{
+		System.out.println(name);
+		Map<String, String> map = new HashMap<>();
+		map.put("name", name);
+
+		return map; //다시 로그인 폼으로 이동
+	}   
 	
 	
 }
