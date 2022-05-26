@@ -50,6 +50,24 @@ table {
    table.mem{
 		margin-left: 130px;
    }
+   
+  
+	
+	label.inputPhoto{
+		font-family: 'Cafe24SsurroundAir';
+		text-align: center;
+		width: 800px;
+		height: 450px;
+		cursor: pointer;
+	}
+	img.inputPhoto{
+		width: 800px;
+		height: 450px;
+		object-fit: cover;
+		margin-bottom: -250px;
+		opacity: 0.5;
+	}
+	
 
 </style>
 <script type="text/javascript">
@@ -85,24 +103,25 @@ $(function () {
 <div class="body" style="text-align: center;" >
 	<div class="container" id="container" style=" text-align: center; width: 1200px;  height: 1300px; 
 		background-color: white;">
-			<div class="memberform"  style="text-align: center;">
+			
 			   <h3>회원가입수정</h3>
-				 <form action="insert" method="post" class="form-inline" style="text-align: center; height: 1000px;" 
+				 <form action="insert" method="post" class="form-inline" style="text-align: center; height: 1000px; width: 1500px;" 
 			   		 onsubmit="return check()">
-			   		<table style="width: 500px; text-align: left; height: 700px;" class="mem" >
+			   		<table style="width: 1500px; text-align: left; height: 700px;" class="mem" >
+						
 						<tr>
 							<td style="text-align: center;">
-								<label for="inputPhoto" style="text-align: center; 
+								<label for="inputPhoto" class="inputPhoto" style="text-align: center; 
 									  cursor: pointer;">
-										<img src="../image/per__son.png" style="text-align: center; width: 250px;">
+										<img  src="../image/per__son.png" style="text-align: center; width: 250px;">
 									</label>
 								    <input type="file" id="inputPhoto" name="upload_main" accept=".jpg, .jpeg, .png"
-								    style="opacity: 0; font-size: 0px;" class="form-control">
+								    style="opacity: 0; font-size: 0px; width: 500px;" class="form-control">
 							</td>
 						</tr>
 						<br>
 						<tr>
-			   				<th style="width: 100px;" >이 름</th>
+			   				<th style="width: 50px;" >이 름</th>
 			   				<td>
 			   					<input type="text" name="name" style="width: 250px; " class="form-control"
 			   					 value="${dto.name}" disabled="disabled">
@@ -167,7 +186,7 @@ $(function () {
 							onClick="history.back();">회원수정</button>
 			   </form>
 			 </div>
-		</div>
+	
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

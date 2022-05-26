@@ -17,23 +17,37 @@
 </head>
 <style>
 
+	
+	*{
+	  margin: 0;
+	  padding: 0;
+	  box-sizing: border-box;
+	  margin-bottom: 100%;
+	  
+	
+	}
+	
+	li{
+	  list-style-type: none;
+	}
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  margin-bottom: 100%;
-  
+	
+	label.inputPhoto{
+		font-family: 'Cafe24SsurroundAir';
+		text-align: center;
+		width: 800px;
+		height: 450px;
+		cursor: pointer;
+	}
+	img.inputPhoto{
+		width: 800px;
+		height: 450px;
+		object-fit: cover;
+		margin-bottom: -250px;
+		opacity: 0.5;
+	}
+	
 
-}
-
-li{
-  list-style-type: none;
-}
-
-.racipego{
-
-}
 
 /* 보여줄 구간의 높이와 넓이 설정 */
 #slideShow{
@@ -60,7 +74,7 @@ li{
 
 
 .slides{
-  position: absolute;
+
   left: 0;
   top: 0;
   width: 9000px; /* 슬라이드할 사진과 마진 총 넓이 */
@@ -271,9 +285,9 @@ $(function() {
 
 <div class="bodyer" style="text-align: center; height: 100%; widows: 100%;" >
 <br>
-	<div class="container" id="container" style=" text-align: center; width: 1200px; 
+	<div class="container" id="container" style=" text-align: center; width: 1200px; height:1000px;
 		background-color: white;">
-			<div class="memberform"  >
+			<div class="member"  >
 			   <h1>MY PAGE</h1>
 			   <h3  >본인 수정</h3>
 				 <form action="insert" method="post" class="form-inline">
@@ -345,7 +359,7 @@ $(function() {
 			   					
 				    			<input name="intro" 
 				    			class="form-control" placeholder="본인을 소개해주세요" 
-				    			required="required"> 
+				    			> 
 				    			
 	    					</td>
 	    				</tr>
@@ -357,6 +371,8 @@ $(function() {
 			   </form>
 			 </div>
 		</div>
+	
+<!-- <div class="down" style="position: absolute; top: 80%;"> -->	
 	<h3 class="hh3">MY RECIPE</h3>
 	<div id="slideShow">
 	    <ul class="slides">
@@ -378,7 +394,7 @@ $(function() {
   <br><br><br>
 	    <ul class="slides_two">
 	    	<c:forEach var="a" items="${ownrecipeList}">
-	    	 <li><img src="../img/main/${a.main_photo}" alt="사진없음" style="width: spx; height: 300px;"></li>
+	    	 <li><img src="../img/main/${a.main_photo}" alt="사진없음" style="width: 350px; height: 300px;"></li>
 				
 			</c:forEach>
 	     
@@ -392,7 +408,7 @@ $(function() {
   </div>
  		
 	</div>
-	
+
 	</body>
 
 </html>
