@@ -77,6 +77,7 @@ public class MypageController {
 		System.out.println(scraprecipeList.size());
 		for (int i=0;i<scraprecipeList.size();i++) {
 			System.out.println(scraprecipeList.get(i));
+		
 		}
 		mView.addObject("scraprecipeList",scraprecipeList);
 		mView.setViewName("/mypage/mypage");	

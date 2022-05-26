@@ -53,7 +53,7 @@ public class MypageService implements MypageServiceInter{
 		for(String idx:recipes) {
 			System.out.println("Integer.parseInt(idx)="+Integer.parseInt(idx));
 			RecipeDto dto = recipeMapperInter.getRecipe(Integer.parseInt(idx));
-			
+		
 			//가져온걸 int 타입으로 변환
 			list.add(dto);
 		}
