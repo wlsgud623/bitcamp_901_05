@@ -9,13 +9,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/detail.css">
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<c:set var="root" value="<%=request.getContextPath()%>"/>
+<c:set var="root" value="<%=request.getContextPath()%>"/>w
 <style type="text/css">
 	.comphoto {
 		max-width: 100%;
+	}
+	
+	.noborderbtn{
+		border: 0px;
+		background-color: white;
 	}
 </style>
 <script type="text/javascript">
@@ -31,7 +35,6 @@ $(function(){
 			addRate();	
 		}
 	});
-
 	
 	$("#recom_button").click(function() {
 		if (login == null || login !='yes'){
@@ -62,12 +65,16 @@ $(function(){
 		submitComment();
 	});
 	
-	$(document).on("click","#replybtn" ,function() {
+	$(document).on("click",".replybtn" ,function() {
 		submitRecomment();
 	});
 	
 	$(document).on("click","#editbtn" ,function() {
 		updateComment();
+	});
+	
+	$(document).on("click","#canclebtn" ,function() {
+		showComment();
 	});
 	
 	$("#scrap_button").click(function() {
@@ -116,15 +123,42 @@ function showComment() {
 		success: function(data) {
 			var s = "";
 			$.each(data, function(index, element) {
-				s += '<div id="commentArea'+element.num+'" class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';                
-				s += '<div id="commentInfo'+element.num+'">'+'댓글번호 : '+(index+1) + ' / 작성자 : '+element.userID;                
-				s += '<button type="button" onclick="showEditInput('+element.num+');">수정</button>&nbsp&nbsp';
-				s += '<button type="button" onclick="deleteComment('+ element.num + ');">삭제</button>&nbsp&nbsp';
-				s += '<button type="button" onclick="showReplyInput('+element.num+');">답글</button>';
-				s += '<div class="commentContent'+element.num+'"> <p> 내용 : '+element.content +'</p>';                
-				s += '</div>';
+				var date = new Date(element.writeday);
+				var month = date.getMonth() + 1;
+				var day = date.getDate();
+				var hour = date.getHours();
+				var min = date.getMinutes();
+				var sec = date.getSeconds();
+
+				    month = (month < 10 ? "0" : "") + month;
+				    day = (day < 10 ? "0" : "") + day;
+				    hour = (hour < 10 ? "0" : "") + hour;
+				    min = (min < 10 ? "0" : "") + min;
+				    sec = (sec < 10 ? "0" : "") + sec;
+
+				var str = date.getFullYear() + "-" + month + "-" + day + " " +  hour + ":" + min + ":" + sec;
+				if (element.depth > 0){
+					s += '<div style="display: flex; margin-left: '+ (element.depth * 30)+'px;">';
+					s+= '<img src="/image/icon-reply.png" width="25px" height="25px">';
+				}
+				else{
+					s += '<div style="display: flex;">';
+				}
+				s += '<div class="name_area" style="text-align: center; width : 150px;  flex-shrink: 0; padding-top: 10px;">';
+				s += '<img src="/image/icon-user.png">';
+				s += '<h4>'+element.userID+'</h4>';
+				s += '<h5>'+str+'</h5>';	
+				s += '</div>';
+				s += '<div class="text_area" style="flex-grow: 1; padding: 3px 3px;">';
+				s += '<div class="btn-group" style="float:right;">';
+				s += '<button type="button" class="noborderbtn" onclick="showEditInput('+element.num+');">수정</button>&nbsp&nbsp';
+				s += '<button type="button" class="noborderbtn" onclick="deleteComment('+ element.num + ');">삭제</button>&nbsp&nbsp';
+				s += '<button type="button" class="noborderbtn" onclick="showReplyInput('+element.num+');">답글</button>';
+				s += '</div>';
+				s += '<div class="comment_content"> <p>'+element.content+'</p></div>';
+				s += '</div></div><hr style="height: 2px; background-color: black;">';
 			});
-			$("#cmboard").html(s);
+			$("#cmboard").html(s);	
 			var c = "댓글(" + data.length + ")";
 			$("#comment_count").html(c);
 		}
@@ -132,6 +166,10 @@ function showComment() {
 }
 
 function showReplyInput(num){
+	if ($("#" + "replyform" + num).length){ 
+		showComment();
+		return;
+	}
 	$.ajax({
 		type: "get",
 		url: "cmtlist",
@@ -139,30 +177,59 @@ function showReplyInput(num){
 		success: function(data) {
 			var s = "";
 			$.each(data, function(index, element) {
-				s += '<div id="commentArea'+element.num+'" class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';                
-				s += '<div id="commentInfo'+element.num+'">'+'댓글번호 : '+(index+1) + ' / 작성자 : '+element.userID + '<br>';                
-				s += '<button type="button" onclick="showEditInput('+element.num+');">수정</button>&nbsp&nbsp';
-				s += '<button type="button" onclick="deleteComment('+ element.num + ');">삭제</button>&nbsp&nbsp';
-				s += '<button type="button" onclick="showReplyInput('+element.num+');">답글</button>';      
-				s += '<div class="commentContent'+element.num+'"> <p> 내용 : '+element.content +'</p>';    
+				var date = new Date(element.writeday);
+				var month = date.getMonth() + 1;
+				var day = date.getDate();
+				var hour = date.getHours();
+				var min = date.getMinutes();
+				var sec = date.getSeconds();
+
+				    month = (month < 10 ? "0" : "") + month;
+				    day = (day < 10 ? "0" : "") + day;
+				    hour = (hour < 10 ? "0" : "") + hour;
+				    min = (min < 10 ? "0" : "") + min;
+				    sec = (sec < 10 ? "0" : "") + sec;
+
+				var str = date.getFullYear() + "-" + month + "-" + day + " " +  hour + ":" + min + ":" + sec;
+				if (element.depth > 0){
+					s += '<div style="display: flex; margin-left: '+ (element.depth * 30)+'px;">';
+					s+= '<img src="/image/icon-reply.png" width="25px" height="25px">';
+				}
+				else{
+					s += '<div style="display: flex;">';
+				}
+				s += '<div class="name_area" style="text-align: center; width : 150px;  flex-shrink: 0; padding-top: 10px;">';
+				s += '<img src="/image/icon-user.png">';
+				s += '<h4>'+element.userID+'</h4>';
+				s += '<h5>'+str+'</h5>';	
+				s += '</div>';
+				s += '<div class="text_area" style="flex-grow: 1; padding: 3px 3px;">';
+				s += '<div class="btn-group" style="float:right;">';
+				s += '<button type="button" class="noborderbtn" onclick="showEditInput('+element.num+');">수정</button>&nbsp&nbsp';
+				s += '<button type="button" class="noborderbtn" onclick="deleteComment('+ element.num + ');">삭제</button>&nbsp&nbsp';
+				s += '<button type="button" class="noborderbtn" onclick="showReplyInput('+element.num+');">답글</button>';
+				s += '</div>';
+				s += '<div class="comment_content" style="margin-top: 20px;"> <p>'+element.content+'</p></div>';
+				s += '</div></div><hr style="height: 2px; background-color: black;">';
 				if (element.num == num) {
-					s+= '<form id="replyform" name="replyform" action="addreply" method="post">';
+					s+= '<form id="replyform'+element.num+'" class="replyform" name="replyform" action="addreply" method="post">';
 					s+= '<input type="hidden" name="RECIPE_IDX" value="${dto.RECIPE_IDX}">';
 					s+= '<input type="hidden" name="userID" value="${sessionScope.loginid}">';
 					s+= '<input type="hidden" name="cgroup" value="'+element.cgroup+'">';
 					s+= '<input type="hidden" name="seq" value="'+(element.seq+1)+'">';
 					s+= '<input type="hidden" name="depth" value="'+(element.depth+1)+'">';
 					s+= "<textarea class='form-control' rows='3' name='content' placeholder='"+element.userID +"님의 댓글에 대댓글 작성'></textarea>";
-					s+= "<button type='button' id='replybtn'>등록</button>";
-					s+= '</form>';
-				}            
-				s += '</div></div>';
+					s+= "<button type='button' id='replybtn' class='btn' style='float:right;'>등록</button>";
+					s+= "<button type='button' id='canclebtn' class='btn' style='float:right;'>취소</button>";
+					s+= '</form><hr style="height: 2px; background-color: black;">';
+				} 
 			});
 			$("#cmboard").html(s);
 
 		}
 	});
 }
+
 function showEditInput(num){
 	$.ajax({
 		type: "get",
@@ -171,25 +238,53 @@ function showEditInput(num){
 		success: function(data) {
 			var s = "";
 			$.each(data, function(index, element) {
-				s += '<div id="commentArea'+element.num+'" class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';                
-				s += '<div id="commentInfo'+element.num+'">'+'댓글번호 : '+(index+1) + ' / 작성자 : '+element.userID + '<br>';                
-				s += '<button type="button" onclick="showEditInput('+element.num+');">수정</button>&nbsp&nbsp';
-				s += '<button type="button" onclick="deleteComment('+ element.num + ');">삭제</button>&nbsp&nbsp';
-				s += '<button type="button" onclick="showReplyInput('+element.num+');">답글</button>';  
+				var date = new Date(element.writeday);
+				var month = date.getMonth() + 1;
+				var day = date.getDate();
+				var hour = date.getHours();
+				var min = date.getMinutes();
+				var sec = date.getSeconds();
+
+				    month = (month < 10 ? "0" : "") + month;
+				    day = (day < 10 ? "0" : "") + day;
+				    hour = (hour < 10 ? "0" : "") + hour;
+				    min = (min < 10 ? "0" : "") + min;
+				    sec = (sec < 10 ? "0" : "") + sec;
+
+				var str = date.getFullYear() + "-" + month + "-" + day + " " +  hour + ":" + min + ":" + sec;
+				if (element.depth > 0){
+					s += '<div style="display: flex; margin-left: '+ (element.depth * 30)+'px;">';
+					s+= '<img src="/image/icon-reply.png" width="25px" height="25px">';
+				}
+				else{
+					s += '<div style="display: flex;">';
+				}
+				s += '<div class="name_area" style="text-align: center; width : 150px;  flex-shrink: 0; padding-top: 10px;">';
+				s += '<img src="/image/icon-user.png">';
+				s += '<h4>'+element.userID+'</h4>';
+				s += '<h5>'+str+'</h5>';	
+				s += '</div>';
+				s += '<div class="text_area" style="flex-grow: 1; padding: 3px 3px;">';
+					
 				if (element.num == num) {
 					s+= '<form id="editform" name="editform" action="updatecom" method="post">';
 					s+= '<input type="hidden" name="NUM" value="'+ element.num +'">';
 					s+= '<input type="hidden" name="RECIPE_IDX" value="${dto.RECIPE_IDX}">';
 					s+= "<textarea class='form-control' rows='3' name='content'>"+element.content+"</textarea>";
-					s+= "<button type='button' id='editbtn'>등록</button>";
-					s+= '</form>';
-				} else {
-					s += '<div class="commentContent'+element.num+'"> <p> 내용 : '+element.content +'</p>';  
-				}                    
-				s += '</div></div>';
+					s+= "<button type='button' id='editbtn' class='btn' style='float:right;'>등록</button>";
+					s+= "<button type='button' id='canclebtn' class='btn' style='float:right;'>취소</button>";
+					s+= '</form></div>';
+				} else{
+					s += '<div class="btn-group" style="float:right;">';
+					s += '<button type="button" class="noborderbtn" onclick="showEditInput('+element.num+');">수정</button>&nbsp&nbsp';
+					s += '<button type="button" class="noborderbtn" onclick="deleteComment('+ element.num + ');">삭제</button>&nbsp&nbsp';
+					s += '<button type="button" class="noborderbtn" onclick="showReplyInput('+element.num+');">답글</button>';
+					s += '</div>';
+					s += '<div class="comment_content" style="margin-top: 20px;"> <p>'+element.content+'</p></div>';
+				}
+				s += '</div></div><hr style="height: 2px; background-color: black;">';
 			});
 			$("#cmboard").html(s);
-
 		}
 	});
 }
@@ -234,7 +329,6 @@ function deleteComment(num){
 }
 
 function updateComment(){
-	console.log("update");
 	var formdata = $("#editform").serialize();
 	$.ajax({
 		type: "POST",
@@ -412,7 +506,8 @@ function deleteRecipe(){
 					<input type="hidden" name="depth" value="0">
 					<textarea class="form-control" rows="3" id="comment_content" name="content" placeholder="후기를 남겨주세요!"></textarea>
 				</form>
-				<button type="button" id="commentbtn">등록</button>
+				<button type="button" id="commentbtn" class="btn" style="float: right;">등록</button>
+				
 			</div>
 		
 		</div>

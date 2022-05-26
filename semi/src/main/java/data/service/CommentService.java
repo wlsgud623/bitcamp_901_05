@@ -54,7 +54,7 @@ public class CommentService implements CommentServiceInter {
 	@Override
 	public void insertRecomment(CommentDto dto) {
 		// TODO Auto-generated method stub
-		mapper.updateSeq(dto.getSeq());
+		mapper.updateSeq(dto);
 		mapper.insertComment(dto);
 	}
 	

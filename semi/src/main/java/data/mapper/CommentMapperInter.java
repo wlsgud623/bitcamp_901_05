@@ -15,7 +15,7 @@ public interface CommentMapperInter {
 	public CommentDto getComment(Map<String, Integer> map);
 	
 	public int getMaxCgroup();
-	public void updateSeq(int seq);
+	public void updateSeq(CommentDto dto);
 	
 	public void insertComment(CommentDto dto);
 	public void updateComment(CommentDto dto);
