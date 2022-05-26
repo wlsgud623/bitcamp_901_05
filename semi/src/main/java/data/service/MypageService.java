@@ -4,7 +4,7 @@ package data.service;
 import java.util.ArrayList;
 
 import java.util.List;
-
+import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,23 +37,23 @@ public class MypageService implements MypageServiceInter{
 		mypageMapperInter.updateUser(dto);
 	}
 
-	@Override
-	public void deleteUser(String UserID) {
-		// TODO Auto-generated method stub
-		mypageMapperInter.deleteUser(UserID);
-	}
+	
 
 	
 
 	@Override
 	public List<RecipeDto> getUserRecipeList(String UserID) { //레시피dto에서 가져오기
 		// TODO Auto-generated method stub
+		System.out.println("UserID="+UserID);
 		String ownrecipe = mypageMapperInter.getUserRecipeList(UserID); //own에 넣기
+		System.out.println("ownrecipe" + ownrecipe);
 		String [] recipes = ownrecipe.split(","); //string인걸 가져왓으니 배열로
-		
-		List<RecipeDto> list = new ArrayList<>(); //list 정의
+		System.out.println("recipes" + recipes);
+		List<RecipeDto> list = new Vector<>(); //list 정의
 		for(String idx:recipes) {
+			System.out.println("Integer.parseInt(idx)="+Integer.parseInt(idx));
 			RecipeDto dto = recipeMapperInter.getRecipe(Integer.parseInt(idx));
+			
 			//가져온걸 int 타입으로 변환
 			list.add(dto);
 		}
@@ -62,25 +62,21 @@ public class MypageService implements MypageServiceInter{
 	}
 
 	@Override
-	public List<RecipeDto> getscraprecipe(String UserID) {
+	public List<RecipeDto> getScrapRecipeList(String UserID) {
 		// TODO Auto-generated method stub
-		String scraprecipe = mypageMapperInter.getscraprecipeList(UserID);
-		String [] scraprecipes = scraprecipe.split(",");
+		String scraprecipe = mypageMapperInter.getScrapRecipeList(UserID);
+		String [] recipes = scraprecipe.split(",");
 		
-		List<RecipeDto> list = new ArrayList<>();
-		
-		for(String idx :scraprecipes) {
+		List<RecipeDto> list = new Vector<>();
+		for(String idx :recipes) {
 			RecipeDto dto = recipeMapperInter.getRecipe(Integer.parseInt(idx));
-			list.add(dto);
-			
+			list.add(dto);	
 		}
 		return list;
 	}
 
-	@Override
-	public int getTotalCount() {
-		return mypageMapperInter.getTotalCount();
-	}
+	
+
 
 	
 

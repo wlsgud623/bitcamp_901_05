@@ -13,98 +13,51 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <style>
-footer{
-  position : relative;
-  transform : translateY(-100%);
-}
 
+		
 </style>
 <script type="text/javascript">
-$(".racipego").click(function(){
-    var ok = confirm("레시피를 작성하러 가겠습니까?");
-    
-    if(ok){
-    location.assign(ok);
-    alert("");
-    };
-    });
 
+$(function() {
+	//사진
+	$("#inputPhoto").change(function() {
+		img_preview("#inputPhoto", 800, 450);
+	});
+});
 </script>
 <body>
+<script type="text/javascript">
+var own= ${ownrecipeList};
+var photo = 
 
-	
-	
-	
-<!-- 사진슬라이드 -->
+</script>
 
-
-<form action="insert" method="get" class="UserPhoto" enctype="multipart/form-data" >
-	<div class="userinfo" style="background-color: white; width: 600px; height: 800px; text-align: center;">	
-			<img src="../image/per__son.png" style="text-align:center; cursor:pointer; width: 250px; height:200px; border-radius: 100%; text-align: center;">
-		<span class="glyphicon glyphicon-camera" style="font-size: 20px;"></span>
-		<br>
-			<button type="button" class="btn btn-success racipego">레시피작성go</button>
-			<button type="button" class="btn btn-success revise">정보수정하기</button>
-	</div>	
-
-
-</form>
-<h3>내 레시피</h3>
-
-<!-- 내 레시피 -->
-<div class="container" style="width: 1500px;">
-	<!-- 슬라이더 시작 -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-	    <!-- <!-- Indicators -->
-	    <ol class="carousel-indicators">
-	      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-	      <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-	      <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-	    </ol> 
-	
-		<!-- Wrapper for slides -->
-		<div class="carousel-inner" style="width: 1290px;">
-		    <div class="item active">
-		      	<div class="sub_item">
-		      		<c:forEach var="a" begin="2" end="4">
-		      			<a href="/recipe/detail?idx=${dto.password}">
-		        			<img src="../img/main/${a}.jpg" alt="food_img" style="width:33%;">
-		        		</a>
-	        		</c:forEach>
-		   		</div>
-			</div>
-			 <div class="item">
-		      	<div class="sub_item">
-		      		<c:forEach var="a" begin="2" end="4">
-		      			<a href="/recipe/detail?idx=${dto.hp}">
-		        			<img src="../img/main/${a}.jpg" alt="food_img" style="width:33%;">
-		        		</a>
-	        		</c:forEach>
-		   		</div>
-			</div>
-			 <div class="item">
-		      	<div class="sub_item">
-		      		<c:forEach var="dto" items="${ownrecipeList}" begin="8" end="10">
-		      			<a href="/recipe/detail?idx=${dto.RECIPE_IDX}">
-		        			<img src="../img/main/1.jpg" alt="food_img" style="width:33%;">
-		        		</a>
-	        		</c:forEach>
-		   		</div>
-			</div>
-		</div>
-		
-		
-	    <!-- Left and right controls -->
-	    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-	      <span class="glyphicon glyphicon-chevron-left"></span>
-	      <span class="sr-only">Previous</span>
-	    </a>
-	    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-	      <span class="glyphicon glyphicon-chevron-right"></span>
-	      <span class="sr-only">Next</span>
-	    </a>
-	</div>	
+	<div style="position: relative; margin-bottom: 300px; top: 30px; left: 100px;">
+		<form action="insert" method="get" class="form-inline"
+			enctype="multipart/form-data">
+			<table>
+				<tr>
+					<td>
+						<label for="inputPhoto" style="text-align: center; background-color: lightgray;
+							width: 800px; height: 450px; cursor: pointer;">
+								<br><br>
+								<img src="../image/Upload-Icon.png" style="width: 70px;">
+							</label>
+						    <input type="image" id="inputPhoto" name="upload_main" accept=".jpg, .jpeg, .png"
+						    style="opacity: 0; font-size: 0px;" class="form-control">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button type="button" class="btn btn-warning racipego">레시피작성go</button>
+						<button type="button" class="btn btn-warning revise" id="revise"
+							onclick="location.href='/mypage/updateform?UserID=${userid}'">정보수정하기</button>
+					</td>
+				</tr>
+		</table>
+	</form>
 </div>
+			  
 
 
 

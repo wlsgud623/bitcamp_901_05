@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -28,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import data.dto.IngredientDto;
 import data.dto.RecipeDto;
+
 import data.dto.StepsDto;
 import data.dto.UserDto;
 import data.inter.MypageServiceInter;
@@ -57,10 +59,27 @@ public class MypageController {
 			@RequestParam String UserID) 
 	{
 		
+		System.out.println("UserID"+UserID);
 		ModelAndView mView = new ModelAndView();
 		UserDto dto = mypageService.getUser(UserID);
 		mView.addObject("dto",dto);
+		List<RecipeDto> ownrecipeList = mypageService.getUserRecipeList(UserID);
+		System.out.println(ownrecipeList.size());
+		for (int i=0;i<ownrecipeList.size();i++) {
+			System.out.println(ownrecipeList.get(i));
+		}
+		
+		
+		mView.addObject("ownrecipeList",ownrecipeList);
 		mView.setViewName("/mypage/mypage");
+	
+		List<RecipeDto> scraprecipeList = mypageService.getScrapRecipeList(UserID);
+		System.out.println(scraprecipeList.size());
+		for (int i=0;i<scraprecipeList.size();i++) {
+			System.out.println(scraprecipeList.get(i));
+		}
+		mView.addObject("scraprecipeList",scraprecipeList);
+		mView.setViewName("/mypage/mypage");	
 		return mView;
 	}
 	
@@ -93,7 +112,7 @@ public class MypageController {
 				String UserID="test"; //(String)session.getAttribute("로그인아이디EL");
 				dto.setUserid(UserID);
 	
-			//메인, 완성사진 업로드ek
+			//사진 업로드ek
 			FileUpload fileUpload=new FileUpload();
 			String photo=fileUpload.fileUploadEvent(upload_photo, request);
 			
@@ -109,7 +128,7 @@ public class MypageController {
 	  public ModelAndView scraprecipeList(@RequestParam String UserID) 
 	  {
 		ModelAndView mView = new ModelAndView();
-		List<RecipeDto> scraprecipeList = mypageService.getscraprecipe(UserID);
+		List<RecipeDto> scraprecipeList = mypageService.getScrapRecipeList(UserID);
 		mView.addObject("scraprecipeList",scraprecipeList);
 		
 	
@@ -123,9 +142,10 @@ public class MypageController {
 	  {
 		ModelAndView mview = new ModelAndView();
 		List<RecipeDto> ownrecipeList = mypageService.getUserRecipeList(UserID);
-		mview.addObject("ownrecipeList",ownrecipeList);
-		mview.setViewName("mypage/mypage");
-
+		//mview.addObject("ownrecipeList",ownrecipeList);
+		//mview.setViewName("mypage/mypage");
+		
+		
 		
 		return mview;
 		
