@@ -7,7 +7,9 @@
 <head>
 <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="css" href="css.css">
-		
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="css" href="css.css">
 <meta charset="UTF-8">
@@ -15,13 +17,7 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
    <script type="text/javascript">
          $(function(){
-	     $("ul.sub").hide();
-		 $("ul.menu li").hover(function(){
-		    $("ul:not(:animated)",this).slideDown("fast");
-			},
-			function(){
-			   $("ul",this).slideUp("fast");
-			});
+
       });	
    </script>
 
@@ -77,7 +73,7 @@ body * {
     
 #container{
 	margin-top:30px;
-    background-color: #FF3232;
+    background-color: #c12231;
     height: 50px;
  }
  
@@ -92,7 +88,7 @@ ul.menu li{
     float: left;
 	 width: 150px;
 	 height: 48px;
-	 background-color: #FF3232; 
+	 background-color: #c12231; 
 	 position: relative;
 	 font-size: 40px; 
 	 text-align: center;
@@ -102,7 +98,7 @@ ul.menu li{
     float: left;
  width: 150px;
  height: 48px;
- background-color:  #FF3232; 
+ background-color:  #c12231; 
  position: relative;
  font-size: 40px; 
  text-align: center;
@@ -127,7 +123,7 @@ ul.menu li{
  height: 48px;
  margin-left: 150px;
  margin-top: 0px;
- background-color:  #EB0000; 
+ background-color:  #c12231; 
  /* position: relative; */
  font-size: 40px; 
  text-align: center;
@@ -151,31 +147,42 @@ ul.menu li{
  display: block;
  clear: both;
  }
+ 
+ a{
+ 	float: left;
+ }
 
 </style>
 <script type="text/javascript">
 
+$(function () {
+	
+	$(".search").click(function () {
+		var push = $("#s_value").val();
+		location.href='${root}/search?research='+push;
+	});
+});
 
 </script>
-
+<c:set var="root" value="<%=request.getContextPath() %>"/> <!-- 절대경로 -->
+<body>
 <br><br>
 
 		<!-- 로고 -->
-	<header class="page-header" role="banner"> <!-- screenreader:시각장애인을 위한 읽어주는코드 -->
-<!-- 		<img alt="logo" src="../img/logo.png"> -->
+	<header class="page-header" role="banner"> </header>
 		
 		
 		<!-- 검색창 -->
-		<div class="search" style="width: 1500px;">
-			<a href="/">
+		<div class="searchbar" style="width: 1500px;">
+			
 				<img alt="logo" src="../img/logo.png" style="width:150px; position: absolute; top:70px; left: 200px;" >
-			</a>
+			
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="text" name="s_value" id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." style="width: 600px;height: 70px;border-radius: 50px; border: 2px solid gray; text-align: center;">&nbsp;&nbsp;&nbsp;
-			<button type="button" style="border-style: none; background-color:white;"><b class="glyphicon glyphicon-search" style="width: 70px; height: 70px;"></b> </button>
-	
+			<input type="text"  id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." style="width: 600px;height: 70px;border-radius: 50px; border: 2px solid gray; text-align: center;">&nbsp;&nbsp;&nbsp;
+			<button type="button" class="search" style="border-style: none; background-color:white;"><b class="glyphicon glyphicon-search " style="width: 70px; height: 70px;"></b> </button>
+			
 		
-		<!-- 해쉬테그 -->
+		<!-- 테그 -->
 		<div class="heshi" style="color: black; font-weight: bold; position: absolute;right: 15%; top:95px;">
 			<ul>
 				<li>
@@ -185,51 +192,88 @@ ul.menu li{
 			</ul>
 			<br><br>
 			</div>		
-		</div>
-			 
-<div id="container">
-   <ul class="menu" >
-       <li class="li" style="border-right: 3px solid white; padding-top: 5px;"><a href="#"><span class="glyphicon glyphicon-list" style="font-size: 30px;"></span></a>
-	     <ul class="sub">
-		    <li><a href="#">종류</a>
-				<ul class="sub_sub">
-				    <li class="li"><a href="#">전체메뉴</a></li>
-					<li><a href="#">신메뉴</a></li>
-					<li><a href="#">양념치킨</a></li>
-					<li><a href="#">후라이드치킨</a></li>
-				</ul>
-		    </li>
-			<li><a href="#">재료</a>
-			<ul class="sub_sub">
-				    <li class="li"><a href="#">전체메뉴</a></li>
-					<li><a href="#">신메뉴</a></li>
-					<li><a href="#">양념치킨</a></li>
-					<li><a href="#">후라이드치킨</a></li>
-				</ul>
-			</li>
-			<li><a href="#">조리법</a></li>
-			<li><a href="#">난이도</a></li>
-		 </ul>
-		 </li>
-	    <li><a href="/ranking">랭킹</a>
-	    
-		</li>
-		<li style="float: right;"><a href="member/signup">회원가입</a>
-	    
-		</li><!-- 아아 -->
-		<li style="float: right;"><a href="/login/login">로그인</a>
-	    
-		</li>
+		</div> 
 		
-   </ul>
-   </div>
-			
-
-
-
-			
-	</header>
 		
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+        <!-- Toggler/collapsibe Button -->
+        
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <!-- 리스트 : 부트스트랩은 모바일 우선이라 화면이 작으면 아래로 쌓아서 내려온다 -->
+            <ul class="navbar-nav navbar-dark">
+                <li class="nav-item dropdown">
+                    <!-- 드롭다운 메뉴-->
+                    <a class="navbar-toggler-icon nav-link dropdown-toggle" href="#" data-toggle="dropdown"></a>
+                    <div class="dropdown-menu">
+                    <ul>
+                    <li>
+                        <a class="dropdown-item" href="#">종류</a>
+                        
+                        <ul>
+                        
+                        <li><a href="">#카레</a></li>
+			               <ul>
+			               <li><a href="">#마요네스</a></li>
+			               <li><a href="">#마요네스</a></li>
+			               	
+			               
+			               </ul> 
+			              </ul>               
+			            <li><a href="">#마요네스</a></li>
+			            <li><a href="">#카레</a></li>
+			                			                
+			            <li><a href="">#마요네스</a></li>
+			            <li><a href="">#카레</a></li>
+			                			                
+			            <li><a href="">#마요네스</a></li>
+                      
+                        </ul>  </div>
+                        <a class="dropdown-item" href="#">재료</a>
+                        <a class="dropdown-item" href="#">방법</a>
+                       </li> 
+                      </ul>
+                      
+                      
+			      
+                    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">랭킹</a>
+                </li>
+
+                <li class="form-inline ml-auto nav-item">
+                    <a class="nav-link" href="member/signup">회원가입</a>
+                </li>
+                <li class="form-inline ml-auto nav-item">
+                    <a class="nav-link " href="/login/login">로그인</a>
+                </li>
+            </ul>
+          
+        </div>
+    </nav>
+
+				
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
 		
 		
 	
@@ -245,14 +289,8 @@ ul.menu li{
 			
 	
 	
-<script type="text/javascript">
-	//var win = $(window);
-	//$(".header:last").text("scrollTop:" + win.scrollTop() ); /*text형식으로 (윈도우스크롤양)안에 있는걸 header마지막에 뿌린다*/
 
-	
-</script>
-
-
-	</div></html>
+</body>
+</html>
 	
 	

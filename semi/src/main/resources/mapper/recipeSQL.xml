@@ -52,4 +52,7 @@
 	<select id="getRankingList" parameterType="Map" resultType="recipe">
 		SELECT * FROM Recipe ORDER BY total_recom DESC LIMIT #{startnum}, #{limit}
 	</select>
+	<select id="searchRecipe" parameterType="String" resultType="Integer">
+		SELECT RECIPE_IDX from Recipe where instr(name, #{searchWord})
+	</select>
 </mapper>

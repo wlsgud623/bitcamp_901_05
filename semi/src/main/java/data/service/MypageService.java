@@ -26,9 +26,9 @@ public class MypageService implements MypageServiceInter{
 	private RecipeMapperInter recipeMapperInter;
 	
 	@Override
-	public UserDto getUser(String UserID) {
+	public UserDto getUser(String userid) {
 		// TODO Auto-generated method stub
-		return mypageMapperInter.getUser(UserID);
+		return mypageMapperInter.getUser(userid);
 	}
 
 	@Override

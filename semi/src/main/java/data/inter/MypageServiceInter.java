@@ -8,7 +8,7 @@ import data.dto.UserDto;
 
 public interface MypageServiceInter {
 
-	public UserDto getUser(String UserID);
+	public UserDto getUser(String userid);
 	 //유저 정보를 id로 가져옴
 	public void updateUser(UserDto dto);//유저수정
 

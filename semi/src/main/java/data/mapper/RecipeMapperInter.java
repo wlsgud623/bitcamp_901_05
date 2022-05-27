@@ -28,4 +28,5 @@ public interface RecipeMapperInter {
 	public List<RecipeDto> findCooking(String cooking);
 	
 	public List<RecipeDto> getRankingList(Map<String, Integer> map); 
+	public List<Integer> searchRecipe (String searchWord);
 }

@@ -33,14 +33,14 @@
 
 	
 	label.inputPhoto{
-		font-family: 'Cafe24SsurroundAir';
+		
 		text-align: center;
-		width: 800px;
+		
 		height: 450px;
 		cursor: pointer;
 	}
 	img.inputPhoto{
-		width: 800px;
+		
 		height: 450px;
 		object-fit: cover;
 		margin-bottom: -250px;
@@ -277,102 +277,88 @@ $(function() {
 	});
 	});	
 
+	
 	</script>
 
 
 
 <body>
 
-<div class="bodyer" style="text-align: center; height: 100%; widows: 100%;" >
-<br>
-	<div class="container" id="container" style=" text-align: center; width: 1200px; height:1000px;
-		background-color: white;">
-			<div class="member"  >
-			   <h1>MY PAGE</h1>
-			   <h3  >본인 수정</h3>
-				 <form action="insert" method="post" class="form-inline">
-			   		<table class="men" >
-						<tr style="text-align: center;">
-							<td style=" text-align: center;">
-								<label for="inputPhoto" style="text-align: center; 
-									cursor: pointer;">
-										<br><br>
-										<img src="../image/per__son.png" >
-									</label>
-								    <input type="image" id="inputPhoto" name="upload_main" accept=".jpg, .jpeg, .png"
-								    style="opacity: 0; font-size: 0px;" class="form-control">
-							</td>
-						</tr>
-					
-						<tr>
-			   				<th style="width: 100px;" >이 름</th>
-			   				<td>
-			   					<input type="text" name="name" style="width: 250px; " class="form-control"
-			   					 value="${dto.name}" disabled="disabled">
-			   				</td>
-			   			</tr>
+	<div class="bodyer"
+		style="text-align: center;">
+		<br>
+		<div class="container" id="container"
+			style="text-align: center; width: 1200px; height: 1000px; background-color: white;">
+			<h1 style="text-align: center;">MY PAGE</h1>
+			<form action="update" method="post" class="form-inline"enctype="multipart/form-data" >
+				<label for="inputPhoto" style="cursor: pointer; ">
+				<img src="../image/per__son.png"
+					style="text-align: center;">
+				</label> 
+				
+					<br>
+				<h4 style="font-size: 20px;">${dto.name}회원님 반갑습니다!</h4>
+				<table class="table table-default" style="text-align: left;">
+				
 			   			<tr>
-			   				<th style="width: 130px;">아이디</th>
+			   				<th style="width: 600px; text-align: center;">아이디</th>
 			   				<td>
 			   					<input type="text" name="userid" id="userid" class="form-control"
-			   					 value="${dto.userid}"  disabled="disabled" style="width: 250px;">
+			   					 value="${dto.userid}"  disabled="disabled" style="width: 250px; text-align: left;">
 			   				
 			   				</td>
 			   			</tr>
 			   			
 			   			<tr>
-			   				<th style="width: 130px;">핸드폰</th>
+			   				<th style="width: 600px; text-align: center;">핸드폰</th>
 			   				<td>
 			   					<input type="text" name="hp" class="form-control"
-			   					required="required" value="${dto.hp}" style="width: 250px;">
+			   					 value="${dto.hp}" style="width: 250px;">
 			   				</td>
 			   			</tr>
 
 			   			  
 			   			<tr>
-			   				<th style="width: 130px;">이메일</th>
+			   				<th style="width: 600px; text-align: center;">이메일</th>
 			   				<td>
 			   					<input type="text" name="email"  class="form-control"
-			   					required="required" style="width: 250px;" value="${dto.email}">
+			   					 style="width: 250px;" value="${dto.email}">
 			   					
 			   				</td>
 			   			</tr>
 			   				<tr rowspan="2">
-			   				<th style="width: 130px;">주소</th>
+			   				<th style="width: 500px; text-align: center;">주소</th>
 			   				<td>
-			   					<input type="text" id="address_search" name="address1"class="form-control"
-			   					placeholder="주소를 입력해주세요" style="width: 250px;"/>		
+			   					<input type="text" name="address2"  class="form-control
+			   					 placeholder="주소를 입력하세요" style="width: 250px;" value="${dto.address}">
 			   					&nbsp;
 			   					<button type="button" class="btn btn-sm btn-primary" id="search_btn"
-			   					style="width: 100px;">주소 검색&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span></button>
+			   					style="width: 100px; text-align: center;">주소 검색&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span></button>
 			   					&nbsp;
 							<br><br>
 			   					<input type="text" name="address2"  class="form-control
-			   					required="required" placeholder="상세주소를 입력하세요" style="width: 250px;" value="${dto.address}">
+			   					 placeholder="상세주소를 입력하세요" style="width: 250px;">
 			   					&nbsp;
 			   					<br>
 			   				</td>
 			   			</tr>
 			   			<tr>
-			   			<th>본인소개</th>
+			   			<th style="width: 600px;">본인소개</th>
 			   				<td colspan="3" >
-			   					
-				    			<input name="intro" 
-				    			class="form-control" placeholder="본인을 소개해주세요" 
-				    			> 
-				    			
+				    			<input name="intro" class="form-control" placeholder="본인을 소개해주세요" required="required"> 
 	    					</td>
 	    				</tr>
-			   		</table>
-					   		<br>
-							<button type="submit" class="btn btn-warning" id="revise"
-							style="width: 700px; height: 50px;  text-align: center;"
-							onclick="location.href='/mypage/updateform?UserID=${userid}'">회원수정하러가기</button>
-			   </form>
-			 </div>
+
+				</table>
+				<br>
+				<button type="submit" class="btn btn-warning" id="revise"
+					style="width: 700px; height: 50px; text-align: center;">회원수정하러가기</button>
+
+			</form>
 		</div>
-	
-<!-- <div class="down" style="position: absolute; top: 80%;"> -->	
+	</div>
+
+	<!-- <div class="down" style="position: absolute; top: 80%;"> -->	
 	<h3 class="hh3">MY RECIPE</h3>
 	<div id="slideShow">
 	    <ul class="slides">

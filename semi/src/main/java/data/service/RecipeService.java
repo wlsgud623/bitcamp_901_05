@@ -115,6 +115,11 @@ public class RecipeService implements RecipeServiceInter {
 		recipeMapperInter.deleteRecipe(idx);
 	}
 
+	@Override
+	public List<Integer> searchRecipe(String searchWord) {
+		return recipeMapperInter.searchRecipe(searchWord); 
+	}
+
 
 
 }

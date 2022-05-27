@@ -11,7 +11,7 @@ import data.dto.UserDto;
 @Mapper
 public interface MypageMapperInter {
 	public int getTotalCount();
-	public UserDto getUser(String UserID); // UserDto반환
+	public UserDto getUser(String userid); // UserDto반환
 	
 	
 	//유저 1명의 정보

@@ -102,25 +102,24 @@ public class MypageController {
 	
 	@PostMapping("/update") //유저수정
 	public String update(@ModelAttribute UserDto dto,
-			
 			@RequestParam ArrayList<MultipartFile> upload_photo,
+			@RequestParam String address2, @RequestParam String address1,
 			HttpSession session,
 			HttpServletRequest request) {
-		    mypageService.updateUser(dto);
-		
-		    
+   
 		//현재 로그인한 userID
-				String UserID="test"; //(String)session.getAttribute("로그인아이디EL");
-				dto.setUserid(UserID);
+			String UserID="test"; //(String)session.getAttribute("로그인아이디EL");
+			dto.setUserid(UserID);
+			System.out.println(dto.getName());
 	
 			//사진 업로드ek
 			FileUpload fileUpload=new FileUpload();
 			String photo=fileUpload.fileUploadEvent(upload_photo, request);
-			
+			 
 			dto.setPhoto(photo);
+			mypageService.updateUser(dto);
 			
-			
-		return "redirect:mypage?UserID="+UserID;
+		return "redirect:/mypage/mypage?UserID="+UserID;
 		
 	}
 	
