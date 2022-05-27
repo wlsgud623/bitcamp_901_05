@@ -26,20 +26,22 @@ div.container {
 }
 
 .rec_img img{
-	object-fit:cover;    
+	overflow: hidden; 
 }
 
 
 .rec_img img:hover{
 	transform:scale(1.1);           
 	transition: transform .5s; 	
+	overflow: hidden; 
+	
 }
 
 .txt {
     width: 1000px; 
     position: absolute;
     left: 50%;
-    top: 40%;
+    top: 30%;
    	margin-left: -1100px; 
     text-decoration: none;
     color: white;
@@ -62,11 +64,12 @@ div.container {
 
 .info_title a:hover{
 	text-decoration: none;
-	color: red;
 }
 
 .info_title span:hover{
 	color: red;
+	font-weight: bold;
+	
 }
 
 .clickbtn{	
@@ -95,16 +98,17 @@ div.container {
 
 .content_text {
 	margin-top: 1200px;
-	height: 650px;
-	width: 1320px;
+	height: 750px;
+	width: 1300px;
 	padding: 100px 100px;
-	border: 5px solid #CD1F48;
+	border: 7px solid #CD1F48;
 	text-align: left;
 	border-radius: 30px;
 }
 
 .content_text b {
-	font-size: 25px;
+	font-size: 38px;
+	font-family: 'East Sea Dokdo';
 }
 
 div {
@@ -125,11 +129,11 @@ li {
 
 /* 보여줄 구간의 높이와 넓이 설정 */
 #slideShow {
-	width: 1300px;
+	width: 1320px;
 	height: 300px;
 	position: relative;
 	margin: 50px auto;
-	overflow: hidden;
+	overflow: hidden; 
 	/*리스트 형식으로 이미지를 일렬로 
   정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은
   hidden으로 숨겨줘야됨*/
@@ -137,17 +141,30 @@ li {
 
 .slides {
 	position: absolute;
-	left: 0;
+	left: 100px;
 	top: 0;
-	width: 5000px; /* 슬라이드할 사진과 마진 총 넓이 */
+	width: 100%; /* 슬라이드할 사진과 마진 총 넓이 */
 	transition: left 0.5s ease-out;
+	overflow: hidden;
 	/*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+}
+
+.slides a{
+	color: black;
+}
+
+.slides li{
+	padding-left: 50px;
+}
+
+.slides li b{
+	padding-top: 20px;
 }
 
 /* 첫 번째 슬라이드 가운데에 정렬하기위해
 첫번째 슬라이드만 margin-left조정 */
 .slides li:first-child {
-	margin-left: 100px;
+	margin-left: 10px;
 }
 
 /* 슬라이드들 옆으로 정렬 */
@@ -156,8 +173,10 @@ li {
 	margin-right: 100px;
 }
 
-.slides li {
+.slides a li {
 	float: left;
+	font-size: 30px;
+	font-family: 'Song Myung';
 }
 
 .controller span {
@@ -178,7 +197,7 @@ li {
 }
 
 .prev {
-	left: 10px;
+	left: 0;
 }
 
 /* 이전 화살표에 마우스 커서가 올라가 있을때 
@@ -196,6 +215,7 @@ li {
 .next:hover {
 	transform: translateX(10px);
 }
+
 </style>
 
 <script type="text/javascript">
@@ -240,8 +260,8 @@ $(function() {
 });
 </script>
 </head>
-<body><%-- 
-		<!-- 홈페이지 로그인 -->
+<body>
+<%-- 		<!-- 홈페이지 로그인 -->
 		<c:if test="${sessionScope.loginok == null}">
 			<div class="loginbtn" style="text-align: center;">
 				<button type="button" class="btn btn-warning btn-sm" 
@@ -257,7 +277,7 @@ $(function() {
 			<button type="button" class="btn btn btn-sm" onclick="logout()">로그아웃</button>
 		</c:if>
 		</div>
-	<br><br> --%>
+	<br><br>  --%>
 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; ">
 			<!-- <!-- Indicators -->
@@ -370,7 +390,7 @@ $(function() {
 
 		<!-- 소개글 시작-->
 		<div class="content_text">
-			<b>모두의 밥상은 수만가지의 레시피를 종류별, 재료별, 난이도별로 분류하여 각자의 라이프스타일에 맞는 레시피를 쉽고
+			<b>모두의 밥상은 수만가지의 레시피를 종류별, 재료별, 난이도별로 분류하여, <br>각자의 라이프스타일에 맞는 레시피를 쉽고
 				편리하게 찾을 수 있는 서비스를 제공하고 있습니다. <br>백주부님 레시피를 하나하나 찾기 힘든 주부님들을 위해!
 				배달 음식으로 지갑이 가벼워진 자취생들을 위해! <br>번거로운 재료준비는 줄이고 쉽고 간단한 방법으로 모두의
 				밥상이 풍요로워지는 경험을 해보세요!
@@ -380,12 +400,23 @@ $(function() {
 		<!-- 카테고리 시작 -->
 		<div id="slideShow">
 			<ul class="slides">
-				<li><img src="img/main/category_1.png" alt=""></li>
-				<li><img src="img/main/category_2.png" alt=""></li>
-				<li><img src="img/main/category_3.png" alt=""></li>
-
-				<li><img src="img/main/category_2.png" alt=""></li>
-				<li><img src="img/main/category_3.png" alt=""></li>
+				<a href="/">
+					<li><img src="img/main/c01.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>반찬</li>
+				</a>
+				<a href="/">
+					<li><img src="img/main/c02.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>밥</li>
+				</a>
+				<a href="/">
+					<li><img src="img/main/c04.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>면</li>
+				</a>
+				</a>
+				<a href="/">
+					<li><img src="img/main/c05.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>튀김</li>
+				</a>
+				</a>
+				<a href="/">
+					<li><img src="img/main/c03.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>디저트</li>
+				</a>
 			</ul>
 			<p class="controller">
 				<!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
@@ -393,6 +424,7 @@ $(function() {
 			</p>
 		</div>
 		<!-- 카테고리 끝 -->
+		
 	</div>
 	
 	
