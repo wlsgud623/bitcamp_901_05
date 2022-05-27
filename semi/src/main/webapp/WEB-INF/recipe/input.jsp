@@ -37,7 +37,7 @@
 	}
 	div.inputMain{
 		position: relative;
-		margin-bottom: 20px;
+		margin-bottom: 70px;
 		width: 850px;
 		top: 30px;
 		left: 50%;
@@ -47,12 +47,22 @@
 		font-family: 'CookieRun-Regular';
 		font-size: 50px;
 	}
-	label.inputMainLabel{
+	label.inputMainLabel, label.inputStepLabel, label.inputCompLabel{
 		font-family: 'Cafe24SsurroundAir';
 		text-align: center;
+		cursor: pointer;
+	}
+	label.inputMainLabel{
 		width: 800px;
 		height: 450px;
-		cursor: pointer;
+	}
+	label.inputStepLabel{
+		width: 200px;
+		height: 150px;
+	}
+	label.inputCompLabel{
+		width: 192px;
+		height: 144px;
 	}
 	img.inputMainLabel{
 		width: 800px;
@@ -742,10 +752,9 @@
 	    			<input type="hidden" name="text" value="split">
 	    		</td>
 	    		<td>
-	    			<label for="1" style="text-align: center; background-color: lightgray;
-					width: 200px; height: 150px; cursor: pointer;">
+	    			<label for="1" class="inputStepLabel">
 						<img src="../img/stepex1.jpg" class="inputStepLabel">
-						<span class="stepImgHere">사진을 등록해주세요</span>
+						<span style="font-size: 20px;">사진을 등록해주세요</span>
 					</label>
 	    			<input type="file" name="upload_step" id="1" accept=".jpg, .jpeg, .png"
 	    			style="opacity: 0; font-size: 0px;" class="forms smallPhoto">
@@ -777,11 +786,9 @@
 	    	<tr>
 	    		<c:forEach var="num" begin="1" end="4">
 	    			<td class="com_photo" style="width: 200px; vertical-align: top;">
-		    			<label for="com_photo${num}" style="text-align: center;
-		    			background-color: lightgray; width: 192px; height: 144px;
-		    			cursor: pointer;">
+		    			<label for="com_photo${num}" class="inputCompLabel">
 							<img src="../img/compex${num}.jpg" class="compStepLabel">
-							<span class="stepImgHere">사진을 등록해주세요</span>
+							<span style="font-size: 19px;">사진을 등록해주세요</span>
 						</label>
 		    			<input type="file" name="upload_complete" accept=".jpg, .jpeg, .png"
 		    			id="com_photo${num}" style="opacity: 0; font-size: 0px;"
@@ -809,7 +816,6 @@
 	    	<button type="button" class="btn btn-default" onclick="location.href='/'">취소</button>
 	    </div>
 	</form>
-	<br><br><br>
 </div>
 </body>
 </html>

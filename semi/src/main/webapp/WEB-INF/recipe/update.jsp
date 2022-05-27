@@ -37,7 +37,7 @@
 	}
 	div.inputMain{
 		position: relative;
-		margin-bottom: 55px;
+		margin-bottom: 70px;
 		width: 850px;
 		top: 30px;
 		left: 50%;
@@ -911,7 +911,7 @@
 	    
 		<div class="content">
       		<div style="display: flex;">
-    			<h3 style="width: 150px; margin-right:30px;">태그 입력</h3>
+    			<h3 class="tagTitle">태그 입력</h3>
      			<input type="text" id="tag" placeholder="입력한 태그 저장하기 : spacebar">
         	</div>
         	<input type="hidden" id="tag-hidden" name="tags" class="forms" value="${recipe.tags}">
