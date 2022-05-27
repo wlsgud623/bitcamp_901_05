@@ -8,17 +8,75 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Song+Myung&display=swap" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
 <style type="text/css">
+body * {
+	font-family: 'Gowun Dodum'; 
+}
+
 div.container {
 	text-align: center;
-	width: 100%;
+	width: 1500px;
+}
+
+.rec_img img{
+	object-fit:cover;    
+}
+
+
+.rec_img img:hover{
+	transform:scale(1.1);           
+	transition: transform .5s; 	
+}
+
+.txt {
+    width: 1000px; 
+    position: absolute;
+    left: 50%;
+    top: 40%;
+   	margin-left: -1100px; 
+    text-decoration: none;
+    color: white;
+    font-size: 60px;
+    padding-bottom: 0;
+    font-family: 'Song Myung';
+}
+
+.info_tag span{
+/* font-family: 'Jua' */
+	font-size: 20px;
+	color: gray;
+}
+
+.info_title span{
+	font-size: 30px;
+	color: black;
+	font-family: 'Gowun Dodum';
+}
+
+.info_title a:hover{
+	text-decoration: none;
+	color: red;
+}
+
+.info_title span:hover{
+	color: red;
+}
+
+.clickbtn{	
+	width: 200px;
+	padding: 5px 10px;
+	border: 1px solid white;
+	border-radius: 10px;
+	background-color: white;
+	color: black;
+	font-size: 20px;	
 }
 
 .wrap {
@@ -42,43 +100,15 @@ div.container {
 	padding: 100px 100px;
 	border: 5px solid #CD1F48;
 	text-align: left;
+	border-radius: 30px;
 }
 
 .content_text b {
 	font-size: 25px;
 }
 
-div.icon {
-	bottom: 0;
-	z-index: 2;
-	text-align: right;
-	height: 48px;
-	width: 370px;
-	margin-top: 10px;
-}
-
 div {
 	display: block;
-}
-
-i.icon_chu {
-	background: url(../img/chu.png) no-repeat;
-	width: 48px;
-	height: 48px;
-	content: '';
-	display: inline-block;
-	font-size: 0;
-	margin-left: 3px;
-}
-
-i.icon_best {
-	background: url(../img/best.png) no-repeat;
-	width: 48px;
-	height: 48px;
-	content: '';
-	display: inline-block;
-	font-size: 0;
-	margin-left: 3px;
 }
 
 /* 하단 슬라이드  */
@@ -210,7 +240,7 @@ $(function() {
 });
 </script>
 </head>
-<body>
+<body><%-- 
 		<!-- 홈페이지 로그인 -->
 		<c:if test="${sessionScope.loginok == null}">
 			<div class="loginbtn" style="text-align: center;">
@@ -227,10 +257,9 @@ $(function() {
 			<button type="button" class="btn btn btn-sm" onclick="logout()">로그아웃</button>
 		</c:if>
 		</div>
-	<br><br>
-	<div class="container" style="width: 1500px;">
-		<!-- 슬라이더 시작 -->
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<br><br> --%>
+
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; ">
 			<!-- <!-- Indicators -->
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -239,73 +268,85 @@ $(function() {
 			</ol>
 
 			<!-- Wrapper for slides -->
-			<div class="carousel-inner" style="width: 1290px;">
-				<div class="item active">
-					<div class="sub_item">
-						<c:forEach var="dto" items="${list}" begin="2" end="4">
-							<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> <img
-								src="img/main/${dto.main_photo}" alt="food_img"
-								style="width: 33%;">
-							</a>
-						</c:forEach>
+			<div class="carousel-inner" style="width: 100%">
+				<div class="item active" >
+					<div class="sub_item" >
+							<a href="/"> 
+							<img src="img/main/main_01.jpg" alt="food_img"  style="width: 100%">
+							<div class="txt">
+								<h2>색다른 메뉴가 끌릴땐</h2>
+									카레토마토솥밥
+								<div class="tag"><span>#채식</span><span> #이색메뉴</span></div>
+								<button class="clickbtn">레시피 바로 보기<span></span></button>
+							</div>
+						</a>
 					</div>
 				</div>
 				<div class="item">
 					<div class="sub_item">
-						<c:forEach var="dto" items="${list}" begin="9" end="11">
-							<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> <img
-								src="img/main/${dto.main_photo}" alt="food_img"
-								style="width: 33%;">
-							</a>
-						</c:forEach>
+						<a href="/"> 
+							<img src="img/main/main_03.jpg" alt="food_img"  style="width: 100%">
+							<div class="txt" style="padding-left: 400px;">
+								<h2>집에서 즐기는</h2>
+								토마토 파스타
+								<div class="tag"><span>#집들이음식</span><span> #양식</span></div>
+								<button class="clickbtn">레시피 바로 보기<span></span></button>
+							</div>
+						</a>
 					</div>
 				</div>
 				<div class="item">
 					<div class="sub_item">
-						<c:forEach var="dto" items="${list}" begin="8" end="10">
-							<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> <img
-								src="img/main/${dto.main_photo}" alt="food_img"
-								style="width: 33%;">
-							</a>
-						</c:forEach>
+						<a href="/"> 
+							<img src="img/main/main_02.jpg" alt="food_img" style="width: 100%">
+							<div class="txt" >
+								<h2>쌀쌀한 날에 생각나는</h2>
+								떡만두국
+						<div class="tag"><span>#떡만둣국</span><span> #뜨끈한국물</span></div>
+						<button class="clickbtn">레시피 바로 보기<i></i></button>	
+						</div>
+						</a>
 					</div>
 				</div>
 			</div>
 			<!-- Left and right controls -->
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left"></span> <span
-				class="sr-only">Previous</span>
+				<span class="glyphicon glyphicon-chevron-left"></span> 
+				<span class="sr-only">Previous</span>
 			</a> <a class="right carousel-control" href="#myCarousel"
 				data-slide="next"> <span
 				class="glyphicon glyphicon-chevron-right"></span> <span
 				class="sr-only">Next</span>
 			</a>
 		</div>
+		
 		<!-- 슬라이더 끝 -->
 
+		
 		<br>
 		<br>
 		<br>
 		<script type="text/javascript">
 	let arr;
 	</script>
-
+<div class="container">
 		<!-- 추천레시피 시작 -->
 		<h1>&nbsp;추천 레시피</h1>
 		<br>
 		<br>
-		<div class="rec_recipe">
+		<div class="rec_recipe" style="width: 1500px;">
 			<c:forEach var="dto" items="${list}" varStatus="i" begin="2" end="10">
 				<div class="box" style="float: left; width: 400px;">
 					<div class="rec_img">
-						<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> <img
-							src="../img/main/${dto.main_photo}" class="mainimage"
+						<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> 
+						<img src="../img/main/${dto.main_photo}" class="mainimage"
 							style="width: 90%;">
 						</a>
 					</div>
-					<div class="icon">
+					<br>
+				<!-- 	<div class="icon">
 						<i class="icon_chu"></i> <i class="icon_best"></i>
-					</div>
+					</div> -->
 					<div class="info">
 						<div class="info_tag">
 							<span><script type="text/javascript">
@@ -313,12 +354,12 @@ $(function() {
 						arr = tags.split(":");
 						for(var tag of arr){
 							document.write("#" + tag + " ");
-						}
+						} 
 					</script></span>
 						</div>
 					</div>
 					<div class="info_title">
-						<a href="/recipe/detail?idx=${RECIPE_IDX}"> <span>${dto.name}</span>
+						<a href="/recipe/detail?idx=${RECIPE_IDX}"><span>${dto.name}</span>
 						</a>
 					</div>
 					<br>
@@ -353,6 +394,8 @@ $(function() {
 		</div>
 		<!-- 카테고리 끝 -->
 	</div>
+	
+	
 	
 <!-- 네이버 아이디로 로그인 -->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
