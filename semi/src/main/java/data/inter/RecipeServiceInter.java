@@ -30,8 +30,13 @@ public interface RecipeServiceInter {
 	public List<RecipeDto> findCooking(String cooking); // Cooking이 cooking인 레시피 검색
 	
 	//랭킹 관련
+
 	public List<RecipeDto> getRankingList(int startnum, int limit); //랭킹순으로 startnum부터 limit개의 레시피를 읽어온다
 
 	//검색 관련
 	public List<Integer> searchRecipe (String searchWord);
+	public List<RecipeDto> getViewRankingList(int startnum, int limit); //조회수 랭킹순으로
+	public List<RecipeDto> getNewRankingList(int startnum, int limit); //최신순으로
+
+
 }

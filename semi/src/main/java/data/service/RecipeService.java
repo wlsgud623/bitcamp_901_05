@@ -95,15 +95,6 @@ public class RecipeService implements RecipeServiceInter {
 	}
 
 	@Override
-	public List<RecipeDto> getRankingList(int startnum, int limit) {
-		// TODO Auto-generated method stub
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("startnum", startnum);
-		map.put("limit", limit);
-		return recipeMapperInter.getRankingList(map);
-	}
-
-	@Override
 	public void updateRecipe(RecipeDto dto) {
 		// TODO Auto-generated method stub
 		recipeMapperInter.updateRecipe(dto);
@@ -113,6 +104,33 @@ public class RecipeService implements RecipeServiceInter {
 	public void deleteRecipe(int idx) {
 		// TODO Auto-generated method stub
 		recipeMapperInter.deleteRecipe(idx);
+	}
+	
+	@Override
+	public List<RecipeDto> getRankingList(int startnum, int limit) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startnum", startnum);
+		map.put("limit", limit);
+		return recipeMapperInter.getRankingList(map);
+	}
+
+	@Override
+	public List<RecipeDto> getViewRankingList(int startnum, int limit) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startnum", startnum);
+		map.put("limit", limit);
+		return recipeMapperInter.getViewRankingList(map);
+	}
+
+	@Override
+	public List<RecipeDto> getNewRankingList(int startnum, int limit) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startnum", startnum);
+		map.put("limit", limit);
+		return recipeMapperInter.getNewRankingList(map);
 	}
 
 	@Override

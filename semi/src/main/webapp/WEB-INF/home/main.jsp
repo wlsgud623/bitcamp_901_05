@@ -8,17 +8,78 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Song+Myung&display=swap" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
 <style type="text/css">
+body * {
+	font-family: 'Gowun Dodum'; 
+}
+
 div.container {
 	text-align: center;
-	width: 100%;
+	width: 1500px;
+}
+
+.rec_img img{
+	overflow: hidden; 
+}
+
+
+.rec_img img:hover{
+	transform:scale(1.1);           
+	transition: transform .5s; 	
+	overflow: hidden; 
+	
+}
+
+.txt {
+    width: 1000px; 
+    position: absolute;
+    left: 50%;
+    top: 30%;
+   	margin-left: -1100px; 
+    text-decoration: none;
+    color: white;
+    font-size: 60px;
+    padding-bottom: 0;
+    font-family: 'Song Myung';
+}
+
+.info_tag span{
+/* font-family: 'Jua' */
+	font-size: 20px;
+	color: gray;
+}
+
+.info_title span{
+	font-size: 30px;
+	color: black;
+	font-family: 'Gowun Dodum';
+}
+
+.info_title a:hover{
+	text-decoration: none;
+}
+
+.info_title span:hover{
+	color: red;
+	font-weight: bold;
+	
+}
+
+.clickbtn{	
+	width: 200px;
+	padding: 5px 10px;
+	border: 1px solid white;
+	border-radius: 10px;
+	background-color: white;
+	color: black;
+	font-size: 20px;	
 }
 
 .wrap {
@@ -37,48 +98,21 @@ div.container {
 
 .content_text {
 	margin-top: 1200px;
-	height: 650px;
-	width: 1320px;
+	height: 750px;
+	width: 1300px;
 	padding: 100px 100px;
-	border: 5px solid #CD1F48;
+	border: 7px solid #CD1F48;
 	text-align: left;
+	border-radius: 30px;
 }
 
 .content_text b {
-	font-size: 25px;
-}
-
-div.icon {
-	bottom: 0;
-	z-index: 2;
-	text-align: right;
-	height: 48px;
-	width: 370px;
-	margin-top: 10px;
+	font-size: 38px;
+	font-family: 'East Sea Dokdo';
 }
 
 div {
 	display: block;
-}
-
-i.icon_chu {
-	background: url(../img/chu.png) no-repeat;
-	width: 48px;
-	height: 48px;
-	content: '';
-	display: inline-block;
-	font-size: 0;
-	margin-left: 3px;
-}
-
-i.icon_best {
-	background: url(../img/best.png) no-repeat;
-	width: 48px;
-	height: 48px;
-	content: '';
-	display: inline-block;
-	font-size: 0;
-	margin-left: 3px;
 }
 
 /* 하단 슬라이드  */
@@ -95,11 +129,11 @@ li {
 
 /* 보여줄 구간의 높이와 넓이 설정 */
 #slideShow {
-	width: 1300px;
+	width: 1320px;
 	height: 300px;
 	position: relative;
 	margin: 50px auto;
-	overflow: hidden;
+	overflow: hidden; 
 	/*리스트 형식으로 이미지를 일렬로 
   정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은
   hidden으로 숨겨줘야됨*/
@@ -107,17 +141,30 @@ li {
 
 .slides {
 	position: absolute;
-	left: 0;
+	left: 100px;
 	top: 0;
-	width: 5000px; /* 슬라이드할 사진과 마진 총 넓이 */
+	width: 100%; /* 슬라이드할 사진과 마진 총 넓이 */
 	transition: left 0.5s ease-out;
+	overflow: hidden;
 	/*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+}
+
+.slides a{
+	color: black;
+}
+
+.slides li{
+	padding-left: 50px;
+}
+
+.slides li b{
+	padding-top: 20px;
 }
 
 /* 첫 번째 슬라이드 가운데에 정렬하기위해
 첫번째 슬라이드만 margin-left조정 */
 .slides li:first-child {
-	margin-left: 100px;
+	margin-left: 10px;
 }
 
 /* 슬라이드들 옆으로 정렬 */
@@ -126,8 +173,10 @@ li {
 	margin-right: 100px;
 }
 
-.slides li {
+.slides a li {
 	float: left;
+	font-size: 30px;
+	font-family: 'Song Myung';
 }
 
 .controller span {
@@ -148,7 +197,7 @@ li {
 }
 
 .prev {
-	left: 10px;
+	left: 0;
 }
 
 /* 이전 화살표에 마우스 커서가 올라가 있을때 
@@ -166,6 +215,7 @@ li {
 .next:hover {
 	transform: translateX(10px);
 }
+
 </style>
 
 <script type="text/javascript">
@@ -211,7 +261,7 @@ $(function() {
 </script>
 </head>
 <body>
-		<!-- 홈페이지 로그인 -->
+<%-- 		<!-- 홈페이지 로그인 -->
 		<c:if test="${sessionScope.loginok == null}">
 			<div class="loginbtn" style="text-align: center;">
 				<button type="button" class="btn btn-warning btn-sm" 
@@ -227,10 +277,9 @@ $(function() {
 			<button type="button" class="btn btn btn-sm" onclick="logout()">로그아웃</button>
 		</c:if>
 		</div>
-	<br><br>
-	<div class="container" style="width: 1500px;">
-		<!-- 슬라이더 시작 -->
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<br><br>  --%>
+
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; ">
 			<!-- <!-- Indicators -->
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -239,73 +288,85 @@ $(function() {
 			</ol>
 
 			<!-- Wrapper for slides -->
-			<div class="carousel-inner" style="width: 1290px;">
-				<div class="item active">
-					<div class="sub_item">
-						<c:forEach var="dto" items="${list}" begin="2" end="4">
-							<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> <img
-								src="img/main/${dto.main_photo}" alt="food_img"
-								style="width: 33%;">
-							</a>
-						</c:forEach>
+			<div class="carousel-inner" style="width: 100%">
+				<div class="item active" >
+					<div class="sub_item" >
+							<a href="/"> 
+							<img src="img/main/main_01.jpg" alt="food_img"  style="width: 100%">
+							<div class="txt">
+								<h2>색다른 메뉴가 끌릴땐</h2>
+									카레토마토솥밥
+								<div class="tag"><span>#채식</span><span> #이색메뉴</span></div>
+								<button class="clickbtn">레시피 바로 보기<span></span></button>
+							</div>
+						</a>
 					</div>
 				</div>
 				<div class="item">
 					<div class="sub_item">
-						<c:forEach var="dto" items="${list}" begin="9" end="11">
-							<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> <img
-								src="img/main/${dto.main_photo}" alt="food_img"
-								style="width: 33%;">
-							</a>
-						</c:forEach>
+						<a href="/"> 
+							<img src="img/main/main_03.jpg" alt="food_img"  style="width: 100%">
+							<div class="txt" style="padding-left: 400px;">
+								<h2>집에서 즐기는</h2>
+								토마토 파스타
+								<div class="tag"><span>#집들이음식</span><span> #양식</span></div>
+								<button class="clickbtn">레시피 바로 보기<span></span></button>
+							</div>
+						</a>
 					</div>
 				</div>
 				<div class="item">
 					<div class="sub_item">
-						<c:forEach var="dto" items="${list}" begin="8" end="10">
-							<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> <img
-								src="img/main/${dto.main_photo}" alt="food_img"
-								style="width: 33%;">
-							</a>
-						</c:forEach>
+						<a href="/"> 
+							<img src="img/main/main_02.jpg" alt="food_img" style="width: 100%">
+							<div class="txt" >
+								<h2>쌀쌀한 날에 생각나는</h2>
+								떡만두국
+						<div class="tag"><span>#떡만둣국</span><span> #뜨끈한국물</span></div>
+						<button class="clickbtn">레시피 바로 보기<i></i></button>	
+						</div>
+						</a>
 					</div>
 				</div>
 			</div>
 			<!-- Left and right controls -->
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left"></span> <span
-				class="sr-only">Previous</span>
+				<span class="glyphicon glyphicon-chevron-left"></span> 
+				<span class="sr-only">Previous</span>
 			</a> <a class="right carousel-control" href="#myCarousel"
 				data-slide="next"> <span
 				class="glyphicon glyphicon-chevron-right"></span> <span
 				class="sr-only">Next</span>
 			</a>
 		</div>
+		
 		<!-- 슬라이더 끝 -->
 
+		
 		<br>
 		<br>
 		<br>
 		<script type="text/javascript">
 	let arr;
 	</script>
-
+<div class="container">
 		<!-- 추천레시피 시작 -->
 		<h1>&nbsp;추천 레시피</h1>
 		<br>
 		<br>
-		<div class="rec_recipe">
+		<div class="rec_recipe" style="width: 1500px;">
 			<c:forEach var="dto" items="${list}" varStatus="i" begin="2" end="10">
 				<div class="box" style="float: left; width: 400px;">
 					<div class="rec_img">
-						<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> <img
-							src="../img/main/${dto.main_photo}" class="mainimage"
+						<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> 
+						<img src="../img/main/${dto.main_photo}" class="mainimage"
 							style="width: 90%;">
 						</a>
 					</div>
-					<div class="icon">
+					<br>
+				<!-- 	<div class="icon">
 						<i class="icon_chu"></i> <i class="icon_best"></i>
-					</div>
+					</div> -->
 					<div class="info">
 						<div class="info_tag">
 							<span><script type="text/javascript">
@@ -313,12 +374,12 @@ $(function() {
 						arr = tags.split(":");
 						for(var tag of arr){
 							document.write("#" + tag + " ");
-						}
+						} 
 					</script></span>
 						</div>
 					</div>
 					<div class="info_title">
-						<a href="/recipe/detail?idx=${RECIPE_IDX}"> <span>${dto.name}</span>
+						<a href="/recipe/detail?idx=${RECIPE_IDX}"><span>${dto.name}</span>
 						</a>
 					</div>
 					<br>
@@ -329,7 +390,7 @@ $(function() {
 
 		<!-- 소개글 시작-->
 		<div class="content_text">
-			<b>모두의 밥상은 수만가지의 레시피를 종류별, 재료별, 난이도별로 분류하여 각자의 라이프스타일에 맞는 레시피를 쉽고
+			<b>모두의 밥상은 수만가지의 레시피를 종류별, 재료별, 난이도별로 분류하여, <br>각자의 라이프스타일에 맞는 레시피를 쉽고
 				편리하게 찾을 수 있는 서비스를 제공하고 있습니다. <br>백주부님 레시피를 하나하나 찾기 힘든 주부님들을 위해!
 				배달 음식으로 지갑이 가벼워진 자취생들을 위해! <br>번거로운 재료준비는 줄이고 쉽고 간단한 방법으로 모두의
 				밥상이 풍요로워지는 경험을 해보세요!
@@ -339,12 +400,23 @@ $(function() {
 		<!-- 카테고리 시작 -->
 		<div id="slideShow">
 			<ul class="slides">
-				<li><img src="img/main/category_1.png" alt=""></li>
-				<li><img src="img/main/category_2.png" alt=""></li>
-				<li><img src="img/main/category_3.png" alt=""></li>
-
-				<li><img src="img/main/category_2.png" alt=""></li>
-				<li><img src="img/main/category_3.png" alt=""></li>
+				<a href="/">
+					<li><img src="img/main/c01.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>반찬</li>
+				</a>
+				<a href="/">
+					<li><img src="img/main/c02.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>밥</li>
+				</a>
+				<a href="/">
+					<li><img src="img/main/c04.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>면</li>
+				</a>
+				</a>
+				<a href="/">
+					<li><img src="img/main/c05.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>튀김</li>
+				</a>
+				</a>
+				<a href="/">
+					<li><img src="img/main/c03.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>디저트</li>
+				</a>
 			</ul>
 			<p class="controller">
 				<!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
@@ -352,7 +424,10 @@ $(function() {
 			</p>
 		</div>
 		<!-- 카테고리 끝 -->
+		
 	</div>
+	
+	
 	
 <!-- 네이버 아이디로 로그인 -->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
