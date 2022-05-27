@@ -781,7 +781,7 @@
 		    			background-color: lightgray; width: 192px; height: 144px;
 		    			cursor: pointer;">
 							<img src="../img/compex${num}.jpg" class="compStepLabel">
-						<span class="stepImgHere">사진을 등록해주세요</span>
+							<span class="stepImgHere">사진을 등록해주세요</span>
 						</label>
 		    			<input type="file" name="upload_complete" accept=".jpg, .jpeg, .png"
 		    			id="com_photo${num}" style="opacity: 0; font-size: 0px;"
@@ -795,8 +795,7 @@
 		<div class="content">
       		<div style="display: flex;">
     			<h3 class="tagTitle">태그 입력</h3>
-     			<input type="text" id="tag"
-     			placeholder="입력한 태그 저장하기 : spacebar">
+     			<input type="text" id="tag" placeholder="입력한 태그 저장하기 : spacebar">
         	</div>
         	<input type="hidden" id="tag-hidden" name="tags" class="forms" value="">
         	<ul id="tag-list">
