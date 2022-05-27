@@ -1,4 +1,4 @@
-package data.service;
+ package data.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -48,30 +48,27 @@ public class CommentService implements CommentServiceInter {
 	public void insertComment(CommentDto dto) {
 		// TODO Auto-generated method stub
 		dto.setCgroup(mapper.getMaxCgroup() + 1);
-		dto.setSeq(1);
-		dto.setDepth(1);
 		mapper.insertComment(dto);
 	}
 	
 	@Override
-	public void insertRecomment(CommentDto dto, int origin) {
+	public void insertRecomment(CommentDto dto) {
 		// TODO Auto-generated method stub
-		Map< String, Integer> map = new HashMap<String, Integer>();
-		map.put("idx", dto.getRECIPE_IDX());
-		map.put("num", origin);
-		CommentDto origintDto = mapper.getComment(map);
-		
-		dto.setCgroup(origintDto.getCgroup());
-		dto.setSeq(origintDto.getSeq() + 1);
-		mapper.updateSeq(origintDto.getSeq() + 1);
-		dto.setDepth(origintDto.getSeq() + 1);
+		mapper.updateSeq(dto);
 		mapper.insertComment(dto);
 	}
+	
 	
 	@Override
 	public void deleteComment(int num) {
 		// TODO Auto-generated method stub
 		mapper.deleteComment(num);
+	}
+	
+	@Override
+	public void updateComment(CommentDto dto) {
+		// TODO Auto-generated method stub
+		mapper.updateComment(dto);
 	}
 	
 }

@@ -11,24 +11,185 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
-	body *{
-		border: 0px solid black;
+	@font-face {
+	    font-family: 'CookieRun-Regular';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	@font-face {
+	    font-family: 'Donoun-Medium';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Donoun-Medium.woff2') format('woff2');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	@font-face {
+	    font-family: 'Cafe24SsurroundAir';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	@font-face {
+	    font-family: 'Cafe24Ohsquareair';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	div.inputMain{
+		position: relative;
+		margin-bottom: 70px;
+		width: 850px;
+		top: 30px;
+		left: 50%;
+		margin-left:-400px;
+	}
+	h1.inputTitle{
+		font-family: 'CookieRun-Regular';
+		font-size: 50px;
+	}
+	label.inputMainLabel, label.inputStepLabel, label.inputCompLabel{
+		font-family: 'Cafe24SsurroundAir';
+		text-align: center;
+		cursor: pointer;
+	}
+	label.inputMainLabel{
+		width: 800px;
+		height: 450px;
+	}
+	label.inputStepLabel{
+		width: 200px;
+		height: 150px;
+	}
+	label.inputCompLabel{
+		width: 192px;
+		height: 144px;
+	}
+	img.inputMainLabel{
+		width: 800px;
+		height: 450px;
+		object-fit: cover;
+		margin-bottom: -250px;
+		opacity: 0.3;
+	}
+	img.inputStepLabel{
+		width: 200px;
+		height: 150px;
+		object-fit: cover;
+		opacity: 0.3;
+		margin-bottom: -85px;
+	}
+	img.compStepLabel{
+		width: 192px;
+		height: 144px;
+		object-fit: cover;
+		opacity: 0.3;
+		margin-bottom: -85px;
+	}
+	span.stepImgHere{
+		font-size: 20px;
+		font-family: 'Cafe24SsurroundAir';
+	}
+	.mainFt, .ingFt, #steps, .compFt{
+		border-collapse: separate;
+		border-spacing: 0 30px;
+	}
+	.ingFt{
+		border-top: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
+		margin-bottom: 15px;
+	}
+	.mainFt th{
+		font-family: 'Cafe24Ohsquareair';
+		font-size: 25px;
+		width: 200px;
+	}
+	.ingFt th{
+		font-family: 'Cafe24Ohsquareair';
+		font-size: 25px;
+		width: 200px;
+		vertical-align: top;
+	}
+	.compFt td{
+		vertical-align: top;
+		height: 200px;
+	}
+	#steps th{
+		font-family: 'Cafe24Ohsquareair';
+		font-size: 25px;
+		width: 125px;
+	}
+	#steps td label{
+		margin-top: 8px;
 	}
 	#tag-list{
 		list-style: none;
 	}
 	#tag-list li{
+		font-family: 'Donoun-Medium';
 		font-size: 22.5px;
 		float: left;
 		margin-right: 20px;
 		margin-top: 15px;
-		border: 3px groove black;
 		border-radius: 22.5px;
 		padding-left: 15px;
 		padding-right: 15px;
+		background-color: fuchsia;
+		color: snow;
+	}
+	#tag{
+		 width: 320px;
+		 border: 1px solid lightgray;
+		 font-size: 20px;
+		 font-family: 'Cafe24Ohsquareair';
+		 margin-top: 10px;
+		 padding-left: 10px;
 	}
 	.ing_class{
-		border: 1px solid gray;
+		border: 1px solid lightgray;
+		width: 150px;
+		padding-left: 15px;
+	}
+	.ingTitle, .stepTitle, .compTitle, .tagTitle{
+		font-family: 'CookieRun-Regular';
+		font-size: 30px;
+	}
+	.tagTitle{
+		width: 150px;
+		margin-right: 30px;
+	}
+	.forms{
+		border: 3px solid crimson;
+		border-radius: 20px;
+		padding-left: 15px;
+		font-family: 'Donoun-Medium';
+		font-size: 20px;
+	}
+	.stepSec{
+		border: none;
+		background-color: transparent;
+		width: 40px;
+	}
+	.forms, .ing_class, .stepSec, #tag:focus{
+		outline: none;
+	}
+	select {
+   		-webkit-appearance:none; /* for chrome */
+   		-moz-appearance:none; /*for firefox*/
+  		appearance:none;
+  		cursor: pointer;
+	}
+	select::-ms-expand{
+		display:none;/*for IE10,11*/
+	}
+	select {
+		background:url('../img/dropdown-icon.png') no-repeat 97% 50%/15px auto;
+	}
+	option{
+		font-size: 18px;
+	}
+	.compDet{
+		font-size: 20px;
+		font-family: 'Cafe24SsurroundAir';
 	}
 </style>
 <script type="text/javascript">
@@ -230,12 +391,24 @@
 	    		$(this).val(value.replace(",",""));
 	    	}
 		});
-		
-		//재료 칸 (,) 입력 방지
 		$(document).on("keyup", ".ing_class, .ing_name, .ing_quantity", function(e) {
 	    	if ( e.keyCode == 188 ) {
 	    		var value=$(this).val();
 	    		$(this).val(value.replace(",",""));
+	    	}
+		});
+		
+		//태그 칸 (#) 입력 방지
+		$(document).on("keydown", "#tag", function(e) {
+	    	if ( e.keyCode == 51 ) {
+	    		var value=$(this).val();
+	    		$(this).val(value.replace("#",""));
+	    	}
+		});
+		$(document).on("keyup", "#tag", function(e) {
+	    	if ( e.keyCode == 51 ) {
+	    		var value=$(this).val();
+	    		$(this).val(value.replace("#",""));
 	    	}
 		});
 	});
@@ -272,7 +445,7 @@
 	//재료 묶음 추가
 	function tab_append() {
 		var str='<br><br>'
-				+'<table class="table table-bordered" id="write_ing'+ingClass+'"'
+				+'<table class="ingFt" id="write_ing'+ingClass+'"'
 				+'style="width: 800px;">'
     			+ingTr(ingClass, "", 1)
     			+ingTr(ingClass, "", 0)
@@ -316,7 +489,7 @@
 	function ingTr(idx, val, first) {
 		if (first==1) {
 			return '<tr>'
-				+'<th id="choose_class'+idx+'" rowspan="2" style="width: 240px;">'
+				+'<th id="choose_class'+idx+'" rowspan="2">'
 				+'<input type="text" class="ing_class" idx="'+idx+'" required="required"'
 				+'placeholder="재료묶음">'
 				+'<br><br>'
@@ -325,12 +498,12 @@
 				+'</th>'
 				+'<td>'
 				+'<input type="hidden" name="bundle"'
-				+'class="form-control ing_hidden'+idx+'" value="">'
-				+'<input type="text" name="ingName" class="form-control ing_name"'
+				+'class="forms ing_hidden'+idx+'" value="">'
+				+'<input type="text" name="ingName" class="forms ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
 				+'<td>'
-				+'<input type="text" name="quantity" class="form-control ing_quantity"'
+				+'<input type="text" name="quantity" class="forms ing_quantity"'
 				+'required="required" placeholder="예)300g">'
 				+'</td>'
 				+'<td style="width: 40px;"></td>'
@@ -339,12 +512,12 @@
 			return '<tr>'
 				+'<td>'
 				+'<input type="hidden" name="bundle"'
-				+'class="form-control ing_hidden'+idx+'" value="'+val+'">'
-				+'<input type="text" name="ingName" class="form-control ing_name"'
+				+'class="forms ing_hidden'+idx+'" value="'+val+'">'
+				+'<input type="text" name="ingName" class="forms ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
 				+'<td>'
-				+'<input type="text" name="quantity" class="form-control ing_quantity"'
+				+'<input type="text" name="quantity" class="forms ing_quantity"'
 				+'required="required" placeholder="예)300g">'
 				+'</td>'
 				+'<td>'
@@ -360,23 +533,23 @@
 	//단계 추가 html
 	function stepTr(idx) {
 		return '<tr>'
-			+'<th>Step'
-			+'<input type="text" name="stepSec" class="form-control"'
-    		+'value="'+idx+'" readonly="readonly"'
-	    	+'style="border: none; background-color: transparent; width: 40px;">'
+			+'<th>Step&ensp;'
+			+'<input type="text" name="stepSec" class="stepSec"'
+    		+'value="'+idx+'" readonly="readonly">'
 			+'</th>'
 			+'<td>'
 			+'<textarea name="text" style="resize: none; width: 400px; height: 150px;"'
-			+'class="form-control" required="required"'
+			+'class="forms" required="required"'
 			+'placeholder="조리법을 단계별로 자세히 적어주세요"></textarea>'
 			+'<input type="hidden" name="text" value="split">'
 			+'</td>'
 			+'<td>'
 			+'<label for="'+idx+'" style="text-align: center;'
 			+'background-color: lightgray; width: 200px; height: 150px; cursor: pointer;">'
-			+'<br><br><img src="../image/Upload-Icon.png" style="width: 70px;">'
+			+'<img src="../img/stepex'+(idx%5)+'.jpg" class="inputStepLabel">'
+			+'<span class="stepImgHere">사진을 등록해주세요</span>'
 			+'</label>'
-			+'<input type="file" name="upload_step" id="'+idx+'" class="form-control smallPhoto"'
+			+'<input type="file" name="upload_step" id="'+idx+'" class="forms smallPhoto"'
 			+'style="opacity: 0; font-size: 0px;" accept=".jpg, .jpeg, .png">'
 			+'</td>'
 			+'<td>'
@@ -398,37 +571,38 @@
 </script>
 </head>
 <body>
-<div style="position: relative; margin-bottom: 300px; top: 30px; left: 100px;">
-	<h1>레시피 등록</h1>
+<div class="inputMain">
+	<h1 class="inputTitle">레시피 작성하기</h1>
+	<br>
 	<form action="insert" method="post" class="form-inline" enctype="multipart/form-data">
-		<label for="inputPhoto" style="text-align: center; background-color: lightgray;
-		width: 800px; height: 450px; cursor: pointer;">
-			<br><br><img src="../image/Upload-Icon.png" style="width: 200px;">
-			<br><br><span style="font-size: 40px;">대표 사진을 등록해주세요</span>
+		<label for="inputPhoto" class="inputMainLabel">
+			<img src="../img/blog-6.jpg" class="inputMainLabel">
+			<span style="font-size: 40px;">대표 사진을 등록해주세요</span>
 		</label>
 	    <input type="file" id="inputPhoto" name="upload_main" accept=".jpg, .jpeg, .png"
-	    style="opacity: 0; font-size: 0px;" class="form-control" required="required">
+	    style="opacity: 0; font-size: 0px;" class="forms" required="required">
+	    <br><br>
 	    
-	    <table class="table table-default" style="width: 800px;">
+	    <table class="mainFt" style="width: 800px;">
 	    	<tr>
 	    		<th>레시피 제목</th>
 	    		<td colspan="3">
-	    			<input type="text" name="name" class="form-control" style="width: 690px;"
+	    			<input type="text" name="name" class="forms" style="width: 640px;"
 	    			placeholder="레시피의 이름을 적어주세요" required="required">
 	    		</td>
 	    	</tr>
 	    	<tr>
 	    		<th>레시피 소개</th>
 	    		<td colspan="3">
-	    			<textarea name="intro" style="resize: none; width: 690px; height: 75px;"
-	    			class="form-control" placeholder="레시피에 대한 소개를 적어주세요"
+	    			<textarea name="intro" style="resize: none; width: 640px; height: 95px;"
+	    			class="forms" placeholder="레시피에 대한 소개를 적어주세요"
 	    			required="required"></textarea>
 	    		</td>
 	    	</tr>
 	    	<tr>
 	    		<th>카테고리</th>
 	    		<td>
-	    			<select name="category" class="form-control" required="required"
+	    			<select name="category" class="forms" required="required"
 	    			style="width: 150px;">
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">종류별</option>
@@ -450,7 +624,7 @@
 	    			</select>
 	    		</td>
 	    		<td>
-	    			<select name="main_ing" class="form-control" required="required"
+	    			<select name="main_ing" class="forms" required="required"
 	    			style="width: 150px;">
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">재료별</option>
@@ -468,7 +642,7 @@
 	    			</select>
 	    		</td>
 	    		<td>
-	    			<select name="cooking" class="form-control" required="required"
+	    			<select name="cooking" class="forms" required="required"
 	    			style="width: 150px;">
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">방법별</option>
@@ -492,7 +666,7 @@
 	    	<tr>
 	    		<th>요리 정보</th>
 	    		<td>
-	    			<select name="portion" class="form-control" required="required"
+	    			<select name="portion" class="forms" required="required"
 	    			style="width: 150px;">
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">인분수</option>
@@ -503,7 +677,7 @@
 	    			</select>
 	    		</td>
 	    		<td>
-	    			<select name="level" class="form-control" required="required"
+	    			<select name="level" class="forms" required="required"
 	    			style="width: 150px;">
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">난이도</option>
@@ -520,35 +694,35 @@
 	    </table>
 	    <br><br>
 	    
-	    <h3>재료</h3>
+	    <h3 class="ingTitle">재료</h3>
 	    <div id="ingredient" style="text-align: center; width: 850px;">
-		    <table class="table table-bordered" id="write_ing1" style="width: 800px;">
+		    <table class="ingFt" id="write_ing1" style="width: 800px;">
 		    	<tr>
-		    		<th id="choose_class1" rowspan="2" style="width: 240px;">
+		    		<th id="choose_class1" rowspan="2">
 		    			<input type="text" class="ing_class" idx="1" required="required"
 		    			placeholder="재료묶음">
 		    		</th>
 		    		<td>
-		    			<input type="hidden" name="bundle" class="form-control ing_hidden1"
+		    			<input type="hidden" name="bundle" class="forms ing_hidden1"
 		    			value="">
-		    			<input type="text" name="ingName" class="form-control ing_name"
+		    			<input type="text" name="ingName" class="forms ing_name"
 		    			placeholder="예)돼지고기" required="required">
 		    		</td>
 		    		<td>
-		    			<input type="text" name="quantity" class="form-control ing_quantity"
+		    			<input type="text" name="quantity" class="forms ing_quantity"
 		    			placeholder="예)300g" required="required">
 		    		</td>
 		    		<td style="width: 40px;"></td>
 		    	</tr>
 		    	<tr>
 			    	<td>
-			    		<input type="hidden" name="bundle" class="form-control ing_hidden1"
+			    		<input type="hidden" name="bundle" class="forms ing_hidden1"
 			    		value="">
-			    		<input type="text" name="ingName" class="form-control ing_name"
+			    		<input type="text" name="ingName" class="forms ing_name"
 			    		placeholder="예)돼지고기" required="required">
 			    	</td>
 			    	<td>
-			    		<input type="text" name="quantity" class="form-control ing_quantity"
+			    		<input type="text" name="quantity" class="forms ing_quantity"
 			    		placeholder="예)300g" required="required">
 			    	</td>
 			    	<td>
@@ -563,28 +737,27 @@
 	    <button type="button" class="btn btn-default" onclick="tab_append()">재료 묶음 추가</button>
 	    <br><br><br>
 	    
-	    <h3>요리 순서</h3>
-	    <table class="table table-default" id="steps" style="width: 800px;">
+	    <h3 class="stepTitle">요리 순서</h3>
+	    <table id="steps" style="width: 800px;">
 	    	<tr>
-	    		<th style="width: 100px;">
-	    			Step
-	    			<input type="text" name="stepSec" class="form-control"
-	    			value="1" readonly="readonly"
-	    			style="border: none; background-color: transparent; width: 40px;">
+	    		<th>
+	    			Step&ensp;
+	    			<input type="text" name="stepSec" class="stepSec"
+	    			value="1" readonly="readonly">
 	    		</th>
 	    		<td>
-	    			<textarea name="text" class="form-control" required="required"
+	    			<textarea name="text" class="forms" required="required"
 	    			style="resize: none; width: 400px; height: 150px;"
 	    			placeholder="조리법을 단계별로 자세히 적어주세요"></textarea>
 	    			<input type="hidden" name="text" value="split">
 	    		</td>
 	    		<td>
-	    			<label for="1" style="text-align: center; background-color: lightgray;
-					width: 200px; height: 150px; cursor: pointer;">
-						<br><br><img src="../image/Upload-Icon.png" style="width: 70px;">
+	    			<label for="1" class="inputStepLabel">
+						<img src="../img/stepex1.jpg" class="inputStepLabel">
+						<span style="font-size: 20px;">사진을 등록해주세요</span>
 					</label>
 	    			<input type="file" name="upload_step" id="1" accept=".jpg, .jpeg, .png"
-	    			style="opacity: 0; font-size: 0px;" class="form-control smallPhoto">
+	    			style="opacity: 0; font-size: 0px;" class="forms smallPhoto">
 	    		</td>
 	    		<td style="width: 40px;">
 	    			<button type="button" class="step_up btn btn-info">
@@ -607,34 +780,32 @@
 	    </div>
 	    <br><br>
 
-	    <h3>완성된 요리 사진</h3>
-	    <h5>(선택)다양한 구도에서 찍은 완성된 음식 사진을 올릴 수 있습니다</h5>
-	    <table class="table table-default" style="width: 800px; height: 200px;">
+	    <h3 class="compTitle">완성된 요리 사진</h3>
+	    <h5 class="compDet">(선택)다양한 구도에서 찍은 완성된 음식 사진을 올릴 수 있습니다</h5>
+	    <table class="compFt" style="width: 800px; height: 200px;">
 	    	<tr>
 	    		<c:forEach var="num" begin="1" end="4">
 	    			<td class="com_photo" style="width: 200px; vertical-align: top;">
-		    			<label for="com_photo${num}" style="text-align: center;
-		    			background-color: lightgray; width: 192px; height: 144px;
-		    			cursor: pointer;">
-							<br><br><img src="../image/Upload-Icon.png" style="width: 70px;">
+		    			<label for="com_photo${num}" class="inputCompLabel">
+							<img src="../img/compex${num}.jpg" class="compStepLabel">
+							<span style="font-size: 19px;">사진을 등록해주세요</span>
 						</label>
 		    			<input type="file" name="upload_complete" accept=".jpg, .jpeg, .png"
 		    			id="com_photo${num}" style="opacity: 0; font-size: 0px;"
-		    			class="form-control miniPhoto">
+		    			class="forms miniPhoto">
 	    			</td>
 	    		</c:forEach>
 	    	</tr>
 	    </table>
 	    <br><br>
 	    
-		<div style="margin-top: 40px; margin-left: 40px;" class="content">
+		<div class="content">
       		<div style="display: flex;">
-    			<h3 style="width: 150px; margin-right:30px;">태그 입력</h3>
-     			<input type="text" id="tag" style="width: 350px; border: 1px solid gray;"
-     			placeholder="입력한 태그를 저장하려면 spacebar를 눌러주세요">
+    			<h3 class="tagTitle">태그 입력</h3>
+     			<input type="text" id="tag" placeholder="입력한 태그 저장하기 : spacebar">
         	</div>
-        	<input type="hidden" id="tag-hidden" name="tags" class="form-control" value="">
-        	<ul id="tag-list" style="font-size: 15px;">
+        	<input type="hidden" id="tag-hidden" name="tags" class="forms" value="">
+        	<ul id="tag-list">
         	</ul>
 		</div>
 	    <br><br><br><br>
@@ -645,7 +816,6 @@
 	    	<button type="button" class="btn btn-default" onclick="location.href='/'">취소</button>
 	    </div>
 	</form>
-	<br><br><br>
 </div>
 </body>
 </html>

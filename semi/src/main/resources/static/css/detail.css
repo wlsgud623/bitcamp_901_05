@@ -20,7 +20,7 @@
 	}
 	
 	body {
-		height: 100%;
+		
 	}
 	
 	ul {
@@ -218,7 +218,6 @@
 	
 	#recipe_area {
 		font-family : 'BinggraeMelona';
-		border: 1px solid black;
 		margin-bottom: 200px;
 		padding-left: 55px;
 		padding-right: 55px;
@@ -263,7 +262,7 @@
 		margin-left: 300px;
 		margin-right: 300px;
 		margin-top: 50px;
-		margin-bottom: 50px;
+		margin-bottom: 350px;
 		padding-top: 50px;
 		padding-bottom: 50px;
 		padding-left: 100px;
@@ -271,7 +270,6 @@
 	}
 	
 	.comment_board {
-		background-color: #e9ecef;
 		padding-top: 30px;
 		padding-bottom: 30px;
 		padding-left: 20px;

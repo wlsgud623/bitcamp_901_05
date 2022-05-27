@@ -5,24 +5,27 @@
 		SELECT COUNT(*) FROM Comment WHERE RECIPE_IDX = ${idx}	
 	</select>
 	<select id="getTotalGroupCount" parameterType="int" resultType="int">
-		SELECT COUNT(*) FROM Comment WHERE RECIPE_IDX = ${idx} GROUP BY cgroup 
+		SELECT COUNT(*) FROM Comment WHERE RECIPE_IDX = ${idx} GROUP BY cgroup
 	</select>
 	<select id="getAllComment" resultType="comment">
-		SELECt * FROM Comment WHERE RECIPE_IDX = ${idx} ORDER BY cgroup, NUM
+		SELECT * FROM Comment WHERE RECIPE_IDX = ${idx} ORDER BY cgroup, seq;
 	</select>
 	<select id="getComment" parameterType="Map" resultType="comment">
 		SELECT * FROM Comment WHERE RECIPE_IDX = ${idx} AND NUM = #{num}
 	</select>
-	<insert id="insertComment" parameterType="comment">
-		INSERT into Comment (RECIPE_IDX, USERID, content, depth, seq, cgroup, writeday) VALUES (#{RECIPE_IDX}, #{UserID}, #{content}, #{depth}, #{seq}, #{cgroup}, now()) 
+	<select id="getMaxCgroup" resultType="int">
+		SELECT IFNULL(MAX(cgroup),0) FROM Comment
+	</select>
+	<update id="updateSeq" parameterType="comment">
+		UPDATE Comment SET seq = seq + 1 WHERE seq >= #{seq} AND cgroup = #{cgroup}
+	</update>
+	<insert id="insertComment" parameterType="comment"> 
+		INSERT into Comment (RECIPE_IDX, USERID, content, depth, seq, cgroup, writeday) VALUES (#{RECIPE_IDX}, #{userID}, #{content}, #{depth}, #{seq}, #{cgroup}, now())  
 	</insert>
+	<update id="updateComment" parameterType="comment">
+		UPDATE Comment SET content=#{content} WHERE NUM = #{NUM}
+	</update>
 	<delete id="deleteComment" parameterType="int">
 		DELETE FROM Comment WHERE NUM = #{num}
 	</delete>
-	<update id="updateSeq" parameterType="int">
-		UPDATE Comment SET seq = seq + 1 WHERE seq > #{seq}
-	</update>
-	<select id="getMaxCgroup" resultType="int">
-		SELECT IFNULL(MAX(cgroup), 0) FROM Comment
-	</select>
 </mapper>
