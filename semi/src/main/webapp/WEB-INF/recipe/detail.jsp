@@ -11,21 +11,26 @@
 <link rel="stylesheet" href="/css/detail.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<c:set var="root" value="<%=request.getContextPath()%>"/>w
-<style type="text/css">
-	.comphoto {
-		max-width: 100%;
-	}
-	
+<c:set var="root" value="<%=request.getContextPath()%>"/>
+<style type="text/css">	
 	.noborderbtn{
 		border: 0px;
 		background-color: white;
+	}
+	
+	.item img {
+  		width:100%
 	}
 </style>
 <script type="text/javascript">
 $(function(){
 	var login = '${sessionScope.loginok}';
 	showComment();
+	$(".slider").change(function() {
+		var photo_idx = $(".slider input[type=radio]:checked~").index();
+		$(".bullets>label:gt("+(photo_idx)+")").css("background-color", "#fff");
+		$("ul.imgs>li:gt("+(photo_idx)+")").css("opacity", "1").css("transition", "1s").css("z-index", "1");
+	});
 	
 	$("#rate_button").click(function() {
 		if (login == null || login !='yes'){
@@ -41,6 +46,8 @@ $(function(){
 			$("#loginModal").modal('show');
 		}
 		else{
+			$("#recom_button img").attr("src", "/image/icon-heart.gif");
+			$(this).css("color", "red");
 			addRecommend();	
 		}
 	});
@@ -426,6 +433,10 @@ function deleteRecipe(){
 		<div id ="main_area">
 			<div id="subject_area">
 				<div id="name_section"><h1>${dto.name}</h1></div>
+				<div><fmt:formatDate value="${dto.writeday }" pattern="yyyy-MM-dd HH:mm:ss"/></div>
+			</div>
+			<hr style="background-color: black; height: 1px;">
+			<div id="name_area">
 				<div id="id_section"><h3>${dto.userID} </h3></div>
 				<div id="star_section">
 					<div id="rate_section">
@@ -458,11 +469,11 @@ function deleteRecipe(){
 					<button id="scrap_button" type="button"><span class="glyphicon glyphicon-heart"></span>찜하기</button>
 				</div>
 			</div>
-			<hr>
+			<hr style="background-color: black; height: 1px;">
 			<div id="tag_area">
 				<ul>
 					<c:forEach var="tag" items="${fn:split(dto.tags, ':')}">
-						<li><a href=''>${tag}</a></li>
+						<li><a href=''>#${tag}</a></li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -474,9 +485,9 @@ function deleteRecipe(){
 					<div>
 						<h3>재료</h3>
 					</div>
-					<div>
+					<div style="margin-left: auto; padding-right: 50px; padding-top: 20px;">
 						<c:forEach var="ing" items="${ingredients}">
-							<span>${ing.name}</span>						
+							<span style="display: flex; border-bottom: 1px solid #eee;"><p>${ing.name}</p><p style="margin-left: auto;">${ing.quantity}</p></span><br>
 						</c:forEach>
 					</div>
 				</div>
@@ -508,24 +519,61 @@ function deleteRecipe(){
 			</div>
 			<c:if test="${dto.complete_photo != Null}">
 				<h3>완성 사진</h3>
-				<div id="complete_photos">
-					<c:forEach var="photo" items="${fn:split(dto.complete_photo, ':')}">
-						<img src="${photo}" class="comphoto">
-					</c:forEach>
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				  <!-- Indicators -->
+				  <ol class="carousel-indicators">
+				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ':')}" varStatus="i">
+				  		<c:if test="${i.count ==1 }">
+				  			<li data-target="#myCarousel" data-slide-to="${i.index}" class="active"></li>
+				  		</c:if>
+				  		<c:if test="${i.count !=1 }">
+				  			<li data-target="#myCarousel" data-slide-to="${i.index}"></li>
+				  		</c:if>
+				  	</c:forEach>
+				  </ol>
+				
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner">
+				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ':')}" varStatus="i">
+				  		<c:if test="${i.count ==1 }">
+				  			<div class="item active">
+				      			<img src="${photo}" alt="${i.count}번째 사진">
+				    		</div>
+				  		</c:if>
+				  		<c:if test="${i.count !=1 }">
+				  			<div class="item">
+				      			<img src="${photo}" alt="${i.count}번째 사진">
+				    		</div>
+				  		</c:if>
+				  	</c:forEach>
+				
+				  <!-- Left and right controls -->
+				  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				    <span class="glyphicon glyphicon-chevron-left"></span>
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right"></span>
+				    <span class="sr-only">Next</span>
+				  </a>
+				</div>
 				</div>
 			</c:if>
 		</div>
-		<button type="button" class="btn btn-info" id="recom_button">추천</button>
-		<div id="recommned_section">
-			추천 수 : 
-			<span id="total_recommendation">${dto.total_recom}</span>
+
+		<div id="recommned_section" style="text-align: center; margin-bottom: 30px;">
+			<button type="button" class="btn btn-lg" id="recom_button">
+				<img src="/image/icon-like.png" width="60" height="60"> <br>
+				<span id="total_recommendation" style="font-weight: bold; font-size: 2.5rem;">${dto.total_recom}</span><br>
+				<span>추천</span>
+			</button>
 		</div>
 		<div class="btn-group btn-group-justified">
     			<a href="#" class="btn btn-danger recipebtn" id=""><span>목록</span></a>
     			<a href="#" class="btn btn-danger recipebtn" id="editbtn"><span>수정</span></a>
     			<a href="#" class="btn btn-danger recipebtn" id="delbtn"><span>삭제</span></a>
   		</div>
-	</div>		
+	</div>		</div>
 		<div id="comment_area">
 			<h3><span class="glyphicon glyphicon-comment"></span> <span id="comment_count">댓글 (${fn:length(comments)})</span></h3>
 			<hr style="height: 2px; background-color: black;">
@@ -542,7 +590,6 @@ function deleteRecipe(){
 				</form>
 				<button type="button" id="commentbtn" class="btn" style="float: right;">등록</button>
 			</div>
-		
 		</div>
 </body>
 </html>

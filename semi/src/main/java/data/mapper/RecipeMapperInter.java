@@ -13,6 +13,7 @@ public interface RecipeMapperInter {
 	public List<RecipeDto> getAllRecipe(); 
 	public List<RecipeDto> getRecipeList(Map<String, Integer> map);
 	public RecipeDto getRecipe(int idx);
+	
 	public int getRecipeRec(int idx);
 	public int getRecipeRate(int idx);
 	public int getRecipeVolunteer(int idx);
@@ -27,5 +28,8 @@ public interface RecipeMapperInter {
 	public List<RecipeDto> findCategory(String category);
 	public List<RecipeDto> findCooking(String cooking);
 	
-	public List<RecipeDto> getRankingList(Map<String, Integer> map); 
+	public List<RecipeDto> getRankingList(Map<String, Integer> map);
+	public List<RecipeDto> getViewRankingList(Map<String, Integer> map);
+	public List<RecipeDto> getNewRankingList(Map<String, Integer> map);
+	
 }
