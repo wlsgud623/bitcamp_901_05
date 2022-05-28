@@ -10,178 +10,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<style type="text/css">
-	@font-face {
-	    font-family: 'CookieRun-Regular';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	@font-face {
-	    font-family: 'Donoun-Medium';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Donoun-Medium.woff2') format('woff2');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	@font-face {
-	    font-family: 'Cafe24SsurroundAir';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	@font-face {
-	    font-family: 'Cafe24Ohsquareair';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	div.inputMain{
-		position: relative;
-		margin-bottom: 70px;
-		width: 850px;
-		top: 30px;
-		left: 50%;
-		margin-left:-400px;
-	}
-	h1.inputTitle{
-		font-family: 'CookieRun-Regular';
-		font-size: 50px;
-	}
-	label.inputMainLabel{
-		font-family: 'Cafe24SsurroundAir';
-		text-align: center;
-		width: 800px;
-		height: 450px;
-		cursor: pointer;
-	}
-	img.inputMainLabel{
-		width: 800px;
-		height: 450px;
-		object-fit: cover;
-		margin-bottom: -250px;
-		opacity: 0.3;
-	}
-	img.inputStepLabel{
-		width: 200px;
-		height: 150px;
-		object-fit: cover;
-		opacity: 0.3;
-		margin-bottom: -85px;
-	}
-	img.compStepLabel{
-		width: 192px;
-		height: 144px;
-		object-fit: cover;
-		opacity: 0.3;
-		margin-bottom: -85px;
-	}
-	span.stepImgHere{
-		font-size: 20px;
-		font-family: 'Cafe24SsurroundAir';
-	}
-	.mainFt, .ingFt, #steps, .compFt{
-		border-collapse: separate;
-		border-spacing: 0 30px;
-	}
-	.ingFt{
-		border-top: 1px solid lightgray;
-		border-bottom: 1px solid lightgray;
-		margin-bottom: 15px;
-	}
-	.mainFt th{
-		font-family: 'Cafe24Ohsquareair';
-		font-size: 25px;
-		width: 200px;
-	}
-	.ingFt th{
-		font-family: 'Cafe24Ohsquareair';
-		font-size: 25px;
-		width: 200px;
-		vertical-align: top;
-	}
-	.compFt td{
-		vertical-align: top;
-		height: 200px;
-	}
-	#steps th{
-		font-family: 'Cafe24Ohsquareair';
-		font-size: 25px;
-		width: 125px;
-	}
-	#steps td label{
-		margin-top: 8px;
-	}
-	#tag-list{
-		list-style: none;
-	}
-	#tag-list li{
-		font-family: 'Donoun-Medium';
-		font-size: 22.5px;
-		float: left;
-		margin-right: 20px;
-		margin-top: 15px;
-		border-radius: 22.5px;
-		padding-left: 15px;
-		padding-right: 15px;
-		background-color: fuchsia;
-		color: snow;
-	}
-	#tag{
-		 width: 320px;
-		 border: 1px solid lightgray;
-		 font-size: 20px;
-		 font-family: 'Cafe24Ohsquareair';
-		 margin-top: 10px;
-		 padding-left: 10px;
-	}
-	.ing_class{
-		border: 1px solid lightgray;
-		width: 150px;
-		padding-left: 15px;
-	}
-	.ingTitle, .stepTitle, .compTitle, .tagTitle{
-		font-family: 'CookieRun-Regular';
-		font-size: 30px;
-	}
-	.tagTitle{
-		width: 150px;
-		margin-right: 30px;
-	}
-	.forms{
-		border: 3px solid crimson;
-		border-radius: 20px;
-		padding-left: 15px;
-		font-family: 'Donoun-Medium';
-		font-size: 20px;
-	}
-	.stepSec{
-		border: none;
-		background-color: transparent;
-		width: 40px;
-	}
-	.forms, .ing_class, .stepSec, #tag:focus{
-		outline: none;
-	}
-	select {
-   		-webkit-appearance:none; /* for chrome */
-   		-moz-appearance:none; /*for firefox*/
-  		appearance:none;
-  		cursor: pointer;
-	}
-	select::-ms-expand{
-		display:none;/*for IE10,11*/
-	}
-	select {
-		background:url('../img/dropdown-icon.png') no-repeat 97% 50%/15px auto;
-	}
-	option{
-		font-size: 18px;
-	}
-	.compDet{
-		font-size: 20px;
-		font-family: 'Cafe24SsurroundAir';
-	}
-</style>
+<link rel="stylesheet" href="/css/update.css">
 <script type="text/javascript">
 /***************************전역 변수***************************/
 	var ingClass=${ingClass+1}; //다음에 추가될 재료묶음
@@ -644,8 +473,8 @@
 	<form action="update" method="post" class="form-inline" enctype="multipart/form-data">
 		<input type="hidden" name="RECIPE_IDX" class="forms" value="${recipe.RECIPE_IDX}">
 		<label for="inputPhoto" class="inputMainLabel">
-			<img src="../img/blog-6.jpg" class="inputMainLabel">
-			<span style="font-size: 40px;">대표 사진을 등록해주세요</span>
+			<img src="../upload/${recipe.main_photo}"
+			style="width: 800px; height: 450px; object-fit: cover;">
 		</label>
 	    <input type="file" id="inputPhoto" name="upload_main" accept=".jpg, .jpeg, .png"
 	    style="opacity: 0; font-size: 0px;" class="forms">
@@ -668,8 +497,7 @@
 	    	<tr>
 	    		<th>카테고리</th>
 	    		<td>
-	    			<select name="category" class="forms" required="required"
-	    			style="width: 150px;">
+	    			<select name="category" class="forms" required="required">
 	    				<option value="${recipe.category}" selected="selected"
 	    				style="display: none;">${recipe.category}</option>
 	    				<option value="밥/죽">밥/죽</option>
@@ -690,8 +518,7 @@
 	    			</select>
 	    		</td>
 	    		<td>
-	    			<select name="main_ing" class="forms" required="required"
-	    			style="width: 150px;">
+	    			<select name="main_ing" class="forms" required="required">
 	    				<option value="${recipe.main_ing}" selected="selected"
 	    				style="display: none;">${recipe.main_ing}</option>
 	    				<option value="소고기">소고기</option>
@@ -708,8 +535,7 @@
 	    			</select>
 	    		</td>
 	    		<td>
-	    			<select name="cooking" class="forms" required="required"
-	    			style="width: 150px;">
+	    			<select name="cooking" class="forms" required="required">
 	    				<option value="${recipe.cooking}" selected="selected"
 	    				style="display: none;">${recipe.cooking}</option>
 	    				<option value="구이">구이</option>
@@ -732,8 +558,7 @@
 	    	<tr>
 	    		<th>요리 정보</th>
 	    		<td>
-	    			<select name="portion" class="forms" required="required"
-	    			style="width: 150px;">
+	    			<select name="portion" class="forms" required="required">
 	    				<option value="${recipe.portion}" selected="selected"
 	    				style="display: none;">${recipe.portion}인분</option>
 	    				<option value=1>1인분</option>
@@ -743,8 +568,7 @@
 	    			</select>
 	    		</td>
 	    		<td>
-	    			<select name="level" class="forms" required="required"
-	    			style="width: 150px;">
+	    			<select name="level" class="forms" required="required">
 	    				<option value="${recipe.level}" selected="selected"
 	    				style="display: none;">${recipe.level}</option>
 	    				<option value="입문">입문</option>
