@@ -11,8 +11,8 @@
 		SELECT RECIPE_IDX FROM Recipe ORDER BY RECIPE_IDX DESC LIMIT 1
 	</select>
 	<insert id="insertIngredient" parameterType="ingredient">
-		INSERT INTO Ingredient (RECIPE_IDX, bundle, name, quantity) VALUES (#{RECIPE_IDX}, 
-		#{bundle}, #{name}, #{quantity})
+		INSERT INTO Ingredient (RECIPE_IDX, writeorder, bundle, name, quantity) VALUES (#{RECIPE_IDX}, 
+		#{writeorder}, #{bundle}, #{name}, #{quantity})
 	</insert>
 	<insert id="insertSteps" parameterType="steps">
 		INSERT INTO Steps (RECIPE_IDX, step, text, photo) VALUES (#{RECIPE_IDX}, 

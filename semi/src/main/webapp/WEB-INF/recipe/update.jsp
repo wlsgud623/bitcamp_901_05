@@ -11,9 +11,48 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <link rel="stylesheet" href="/css/update.css">
+<style type="text/css">
+	button.ingPlus{
+		margin-bottom: 30px;
+	}
+	#stepPopup{
+		position: relative;
+		float: right;
+		margin-top: -165px;
+		margin-right: 15px;
+		z-index: 10;
+		color: crimson;
+		font-size: 25px;
+		cursor: pointer;
+	}
+	#delPopup{
+		position: relative;
+		float: right;
+		margin-top: -160px;
+		margin-right: 10px;
+		z-index: 10;
+		color: crimson;
+		font-size: 25px;
+		cursor: pointer;
+	}
+	.inputCompLabel{
+		z-index: 1;
+	}
+	#steps th{
+		text-align: center;
+	}
+	.step_up, .step_down{
+		color: orange;
+		font-size: 30px;
+		cursor: pointer;
+		padding-right: 15px;
+		padding-top: 15px;
+	}
+</style>
 <script type="text/javascript">
 /***************************전역 변수***************************/
-	var ingClass=${ingClass+1}; //다음에 추가될 재료묶음
+	var ingClass=${ingClass+1}; //다음에 추가될 재료묶음(idx)
+	var writeOrder=${ingClass+1}; //다음에 추가될 재료묶음(writeorder)
 	var stepCount=${stepCount+1}; //다음에 추가될 요리단계
 	var tag = {}; //태그
 	var tagCounter = 0; //태그 idx
@@ -31,12 +70,13 @@
 		//요리 단계별 사진
 		$(document).on("change", ".smallPhoto", function() {
 			img_preview("#"+$(this).attr("id"), 200, 150);
+			$("#stepPopup").remove();
 		});
 		
 		//완성 사진
 		$(document).on("change", ".miniPhoto", function() {
 			img_preview("#"+$(this).attr("id"), 192, 144);
-			$("#del_btn_popup").remove();
+			$("#delPopup").remove();
 		});
 		
 		//각 재료를 재료묶음과 연결하기
@@ -174,13 +214,13 @@
 		//완성사진 삭제 버튼생성
 		$(".com_photo").hover(function() {
 			$(this).append("<button type='button' style='float: right;'"
-				+"class='btn btn-danger' id='del_btn_popup'>X</button>");
+				+"class='btn btn-danger' id='delPopup'>X</button>");
 		}, function() {
-			$("#del_btn_popup").remove();
+			$("#delPopup").remove();
 		});
 		
 		//완성사진 삭제
-		$(document).on("click", "#del_btn_popup", function() {
+		$(document).on("click", "#delPopup", function() {
 			$(this).prev().val("d");
 			$(this).prev().prev().val("");
 			$(this).prev().prev().prev()

@@ -36,6 +36,7 @@ public class InputController {
 	public String insert(@ModelAttribute RecipeDto reDto,
 			@ModelAttribute IngredientDto inDto,
 			@ModelAttribute StepsDto stDto,
+			@RequestParam String ingOrder,
 			@RequestParam String ingName,
 			@RequestParam String stepSec,
 			@RequestParam ArrayList<MultipartFile> upload_main,
@@ -64,6 +65,7 @@ public class InputController {
 		int RECIPE_IDX=service.getLastRecipeIdx();
 		
 		//재료 정보 모음을 1개씩 분리
+		String[] order=ingOrder.split(",");
 		String[] bundle=inDto.getBundle().split(",");
 		String[] ingredientName=ingName.split(",");
 		String[] quantity=inDto.getQuantity().split(",");
@@ -72,6 +74,7 @@ public class InputController {
 		for (int i = 0; i < quantity.length; i++) {
 			IngredientDto dto=new IngredientDto();
 			dto.setRECIPE_IDX(RECIPE_IDX);
+			dto.setWriteorder(Integer.parseInt(order[i]));
 			dto.setBundle(bundle[i]);
 			dto.setName(ingredientName[i]);
 			dto.setQuantity(quantity[i]);
