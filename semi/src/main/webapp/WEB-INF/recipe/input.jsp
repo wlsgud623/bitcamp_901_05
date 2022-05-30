@@ -516,7 +516,7 @@
 <div class="inputMain">
 	<h1 class="inputTitle">레시피 작성하기</h1>
 	<br>
-	<form action="insert" method="post" class="form-inline" enctype="multipart/form-data">
+	<form action="insert" method="post" id="iForm" class="form-inline" enctype="multipart/form-data">
 		<label for="inputPhoto" class="inputMainLabel">
 			<img src="../img/blog-6.jpg" class="inputMainLabel">
 			<span style="font-size: 40px;">대표 사진을 등록해주세요</span>
@@ -752,7 +752,6 @@
 	    <br><br><br><br>
 	    
 	    <div style="text-align: center; width: 850px;">
-	    	<button type="button" class="btn btn-default" disabled="disabled">중간저장(?)</button>&emsp;
 	    	<button type="submit" class="btn btn-default">업로드</button>&emsp;
 	    	<button type="button" class="btn btn-default" onclick="location.href='/'">취소</button>
 	    </div>
