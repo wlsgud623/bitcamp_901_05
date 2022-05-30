@@ -8,192 +8,176 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link
+	href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Song+Myung&display=swap"
+	rel="stylesheet">
 
 </head>
 <style>
-
-	
-	*{
-	  margin: 0;
-	  padding: 0;
-	  box-sizing: border-box;
-	  margin-bottom: 100%;
-	  
-	
-	}
-	
-	li{
-	  list-style-type: none;
-	}
-
-	
-	label.inputPhoto{
-		
-		text-align: center;
-		
-		height: 450px;
-		cursor: pointer;
-	}
-	img.inputPhoto{
-		
-		height: 450px;
-		object-fit: cover;
-		margin-bottom: -250px;
-		opacity: 0.5;
-	}
-	
-
+body * {
+	font-family: 'Gowun Dodum';
+}
 
 /* 보여줄 구간의 높이와 넓이 설정 */
-#slideShow{
-  width: 1500px;
-  height: 300px;
-  position: relative;
-  margin: 50px auto;
-  overflow: hidden;    
-  /*리스트 형식으로 이미지를 일렬로 
+#slideShow {
+	width: 1500px;
+	height: 300px;
+	position: relative;
+	margin: 50px auto;
+	overflow: hidden;
+	/*리스트 형식으로 이미지를 일렬로 
   정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은
   hidden으로 숨겨줘야됨*/
 }
 
-#slideShow_two{
-  width: 1500px;
-  height: 300px;
-  position: relative;
-  margin: 50px auto;
-  overflow: hidden;    
-  /*리스트 형식으로 이미지를 일렬로 
+#slideShow_two {
+	width: 1500px;
+	height: 300px;
+	position: relative;
+	margin: 50px auto;
+	overflow: hidden;
+	/*리스트 형식으로 이미지를 일렬로 
   정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은
   hidden으로 숨겨줘야됨*/
 }
 
-
-.slides{
-
-  left: 0;
-  top: 0;
-  width: 9000px; /* 슬라이드할 사진과 마진 총 넓이 */
-  transition: left 0.5s ease-out; 
-  /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+.slides {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 9000px; /* 슬라이드할 사진과 마진 총 넓이 */
+	transition: left 0.5s ease-out;
+	/*ease-out: 처음에는 느렸다가 점점 빨라짐*/
 }
 
-.slides_two{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 9000px; /* 슬라이드할 사진과 마진 총 넓이 */
-  transition: left 0.5s ease-out; 
-  /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+.slides_two {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 9000px; /* 슬라이드할 사진과 마진 총 넓이 */
+	transition: left 0.5s ease-out;
+	/*ease-out: 처음에는 느렸다가 점점 빨라짐*/
 }
 
 /* 첫 번째 슬라이드 가운데에 정렬하기위해
 첫번째 슬라이드만 margin-left조정 */
-.slides li:first-child{
-  margin-left: 100px;
+.slides li:first-child {
+	margin-left: 100px;
 }
 
-.slides_two li:first-child{
-  margin-left: 100px;
+.slides_two li:first-child {
+	margin-left: 100px;
 }
 
 /* 슬라이드들 옆으로 정렬 */
-.slides li:not(:last-child){
-  float: left;
-  margin-right: 100px;
+.slides li:not(:last-child) {
+	float: left;
+	margin-right: 100px;
 }
 
-.slides li{
-  float: left;
+.slides li {
+	float: left;
 }
 
-.slides_two li:not(:last-child){
-  float: left;
-  margin-right: 100px;
+.slides_two li:not(:last-child) {
+	float: left;
+	margin-right: 100px;
 }
 
-.slides_two li{
-  float: left;
+.slides_two li {
+	float: left;
 }
 
-
-.controller span{
-  position:absolute;
-  background-color: transparent;
-  color: black;
-  text-align: center;
-  border-radius: 50%;
-  padding: 10px 20px;
-  top: 20%;
-  font-size: 50px;
-  cursor: pointer;
+.controller span {
+	position: absolute;
+	background-color: transparent;
+	color: black;
+	text-align: center;
+	border-radius: 50%;
+	padding: 10px 20px;
+	top: 20%;
+	font-size: 50px;
+	cursor: pointer;
 }
 
-.controller_two span{
-  position:absolute;
-  background-color: transparent;
-  color: black;
-  text-align: center;
-  border-radius: 50%;
-  padding: 10px 20px;
-  top: 20%;
-  font-size: 50px;
-  cursor: pointer;
+.controller_two span {
+	position: absolute;
+	background-color: transparent;
+	color: black;
+	text-align: center;
+	border-radius: 50%;
+	padding: 10px 20px;
+	top: 20%;
+	font-size: 50px;
+	cursor: pointer;
 }
 
 /* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
-.controller span:hover{
-  background-color: rgba(128, 128, 128, 0.11);
+.controller span:hover {
+	background-color: rgba(128, 128, 128, 0.11);
 }
 
-.controller_two span:hover{
-  background-color: rgba(128, 128, 128, 0.11);
+.controller_two span:hover {
+	background-color: rgba(128, 128, 128, 0.11);
 }
 
-
-.prev{
-  left: 10px;
+.prev {
+	left: 10px;
 }
 
-.prev_two{
-  left: 10px;
+.prev_two {
+	left: 10px;
 }
 
 /* 이전 화살표에 마우스 커서가 올라가 있을때 
 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
-.prev:hover{
-  transform: translateX(-10px);
+.prev:hover {
+	transform: translateX(-10px);
 }
 
-.prev_two:hover{
-  transform: translateX(-10px);
+.prev_two:hover {
+	transform: translateX(-10px);
 }
 
-.next{
-  right: 10px;
+.next {
+	right: 10px;
 }
 
-.next_two{
-  right: 10px;
+.next_two {
+	right: 10px;
 }
 
-.next_two:hover{
-  right: 10px;
+.next_two:hover {
+	right: 10px;
 }
 
-.next:hover{
-  transform: translateX(10px);
+.next:hover {
+	transform: translateX(10px);
 }
 
-.person{
+.person {
 	text-align: center;
 }
-.hh3{
-	padding-left: 30%;
+
+div.hh3 {
+	float: left;
+}
+
+.inputPhoto {
+  padding: 20px;
+  margin: 20px;
+  border: 10px solid black;
+  border-radius: 50%;
+  float: left;
+  shape-outside: margin-box;
 }
 </style>
 
@@ -284,117 +268,141 @@ $(function() {
 
 <body>
 
-	<div class="bodyer"
-		style="text-align: center;">
+
+
+	<div class="bodyer" style="text-align: center;">
 		<br>
 		<div class="container" id="container"
 			style="text-align: center; width: 1200px; height: 1000px; background-color: white;">
-			<h1 style="text-align: center;">MY PAGE</h1>
-			<form action="update" method="post" class="form-inline"enctype="multipart/form-data" >
-				<label for="inputPhoto" style="cursor: pointer; ">
-				<img src="../image/per__son.png"
-					style="text-align: center;">
-				</label> 
-				
-					<br>
-				<h4 style="font-size: 20px;">${dto.name}회원님 반갑습니다!</h4>
-				<table class="table table-default" style="text-align: left;">
-				
-			   			<tr>
-			   				<th style="width: 600px; text-align: center;">아이디</th>
-			   				<td>
-			   					<input type="text" name="userid" id="userid" class="form-control"
-			   					 value="${dto.userid}"  disabled="disabled" style="width: 250px; text-align: left;">
-			   				
-			   				</td>
-			   			</tr>
-			   			
-			   			<tr>
-			   				<th style="width: 600px; text-align: center;">핸드폰</th>
-			   				<td>
-			   					<input type="text" name="hp" class="form-control"
-			   					 value="${dto.hp}" style="width: 250px;">
-			   				</td>
-			   			</tr>
 
-			   			  
-			   			<tr>
-			   				<th style="width: 600px; text-align: center;">이메일</th>
-			   				<td>
-			   					<input type="text" name="email"  class="form-control"
-			   					 style="width: 250px;" value="${dto.email}">
+			<form action="update" method="post" class="inline"
+				enctype="multipart/form-data">
+				<fieldset>
+					<legend>
+						<h1>MY PAGE</h1>
+						<font style="vertical-align: inherit;">${dto.name}회원님 반갑습니다!</font>
+					</legend>
+					<div class="box">
+					  <div class="shape"></div>
+					<label for="inputPhoto" style="cursor: pointer;"> <img
+						src="../image/per__son.png" style=" width: 300px; height: 250px;">
+					</label>
+					    <p>${dto.name}님은 현재 모두의 레시피 회원입니다.</p>
+					</div>
+					
+					
+					<h4 class="glyphicon glyphicon-hand-right icon_photo">&nbsp;나의 랭킹은?<br><br><br><p>${dto.tier}입니다</p></h4>
+					
+					
+			
+					<table class="table table-default" style="text-align: left;">
+
+						<tr>
+							<th style="width: 600px; text-align: center;">아이디</th>
+							<td><input type="text" name="userid" id="userid"
+								class="form-control" value="${dto.userid}" disabled="disabled"
+								style="width: 250px; text-align: left;"></td>
+						</tr>
+
+						<tr>
+							<th style="width: 600px; text-align: center;">핸드폰</th>
+							<td><input type="text" name="hp" class="form-control" disabled="disabled"
+								value="${dto.hp}" style="width: 250px;"></td>
+						</tr>
+
+
+						<tr>
+							<th style="width: 600px; text-align: center;">이메일</th>
+							<td><input type="text" name="email" class="form-control" disabled="disabled"
+								style="width: 250px;" value="${dto.email}"></td>
+						</tr>
+						<tr>
+							<th style="width: 500px; text-align: center;">주소</th>
+							<td><input type="text" id="address_search" name="address1" readonly style="width: 300px;" class="form-control"
+			   					value="${dto.address}" disabled="disabled" />		
+			   					&nbsp;
 			   					
-			   				</td>
-			   			</tr>
-			   				<tr rowspan="2">
-			   				<th style="width: 500px; text-align: center;">주소</th>
-			   				<td>
-			   					<input type="text" name="address2"  class="form-control
-			   					 placeholder="주소를 입력하세요" style="width: 250px;" value="${dto.address}">
-			   					&nbsp;
-			   					<button type="button" class="btn btn-sm btn-primary" id="search_btn"
-			   					style="width: 100px; text-align: center;">주소 검색&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span></button>
-			   					&nbsp;
-							<br><br>
-			   					<input type="text" name="address2"  class="form-control
-			   					 placeholder="상세주소를 입력하세요" style="width: 250px;">
-			   					&nbsp;
-			   					<br>
-			   				</td>
-			   			</tr>
-			   			<tr>
-			   			<th style="width: 600px;">본인소개</th>
-			   				<td colspan="3" >
-				    			<input name="intro" class="form-control" placeholder="본인을 소개해주세요" required="required"> 
-	    					</td>
-	    				</tr>
-
-				</table>
-				<br>
-				<button type="submit" class="btn btn-warning" id="revise"
-					style="width: 700px; height: 50px; text-align: center;">회원수정하러가기</button>
-
+							 
+							</td>
+						</tr>
+						<tr>
+							<th style="width: 600px; text-align: center;;">본인소개</th>
+							<td colspan="3"><input name="intro" class="form-control" value="${dto.intro}" disabled="disabled" style="height: 80px;"></td>
+						</tr>
+					</table>
+					<br>
+					<button type="submit" class="btn btn-warning" id="revise" 
+						style="width: 700px; height: 50px; text-align: center;">회원수정하러가기</button>
+				</fieldset>
 			</form>
 		</div>
 	</div>
-
-	<!-- <div class="down" style="position: absolute; top: 80%;"> -->	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+	    window.onload = function(){
+	   		$("#address_search,#search_btn").click(function(){	
+	   	 	//주소입력칸을 클릭하면
+	        //카카오 지도 발생
+	        new daum.Postcode({
+	            	oncomplete: function(data) { //선택시 입력값 세팅
+	                document.getElementById("address_search").value = data.address; // 주소 넣기
+	                document.querySelector("input[name=address2]").focus(); //상세입력 포커싱
+	                console.log(data);
+	            }
+	        }).open();
+	    });
+	   }
+</script>
+	
+	<p style="border-top: 1px solid black;"></p>
+	<!-- <div class="down" style="position: absolute; top: 80%;"> -->
 	<h3 class="hh3">MY RECIPE</h3>
 	<div id="slideShow">
-	    <ul class="slides">
-	    	<c:forEach var="a" items="${ownrecipeList}">
-	    	 <li><img src="../img/main/${a.main_photo}" alt="사진없음" style="width: 350px; height: 300px;"></li>
-				
+		<ul class="slides">
+			<c:forEach var="a" items="${ownrecipeList}">
+				<li><img src="../img/main/${a.main_photo}" alt="사진없음"
+					style="width: 350px; height: 300px;"></li>
+
 			</c:forEach>
-	     
-	    </ul>  
-	    <p class="controller">
-	      
-	      
-	      <span class="prev">&lang;</span>  
-	      <span class="next">&rang;</span>
-	    </p>
-  </div>
-  <h3 class="hh3">SCRAP RECIPE</h3> 
-  <div id="slideShow_two">
-  <br><br><br>
-	    <ul class="slides_two">
-	    	<c:forEach var="a" items="${ownrecipeList}">
-	    	 <li><img src="../img/main/${a.main_photo}" alt="사진없음" style="width: 350px; height: 300px;"></li>
-				
+
+		</ul>
+		<p class="controller">
+
+
+			<span class="prev">&lang;</span> <span class="next">&rang;</span>
+		</p>
+	</div>
+	<p style="border-top: 1px solid black;"></p>
+	<h3 class="hh3">SCRAP RECIPE</h3>
+	<div id="slideShow_two">
+		<br>
+		<br>
+		<br>
+		<ul class="slides_two">
+			<c:forEach var="a" items="${ownrecipeList}">
+				<li><img src="../img/main/${a.main_photo}" alt="사진없음"
+					style="width: 350px; height: 300px;"></li>
+
 			</c:forEach>
-	     
-	    </ul>  
-	    <p class="controller_two">
-	      
-	      
-	      <span class="prev_two">&lang;</span>  
-	      <span class="next_two">&rang;</span>
-	    </p>
-  </div>
- 		
+
+		</ul>
+		<p class="controller_two">
+
+
+			<span class="prev_two">&lang;</span> <span class="next_two">&rang;</span>
+		</p>
 	</div>
 
-	</body>
+
+
+
+
+
+
+
+
+
+
+</body>
 
 </html>

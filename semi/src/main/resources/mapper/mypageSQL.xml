@@ -5,7 +5,7 @@
 		SELECT * FROM User where USERID=#{userid}
 	</select>
 	<update id="updateUser" parameterType="user">
-		UPDATE User SET name=#{name}, hp=#{hp}, email=#{email}, intro=#{intro}, photo=#{photo} where USERID=#{userid}
+		UPDATE User SET hp=#{hp}, email=#{email}, intro=#{intro}, photo=#{photo} address=#{address} where USERID=#{userid}
 	</update>
 	<delete id="deleteUser" parameterType="String">
 	<!--  user 삭제  -->

@@ -142,8 +142,8 @@ public class MypageController {
 	  {
 		ModelAndView mview = new ModelAndView();
 		List<RecipeDto> ownrecipeList = mypageService.getUserRecipeList(UserID);
-		//mview.addObject("ownrecipeList",ownrecipeList);
-		//mview.setViewName("mypage/mypage");
+		mview.addObject("ownrecipeList",ownrecipeList);
+		mview.setViewName("mypage/mypage");
 		
 		
 		

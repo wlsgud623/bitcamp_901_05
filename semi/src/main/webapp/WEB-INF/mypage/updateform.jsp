@@ -12,7 +12,7 @@
 <style type="text/css">
 
 
-body { 
+*{ 
    line-height: 1; 
    text-align: center;
 } 
@@ -27,11 +27,6 @@ table {
 
 
 
-.container{
-	
-	padding-top: 100px;
-	background-color: white;
-}
 
  .memberform{
    	 padding: 10px 170px;
@@ -69,6 +64,9 @@ table {
 	}
 	
 
+.bodyers{
+text-align: center;
+}
 </style>
 <script type="text/javascript">
 $(function () {
@@ -99,57 +97,46 @@ $("#inputPhoto").change(function() {
 </head>
 <body>
 
-	<div class="body" style="text-align: center;">
-		<div class="container" id="container"
-			style="text-align: center; width: 1200px; height: 1300px; background-color: white;">
+	<div class="bodyers" >
+		<div class="revise_form" id="revise_form"   >
 
 			<h3>회원가입수정</h3>
-			<form action="update" method="post" class="form-inline"
-				style="text-align: center; height: 1000px; width: 1500px;"
-				enctype="multipart/form-data">
-				<table style="width: 1500px; text-align: left; height: 700px;"
-					class="mem">
+			<form action="mypage" method="post" class="photo" enctype="multipart/form-data" >
+				<table class="userimpo" style="text-align: center;" ">
 
 					<tr>
 						<td style="text-align: center;"><label for="inputPhoto"
-							class="inputPhoto" style="text-align: center; cursor: pointer;">
+							class="inputPhoto" style="cursor: pointer;">
 								<img class="photo" src="../image/per__son.png"
-								style="text-align: center; width: 250px;">
+								>
 						</label> <input type="file" id="inputPhoto" name="upload_photo"
 							accept=".jpg, .jpeg, .png" style="opacity: 0; font-size: 0px;"
 							class="form-control" required="required"></td>
 					</tr>
-					<br>
+					
 					<tr>
-						<th style="width: 50px;">이 름</th>
-						<td><input type="text" name="name" style="width: 250px;"
-							class="form-control" value="${dto.name}" disabled="disabled">
-						</td>
-					</tr>
-					<tr>
-						<th style="width: 130px;">아이디</th>
-						<td><input type="text" name="userid" id="userid"
-							class="form-control" value="${dto.userid}" disabled="disabled"
-							style="width: 250px;"></td>
-					</tr>
+							<th style="width: 600px; text-align: center;">아이디</th>
+							<td><input type="text" name="userid" id="userid"
+								class="form-control" value="${dto.userid}" 
+								style="width: 250px; text-align: left;"></td>
+						</tr>
 
-					<tr>
-						<th style="width: 130px;">핸드폰</th>
-						<td><input type="text" name="hp" class="form-control"
-							required="required" value="${dto.hp}" style="width: 250px;">
-						</td>
-					</tr>
+						<tr>
+							<th style="width: 600px; text-align: center;">핸드폰</th>
+							<td><input type="text" name="hp" class="form-control" 
+								value="${dto.hp}" style="width: 250px;"></td>
+						</tr>
 
 
-					<tr>
-						<th style="width: 130px;">이메일</th>
-						<td><input type="text" name="email" class="form-control"
-							required="required" style="width: 250px;" value="${dto.email}">
+						<tr>
+							<th style="width: 600px; text-align: center;">이메일</th>
+							<td><input type="text" name="email" class="form-control" 
+								style="width: 250px;" value="${dto.email}"></td>
+						</tr>
 
-						</td>
-					</tr>
+					
 					<tr>
-						<th style="width: 130px;">주소</th>
+						<th style="width: 500px; text-align: center;">주소</th>
 						<td><input type="text" id="address_search" name="address1"
 							class="form-control" placeholder="주소를 입력해주세요"
 							style="width: 250px;" /> &nbsp;
@@ -164,7 +151,7 @@ $("#inputPhoto").change(function() {
 							value="${dto.address}"> &nbsp; <br></td>
 					</tr>
 					<tr>
-						<th>본인소개</th>
+						<th style="width: 500px; text-align: center;">본인소개</th>
 						<td colspan="3"><input name="intro"
 							style="resize: none; width: 400px; height: 75px;"
 							class="form-control" placeholder="본인을 소개해주세요" required="required">
@@ -197,12 +184,12 @@ $("#inputPhoto").change(function() {
     });
    }
     
-    $(document).ready(function() {
-    	$('#revise').click(function() {
-    		$(location).attr('href','mypage.jsp');	
-    		});
-    	});
-   
+ //   $(document).ready(function() {
+  //  	$('#revise').click(function() {
+  //  		$(location).attr('href','/mypage?=${userid}');	
+   // 		});
+  //  	});
+  
 </script>
 	</div>
 </body>
