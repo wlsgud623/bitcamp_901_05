@@ -28,14 +28,5 @@ public class HomeController {
 		mView.setViewName("/home/main");
 		return mView;
 	}
-		
-		
 
-//	@GetMapping("/")
-//	public String home() {
-//		return "/home/main";
-//	}
-//	
-	
-	
 }
