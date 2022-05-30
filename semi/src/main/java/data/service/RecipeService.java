@@ -2,7 +2,10 @@ package data.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;import org.eclipse.jdt.internal.compiler.ast.LongLiteralMinValue;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+import org.eclipse.jdt.internal.compiler.ast.LongLiteralMinValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -136,6 +139,18 @@ public class RecipeService implements RecipeServiceInter {
 	@Override
 	public List<Integer> searchRecipe(String searchWord) {
 		return recipeMapperInter.searchRecipe(searchWord); 
+	}
+
+	@Override
+	public List<RecipeDto> getCategoryList(String category, String item, int startnum, int limit) {
+		// TODO Auto-generated method stub
+		return recipeMapperInter.getCategoryList(category, item, startnum, limit);
+	}
+
+	@Override
+	public int getCategoryCount(String category, String item) {
+		// TODO Auto-generated method stub
+		return recipeMapperInter.getCategoryCount(category, item);
 	}
 
 

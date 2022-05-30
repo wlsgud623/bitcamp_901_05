@@ -84,14 +84,13 @@ public class MypageController {
 		return mView;
 	}
 	
-	@GetMapping("/updateform")
+	@PostMapping("/updateform")
 	public ModelAndView update(
-			@RequestParam String UserID) 
+			@RequestParam String userid) 
 	{
 	
 		ModelAndView mView = new ModelAndView();
-		UserDto dto = mypageService.getUser(UserID);
-		
+		UserDto dto = mypageService.getUser(userid);
 		mView.addObject("dto",dto);
 		mView.setViewName("/mypage/updateform");
 		return mView;
@@ -100,7 +99,7 @@ public class MypageController {
 	
 	
 	
-	@PostMapping("/update") //유저수정
+	@PostMapping("/rivise") //유저수정ㅎ
 	public String update(@ModelAttribute UserDto dto,
 			@RequestParam ArrayList<MultipartFile> upload_photo,
 			@RequestParam String address2, @RequestParam String address1,

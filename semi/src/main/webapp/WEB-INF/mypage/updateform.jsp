@@ -101,7 +101,7 @@ $("#inputPhoto").change(function() {
 		<div class="revise_form" id="revise_form"   >
 
 			<h3>회원가입수정</h3>
-			<form action="mypage" method="post" class="photo" enctype="multipart/form-data" >
+			<form action="rivise" method="post" class="photo" enctype="multipart/form-data" >
 				<table class="userimpo" style="text-align: center;" ">
 
 					<tr>

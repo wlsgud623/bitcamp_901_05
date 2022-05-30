@@ -6,15 +6,15 @@
 <html>
 <head>
 
-
+<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Song+Myung&display=swap" rel="stylesheet">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+ <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="css" href="css.css">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="UTF-8">
 <title>모두의 밥상</title>
-   <script type="text/javascript">
+   <script type="text/javascript"></script>
 
 
 <style>
@@ -36,18 +36,23 @@ s .page-header{
 
 body * {
 	font-size: 15px;
-	margin: 0px;
+	
 	padding: 0px;
 	list-style: none;
+	font-family: 'Gowun Dodum'; 
+	color : black;
 }
 
-.heshi {
+.heshi > li > a {
 
-	position: absolute;
+	
+	top: 100px;
 	font-size: 20px;
-	right: 80%;
-	height: 3px;
+	left: 86%;
+	cursor: pointer;
 	float: right;
+	text-decoration: none;
+ 	color: black;
 }
 
 .s_value{
@@ -63,9 +68,12 @@ body * {
 } 
 
 *{
-    margin: 0;
+    
  	padding: 0;
- 	list-style-type: none;}
+ 	list-style-type: none;
+ 	letter-spacing : 0.2em;
+ 	
+ 	}
     
 #container{
 	margin-top:30px;
@@ -109,7 +117,7 @@ ul.menu li{
 	 font-weight: bold;
 	 color: #eee;
 	 text-decoration: none;	
-	 font-size: 20px;
+	 font-size: 2px;
  	 
  }
  
@@ -118,10 +126,10 @@ ul.menu li{
 	 width: 150px;
 	 height: 48px;
 	 margin-left: 150px;
-	 margin-top: 0px;
+	 margin-top: 5px;
 	 background-color:  #c12231; 
 	 /* position: relative; */
-	 font-size: 40px; 
+	 font-size: 1.5rem; 
 	 text-align: center;
 
  }
@@ -131,9 +139,10 @@ ul.menu li{
      color: black;
  }
     ul.menu li ul.sub{
-     position: absolute;
+   
  }
     ul.menu{
+    margin-top:10px;
      zoom: 1;
  }
     ul.menu:after{
@@ -148,23 +157,64 @@ ul.menu li{
  	float: left;
  }
  
-.dropdown-menu > .kind {    
-	 position: absolute;    
-	 top: 0;    
-	 background: #6BD089;    
-	 width: 80%;    
-	 left: -9999px;    
- }
 
- .kind:hover {    
-	 position: absolute;    
-	 top: 0;    
-	 background: #6BD089;    
-	 width: 80%;    
-	 left: 100%;
+ .hider{
+	display: none;
  }
  
+
+ .side_item a{
+	font-weight:bold;
+ 	font-size: 1.5rem;
+ 	margin-right: 10px;
+ 	word-spacing : 6rem;
+ 	text-decoration: none;
+
+    line-height: 25px;
+    color: #777777;
+    padding: 5px 20px 7px;
+    border: 1px solid #c1c1c1;
+    	
+    border-radius: 50px;
+    	
+	}
+ .side_item a:hover{
+	background: #c12231; 
+	color: #fff;
+	border:1px solid #c12231;
+	}
+ 	
+ }
  
+.dropdown-item:hover{
+	background-color: #E0E0E0; 
+}
+ 
+
+.dropdown-item{
+font-weight: bold;
+float: left;
+}
+
+
+a:link {
+  color : black;
+  text-decoration: none;
+}
+
+a:hover {
+  color : black;
+  text-decoration: underline;
+}
+a:active {
+  color : black;
+  text-decoration: none;
+}
+
+.dropdown-menu{
+margin-top: 10px;
+box-shadow: 2px 2px 2px 2px gray;
+}
 </style>
 <script type="text/javascript">
 
@@ -174,152 +224,161 @@ $(function () {
 		var push = $("#s_value").val();
 		location.href='${root}/search?research='+push;
 	});
-});
 
+
+
+
+    //서브메뉴 숨기기
+    var li=$(".dropdown-item").next();
+    while(li.length!=0){
+    	li.addClass("hider");
+    	li=li.next();
+    }
+    
+    $(".dropdown-item").mouseover(function () {
+    	$(this).siblings().removeClass("hider");
+    	$(this).parent().siblings().eq(0).children().eq(0).siblings().addClass("hider");
+    	$(this).parent().siblings().eq(1).children().eq(0).siblings().addClass("hider");
+    	
+	});
+    
+    
+  
+});
 </script>
 <c:set var="root" value="<%=request.getContextPath() %>"/> <!-- 절대경로 -->
 <body>
 <br><br>
 
 		<!-- 로고 -->
-	<header class="page-header" role="banner"> 
+	<header class="page-header" role="banner" > 
 		
-		
+		<img alt="logo" src="../img/logo.png" style="width:250px; position: absolute; top:70px; right: 86%; " >
 		<!-- 검색창 -->
-		<div class="searchbar" style="width: 1500px;">
-			
-				<img alt="logo" src="../img/logo.png" style="width:150px; position: absolute; top:70px; left: 200px;" >
-			
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="text"  id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." style="width: 600px;height: 70px;border-radius: 50px; border: 2px solid gray; text-align: center;">&nbsp;&nbsp;&nbsp;
-			<button type="button" class="search" style="border-style: none; background-color:white;"><b class="glyphicon glyphicon-search " style="width: 70px; height: 70px;"></b> </button>
+		<div class="searchbar"  style="text-align: center;">
+		
+			<input type="text"  id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." style="width: 700px;height: 70px;border-radius: 50px; border: 2px solid gray; text-align: center;">&nbsp;&nbsp;&nbsp;
+			<button type="button" class="search" style="border-style: none; 
+			background-color:white;"><b class="glyphicon glyphicon-search " style="width: 70px; height: 70px;"></b> </button>
 			
 		
-		<!-- 테그 -->
-		<div class="heshi" style="color: black; font-weight: bold; position: absolute;right: 15%; top:95px;">
-			<ul>
+		<!-- 테그ㅇ -->
+		
+			<ul class="heshi" >
 				<li>
-				<a href="#" onclick="document.topfrm.s_value.value='라면';document.topfrm.submit();"># 라면 # 냉면</a><br>
-				<a href="#" onclick="document.topfrm.s_value.value='김치찌개';document.topfrm.submit();"># 김치찌개</a>
+				<a onclick="href='/search?research=면'"># 라면 # 냉면</a> <br><br>
+				<a onclick="href='/search?research=김치'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 김치찌개</a>
 			</li>
 			</ul>
 			<br><br>
-			</div>		
+				
 		</div> 
 		</header>
 		
-		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<nav class="navbar navbar-expand-sm" style="background-color: #c12231;">
 
         <!-- Toggler/collapsibe Button -->
         
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <!-- 리스트 : 부트스트랩은 모바일 우선이라 화면이 작으면 아래로 쌓아서 내려온다 -->
             <ul class="navbar-nav navbar-dark">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="padding-right: 25px;">
                     <!-- 드롭다운 메뉴-->
-                    <a class="navbar-toggler-icon nav-link dropdown-toggle" href="#" data-toggle="dropdown" ></a>
+                    <a class="navbar-toggler-icon nav-link dropdown-toggle" data-toggle="dropdown" style="widows: 50px; height: 50px; font-weight: bold; padding-left: 25px;" ></a>
                     <div class="dropdown-menu" >
                     
                         
-                        <ul style="width: 600px;">
+                        <ul class="side_item" style="width: 1650px;">
                         
-                       		 <li> <a class="dropdown-item" href="#" style="float: left;">종류</a></li>
+                       		 <li class="dropdown-item" style="font-size: 2rem; color: gray;">종류</li>
 			                 
                          
-                     			<li><a href="">#면</a></li>
+                     			
 
-                                 <li><a href="">#밥/죽/떡</a></li>
-
-                                 <li><a href="">#국</a></li>
-
-                                 <li><a href="">#탕</a></li>
-
-                                 <li><a href="">#밑반찬</a></li>
-
-                                 <li><a href="">#김치/장류</a></li>
-
-                                 <li><a href="">#양식</a></li>
-
-                                 <li><a href="">#퓨전</a></li>
+                                 <li><a href="/search?research=밥/죽">#밥/죽</a></li>
+                                 <li><a href="/search?research=반찬">#반찬</a></li>
+                                 <li><a href="/search?research=국물">#국물</a></li>
+                                 <li><a href="/search?research=면">#면</a></li>
+                                 <li><a href="/search?research=디저트">#디저트</a></li>
+                                 <li><a href="/search?research=양식">#양식</a></li>
+                                 <li><a href="/search?research=일식">#일식</a></li>
+                                 <li><a href="/search?research=중식">#중식</a></li> 
+                                 <li><a href="/search?research=퓨전">#퓨전</a></li>
+                                 <li><a href="/search?research=떡/만두">#떡/만두</a></li>
+                                 <li><a href="/search?research=빵/과자">#빵/과자</a></li>
+                                 <li><a href="/search?research=양념/소스">#양념/소스</a></li>
+                                 <li><a href="/search?research=샐러드">#샐러드</a></li>
+                                 <li><a href="/search?research=음료">#음료</a></li>
+                                 <li><a href="/search?research=기타">#기타</a></li>
+                               
 
 								
 							</ul>
 							
-							 <ul>
-                        
-                       		 <li> <a class="dropdown-item" href="#">방법</a></li>
-			                  <ul class="kind2" style="display: none;">
+							 <ul class="side_item" style="width: 1650px;">
+							 <li class="dropdown-item" style="font-size: 2rem; color: gray;">재료</li>
+			                 
                          
-                     			 <li><a href="">#끓임</a></li>
+                     			 <li><a href="/search?research=소고기">#소고기</a></li>
+                                 <li><a href="/search?research=돼지고기">#돼지고기</a></li>
+                                 <li><a href="/search?research=닭고기">#닭고기</a></li>
+                                 <li><a href="/search?research=육류">#육류</a></li>
+                                 <li><a href="/search?research=해물">#해물</a></li>
+                                 <li><a href="/search?research=채소류/버섯">#채소류/버섯</a></li>
+                                 <li><a href="/search?research=계란/유제품">#계란/유제품</a></li>
+                                 <li><a href="/search?research=쌀">#쌀</a></li>
+                                 <li><a href="/search?research=밀가루">#밀가루</a></li>
+                                 <li><a href="/search?research=콩/견과류">#콩/견과류</a></li>
+                                 <li><a href="/search?research=기타">#기타</a></li>
+                        
+                       		 
 
-                                 <li><a href="">#조림</a></li>
-
-                                 <li><a href="">#볶음</a></li>
-
-                                 <li><a href="">#부침</a></li>
-
-                                 <li><a href="">#구이</a></li>
-
-                                 <li><a href="">#비빔</a></li>
-
-                                 <li><a href="">#삶기</a></li>
-
-                                 <li><a href="">#튀김</a></li>
-
-                                 <li><a href="">#기타</a></li>
-
-
-								</ul>
+								
 							</ul>
 							
-							 <ul>
+							 <ul class="side_item" style="width: 1650px;">
                         
-                       		 <li> <a class="dropdown-item" href="#">재료</a></li>
-			                  <ul class="kind3" style="display: none;">
-                         
-                     			 <li><a href="">#육류</a></li>
+                       		 <li class="dropdown-item" style="font-size: 2rem; color: gray;">방법</li>
+			                  
+		                         <li><a href="/search?research=구이">#구이</a></li>
+		                         <li><a href="/search?research=찜">#찜</a></li>
+                     			 <li><a href="/search?research=끓임">#끓임</a></li>
+                                 <li><a href="/search?research=볶음">#볶음</a></li>
+                                 <li><a href="/search?research=튀김">#튀김</a></li>
+ 								 <li><a href="/search?research=조림">#조림</a></li>
+                                 <li><a href="/search?research=부침">#부침</a></li>
+								 <li><a href="/search?research=무침">#무침</a></li>
+                                 <li><a href="/search?research=비빔">#비빔</a></li>
+                                 <li><a href="/search?research=삶음">#삶기</a></li>
+							 	 <li><a href="/search?research=회">#회</a></li>
+							 	 <li><a href="/search?research=절임">#절임</a></li>
+							     <li><a href="/search?research=데치기">#데치기</a></li>
+                                 <li><a href="/search?research=기타">#기타</a></li>
 
-                                 <li><a href="">#채소류</a></li>
-
-                                 <li><a href="">#해물류</a></li>
-
-                                 <li><a href="">#가공식품</a></li>
-
-                                 <li><a href="">#쌀</a></li>
-
-                                 <li><a href="">#밀가루</a></li>
-
-                                 <li><a href="">#콩/견과류</a></li>
-
-                                 <li><a href="">#기타</a></li>
-
-
-
-								</ul>
 							</ul>
 			             
                         
                         <!--  <a class="dropdown-item" href="#">재료</a>
-                        <a class="dropdown-item" href="#">방법</a>-->
+                        <a class="dropdown-item" href="#">방법ㄹㄹ</a>-->
                       
                       
                       </div>
                       
-                      
-			      
+                    
+			     <p style=clear:both;></p>
                 
-                <li class="nav-item" style="color: white;">
-                    <a class="nav-link" href="#">랭킹</a>
+                <li class="nav-item" style="color: white  ; font-size: 2rem; ">
+                    <a class="nav-link" href="ranking/ranking"  style="position: absolute; color:white; left: 10%;">랭킹</a>
                 </li>
-
-                <li class="form-inline ml-auto nav-item" style="color: white; float: right;">
-                    <a class="nav-link" href="member/signup">회원가입</a>
+ 		
+                <li class="nav-item" style="color: white; float: right; font-size: 2rem;">
+                    <a class="nav-link" href="member/signup" style="position: absolute; color:white; right: 0;">회원가입</a>
                 </li>
-                <li class="form-inline ml-auto nav-item" style="color: white; float: right;">
-                    <a class="nav-link " href="/login/login">로그인</a>
+                <li class="nav-item" style="color: white; float: right; font-size: 2rem;">
+                    <a class="nav-link " href="/login" style="position: absolute; color:white; right: 10%;">로그인</a>
                 </li>
-            </ul>
-            
+           
+            </ul>  
           
         </div>
     </nav>
