@@ -111,7 +111,7 @@ section {
 </head>
 
 <body>
-<!-- footer 시작-->
+<!-- footer 시작 -->
 
  
    <div id="wrap" class="wrap">
@@ -130,7 +130,7 @@ section {
       	   </p>
        
          <p class="company" style="text-align: center; font-size: 1.5rem;">
-           ADRESS : 서울 강남구 강남대로94길 20, 삼오빌딩 9층
+           ADRESS : 서울 강남구 강남대로 94길 20, 삼오빌딩 9층
             <br> 고객 문의: 02-3486-9600 <br>
             <b style="color: white;">COPYRIGHT @ 2022 </b>
          </p>

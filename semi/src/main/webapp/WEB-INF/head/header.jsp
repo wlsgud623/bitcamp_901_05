@@ -243,7 +243,7 @@ $(function () {
 			background-color:white;"><b class="glyphicon glyphicon-search " style="width: 70px; height: 70px;"></b> </button>
 			
 		
-		<!-- 테그 -->
+		<!-- 테그ㅇ -->
 		
 			<ul class="heshi" >
 				<li>
