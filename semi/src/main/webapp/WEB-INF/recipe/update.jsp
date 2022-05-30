@@ -70,6 +70,11 @@
 		//요리 단계별 사진
 		$(document).on("change", ".smallPhoto", function() {
 			img_preview("#"+$(this).attr("id"), 200, 150);
+			
+			if ($(this).prev().prev().val() == "d") {
+				$(this).prev().prev().val("u");
+			}
+			
 			$("#stepPopup").remove();
 		});
 		
@@ -108,22 +113,120 @@
 			var tr=$(this).parent().parent();
 			var table=tr.parent().parent();
 			var td=table.children().children().children();
+			var nextTable="";
 			
-			table.prev().remove();
-			table.prev().remove();
-			table.next().remove();
-			
-			if (td.eq(3).children().eq(0).val() == "u") {
-				for (i = 3; i < td.length; i+=3) {
-					if (td.eq(i).length!=0 && td.eq(i).children().eq(0).val()!="n") {
-						td.eq(i).children().eq(0).val("d");
-					} else {
-						td.eq(i).parent().remove();
-					}
+			var b=0;
+			for (i = 1; i < ingClass; i++) {
+				if (ingIfDel($("#write_ing"+i))=="u" || ingIfDel($("#write_ing"+i))=="n") {
+					b++;
 				}
-				$(table).css("display", "none");
+			}
+			if (b<2) {
+				alert("최소 1개의 재료가 필요합니다");
+				return;
+			}
+			
+			if (table.prev().length==0 && table.next().next().length==0) {
+				alert("최소 1개의 재료가 필요합니다");
 			} else {
-				table.remove();
+				nextTable=table.next().next();
+				
+				if (td.eq(3).children().eq(0).val() == "u") {
+					for (i = 3; i < td.length; i+=3) {
+						if (td.eq(i).length!=0 && td.eq(i).children().eq(0).val()!="n") {
+							td.eq(i).children().eq(0).val("d");
+						} else {
+							td.eq(i).parent().remove();
+						}
+					}
+					$(table).next().css("display", "none");
+					$(table).css("display", "none");
+				} else {
+					table.next().remove();
+					table.remove();
+				}
+				writeOrder--;
+				
+				while (nextTable.length!=0) {
+					ingOrder(nextTable, -1);
+					nextTable=nextTable.next().next();
+				}
+			}
+		})
+		
+		//재료 묶음 up
+		$(document).on("click", ".tab_up", function() {
+			var table=$(this).parent().parent().parent().parent();
+			var button=table.next();
+			var prevTable=table.prev().prev();
+			var prevButton="";
+			
+			var b=true;
+			while (prevTable.length!=0) {
+				if (ingIfDel(prevTable)!="d") {
+					b=false;
+				}
+				prevTable=prevTable.prev().prev();
+			}
+			
+			if (b) {
+				alert("첫번째 묶음입니다");
+				return;
+			}
+			
+			if (table.prev().length==0) {
+				alert("첫번째 묶음입니다");
+			} else {
+				prevTable=table.prev().prev();
+				prevButton=button.prev().prev();
+				while (ingIfDel(prevTable)=="d") {
+					prevTable=prevTable.prev().prev();
+					prevButton=prevButton.prev().prev();
+				}
+				
+				ingOrder(table, -1);
+				ingOrder(prevTable, +1);
+				
+				$(prevTable).insertAfter(button);
+				$(prevButton).insertAfter(prevTable);
+			}
+		})
+		
+		//재료 묶음 down
+		$(document).on("click", ".tab_down", function() {
+			var table=$(this).parent().parent().parent().parent();
+			var button=table.next();
+			var nextTable=table.next().next();
+			var nextButton="";
+			
+			var b=true;
+			while (nextTable.length!=0) {
+				if (ingIfDel(nextTable)!="d") {
+					b=false;
+				}
+				nextTable=nextTable.next().next();
+			}
+			
+			if (b) {
+				alert("마지막 묶음입니다");
+				return;
+			}
+			
+			if (table.next().next().length==0) {
+				alert("마지막 묶음입니다");
+			} else {
+				nextTable=table.next().next();
+				nextButton=button.next().next();
+				while (ingIfDel(nextTable)=="d") {
+					nextTable=nextTable.next().next();
+					nextButton=nextButton.next().next();
+				}
+				
+				ingOrder(table, +1);
+				ingOrder(nextTable, -1);
+				
+				$(table).insertAfter(nextButton);
+				$(button).insertAfter(table);
 			}
 		})
 		
@@ -134,7 +237,7 @@
 			
 			var i=0;
 			var b=true;
-			while (tr.siblings().eq(i).length!=0) {
+			while (tr.siblings().eq(i).length != 0) {
 				if (stepIfDel(tr.siblings().eq(i)) != "d") {
 					b=false;
 				}
@@ -167,11 +270,25 @@
 		//요리 단계 up
 		$(document).on("click", ".step_up", function() {
 			var tr=$(this).parent().parent();
+			var prevTr=tr.prev();
 			
-			if (tr.prev().length==0) {
+			var b=true;
+			while (prevTr.length != 0) {
+				if (stepIfDel(prevTr) != "d") {
+					b=false;
+				}
+				prevTr=prevTr.prev();
+			}
+			
+			if (b) {
+				alert("첫번째 단계입니다");
+				return;
+			}
+			
+			if (tr.prev().length == 0) {
 				alert("첫번째 단계입니다");
 			} else {
-				var prevTr=tr.prev();
+				prevTr=tr.prev();
 				
 				stepOrder(tr, -1, 0);
 				stepOrder(prevTr, +1, 0);
@@ -183,11 +300,25 @@
 		//요리 단계 down
 		$(document).on("click", ".step_down", function() {
 			var tr=$(this).parent().parent();
+			var nextTr=tr.next();
 			
-			if (tr.next().length==0) {
+			var b=true;
+			while (nextTr.length != 0) {
+				if (stepIfDel(nextTr) != "d") {
+					b=false;
+				}
+				nextTr=nextTr.next();
+			}
+			
+			if (b) {
+				alert("마지막 단계입니다");
+				return;
+			}
+			
+			if (tr.next().length == 0) {
 				alert("마지막 단계입니다");
 			} else {
-				var nextTr=tr.next();
+				nextTr=tr.next();
 				
 				stepOrder(tr, +1, 0);
 				stepOrder(nextTr, -1, 0);
@@ -211,10 +342,31 @@
 			stepCount++;
 		});
 		
+		//단계사진 삭제 버튼생성
+		$(document).on("mouseenter", ".stepPhoto", function() {
+			$(this).append("<span class='glyphicon glyphicon-remove'"
+					+"id='stepPopup' title='사진삭제'></span>");
+		});
+		$(document).on("mouseleave", ".stepPhoto", function() {
+			$("#stepPopup").remove();
+		});
+		
+		//단계사진 삭제
+		$(document).on("click", "#stepPopup", function() {
+			if ($(this).parent().children().eq(0).val() == "u") {
+				$(this).parent().children().eq(0).val("d");
+			}
+			
+			$(this).prev().val("");
+			$(this).prev().prev()
+				.html('<br><img src="../image/Upload-Icon.png" style="width: 70px;">'
+					+'<br><br><span style="font-size: 20px;">사진을 등록해주세요</span>');
+		});
+		
 		//완성사진 삭제 버튼생성
-		$(".com_photo").hover(function() {
-			$(this).append("<button type='button' style='float: right;'"
-				+"class='btn btn-danger' id='delPopup'>X</button>");
+		$(".compPhoto").hover(function() {
+			$(this).append("<span class='glyphicon glyphicon-remove'"
+					+"id='delPopup' title='사진삭제'></span>");
 		}, function() {
 			$("#delPopup").remove();
 		});
@@ -224,7 +376,8 @@
 			$(this).prev().val("d");
 			$(this).prev().prev().val("");
 			$(this).prev().prev().prev()
-				.html('<br><br><img src="../image/Upload-Icon.png" style="width: 70px;">');
+				.html('<br><img src="../image/Upload-Icon.png" style="width: 70px;">'
+					+'<br><br><span style="font-size: 19px;">사진을 등록해주세요</span>');
 		});
 		
 		//태그
@@ -335,8 +488,10 @@
 	//재료 추가
 	function col_append(i) {
     	var value=$(".ing_hidden"+i).val();
+    	var td1=$("#write_ing"+i).children().children().eq(0).children().eq(1);
+    	var order=td1.children().eq(1).val();
     	
-		$("#write_ing"+i).append(ingTr(i, value, 0));
+		$("#write_ing"+i).append(ingTr(i, value, order));
 		
 		var rs=$("#choose_class"+i).attr("rowspan");
 		$("#choose_class"+i).attr("rowspan",parseInt(rs)+1);
@@ -344,16 +499,36 @@
 	
 	//재료 묶음 추가
 	function tab_append() {
-		var str='<br><br>'
-				+'<table class="ingFt" id="write_ing'+ingClass+'"'
+		var str='<table class="ingFt" id="write_ing'+ingClass+'"'
 				+'style="width: 800px;">'
-    			+ingTr(ingClass, "", 1)
-    			+ingTr(ingClass, "", 0)
-    			+'</table>'
-				+'<button type="button" class="btn btn-default"'
+				+ingTr(ingClass, "", 0)
+				+ingTr(ingClass, "", writeOrder)
+				+'</table>'
+				+'<button type="button" class="btn btn-default ingPlus"'
 				+'onclick="col_append('+ingClass+')">재료 추가</button>';
 		$("#ingredient").append(str);
 		ingClass++;
+		writeOrder++;
+	}
+	
+	//재료 묶음 순서 조정 : 올릴땐 sign=-1, 내릴땐 sign=1
+	function ingOrder(table, sign) {
+		var tr=table.children().children();
+		var firstTd1=tr.eq(0).children().eq(1);
+		var value=firstTd1.children().eq(1).val();
+		firstTd1.children().eq(1).val(parseInt(value)+sign);
+
+		for (i=1; tr.eq(i).length!=0; i++) {
+			var td1=tr.eq(i).children().eq(0);
+			var value=td1.children().eq(1).val();
+			td1.children().eq(1).val(parseInt(value)+sign);
+		}
+	}
+	
+	//재료 묶음 ingDel값 추출
+	function ingIfDel(table) {
+		var ingDel=table.children().children().eq(0).children().eq(3).children().eq(0).val();
+		return ingDel;
 	}
 	
 	//요리 단계 추가
@@ -366,20 +541,20 @@
 	function stepOrder(tr, sign, ifDel) {
 		var th=tr.children().eq(0);
 		var td2=tr.children().eq(2);
-		var idx=th.children().eq(2).val();
+		var idx=th.children().eq(4).val();
 		
 		if (ifDel==1) {
 			th.children().eq(1).val("d");
 		}
 		
-		th.children().eq(2).val(parseInt(idx)+sign);
+		th.children().eq(4).val(parseInt(idx)+sign);
 		td2.children().eq(0).attr("for",parseInt(idx)+sign);
 		td2.children().eq(1).attr("id",parseInt(idx)+sign);
 	}
 	
 	//요리 단계 idx값 추출
 	function stepIdx(tr) {
-		var idx=tr.children().eq(0).children().eq(2).val();
+		var idx=tr.children().eq(0).children().eq(4).val();
 		return parseInt(idx);
 	}
 	
@@ -415,19 +590,23 @@
 	}
 	
 	//재료 추가 html : 첫행 first=0, 그 외 first=아무 값
-	function ingTr(idx, val, first) {
-		if (first==1) {
+	function ingTr(idx, val, ingorder) {
+		if (ingorder==0) {
 			return '<tr>'
-				+'<th id="choose_class'+idx+'" rowspan="2" style="width: 240px;">'
+				+'<th id="choose_class'+idx+'" rowspan="2">'
 				+'<input type="text" class="ing_class" idx="'+idx+'" required="required"'
-				+'placeholder="재료묶음">'
-				+'<br><br>'
+				+'placeholder="재료묶음"><br>'
 				+'<button type="button" class="btn btn-default tab_delete"'
-	    		+'style="font-size: 0.8rem; height: 25px;">삭제</button>'
+    			+'style="font-size: 0.8rem; height: 25px;">삭제</button>'
+    			+'<button type="button" class="btn btn-default tab_up"'
+    			+'style="font-size: 0.8rem; height: 25px;">위로</button>'
+    			+'<button type="button" class="btn btn-default tab_down"'
+    			+'style="font-size: 0.8rem; height: 25px;">아래로</button>'
 				+'</th>'
 				+'<td>'
 				+'<input type="hidden" name="bundle"'
 				+'class="forms ing_hidden'+idx+'" value="">'
+				+'<input type="text" name="ingOrder" value="'+writeOrder+'">'
 				+'<input type="text" name="ingName" class="forms ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
@@ -445,6 +624,7 @@
 				+'<td>'
 				+'<input type="hidden" name="bundle"'
 				+'class="forms ing_hidden'+idx+'" value="'+val+'">'
+				+'<input type="text" name="ingOrder" value="'+ingorder+'">'
 				+'<input type="text" name="ingName" class="forms ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
@@ -470,9 +650,11 @@
 			+'<th>'
 			+'<input type="hidden" name="stepNum" class="forms" value="new">'
 			+'<input type="hidden" name="stepDel" class="forms" value="n">'
-			+'Step&ensp'
-			+'<input type="text" name="stepSec" class="forms"'
-    		+'value="'+idx+'" readonly="readonly">'
+			+'<span class="glyphicon glyphicon-menu-up step_up"></span>'
+			+'<br>Step&ensp;'
+			+'<input type="text" name="stepSec" class="stepSec"'
+    		+'value="'+idx+'" readonly="readonly"><br>'
+    		+'<span class="glyphicon glyphicon-menu-down step_down"></span>'
 			+'</th>'
 			+'<td>'
 			+'<textarea name="text" style="resize: none; width: 400px; height: 150px;"'
@@ -480,9 +662,9 @@
 			+'placeholder="조리법을 단계별로 자세히 적어주세요"></textarea>'
 			+'<input type="hidden" name="text" value="split">'
 			+'</td>'
-			+'<td>'
-			+'<label for="'+idx+'" style="text-align: center;'
-			+'background-color: lightgray; width: 200px; height: 150px; cursor: pointer;">'
+			+'<td class="stepPhoto">'
+			+'<input type="hidden" name="stepPhotoDel" value="n">'
+			+'<label for="'+idx+'" class="inputStepLabel">'
 			+'<img src="../img/stepex'+(idx%5)+'.jpg" class="inputStepLabel">'
 			+'<span class="stepImgHere">사진을 등록해주세요</span>'
 			+'</label>'
@@ -629,9 +811,6 @@
 	    <c:set var="end" value="${bundleCount[0]-1}"/>
 	    <div id="ingredient" style="text-align: center; width: 850px;">
 	    	<c:forEach var="writeNo" begin="1" end="${ingClass}" varStatus="i">
-		    	<c:if test="${i.count!=1}">
-		    		<br><br>
-		    	</c:if>
 			    <table class="ingFt" id="write_ing${writeNo}" style="width: 800px;">
 			    	<c:forEach var="ing" items="${ingredient}" varStatus="j"
 			    	begin="${begin}" end="${end}">
@@ -640,15 +819,17 @@
 					    		<th id="choose_class${writeNo}" rowspan="${bundleCount[i.count-1]}">
 					    			<input type="text" class="ing_class" idx="${writeNo}"
 					    			required="required" value="${ing.bundle}">
-					    			<c:if test="${i.count!=1}">
-					    				<br><br>
-										<button type="button" class="btn btn-default tab_delete"
-				    					style="font-size: 0.8rem; height: 25px;">삭제</button>
-					    			</c:if>
+					    			<button type="button" class="btn btn-default tab_delete"
+				    				style="font-size: 0.8rem; height: 25px;">삭제</button>
+				    				<button type="button" class="btn btn-default tab_up"
+				    				style="font-size: 0.8rem; height: 25px;">위로</button>
+				    				<button type="button" class="btn btn-default tab_down"
+				    				style="font-size: 0.8rem; height: 25px;">아래로</button>
 					    		</th>
 					    		<td>
 					    			<input type="hidden" name="bundle" value="${ing.bundle}"
 					    			class="forms ing_hidden${writeNo}">
+					    			<input type="text" name="ingOrder" value="${ing.writeorder}">
 					    			<input type="text" name="ingName" value="${ing.name}"
 					    			class="forms ing_name" required="required">
 					    		</td>
@@ -669,6 +850,7 @@
 						    	<td>
 						    		<input type="hidden" name="bundle" value="${ing.bundle}"
 						    		class="forms ing_hidden${writeNo}">
+						    		<input type="text" name="ingOrder" value="${ing.writeorder}">
 						    		<input type="text" name="ingName" value="${ing.name}"
 						    		class="forms ing_name" required="required">
 						    	</td>
@@ -689,7 +871,7 @@
 					    </c:if>
 				    </c:forEach>
 			    </table>
-		    	<button type="button" class="btn btn-default"
+		    	<button type="button" class="btn btn-default ingPlus"
 		    	onclick="col_append(${writeNo})">재료 추가</button>
 		    	<c:set var="begin" value="${begin+bundleCount[i.count-1]}"/>
 	    		<c:set var="end" value="${end+bundleCount[i.count]}"/>
@@ -705,31 +887,33 @@
 	    		<th>
 	    			<input type="hidden" name="stepNum" class="forms" value="${step.num}">
 	    			<input type="hidden" name="stepDel" class="forms" value="u">
-	    			Step&ensp;
+	    			<span class="glyphicon glyphicon-menu-up step_up"></span>
+	    			<br>Step&ensp;
 	    			<input type="text" name="stepSec" class="stepSec"
-	    			value="${step.step}" readonly="readonly">
+	    			value="${step.step}" readonly="readonly"><br>
+	    			<span class="glyphicon glyphicon-menu-down step_down"></span>
 	    		</th>
 	    		<td>
 	    			<textarea name="text" class="forms" required="required"
 	    			style="resize: none; width: 400px; height: 150px;">${step.text}</textarea>
 	    			<input type="hidden" name="text" value="split">
 	    		</td>
-	    		<td>
-	    			<label for="${i.count}" style="text-align: center; background-color: lightgray;
-					width: 200px; height: 150px; cursor: pointer;">
-						<img src="../upload/${step.photo}"
-						style="width: 200px; height: 150px; object-fit: cover;">
+	    		<td class="stepPhoto">
+	    			<input type="hidden" name="stepPhotoDel" value="u">
+	    			<label for="${i.count}" class="inputStepLabel">
+	    				<c:if test="${step.photo!='no image'}">
+							<img src="../upload/${step.photo}"
+							style="width: 200px; height: 150px; object-fit: cover;">
+						</c:if>
+						<c:if test="${step.photo=='no image'}">
+							<img src="../img/stepex${i.count%5}.jpg" class="inputStepLabel">
+							<span style="font-size: 20px;">사진을 등록해주세요</span>
+						</c:if>
 					</label>
 	    			<input type="file" name="upload_step" id="${i.count}" accept=".jpg, .jpeg, .png"
 	    			style="opacity: 0; font-size: 0px;" class="forms smallPhoto">
 	    		</td>
 	    		<td style="width: 40px;">
-	    			<button type="button" class="step_up btn btn-info">
-	    				<span class="glyphicon glyphicon-triangle-top"></span>
-					</button>
-					<button type="button" class="step_down btn btn-success">
-	    				<span class="glyphicon glyphicon-triangle-bottom"></span>
-					</button>
 					<button type="button" class="step_del btn btn-danger">
 	    				<span class="glyphicon glyphicon-remove"></span>
 	    			</button>
@@ -750,10 +934,8 @@
 	    <table class="compFt" style="width: 800px; height: 200px;">
 	    	<tr>
 	    		<c:forTokens var="photo" items="${recipe.complete_photo}" delims="," varStatus="i">
-	    			<td class="com_photo" style="width: 200px; vertical-align: top;">
-		    			<label for="com_photo${i.count}" style="text-align: center;
-		    			background-color: lightgray; width: 192px; height: 144px;
-		    			cursor: pointer;">
+	    			<td class="compPhoto" style="width: 200px; vertical-align: top;">
+		    			<label for="com_photo${i.count}" class="inputCompLabel">
 		    				<c:if test="${photo=='no image'}">
 		    					<img src="../img/compex${i.count}.jpg" class="compStepLabel">
 		    					<span class="stepImgHere">사진을 등록해주세요</span>

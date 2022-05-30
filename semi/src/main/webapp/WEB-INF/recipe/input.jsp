@@ -153,21 +153,6 @@
 			}
 		})
 		
-		//재료 묶음 중간 추가
-		$(document).on("click", ".tab_add", function() {
-			var table=$(this).parent().parent().parent().parent();
-			var idx=stepIdx(tr)+1;
-			var nextTr=tr.next();
-			
-			while(nextTr.length!=0) {
-				stepOrder(nextTr, +1);
-				nextTr=nextTr.next();
-			}
-
-			$(tr).after(stepTr(idx));
-			stepCount++;
-		});
-		
 		//요리 단계 지우기
 		$(document).on("click", ".step_del", function() {
 			var tr=$(this).parent().parent();
@@ -448,8 +433,7 @@
 			return '<tr>'
 				+'<th id="choose_class'+idx+'" rowspan="2">'
 				+'<input type="text" class="ing_class" idx="'+idx+'" required="required"'
-				+'placeholder="재료묶음">'
-				+'<br><br>'
+				+'placeholder="재료묶음"><br>'
 				+'<button type="button" class="btn btn-default tab_delete"'
 	    		+'style="font-size: 0.8rem; height: 25px;">삭제</button>'
 	    		+'<button type="button" class="btn btn-default tab_up"'
@@ -653,7 +637,7 @@
 		    	<tr>
 		    		<th id="choose_class1" rowspan="2">
 		    			<input type="text" class="ing_class" idx="1" required="required"
-		    			placeholder="재료묶음">
+		    			placeholder="재료묶음"><br>
 		    			<button type="button" class="btn btn-default tab_delete"
 	    				style="font-size: 0.8rem; height: 25px;">삭제</button>
 	    				<button type="button" class="btn btn-default tab_up"
