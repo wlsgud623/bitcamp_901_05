@@ -2,24 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.MypageMapperInter">
 	<select id="getUser" parameterType="String" resultType="user">
-	<!--  user id   -->
-		SELECT * FROM User where userid=#{UserID}
+		SELECT * FROM User where USERID=#{userid}
 	</select>
 	<update id="updateUser" parameterType="user">
-		UPDATE User SET name=#{name},password=#{password},hp=#{hp}, email=#{email} intro=#{intro} tier=#{tier} where userid=#{UserID}
+		UPDATE User SET hp=#{hp}, email=#{email}, intro=#{intro}, photo=#{photo} address=#{address} where USERID=#{userid}
 	</update>
 	<delete id="deleteUser" parameterType="String">
 	<!--  user 삭제  -->
-		DELETE FROM User where userid=#{UserID}
+		DELETE FROM User where USERID=#{userid}
 	</delete>
 
 	<select id="getUserRecipeList" parameterType="String" resultType="String"><!-- id,문자열string -->
 		<!--  유저 레시피처음s부터끝까지 등록된것가져오기  -->
-		SELECT ownrecipe FROM User where userid=#{UserID}
+		SELECT ownrecipe FROM User where USERID=#{userid}
 	</select>
 	<select id="getScrapRecipeList" parameterType="String" resultType="String">
 		<!--  유저 레시피처음s부터끝까지 등록된것가져오기  -->
-		SELECT scraprecipe FROM User where userid=#{UserID}
+		SELECT scraprecipe FROM User where USERID=#{userid}
 	</select>
 	
 </mapper>

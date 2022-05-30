@@ -12,8 +12,9 @@
 <style type="text/css">
 
 
-body { 
+*{ 
    line-height: 1; 
+   text-align: center;
 } 
 
 ol, ul { 
@@ -26,16 +27,6 @@ table {
 
 
 
-header{
-	padding-top: 50px;
-	text-align: center;
-}
-
-.container{
-	
-	padding-top: 100px;
-	background-color: white;
-}
 
  .memberform{
    	 padding: 10px 170px;
@@ -54,174 +45,131 @@ header{
    table.mem{
 		margin-left: 130px;
    }
+   
+  
+	
+	label.inputPhoto{
+		font-family: 'Cafe24SsurroundAir';
+		text-align: center;
+		width: 800px;
+		height: 450px;
+		cursor: pointer;
+	}
+	img.inputPhoto{
+		width: 800px;
+		height: 450px;
+		object-fit: cover;
+		margin-bottom: -250px;
+		opacity: 0.5;
+	}
+	
 
+.bodyers{
+text-align: center;
+}
 </style>
 <script type="text/javascript">
-$(function() {	 
-//아이디 중복 체크
-	$("#idcheck").click(function() {
-		$.ajax({
-			type: "get",
-			dataType: "json",
-			url: "idcheck",
-			data: {"UserID":$("#UserID").val()},
-			success: function(data) {
-				if(data.count == 0){
-					$("b.idok").text("사용 가능한 아이디 입니다.").css("color","blue");
-				}else {
-					$("b.idok").text("이미 존재하는 아이디 입니다.").css("color","red");
-					$("#UserID").val("");
-					$("#UserID").focus();
-				}	
-			}
-		});
-	});
+$(function () {
+	function img_preview(id, h) {
+		var reg=/(.*?)\/(jpg|jpeg|png|gif)$/;
+		var file=$(id)[0].files[0];
+		if (!file.type.match(reg)){
+			alert("이미지 파일이 아닙니다.");
+			return;
+		}
+		
+		var reader=new FileReader();
+		reader.onload=function(e) {
+			var str="<img src='"+e.target.result
+					+"' style='height: "+h+"px; object-fit: contain;'>";
+			$(id).prev().html(str);
+		}
+		reader.readAsDataURL($(id)[0].files[0]);
+	}
 
-//비밀번호 일치하는지 체크
-	$("#password2").keyup(function (){
-		var pass1 = $("#password1").val();
-		var pass2 = $("#password2").val();
-		if(pass1 == pass2){
-			$("b.passok").text("비밀번호가 일치합니다.").css("color","blue");
-		}else{
-			$("b.passok").text("비밀번호가 일치하지 않습니다.").css("color","red");
-		}
-	});
-//이메일 선택
-	$("#email3").change(function() {
-		var s = $(this).val();
-		if (s == "-"){
-			$("#email2").val("");
-			$("#email2").focus();
-		}else{
-			$("#email2").val(s);
-		}
-	});	
+$("#inputPhoto").change(function() {
+	      img_preview("#inputPhoto", 200);
+	   });
 });
 
-function check() {
-	var a = $("b.idok").text();
-	var b = $("b.passok").text();
-	
-	if(a != '사용 가능한 아이디 입니다.'){
-		alert("아이디체크 버튼을 눌러서 중복 확인을 해주세요.");
-		$("b.idok").text("아이디 중복 체크가 필요합니다.").css("color","red");
-		return false;
-	}else if(b != '비밀번호가 일치합니다.'){
-		alert("비밀번호를 제대로 입력해주세요.");
-		$("#password1").val("");
-		$("#password2").val("");
-		$("#password1").focus();
-		return false;
-	}else{
-		return true;
-	}
-}  
 </script>
 
 </head>
 <body>
 
-<div class="body" >
-		<header class="header">
-			<a href="../">
-			<img src="../img/logo.png">
-			</a>
-		</header>
-		<!-- container -->
-		<div class="container" id="container" style="width: 1350px; text-align: center; height: 1119px; background-color: white;">
-			<div class="memberform">
-			   <h3>회원가입</h3><br><br>
-			   <form action="insert" method="post" class="form-inline"
-			   		 style="border-top: 1px solid black; height: 1000px;"
-			   		 onsubmit="return check()">
-			   		<br>
-			   		<table style="width: 600px;" class="mem">
-			   			<tr>
-			   				<th style="width: 130px;">이 름</th>
-			   				<td>
-			   					<input type="text" name="name" style="width: 300px;" class="form-control"
-			   					required="required">
-			   				</td>
-			   			</tr>
-			   			<tr>
-			   				<th style="width: 130px;">아이디</th>
-			   				<td>
-			   					<input type="text" name="UserID" id="UserID" style="width: 300px;" class="form-control"
-			   					required="required">
-			   					&nbsp;
-			   					<button type="button" class="btn btn-sm btn-danger" id="idcheck"
-			   					style="width: 100px;">아이디체크</button>
-			   					&nbsp;
-			   					<br>
-			   					<b class="idok"></b>
-			   				</td>
-			   			</tr>
-			   			<tr rowspan="2">
-			   				<th style="width: 130px;">비밀번호</th>
-			   				<td>
-			   					<input type="password" name="password" id="password1" style="width: 300px;" class="form-control"
-			   					required="required" placeholder="비밀번호">
-							<br><br>
-			   					<input type="password" id="password2" style="width: 300px;" class="form-control"
-			   					required="required" placeholder="한번 더 입력">
-			   					&nbsp;
-			   					<br>
-			   					<b class="passok"></b>
-			   				</td>
-			   			</tr>
-			   			<tr>
-			   				<th style="width: 130px;">핸드폰</th>
-			   				<td>
-			   					<input type="text" name="hp" style="width: 300px;" class="form-control"
-			   					required="required">
-			   				</td>
-			   			</tr>
+	<div class="bodyers" >
+		<div class="revise_form" id="revise_form"   >
 
-			   			  
-			   			<tr>
-			   				<th style="width: 130px;">이메일</th>
-			   				<td>
-			   					<input type="text" name="email1" style="width: 140px;" class="form-control"
-			   					required="required">
-			   					<b>@</b>
-			   					<input type="text" name="email2" id="email2" style="width: 140px;" class="form-control"
-			   					required="required">&nbsp;
-			   					<select id="email3" class="form-control">
-			   						<option value="-">직접입력</option>
-			   						<option value="naver.com">네이버</option>
-			   						<option value="nate.com">네이트</option>
-			   						<option value="google.com">구글</option>
-			   					</select>
-			   				</td>
-			   			</tr>
-			   				<tr rowspan="2">
-			   				<th style="width: 130px;">주소</th>
-			   				<td>
-			   					<input type="text" id="address_search" name="address1" readonly style="width: 300px;" class="form-control"
-			   					placeholder="주소를 입력해주세요"/>		
-			   					&nbsp;
-			   					<button type="button" class="btn btn-sm btn-primary" id="search_btn"
-			   					style="width: 100px;">주소 검색&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span></button>
-			   					&nbsp;
-							<br><br>
-			   					<input type="text" name="address2" style="width: 300px;" class="form-control
-			   					required="required" placeholder="상세주소를 입력하세요">
-			   					&nbsp;
-			   					<br>
-			   				</td>
-			   			</tr>
-			   			
-			   		</table>
-			   		<br>
-					<button type="submit" class="btn btn-warning"
-					style="width: 700px; height: 50px; margin: 20px 40px;">회원가입</button>
-			   </form>
-			 </div>
+			<h3>회원가입수정</h3>
+			<form action="mypage" method="post" class="photo" enctype="multipart/form-data" >
+				<table class="userimpo" style="text-align: center;" ">
+
+					<tr>
+						<td style="text-align: center;"><label for="inputPhoto"
+							class="inputPhoto" style="cursor: pointer;">
+								<img class="photo" src="../image/per__son.png"
+								>
+						</label> <input type="file" id="inputPhoto" name="upload_photo"
+							accept=".jpg, .jpeg, .png" style="opacity: 0; font-size: 0px;"
+							class="form-control" required="required"></td>
+					</tr>
+					
+					<tr>
+							<th style="width: 600px; text-align: center;">아이디</th>
+							<td><input type="text" name="userid" id="userid"
+								class="form-control" value="${dto.userid}" 
+								style="width: 250px; text-align: left;"></td>
+						</tr>
+
+						<tr>
+							<th style="width: 600px; text-align: center;">핸드폰</th>
+							<td><input type="text" name="hp" class="form-control" 
+								value="${dto.hp}" style="width: 250px;"></td>
+						</tr>
+
+
+						<tr>
+							<th style="width: 600px; text-align: center;">이메일</th>
+							<td><input type="text" name="email" class="form-control" 
+								style="width: 250px;" value="${dto.email}"></td>
+						</tr>
+
+					
+					<tr>
+						<th style="width: 500px; text-align: center;">주소</th>
+						<td><input type="text" id="address_search" name="address1"
+							class="form-control" placeholder="주소를 입력해주세요"
+							style="width: 250px;" /> &nbsp;
+							<button type="button" class="btn btn-sm btn-primary"
+								id="search_btn" style="width: 100px;">
+								주소 검색&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span>
+							</button> &nbsp; <br>
+						<br> <input type="text" name="address2"
+							class="form-control
+			   					required="
+							required" placeholder="상세주소를 입력하세요" style="width: 250px;"
+							value="${dto.address}"> &nbsp; <br></td>
+					</tr>
+					<tr>
+						<th style="width: 500px; text-align: center;">본인소개</th>
+						<td colspan="3"><input name="intro"
+							style="resize: none; width: 400px; height: 75px;"
+							class="form-control" placeholder="본인을 소개해주세요" required="required">
+
+						</td>
+					</tr>
+				</table>
+				<br>
+				<button type="submit" class="btn btn-warning" id="revise"
+					style="width: 700px; height: 50px; margin: 20px 40px; text-align: center;"
+					>회원수정</button>
+			</form>
 		</div>
 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+
+		<script
+			src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script>
     window.onload = function(){
    		$("#address_search,#search_btn").click(function(){	
    	 	//주소입력칸을 클릭하면
@@ -235,6 +183,13 @@ function check() {
         }).open();
     });
    }
+    
+ //   $(document).ready(function() {
+  //  	$('#revise').click(function() {
+  //  		$(location).attr('href','/mypage?=${userid}');	
+   // 		});
+  //  	});
+  
 </script>
 	</div>
 </body>

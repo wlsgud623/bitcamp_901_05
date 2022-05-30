@@ -12,7 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 
-
+<c:set var="root" value="<%=request.getContextPath() %>"/> <!-- 절대경로 -->
 <body>
 
 	<div class="header">
@@ -26,10 +26,12 @@
 		<h1>검색결과</h1>
 		
 		<div class="gallery11">
-			<h2 class="main">검색 결과</h2>
-				<c:forEach var="a" begin="115" end="123">
-						<img src="/imgfood/${a}.jpg" style="width: 250px;height: 150px; class="contents">
-					<c:if test="${a%3==0}"><br></c:if>
+			
+			<h2 class="main"><b>${research}</b>검색 결과</h2>
+			<b>총 ${tot} 개의 검색결과가 있습니다.</b>
+				<c:forEach var="a"  items="${list}" varStatus="i"> 
+			
+					<a href='${root}/recipe/detail?idx=${list[i.index]}'>${list}</a><!-- 하나씩 -->
 				</c:forEach>
 		<br><br>
 		

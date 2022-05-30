@@ -133,6 +133,11 @@ public class RecipeService implements RecipeServiceInter {
 		return recipeMapperInter.getNewRankingList(map);
 	}
 
+	@Override
+	public List<Integer> searchRecipe(String searchWord) {
+		return recipeMapperInter.searchRecipe(searchWord); 
+	}
+
 
 
 }

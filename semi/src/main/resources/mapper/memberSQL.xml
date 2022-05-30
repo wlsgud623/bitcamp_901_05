@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.MemberMapperInter">
 	<insert id="insertMember" parameterType="user">
-		INSERT INTO User (name,UserID,password,hp,email,address,joinday) VALUES (#{name},#{UserID},#{password},#{hp},#{email},#{address},now())
+		INSERT INTO User (name,USERID,password,hp,email,address,joinday) VALUES (#{name},#{userid},#{password},#{hp},#{email},#{address},now())
 	</insert>	
 	<select id="getSearchId" parameterType="String" resultType="int">
-		SELECT count(*) FROM User WHERE UserID=#{UserID}	
+		SELECT count(*) FROM User WHERE USERID=#{userid}	
 	</select>
 	<select id="getSearchName" parameterType="String" resultType="String">
-		SELECT name FROM User WHERE UserID=#{UserID}
+		SELECT name FROM User WHERE USERID=#{userid}
 	</select>
 	<select id="login" parameterType="Map" resultType="int">
-		SELECT count(*) FROM User WHERE UserID=#{UserID} and password=#{password}
+		SELECT count(*) FROM User WHERE USERID=#{userid} and password=#{password}
 	</select>
 	<update id="updateScrapRecipe" parameterType="Map">
 		UPDATE User SET >
@@ -21,6 +21,6 @@
 		<if test="scraprecipe!=null">
 			scraprecipe=CONCAT(scraprecipe, ",", #{RECIPE_IDX})
 		</if>
-		 WHERE USERID=#{userID}
+		 WHERE USERID=#{userid}
 	</update>
 </mapper>  

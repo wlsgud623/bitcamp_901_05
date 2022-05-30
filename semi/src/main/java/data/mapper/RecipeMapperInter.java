@@ -28,8 +28,13 @@ public interface RecipeMapperInter {
 	public List<RecipeDto> findCategory(String category);
 	public List<RecipeDto> findCooking(String cooking);
 	
+
+
+	public List<Integer> searchRecipe (String searchWord);
+
 	public List<RecipeDto> getRankingList(Map<String, Integer> map);
 	public List<RecipeDto> getViewRankingList(Map<String, Integer> map);
 	public List<RecipeDto> getNewRankingList(Map<String, Integer> map);
 	
+
 }

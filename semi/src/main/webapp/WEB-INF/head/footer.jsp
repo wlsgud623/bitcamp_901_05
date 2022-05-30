@@ -7,63 +7,123 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
-.footer{
-    position: relative;
-    width: 100%;
-    min-width: 1300px;
-    display: block;
-    clear: both;
-    padding-bottom: 40px;
-    background: #bf132b;
-    color: white;
-    border: 2px solid bf132b;
+* {
+box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
 }
-.f_info content{
-	color: white;
-	font-weight: bolder;
-	
+
+
+body{
+height:100%;
 }
-li {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-    float: left;
-    
+
+
+html {
+margin: 0;
+height: 100%;
+}
+.wrap {
+min-height: 100%;
+position: relative;
+padding-bottom: 19px;
+}
+
+.footer {
+
+}
+
+#wrap {
+   height: 230px;
+   min-height: 200px;
+   position: relative;
+   width: 100%;
+   background-color: #c12231;
+   text-align: center;
+}
+
+#wrap section a {
+   font-size: 3rem;
+   font-family: fantasy;
+}
+
+#wrap a {
+   color: white;
+   text-align: center;
+   font-size: 1.4rem;
+   text-decoration: none;
+   font-family: 'jua';
+}
+
+footer p {
+   color: white;
+  
+   font-size: 1.2rem;
+}
+
+footer p1 {
+   font-size: 0.6rem;
+}
+
+footer {
+   width: 100%;
+   height: 130px;
+   bottom: 0px;
+   position: absolute;
+}
+
+section {
+   padding-bottom: 0px; 
+   right: 12px;
+}
+
+.navbar_icons {
+	text-align: center;
+   
+}
+
+.logos{
+	display: grid;
+	place-content : center;
 }
 </style>
 </head>
 
 <body>
-<!-- footer -->
-<footer class="footer">
-     	
-		<div class="f_info content">
-			<div class="f_info_left">
-			<br>
-				<h3>(주)비트캠프</h3>
-				
-				<span>서울 강남구</span>
-				<span class="copy">Copyright ⓒ bitcamp co.,Ltd All Rights Reserved.</span>
-			</div>
-			<div class="f_info_right">
-			
-				<ul>
-					<li style="text-align: right;"><a href="https://www.facebook.com" target="_blank"></a><img alt="no" src="../image/Facebook.png" 
-					style="width: 40px;height: 40px; text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
-					<li><a href="https://www.kakao.com" target="_blank"></a><img alt="no" src="../image/kakao.png"
-					style="width: 40px;height: 40px; text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
-					<li><a href="https://www.instagram.com" target="_blank"></a><img alt="no" src="../image/insta.png"
-					style="width: 40px;height: 40px; text-align: right;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				</ul>
-			</div>
-		</div>
+<!-- footer 시작-->
 
-</footer>
+ 
+   <div id="wrap" class="wrap">
+      <section>
+         <br> <a href="/">모두의레시피</a>
+      </section>
+      <footer style="list-style: none; float: left;">
+ <nav class="logos">
+         	<p>
+ 			<a href="http://twitter.com"><img alt="없음" src="../img/main/twitter.png"
+            style="color: white;width: 50px; height: 50px; "></a>&nbsp;&nbsp;&nbsp;&nbsp;  
+            <a href="https://www.instagram.com/"><img alt="없음" src="../img/main/insta.png"
+            style="color: white;width: 50px; height: 50px; "></a>&nbsp;&nbsp;&nbsp;&nbsp;  
+            <a href="http://youtube.com"><img alt="없음" src="../img/main/youtube.png"
+            style="color: white;width: 50px; height: 50px; "></a>&nbsp;&nbsp;&nbsp;&nbsp;  
+      	   </p>
+       
+         <p>
+           ADRESS : 서울 강남구 강남대로94길 20, 삼오빌딩 9층
+            <br> 고객 문의: 02-3486-9600 <br>
+            <p1>COPYRIGHT @ 2022 </p1>
+         </p>
+         </nav>
+      </footer>
+   </div>
+
+
 
 
 

@@ -19,4 +19,13 @@
 	<definition name="/sign/*/*" extends="sign_layout">
 		<put-attribute name="sign" value="/WEB-INF/{1}/{2}.jsp"/>
 	</definition>
+	
+	<definition name="main_layout2" template="/WEB-INF/layout/main_layout2.jsp">
+		<put-attribute name="head" value="/WEB-INF/head/header.jsp"/>
+		<put-attribute name="main" value="/WEB-INF/home/main.jsp"/>
+		<put-attribute name="foot" value="/WEB-INF/head/footer.jsp"/>
+	</definition>
+	<definition name="/main2/*/*" extends="main_layout2">
+		<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"/>
+	</definition>
 </tiles-definitions>
