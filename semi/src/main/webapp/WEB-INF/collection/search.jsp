@@ -52,7 +52,7 @@
 						<c:forTokens var="tag" items="${l.tags}" delims=",">
 							<li>#${tag}</li>
 						</c:forTokens>
-					</ul><br>
+					</ul><br><br>
 					<b class="searchResults">${l.name}</b>
 				</td>
 				<c:if test="${i.count%4==0}"></tr><tr></c:if>
