@@ -51,7 +51,7 @@ header{
 	text-align: center;
 }
 
-img{
+.logo{
 	margin-left: 500px;
 	width: 120px;
 }
@@ -230,7 +230,7 @@ function check() {
 		<header class="header">
 			<div class="top">지금 회원가입하고 레시피를 직접 등록해보세요!</div>
 			<a href="../">
-			<img src="../img/logo.png">
+			<img class="logo" src="../img/logo.png">
 			</a>
 		</header>
 		<!-- container -->
