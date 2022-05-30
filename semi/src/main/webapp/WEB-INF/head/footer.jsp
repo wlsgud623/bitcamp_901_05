@@ -12,7 +12,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
 * {
 	box-sizing: border-box;
@@ -21,13 +21,6 @@
 	font-family: 'Gowun Dodum'; 
 
 }
-
-
-body{
-height:100%;
-text-align: center;
-}
-
 
 html {
 margin: 0;
