@@ -359,7 +359,7 @@ $(function () {
 			             
                         
                         <!--  <a class="dropdown-item" href="#">재료</a>
-                        <a class="dropdown-item" href="#">방법</a>-->
+                        <a class="dropdown-item" href="#">방법ㄹㄹ</a>-->
                       
                       
                       </div>

@@ -105,7 +105,7 @@ section {
 </head>
 
 <body>
-<!-- footer 시작 -->
+<!-- footer 시작 ㄹ-->
 
  <div cl></div>
    <div id="wrap" class="wrap">

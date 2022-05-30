@@ -341,7 +341,7 @@ $(function() {
 	<script>
 	    window.onload = function(){
 	   		$("#address_search,#search_btn").click(function(){	
-	   	 	//주소입력칸을 클릭하면
+	   	 	//주소입력칸을 클릭하면ㅎ
 	        //카카오 지도 발생
 	        new daum.Postcode({
 	            	oncomplete: function(data) { //선택시 입력값 세팅
