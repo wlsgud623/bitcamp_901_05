@@ -10,191 +10,49 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<link rel="stylesheet" href="/css/input.css">
 <style type="text/css">
-	@font-face {
-	    font-family: 'CookieRun-Regular';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
+	button.ingPlus{
+		margin-bottom: 30px;
 	}
-	@font-face {
-	    font-family: 'Donoun-Medium';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Donoun-Medium.woff2') format('woff2');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	@font-face {
-	    font-family: 'Cafe24SsurroundAir';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	@font-face {
-	    font-family: 'Cafe24Ohsquareair';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	div.inputMain{
+	#stepPopup{
 		position: relative;
-		margin-bottom: 70px;
-		width: 850px;
-		top: 30px;
-		left: 50%;
-		margin-left:-400px;
-	}
-	h1.inputTitle{
-		font-family: 'CookieRun-Regular';
-		font-size: 50px;
-	}
-	label.inputMainLabel, label.inputStepLabel, label.inputCompLabel{
-		font-family: 'Cafe24SsurroundAir';
-		text-align: center;
+		float: right;
+		margin-top: -165px;
+		margin-right: 15px;
+		z-index: 10;
+		color: crimson;
+		font-size: 25px;
 		cursor: pointer;
 	}
-	label.inputMainLabel{
-		width: 800px;
-		height: 450px;
-	}
-	label.inputStepLabel{
-		width: 200px;
-		height: 150px;
-	}
-	label.inputCompLabel{
-		width: 192px;
-		height: 144px;
-	}
-	img.inputMainLabel{
-		width: 800px;
-		height: 450px;
-		object-fit: cover;
-		margin-bottom: -250px;
-		opacity: 0.3;
-	}
-	img.inputStepLabel{
-		width: 200px;
-		height: 150px;
-		object-fit: cover;
-		opacity: 0.3;
-		margin-bottom: -85px;
-	}
-	img.compStepLabel{
-		width: 192px;
-		height: 144px;
-		object-fit: cover;
-		opacity: 0.3;
-		margin-bottom: -85px;
-	}
-	span.stepImgHere{
-		font-size: 20px;
-		font-family: 'Cafe24SsurroundAir';
-	}
-	.mainFt, .ingFt, #steps, .compFt{
-		border-collapse: separate;
-		border-spacing: 0 30px;
-	}
-	.ingFt{
-		border-top: 1px solid lightgray;
-		border-bottom: 1px solid lightgray;
-		margin-bottom: 15px;
-	}
-	.mainFt th{
-		font-family: 'Cafe24Ohsquareair';
+	#delPopup{
+		position: relative;
+		float: right;
+		margin-top: -160px;
+		margin-right: 10px;
+		z-index: 10;
+		color: crimson;
 		font-size: 25px;
-		width: 200px;
+		cursor: pointer;
 	}
-	.ingFt th{
-		font-family: 'Cafe24Ohsquareair';
-		font-size: 25px;
-		width: 200px;
-		vertical-align: top;
-	}
-	.compFt td{
-		vertical-align: top;
-		height: 200px;
+	.inputCompLabel{
+		z-index: 1;
 	}
 	#steps th{
-		font-family: 'Cafe24Ohsquareair';
-		font-size: 25px;
-		width: 125px;
+		text-align: center;
 	}
-	#steps td label{
-		margin-top: 8px;
-	}
-	#tag-list{
-		list-style: none;
-	}
-	#tag-list li{
-		font-family: 'Donoun-Medium';
-		font-size: 22.5px;
-		float: left;
-		margin-right: 20px;
-		margin-top: 15px;
-		border-radius: 22.5px;
-		padding-left: 15px;
-		padding-right: 15px;
-		background-color: fuchsia;
-		color: snow;
-	}
-	#tag{
-		 width: 320px;
-		 border: 1px solid lightgray;
-		 font-size: 20px;
-		 font-family: 'Cafe24Ohsquareair';
-		 margin-top: 10px;
-		 padding-left: 10px;
-	}
-	.ing_class{
-		border: 1px solid lightgray;
-		width: 150px;
-		padding-left: 15px;
-	}
-	.ingTitle, .stepTitle, .compTitle, .tagTitle{
-		font-family: 'CookieRun-Regular';
+	.step_up, .step_down{
+		color: orange;
 		font-size: 30px;
-	}
-	.tagTitle{
-		width: 150px;
-		margin-right: 30px;
-	}
-	.forms{
-		border: 3px solid crimson;
-		border-radius: 20px;
-		padding-left: 15px;
-		font-family: 'Donoun-Medium';
-		font-size: 20px;
-	}
-	.stepSec{
-		border: none;
-		background-color: transparent;
-		width: 40px;
-	}
-	.forms, .ing_class, .stepSec, #tag:focus{
-		outline: none;
-	}
-	select {
-   		-webkit-appearance:none; /* for chrome */
-   		-moz-appearance:none; /*for firefox*/
-  		appearance:none;
-  		cursor: pointer;
-	}
-	select::-ms-expand{
-		display:none;/*for IE10,11*/
-	}
-	select {
-		background:url('../img/dropdown-icon.png') no-repeat 97% 50%/15px auto;
-	}
-	option{
-		font-size: 18px;
-	}
-	.compDet{
-		font-size: 20px;
-		font-family: 'Cafe24SsurroundAir';
+		cursor: pointer;
+		padding-right: 15px;
+		padding-top: 15px;
 	}
 </style>
 <script type="text/javascript">
 /***************************전역 변수***************************/
-	var ingClass=2; //다음에 추가될 재료묶음
+	var ingClass=2; //다음에 추가될 재료묶음(idx)
+	var writeOrder=2; //다음에 추가될 재료묶음(writeorder)
 	var stepCount=2; //다음에 추가될 요리단계
 	var tag = {}; //태그
 	var tagCounter = 0; //태그 idx
@@ -209,12 +67,13 @@
 		//요리 단계별 사진
 		$(document).on("change", ".smallPhoto", function() {
 			img_preview("#"+$(this).attr("id"), 200, 150);
+			$("#stepPopup").remove();
 		});
 		
 		//완성 사진
 		$(document).on("change", ".miniPhoto", function() {
 			img_preview("#"+$(this).attr("id"), 192, 144);
-			$("#del_btn_popup").remove();
+			$("#delPopup").remove();
 		});
 		
 		//각 재료를 재료묶음과 연결하기
@@ -239,11 +98,75 @@
 		//재료 묶음 지우기
 		$(document).on("click", ".tab_delete", function() {
 			var table=$(this).parent().parent().parent().parent();
-			table.prev().remove();
-			table.prev().remove();
-			table.next().remove();
-			table.remove();
+			var nextTable="";
+			
+			if (table.prev().length==0 && table.next().next().length==0) {
+				alert("최소 1개의 재료를 작성해주십시오");
+			} else {
+				nextTable=table.next().next();
+				table.next().remove();
+				table.remove();
+				writeOrder--;
+			}
+			
+			while (nextTable.length!=0) {
+				ingOrder(nextTable, -1);
+				nextTable=nextTable.next().next();
+			}
 		})
+		
+		//재료 묶음 up
+		$(document).on("click", ".tab_up", function() {
+			var table=$(this).parent().parent().parent().parent();
+			var button=table.next();
+			
+			if (table.prev().length==0) {
+				alert("첫번째 묶음입니다");
+			} else {
+				var prevTable=table.prev().prev();
+				var prevButton=button.prev().prev();
+				
+				ingOrder(table, -1);
+				ingOrder(prevTable, +1);
+				
+				$(prevTable).insertAfter(button);
+				$(prevButton).insertAfter(prevTable);
+			}
+		})
+		
+		//재료 묶음 down
+		$(document).on("click", ".tab_down", function() {
+			var table=$(this).parent().parent().parent().parent();
+			var button=table.next();
+			
+			if (table.next().next().length==0) {
+				alert("마지막 묶음입니다");
+			} else {
+				var nextTable=table.next().next();
+				var nextButton=button.next().next();
+				
+				ingOrder(table, +1);
+				ingOrder(nextTable, -1);
+				
+				$(table).insertAfter(nextButton);
+				$(button).insertAfter(table);
+			}
+		})
+		
+		//재료 묶음 중간 추가
+		$(document).on("click", ".tab_add", function() {
+			var table=$(this).parent().parent().parent().parent();
+			var idx=stepIdx(tr)+1;
+			var nextTr=tr.next();
+			
+			while(nextTr.length!=0) {
+				stepOrder(nextTr, +1);
+				nextTr=nextTr.next();
+			}
+
+			$(tr).after(stepTr(idx));
+			stepCount++;
+		});
 		
 		//요리 단계 지우기
 		$(document).on("click", ".step_del", function() {
@@ -258,7 +181,7 @@
 				stepCount--;
 			}
 
-			while(nextTr.length!=0) {
+			while (nextTr.length!=0) {
 				stepOrder(nextTr, -1);
 				nextTr=nextTr.next();
 			}
@@ -311,19 +234,37 @@
 			stepCount++;
 		});
 		
+		//단계사진 삭제 버튼생성
+		$(document).on("mouseenter", ".stepPhoto", function() {
+			$(this).append("<span class='glyphicon glyphicon-remove'"
+					+"id='stepPopup' title='사진삭제'></span>");
+		});
+		$(document).on("mouseleave", ".stepPhoto", function() {
+			$("#stepPopup").remove();
+		});
+		
+		//단계사진 삭제
+		$(document).on("click", "#stepPopup", function() {
+			$(this).prev().val("");
+			$(this).prev().prev()
+				.html('<br><img src="../image/Upload-Icon.png" style="width: 70px;">'
+					+'<br><br><span style="font-size: 20px;">사진을 등록해주세요</span>');
+		});
+		
 		//완성사진 삭제 버튼생성
-		$(".com_photo").hover(function() {
-			$(this).append("<button type='button' style='float: right;'"
-				+"class='btn btn-danger' id='del_btn_popup'>X</button>");
+		$(".compPhoto").hover(function() {
+			$(this).append("<span class='glyphicon glyphicon-remove'"
+						+"id='delPopup' title='사진삭제'></span>");
 		}, function() {
-			$("#del_btn_popup").remove();
+			$("#delPopup").remove();
 		});
 		
 		//완성사진 삭제
-		$(document).on("click", "#del_btn_popup", function() {
+		$(document).on("click", "#delPopup", function() {
 			$(this).prev().val("");
 			$(this).prev().prev()
-				.html('<br><br><img src="../image/Upload-Icon.png" style="width: 70px;">');
+				.html('<br><img src="../image/Upload-Icon.png" style="width: 70px;">'
+					+'<br><br><span style="font-size: 19px;">사진을 등록해주세요</span>');
 		});
 		
 		//태그
@@ -425,8 +366,8 @@
 		
 		var reader=new FileReader();
 		reader.onload=function(e) {
-			var str="<img src='"+e.target.result
-					+"' style='width: "+w+"px; height: "+h+"px; object-fit: cover;'>";
+			var str="<img src='"+e.target.result+"'style='width: "+w+"px; height: "+h+"px;"
+					+"z-index: 5; object-fit: cover;'>";
 			$(id).prev().html(str);
 		}
 		reader.readAsDataURL($(id)[0].files[0]);
@@ -435,8 +376,10 @@
 	//재료 추가
 	function col_append(i) {
     	var value=$(".ing_hidden"+i).val();
+    	var td1=$("#write_ing"+i).children().children().eq(0).children().eq(1);
+    	var order=td1.children().eq(1).val();
     	
-		$("#write_ing"+i).append(ingTr(i, value, 0));
+		$("#write_ing"+i).append(ingTr(i, value, order));
 		
 		var rs=$("#choose_class"+i).attr("rowspan");
 		$("#choose_class"+i).attr("rowspan",parseInt(rs)+1);
@@ -444,16 +387,30 @@
 	
 	//재료 묶음 추가
 	function tab_append() {
-		var str='<br><br>'
-				+'<table class="ingFt" id="write_ing'+ingClass+'"'
+		var str='<table class="ingFt" id="write_ing'+ingClass+'"'
 				+'style="width: 800px;">'
-    			+ingTr(ingClass, "", 1)
     			+ingTr(ingClass, "", 0)
+    			+ingTr(ingClass, "", writeOrder)
     			+'</table>'
-				+'<button type="button" class="btn btn-default"'
+				+'<button type="button" class="btn btn-default ingPlus"'
 				+'onclick="col_append('+ingClass+')">재료 추가</button>';
 		$("#ingredient").append(str);
 		ingClass++;
+		writeOrder++;
+	}
+	
+	//재료 묶음 순서 조정 : 올릴땐 sign=-1, 내릴땐 sign=1
+	function ingOrder(table, sign) {
+		var tr=table.children().children();
+		var firstTd1=tr.eq(0).children().eq(1);
+		var value=firstTd1.children().eq(1).val();
+		firstTd1.children().eq(1).val(parseInt(value)+sign);
+
+		for (i=1; tr.eq(i).length!=0; i++) {
+			var td1=tr.eq(i).children().eq(0);
+			var value=td1.children().eq(1).val();
+			td1.children().eq(1).val(parseInt(value)+sign);
+		}
 	}
 	
 	//요리 단계 추가
@@ -466,16 +423,16 @@
 	function stepOrder(tr, sign) {
 		var th=tr.children().eq(0);
 		var td2=tr.children().eq(2);
-		var idx=th.children().val();
+		var idx=th.children().eq(2).val();
 		
-		th.children().val(parseInt(idx)+sign);
+		th.children().eq(2).val(parseInt(idx)+sign);
 		td2.children().eq(0).attr("for",parseInt(idx)+sign);
 		td2.children().eq(1).attr("id",parseInt(idx)+sign);
 	}
 	
 	//요리 단계 idx값 추출
 	function stepIdx(tr) {
-		var idx=tr.children().eq(0).children().val();
+		var idx=tr.children().eq(0).children().eq(2).val();
 		return parseInt(idx);
 	}
 	
@@ -485,9 +442,9 @@
 		tagCounter++;
 	}
 	
-	//재료 추가 html : 첫행 first=0, 그 외 first=아무 값
-	function ingTr(idx, val, first) {
-		if (first==1) {
+	//재료 추가 html : 첫행 ingorder=0, 그 외 ingorder=writeorder값
+	function ingTr(idx, val, ingorder) {
+		if (ingorder==0) {
 			return '<tr>'
 				+'<th id="choose_class'+idx+'" rowspan="2">'
 				+'<input type="text" class="ing_class" idx="'+idx+'" required="required"'
@@ -495,10 +452,15 @@
 				+'<br><br>'
 				+'<button type="button" class="btn btn-default tab_delete"'
 	    		+'style="font-size: 0.8rem; height: 25px;">삭제</button>'
+	    		+'<button type="button" class="btn btn-default tab_up"'
+	    		+'style="font-size: 0.8rem; height: 25px;">위로</button>'
+	    		+'<button type="button" class="btn btn-default tab_down"'
+	    		+'style="font-size: 0.8rem; height: 25px;">아래로</button>'
 				+'</th>'
 				+'<td>'
 				+'<input type="hidden" name="bundle"'
 				+'class="forms ing_hidden'+idx+'" value="">'
+				+'<input type="hidden" name="ingOrder" value="'+writeOrder+'">'
 				+'<input type="text" name="ingName" class="forms ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
@@ -513,6 +475,7 @@
 				+'<td>'
 				+'<input type="hidden" name="bundle"'
 				+'class="forms ing_hidden'+idx+'" value="'+val+'">'
+				+'<input type="hidden" name="ingOrder" value="'+ingorder+'">'
 				+'<input type="text" name="ingName" class="forms ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
@@ -527,15 +490,17 @@
 	    		+'</td>'
 				+'</tr>';
 		}
-		
 	}
 	
 	//단계 추가 html
 	function stepTr(idx) {
 		return '<tr>'
-			+'<th>Step&ensp;'
+			+'<th>'
+			+'<span class="glyphicon glyphicon-menu-up step_up"></span>'
+			+'<br>Step&ensp;'
 			+'<input type="text" name="stepSec" class="stepSec"'
-    		+'value="'+idx+'" readonly="readonly">'
+    		+'value="'+idx+'" readonly="readonly"><br>'
+			+'<span class="glyphicon glyphicon-menu-down step_down"></span>'
 			+'</th>'
 			+'<td>'
 			+'<textarea name="text" style="resize: none; width: 400px; height: 150px;"'
@@ -543,9 +508,8 @@
 			+'placeholder="조리법을 단계별로 자세히 적어주세요"></textarea>'
 			+'<input type="hidden" name="text" value="split">'
 			+'</td>'
-			+'<td>'
-			+'<label for="'+idx+'" style="text-align: center;'
-			+'background-color: lightgray; width: 200px; height: 150px; cursor: pointer;">'
+			+'<td class="stepPhoto">'
+			+'<label for="'+idx+'" class="inputStepLabel">'
 			+'<img src="../img/stepex'+(idx%5)+'.jpg" class="inputStepLabel">'
 			+'<span class="stepImgHere">사진을 등록해주세요</span>'
 			+'</label>'
@@ -553,12 +517,6 @@
 			+'style="opacity: 0; font-size: 0px;" accept=".jpg, .jpeg, .png">'
 			+'</td>'
 			+'<td>'
-			+'<button type="button" class="step_up btn btn-info">'
-			+'<span class="glyphicon glyphicon-triangle-top"></span>'
-			+'</button>'
-			+'<button type="button" class="step_down btn btn-success">'
-			+'<span class="glyphicon glyphicon-triangle-bottom"></span>'
-			+'</button>'
 			+'<button type="button" class="step_del btn btn-danger">'
 			+'<span class="glyphicon glyphicon-remove"></span>'
 			+'</button>'
@@ -602,8 +560,7 @@
 	    	<tr>
 	    		<th>카테고리</th>
 	    		<td>
-	    			<select name="category" class="forms" required="required"
-	    			style="width: 150px;">
+	    			<select name="category" class="forms" required="required">
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">종류별</option>
 	    				<option value="밥/죽">밥/죽</option>
@@ -624,8 +581,7 @@
 	    			</select>
 	    		</td>
 	    		<td>
-	    			<select name="main_ing" class="forms" required="required"
-	    			style="width: 150px;">
+	    			<select name="main_ing" class="forms" required="required">
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">재료별</option>
 	    				<option value="소고기">소고기</option>
@@ -642,8 +598,7 @@
 	    			</select>
 	    		</td>
 	    		<td>
-	    			<select name="cooking" class="forms" required="required"
-	    			style="width: 150px;">
+	    			<select name="cooking" class="forms" required="required">
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">방법별</option>
 	    				<option value="구이">구이</option>
@@ -666,8 +621,7 @@
 	    	<tr>
 	    		<th>요리 정보</th>
 	    		<td>
-	    			<select name="portion" class="forms" required="required"
-	    			style="width: 150px;">
+	    			<select name="portion" class="forms" required="required">
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">인분수</option>
 	    				<option value=1>1인분</option>
@@ -677,8 +631,7 @@
 	    			</select>
 	    		</td>
 	    		<td>
-	    			<select name="level" class="forms" required="required"
-	    			style="width: 150px;">
+	    			<select name="level" class="forms" required="required">
 	    				<option value="" disabled="disabled" selected="selected"
 	    				style="display: none;">난이도</option>
 	    				<option value="입문">입문</option>
@@ -701,10 +654,17 @@
 		    		<th id="choose_class1" rowspan="2">
 		    			<input type="text" class="ing_class" idx="1" required="required"
 		    			placeholder="재료묶음">
+		    			<button type="button" class="btn btn-default tab_delete"
+	    				style="font-size: 0.8rem; height: 25px;">삭제</button>
+	    				<button type="button" class="btn btn-default tab_up"
+	    				style="font-size: 0.8rem; height: 25px;">위로</button>
+	    				<button type="button" class="btn btn-default tab_down"
+	    				style="font-size: 0.8rem; height: 25px;">아래로</button>
 		    		</th>
 		    		<td>
 		    			<input type="hidden" name="bundle" class="forms ing_hidden1"
 		    			value="">
+		    			<input type="hidden" name="ingOrder" value="1">
 		    			<input type="text" name="ingName" class="forms ing_name"
 		    			placeholder="예)돼지고기" required="required">
 		    		</td>
@@ -718,6 +678,7 @@
 			    	<td>
 			    		<input type="hidden" name="bundle" class="forms ing_hidden1"
 			    		value="">
+			    		<input type="hidden" name="ingOrder" value="1">
 			    		<input type="text" name="ingName" class="forms ing_name"
 			    		placeholder="예)돼지고기" required="required">
 			    	</td>
@@ -732,18 +693,20 @@
 			    	</td>
 			    </tr>
 		    </table>
-	    	<button type="button" class="btn btn-default" onclick="col_append(1)">재료 추가</button>
+	    	<button type="button" class="btn btn-default ingPlus" onclick="col_append(1)">재료 추가</button>
 	    </div>
 	    <button type="button" class="btn btn-default" onclick="tab_append()">재료 묶음 추가</button>
 	    <br><br><br>
-	    
+
 	    <h3 class="stepTitle">요리 순서</h3>
 	    <table id="steps" style="width: 800px;">
 	    	<tr>
 	    		<th>
-	    			Step&ensp;
+	    			<span class="glyphicon glyphicon-menu-up step_up"></span>
+	    			<br>Step&ensp;
 	    			<input type="text" name="stepSec" class="stepSec"
-	    			value="1" readonly="readonly">
+	    			value="1" readonly="readonly"><br>
+	    			<span class="glyphicon glyphicon-menu-down step_down"></span>
 	    		</th>
 	    		<td>
 	    			<textarea name="text" class="forms" required="required"
@@ -751,7 +714,7 @@
 	    			placeholder="조리법을 단계별로 자세히 적어주세요"></textarea>
 	    			<input type="hidden" name="text" value="split">
 	    		</td>
-	    		<td>
+	    		<td class="stepPhoto">
 	    			<label for="1" class="inputStepLabel">
 						<img src="../img/stepex1.jpg" class="inputStepLabel">
 						<span style="font-size: 20px;">사진을 등록해주세요</span>
@@ -760,12 +723,6 @@
 	    			style="opacity: 0; font-size: 0px;" class="forms smallPhoto">
 	    		</td>
 	    		<td style="width: 40px;">
-	    			<button type="button" class="step_up btn btn-info">
-	    				<span class="glyphicon glyphicon-triangle-top"></span>
-					</button>
-					<button type="button" class="step_down btn btn-success">
-	    				<span class="glyphicon glyphicon-triangle-bottom"></span>
-					</button>
 					<button type="button" class="step_del btn btn-danger">
 	    				<span class="glyphicon glyphicon-remove"></span>
 	    			</button>
@@ -785,7 +742,7 @@
 	    <table class="compFt" style="width: 800px; height: 200px;">
 	    	<tr>
 	    		<c:forEach var="num" begin="1" end="4">
-	    			<td class="com_photo" style="width: 200px; vertical-align: top;">
+	    			<td class="compPhoto" style="width: 200px; vertical-align: top;">
 		    			<label for="com_photo${num}" class="inputCompLabel">
 							<img src="../img/compex${num}.jpg" class="compStepLabel">
 							<span style="font-size: 19px;">사진을 등록해주세요</span>
@@ -811,7 +768,7 @@
 	    <br><br><br><br>
 	    
 	    <div style="text-align: center; width: 850px;">
-	    	<button type="button" class="btn btn-default" disabled="disabled">중간저장(시간 남으면?)</button>&emsp;
+	    	<button type="button" class="btn btn-default" disabled="disabled">중간저장(?)</button>&emsp;
 	    	<button type="submit" class="btn btn-default">업로드</button>&emsp;
 	    	<button type="button" class="btn btn-default" onclick="location.href='/'">취소</button>
 	    </div>

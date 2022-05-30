@@ -5,10 +5,11 @@
 		SELECT * FROM Recipe WHERE RECIPE_IDX = #{RECIPE_IDX}
 	</select>
 	<select id="getIngredient" parameterType="int" resultType="ingredient">
-		SELECT * FROM Ingredient WHERE RECIPE_IDX = #{RECIPE_IDX} ORDER BY bundle
+		SELECT * FROM Ingredient WHERE RECIPE_IDX = #{RECIPE_IDX} ORDER BY writeorder
 	</select>
 	<select id="getBundleCount" parameterType="int" resultType="Integer">
-		SELECT COUNT(bundle) cnt from Ingredient WHERE RECIPE_IDX = #{RECIPE_IDX} GROUP BY bundle
+		SELECT COUNT(bundle) cnt from Ingredient WHERE RECIPE_IDX = #{RECIPE_IDX} 
+		GROUP BY bundle ORDER BY writeorder
 	</select>
 	<select id="getSteps" parameterType="int" resultType="steps">
 		SELECT * FROM Steps WHERE RECIPE_IDX = #{RECIPE_IDX} ORDER BY step
