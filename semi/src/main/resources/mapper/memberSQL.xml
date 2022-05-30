@@ -18,7 +18,7 @@
 		<if test="scraprecipe==null"> 
 			scraprecipe=#{RECIPE_IDX}
 		</if>
-		<if test="scraprecipe!=null">
+		<if test="s`1			   craprecipe!=null">
 			scraprecipe=CONCAT(scraprecipe, ",", #{RECIPE_IDX})
 		</if>
 		 WHERE USERID=#{userid}

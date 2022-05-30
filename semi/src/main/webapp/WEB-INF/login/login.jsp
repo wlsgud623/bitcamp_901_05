@@ -9,7 +9,10 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Song+Myung&display=swap" rel="stylesheet">
+
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <style type="text/css">
 
 /* css 기본설정 */
@@ -30,6 +33,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 
 body {
 	line-height: 1;
+	font-family: 'Gowun Dodum';
 }
 
 ol, ul {
@@ -42,16 +46,34 @@ table {
 }
 
 /* css 시작 */
+
+.top{
+	height: 30px;
+	background-color: #c12231;
+	color: white;
+	font-size: 15px;
+	line-height: 30px;
+	margin-bottom: 50px;
+}
+
 .body {
 	text-align: center;
+	height: 1100px;
 }
 
 header {
-	padding-top: 50px;
+	padding-top: 100px;
 }
+
+.logo{
+	margin-left: 450px;
+	width: 150px;
+}
+
 
 .container {
 	height: 600px;
+	padding-top: 30px;
 }
 
 #login_wrap {
@@ -62,6 +84,10 @@ header {
 	width: 600px;
 	margin-left: 260px;
 	margin-top: 50px;
+}
+
+.login_wrap h2{
+	font-size: 40px;
 }
 
 /*로그인 폼*/
@@ -126,12 +152,96 @@ input[type=submit] {
 }
 
 #login_btn {
-	height: 60px;
-	width: 280px;
+	height: 50px;
+	width: 580px;
+	margin-top: 50px;
+    border: 1.5px solid #bebebe; 
+    color: #bebebe; 
+    background-color: white; 
+    border-radius: 15px; 
+    font-size: 20px;
+	
+}
+
+#login_btn:hover{
+	width: 580px; 
+	height: 50px; 
+	margin-top: 50px;
+  	border: 1px solid #c12231; 
+    color: white; 
+    background-color: #c12231; 
+    border-radius: 15px; 
+    font-size: 20px;
+}
+
+.signupbtn1{
+	height: 50px;
+	width: 580px;
+	margin-top: 10px;
+    border: 1.5px solid #bebebe; 
+    color: #bebebe; 
+    background-color: white; 
+    border-radius: 15px; 
+    font-size: 20px;
+}
+
+.signupbtn1:hover{
+	width: 580px; 
+	height: 50px; 
+	margin-top: 10px;
+  	border: 1px solid #c12231; 
+    color: white; 
+    background-color: #c12231; 
+    border-radius: 15px; 
+    font-size: 20px;
+}
+
+.loginbtn{
+	width: 100%;
+	height: 100px;
 }
 
 #naver_id_login {
 	margin-top: 10px;
+	margin-left: 15px;
+}
+
+.button-login img{
+	/* height: 60px;
+	width: 280px;
+	margin-top: 10px;
+	border: 1px solid #FFCD28; 
+    color: white; 
+    background-color: #FFCD28; 
+    border-radius: 5px; 
+    font-size: 20px;
+    right: 0; */
+    margin-top: 10px;
+    height: 60px;
+    width: 280px;
+    border-radius: 5px;
+    
+   
+}
+
+.hr-sect {
+	display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	color: rgba(0, 0, 0, 0.35);
+	font-size: 12px;
+	margin: 8px 0px;
+}
+
+.hr-sect::before,
+.hr-sect::after {
+	content: "";
+	flex-grow: 1;
+	background: rgba(0, 0, 0, 0.35);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+	margin: 0px 16px;
 }
 </style>
 
@@ -139,7 +249,7 @@ input[type=submit] {
 <body>
 	<div class="body">
 		<header class="header">
-			<a href="../"> <img src="../img/logo.png">
+			<a href="../"> <img class="logo" src="../img/logo.png">
 			</a>
 		</header>
 		<!-- java -->
@@ -156,10 +266,10 @@ input[type=submit] {
 				<h2>로그인</h2>
 
 				<!-- login form -->
-				<form action="login" method="post">
+				<form action="loginprocess" method="post">
 					<div class="input-box">
-						<input id="UserID" type="text" name="UserID" placeholder="아이디"
-							value="${loginid}"> <label for="UserID">아이디</label>
+						<input id="userid" type="text" name="userid" placeholder="아이디"
+							value="${loginid}"> <label for="userid">아이디</label>
 					</div>
 					<div class="input-box">
 						<input id="password" type="password" name="password"
@@ -170,29 +280,74 @@ input[type=submit] {
 						아이디 저장
 					</div>
 					<input type="submit" value="로그인" id="login_btn">
+					<button type="button" class="signupbtn1" onclick="location.href='http://localhost:9000/member/signup'">회원가입</button>
 				</form>
-
-				<!-- naver_login -->
-				<div id="naver_id_login"></div>
+				<br>
+				<div class="hr-sect">또는</div>
+				<br>
+				
+				<div class="loginbtn">
+					<!-- naver_login -->
+					<div id="naver_id_login" style="float: left;"></div>
+					
+					<!-- kakao_login -->
+					<div class="button-login">
+                		<a id="kakao-login-btn" >
+    						<img src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg">
+    					</a>
+            		</div>
+           			<br> 	
+            <a href="http://developers.kakao.com/logout">카카오 로그아웃</a>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<script type="text/javascript"
-		src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-		charset="utf-8"></script>
-	<script type="text/javascript"
-		src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript">
-         var naver_id_login = new naver_id_login("bE43jdaj6ZKwPRwdWSzJ", "http://localhost:9000/");    // Client ID, CallBack URL 삽입
-                                            // 단 'localhost'가 포함된 CallBack URL
-         var state = naver_id_login.getUniqState();
-        
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+ 		//네이버 로그인//
+         var naver_id_login = new naver_id_login("bE43jdaj6ZKwPRwdWSzJ", "http://localhost:9000/");    // Client ID, CallBack URL 삽입 (단 'localhost'가 포함된 CallBack URL)
+         var state = naver_id_login.getUniqState();   
          naver_id_login.setButton("green", 3, 60); //color, type, height
-         naver_id_login.setDomain("http://localhost:9000/login/login");    //  URL
+         naver_id_login.setDomain("http://localhost:9000/login");    //  URL
          naver_id_login.setState(state);
          naver_id_login.init_naver_id_login();
          
+      	//카카오 로그인//
+         Kakao.init('1a4bc9d5729e6318b48f52fd55ffdcc1');
+         $("#kakao-login-btn").on("click", function(){
+             //1. 로그인 시도
+             Kakao.Auth.login({
+                 success: function(authObj) {
+                  
+                   //2. 로그인 성공시, API 호출
+                   Kakao.API.request({
+                     url: '/v2/user/me',
+                     success: function(res) {
+                       console.log(res);
+                       var id = res.id;
+         			  scope : 'account_email';
+         			alert('로그인성공');
+                       location.href="http://localhost:9000/";
+                 }
+                   })
+                   console.log(authObj);
+                   var token = authObj.access_token;
+                 },
+                 fail: function(err) {
+                   alert(JSON.stringify(err));
+                 }
+               });    
+         });
+         
+       //로그인 실패시
+         if(${msg != '0'}){        
+         	var message = "${msg}";
+         	var url = "${url}";
+         	alert(message);
+         	document.location.href = "/login";
+         }
 </script>
 </body>
 </html>

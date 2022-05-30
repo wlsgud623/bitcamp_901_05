@@ -23,9 +23,9 @@ public class MemberService implements MemberServiceInter{
 	}
 
 	@Override
-	public int getSearchId(String UserID) {
+	public int getSearchId(String userid) {
 		// TODO Auto-generated method stub
-		return memberMapperInter.getSearchId(UserID);
+		return memberMapperInter.getSearchId(userid);
 	}
 
 	@Override
@@ -35,20 +35,20 @@ public class MemberService implements MemberServiceInter{
 	}
 
 	@Override
-	public int login(String UserID, String password) {
+	public int login(String userid, String password) {
 		// TODO Auto-generated method stub
 		Map<String, String> map = new HashMap<>();
-		map.put("UserID", UserID);
+		map.put("userid", userid);
 		map.put("password", password);
 		
 		return memberMapperInter.login(map);
 	}
 	
 	@Override
-	public void updateScrapRecipe(int RECIPE_IDX, String UserID) {
+	public void updateScrapRecipe(int RECIPE_IDX, String userid) {
 		Map<String, String> map=new HashMap<>();
 		map.put("RECIPE_IDX", ""+RECIPE_IDX);
-		map.put("UserID", UserID);
+		map.put("userid", userid);
 		memberMapperInter.updateScrapRecipe(map);
 	}
 	
