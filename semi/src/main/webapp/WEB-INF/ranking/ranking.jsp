@@ -9,30 +9,35 @@
 <meta charset="UTF-8">
 <title>레시피 랭킹</title>
 <style type="text/css">
-	body {
-
-	}
 	
 	.nav li a{
 		font-weight : bold;
 		color: black;
+		background-color: #f3f3f3;
+		cursor: pointer;
 	}
 	
-	.nav li.active a, .nav li a:hover,.nav li.active a:focus,.nav li.active a:hover {
+	.nav li.active a{
+  		background-color: #f3f3f3;
   		color:red;
 	} 
 	
+		
 	#first_ranking {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
 		justify-items: center;
 		column-gap: 30px;
+		padding-top : 30px;
+		padding-bottom : 30px;
+		background-color: #f3f3f3;
 	}
 	
 	.first_div{
 		position: relative;
-		border: 1px solid black;
 		text-align: center;
+		width: 80%;
+		background-color: white;
 	}
 	
 	#first_div_1:before{
@@ -66,7 +71,7 @@
 	}
 	
 	.first_div img{
-
+		
 	}
 	
 	.info_tag{
@@ -109,6 +114,22 @@
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		justify-items: center;
 		gap: 20px 20px;
+		background-color: #f3f3f3;
+	}
+	.rec_img {
+		overflow:hidden;
+	}
+	
+	.main_image{
+		width: 85%;
+	}
+	
+	.main_image:hover{
+		transform:scale(1.2);
+	}
+	
+	.box{
+		
 	}
 	
 	.info_title a{
@@ -118,10 +139,11 @@
 	.info_title a span{
 		font-weight: bold;
 		font-size: 2.5rem;
-	}\
+	}
 	
 	.normal_tag {
-		
+		padding-left: 20px;
+		padding-top: 5px;
 	}
 	
 	.normal_tag li{
@@ -131,83 +153,167 @@
 	#page_selector {
 		text-align: center;
 	}
+	
 </style>
 <script type="text/javascript">
 	$(function(){
 		$(".nav>li>a").click(function() {
 			$(this).parent().addClass("active");
 			$(this).parent().siblings().removeClass("active");
-		});	
+			location.href = $(this).attr("href");
+		});
+		
+		$('a[data-toggle=tab]').click(function(){
+		    $(this).css("color", "#f64646");
+		    $(this).parent().siblings().children().css("color", "black");
+		});
+		
+		$(".numbtn").click(function() {
+			$(this).parent().addClass("active");
+			$(this).parent().siblings().removeClass("active");
+			
+			if ($(this).html() == 1){
+				$("#first_ranking").show();
+			} else{
+				$("#first_ranking").hide();
+			}
+		});
+		
 	});
 </script>
 </head>
 <body>
 	<ul class="nav nav-tabs justify-content-end">
-	  <li class="active"><a href="#">추천순</a></li>
-	  <li class=""><a href="#">조회순</a></li>
-	  <li class=""><a href="#">최신순</a></li>
+	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="ranking?currentPage=${currentPage}">추천순</a></li>
+	  <li><a data-toggle="tab" onclick="changeRank('view_ranking');" href="view_ranking?currentPage=${currentPage}">조회순</a></li>
+	  <li><a data-toggle="tab" onclick="changeRank('new_ranking');" href="new_ranking?currentPage=${currentPage}">최신순</a></li>
 	</ul>
 	<div id="wrap_ranking">
 		<div id="first_ranking">
-			<c:forEach var="recipe" items="${list}" varStatus="i" begin="0" end="2">
-				<div class="first_div" id="first_div_${i.count }">
-					<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}">
-						<img src="${recipe.main_photo}" class="img-thumbnail">
-					</a>
-					<div class="info">
-						<div class="info_tag" style="text-align: center;">
-							<ul>
-							<c:forEach var="tag" items="${fn:split(recipe.tags, ':')}">
-								<li><a href="#">#${tag}</a></li>
-							</c:forEach>
+			<c:if test="${currentPage==1}">
+				<c:forEach var="recipe" items="${list}" varStatus="i" begin="0" end="2">
+					<div class="first_div" id="first_div_${i.count }">
+						<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}">
+							<img src="${recipe.main_photo}" class="img-thumbnail" style="width: 80%;">
+						</a>
+						<div class="info">
+							<div class="info_tag" style="text-align: center;">
+								<ul>
+								<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
+									<li><a href="#">#${tag}</a></li>
+								</c:forEach>
+								</ul>
+							</div>
+						</div>
+						<h3>${recipe.name }</h3>
+					</div>
+				</c:forEach>
+				<hr>
+			</c:if>
+		</div>
+		<div id="normal_ranking">
+			<c:if test="${currentPage==1}">
+				<c:forEach var="recipe" items="${list}" varStatus="i" begin="3">
+					<div class="box" style="float: left; width: 400px;">
+						<div>
+							<h3 style="text-shadow:2px 2px 5px #f64646; color: white; font-weight: bold;">${i.index + 1}.</h3>
+						</div>
+						<div class="rec_img" style="text-align: center;">
+							<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"> 
+							<img src="../img/main/${recipe.main_photo}" class="main_image img-thumbnail">
+							</a>
+						</div>
+						<div class="icon">
+							<i class="icon_chu"></i><i class="icon_best"></i>
+						</div>
+						<div class="info" style="text-align: left;">
+							<ul style="display: flex;" class="normal_tag">
+								<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
+									<li>#${tag}&nbsp;&nbsp;</li>
+								</c:forEach>
 							</ul>
 						</div>
+						<div class="info_title" style="padding-left: 20px;">
+							<a href="/recipe/detail?idx= ${recipe.RECIPE_IDX}"> <span>${recipe.name}</span></a>
+						</div>
+						<br>
 					</div>
-					<h3>${recipe.name }</h3>
-				</div>
-			</c:forEach>
-		</div>
-		<hr>
-		<div id="normal_ranking">
-			<c:forEach var="recipe" items="${list}" varStatus="i" begin="3" end="11">
-				<div class="box" style="float: left; width: 400px;">
-					<div>
-						<h3>${i.index + 1}.</h3>
-					</div>
-					<div class="rec_img">
-						<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"> 
-						<img src="../img/main/${recipe.main_photo}" class="mainimage" style="width: 90%;">
-						</a>
-					</div>
-					<div class="icon">
-						<i class="icon_chu"></i> <i class="icon_best"></i>
-					</div>
-					<div class="info" style="text-align: left;">
-						<ul style="display: flex;" class="normal_tag">
-							<c:forEach var="tag" items="${fn:split(recipe.tags, ':')}">
-								<li>#${tag}&nbsp;&nbsp;</li>
-							</c:forEach>
-						</ul>
-					</div>
-					<div class="info_title" style="padding-left: 20px;">
-						<a href="/recipe/detail?idx=${RECIPE_IDX}"> <span>${recipe.name}</span></a>
-					</div>
-					<br>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</c:if>
+			<c:if test="${currentPage!=1}">
+				<c:forEach var="recipe" items="${list}" varStatus="i">
+						<div class="box" style="float: left; width: 400px;">
+							<div>
+								<h3 style="text-shadow:2px 2px 5px #f64646; color: white; font-weight: bold;">${i.count + (currentPage-1) * 12 + 3}.</h3>
+							</div>
+							<div class="rec_img" style="text-align: center;">
+								<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"> 
+								<img src="../img/main/${recipe.main_photo}" class="main_image img-thumbnail">
+								</a>
+							</div>
+							<div class="icon">
+								<i class="icon_chu"></i><i class="icon_best"></i>
+							</div>
+							<div class="info" style="text-align: left;">
+								<ul style="display: flex;" class="normal_tag">
+									<c:forEach var="tag" items="${fn:split(recipe.tags, ':')}">
+										<li>#${tag}&nbsp;&nbsp;</li>
+									</c:forEach>
+								</ul>
+							</div>
+							<div class="info_title" style="padding-left: 20px;">
+								<a href="/recipe/detail?idx= ${recipe.RECIPE_IDX}"> <span>${recipe.name}</span></a>
+							</div>
+							<br>
+						</div>
+					</c:forEach>
+			</c:if>
 		</div>
 	</div>
-	<div id="page_selector">
-		<ul class="pagination">
-			<li><a href="#">◀</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#">▶</a></li>
-		</ul>
-	</div>
+	<div>
+			<ul class="pagination">
+				<c:if test="${currentPage != '1'}">
+					<li>
+					<a href="ranking?currentPage=1">
+						 <span class="glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
+					</a>
+					</li>
+				</c:if>
+				
+				<c:if test="${startPage != 1}">
+					<li>
+					<a href="ranking?currentPage=${startPage - 1}">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					</li>
+				</c:if>
+				
+				<c:forEach var="pp" begin="${startPage }" end="${endPage }">
+					<c:if test="${pp ==currentPage}">
+						<li class="active"><a href="ranking?currentPage=${pp}">${pp}</a></li>
+					</c:if>
+					<c:if test="${pp !=currentPage}">
+						<li><a href="${rank}?currentPage=${pp}">${pp}</a></li>
+					</c:if>
+				</c:forEach>
+				
+				<c:if test="${endPage != totalPage}">
+					<li>
+					<a href="ranking?currentPage=${endPage + 1}">
+						 <span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+					</li>
+				</c:if>
+				
+				<c:if test="${currentPage != totalPage}">
+					<li>
+					<a href="ranking?currentPage=${totalPage}">
+						 <span class="glyphicon glyphicon-forward"></span>
+					</a>
+					</li>
+				</c:if>
+			</ul>
+		</div>
 </body>
 </html>
 
