@@ -38,5 +38,8 @@ public interface RecipeServiceInter {
 	public List<RecipeDto> getViewRankingList(int startnum, int limit); //조회수 랭킹순으로
 	public List<RecipeDto> getNewRankingList(int startnum, int limit); //최신순으로
 
+	//컬렉션 관련
+	public List<RecipeDto> getCategoryList(String category, String item, int startnum, int limit);
+	public int getCategoryCount(String category, String item);
 
 }
