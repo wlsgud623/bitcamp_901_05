@@ -16,9 +16,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-
-
-
 /* css 기본설정 */
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
@@ -39,22 +36,29 @@ ol, ul {
 } 
 
 table { 
-   border-collapse: collapse; border-spacing: 0; 
+   border-collapse: collapse; 
+   border-spacing: 0; 
 }
 
 /* css 시작 */
  
  .body{
 	 font-family: 'Hahmlet';
+	 height: 1300px;
 } 
 
 header{
 	text-align: center;
 }
 
+img{
+	margin-left: 500px;
+	width: 120px;
+}
+
 .top{
 	height: 30px;
-	background-color: red;
+	background-color: #c12231;
 	color: white;
 	font-size: 15px;
 	line-height: 30px;
@@ -63,11 +67,10 @@ header{
 
 .container{
 	height: 500px;
-	padding-top: 100px;
+	padding-top: 50px;
 }
 
  .memberform{
-  /*  	 padding: 10px 170px; */
    	 width: 78%;
    }
 
@@ -97,31 +100,18 @@ table tr td{
 	color: red;
 	font-size: 15px;
 }
-
-  /*  #search_btn{
-   	text-align: center;
-   	background-image: url(../img/search_icon.png);
-   	background-size: 20%;
-   	background-position: right;
-   	background-repeat: no-repeat;
-   }  
- */
  
- #idcheck,#search_btn{
+#idcheck,#search_btn{
  	 width: 150px; 
      height:30px; 
-     border: 1px solid red; 
-     color: red; 
+     border: 1px solid #c12231; 
+     color: #c12231; 
      background-color: white; 
      border-radius: 20px; 
      font-size: 13px;
  }
    
-   table.mem{
-
-   }
-   
-   label {
+label {
   display: block;
 }
 
@@ -135,25 +125,28 @@ table tr td{
 	height: 60px; 
 	margin-top: 20px;
 	margin-bottom: 100px;
-	background-color: red;
-	color: white;
-	border: 1px solid red; 
-	border-radius: 10px;  
-	
-	 
-	/*  width: 600px; 
-     height:60px; 
-     border: 1px solid red; 
-     color: red; 
-     background-color: white; 
-     border-radius: 20px; 
-     font-size: 15px;
-     margin-top: 20px; */
-			
+    border: 2px solid #c12231; 
+    color: #c12231; 
+    background-color: white; 
+    border-radius: 20px; 
+    font-size: 25px;
 }   	
+
+.signupbtn:hover{
+	width: 600px; 
+	height: 60px; 
+	margin-top: 20px;
+	margin-bottom: 100px;
+  	border: 1px solid #c12231; 
+    color: white; 
+    background-color: #c12231; 
+    border-radius: 20px; 
+    font-size: 25px;
+}
 
 span button{
 	float: right;
+	border-radius: 40px; 
 }	
 
 span.agree_all{
@@ -345,7 +338,7 @@ function check() {
 								  <span>이용약관 동의<strong>(필수)</strong>
 								  		&nbsp;&nbsp;
 								  		<!-- Trigger the modal with a button -->
-  										<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal">약관보기</button>
+  										<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal" style="border-radius: 10%; float: right;">약관보기</button>
   								  </span>
 								</label><br>
 								<label for="agree">
@@ -417,11 +410,9 @@ function check() {
 					          <button type="button" class="btn btn-danger" data-dismiss="modal">확인</button>
 					        </div>
 					      </div>
-					      
 					    </div>
 					  </div>
-  
-
+					<hr>
 					<button type="submit" class="signupbtn">회원가입</button>
 				   </form>
 			 </div>
@@ -452,6 +443,6 @@ function check() {
         }
     });
 </script>
-	</div>
+
 </body>
 </html>
