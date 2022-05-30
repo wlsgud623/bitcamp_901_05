@@ -275,7 +275,7 @@ $(function() {
 		<div class="container" id="container"
 			style="text-align: center; width: 1200px; height: 1000px; background-color: white;">
 
-			<form action="update" method="post" class="inline"
+			<form action="updateform" method="post" class="inline"
 				enctype="multipart/form-data">
 				<fieldset>
 					<legend>
@@ -300,26 +300,26 @@ $(function() {
 						<tr>
 							<th style="width: 600px; text-align: center;">아이디</th>
 							<td><input type="text" name="userid" id="userid"
-								class="form-control" value="${dto.userid}" disabled="disabled"
+								class="form-control" value="${dto.userid}" readonly="readonly"
 								style="width: 250px; text-align: left;"></td>
 						</tr>
 
 						<tr>
 							<th style="width: 600px; text-align: center;">핸드폰</th>
-							<td><input type="text" name="hp" class="form-control" disabled="disabled"
+							<td><input type="text" name="hp" class="form-control" readonly="readonly"
 								value="${dto.hp}" style="width: 250px;"></td>
 						</tr>
 
 
 						<tr>
 							<th style="width: 600px; text-align: center;">이메일</th>
-							<td><input type="text" name="email" class="form-control" disabled="disabled"
+							<td><input type="text" name="email" class="form-control" readonly="readonly"
 								style="width: 250px;" value="${dto.email}"></td>
 						</tr>
 						<tr>
 							<th style="width: 500px; text-align: center;">주소</th>
 							<td><input type="text" id="address_search" name="address1" readonly style="width: 300px;" class="form-control"
-			   					value="${dto.address}" disabled="disabled" />		
+			   					value="${dto.address}" readonly="readonly" />		
 			   					&nbsp;
 			   					
 							 
@@ -327,7 +327,7 @@ $(function() {
 						</tr>
 						<tr>
 							<th style="width: 600px; text-align: center;;">본인소개</th>
-							<td colspan="3"><input name="intro" class="form-control" value="${dto.intro}" disabled="disabled" style="height: 80px;"></td>
+							<td colspan="3"><input name="intro" class="form-control" value="${dto.intro}" readonly="readonly" style="height: 80px;"></td>
 						</tr>
 					</table>
 					<br>
