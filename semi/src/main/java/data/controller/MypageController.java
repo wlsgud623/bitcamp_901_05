@@ -99,7 +99,7 @@ public class MypageController {
 	
 	
 	
-	@PostMapping("/rivise") //유저수정
+	@PostMapping("/rivise") //유저수정ㅎ
 	public String update(@ModelAttribute UserDto dto,
 			@RequestParam ArrayList<MultipartFile> upload_photo,
 			@RequestParam String address2, @RequestParam String address1,
