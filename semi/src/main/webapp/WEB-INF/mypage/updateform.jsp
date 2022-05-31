@@ -55,9 +55,9 @@ table {
 		height: 450px;
 		cursor: pointer;
 	}
-	img.inputPhoto{
-		width: 800px;
-		height: 450px;
+	#inputPhoto > img{
+		width: 100%;
+		
 		object-fit: cover;
 		margin-bottom: -250px;
 		opacity: 0.5;
@@ -66,6 +66,23 @@ table {
 
 .bodyers{
 text-align: center;
+}
+
+span {
+	color: red;
+}	
+
+.table-default  th {
+	font-size: 2rem;
+}
+
+.table-default  tr {
+	font-size: 2rem;
+}
+
+h1{
+	font-weight: bold;
+	bo
 }
 </style>
 <script type="text/javascript">
@@ -81,45 +98,100 @@ $(function () {
 		var reader=new FileReader();
 		reader.onload=function(e) {
 			var str="<img src='"+e.target.result
-					+"' style='height: "+h+"px; object-fit: contain;'>";
+					+"' style='height:300px ; width:300px; ' class='img-circle' >" ;
 			$(id).prev().html(str);
 		}
 		reader.readAsDataURL($(id)[0].files[0]);
 	}
 
 $("#inputPhoto").change(function() {
-	      img_preview("#inputPhoto", 200);
+			
+	      img_preview("#inputPhoto", 100);
 	   });
+
+
+function check(){
+    var a = $("b.passok").text();
+    if(a != 'ok'){
+       alert("비밀번호를 제대로 입력해 주세요");
+       $("#pass1").val("");
+       $("#pass2").val("");
+       $("#pass1").focus("");
+       return false; //action 호출되지 않음
+    } else {
+       return true;
+    }
+ }
+//비밀번호 일치하는지 체크
+	$("#password2").keyup(function (){
+		var pass1 = $("#password1").val();
+		var pass2 = $(this).val();
+		if(pass1 == pass2){
+			$("b.passok").text("비밀번호가 일치합니다.").css("color","blue");
+		}else{
+			$("b.passok").text("비밀번호가 일치하지 않습니다.").css("color","red");
+		}
+	});
 });
+
+
 
 </script>
 
 </head>
 <body>
 
-	<div class="bodyers" >
-		<div class="revise_form" id="revise_form"   >
+		<div class="bodyer" style="text-align: center; height: 1450px; background: #fafafa;">
+		<br>
+		<div class="container" id="container" 
+			style="text-align: center; width: 1200px; height: 1300px; background-color: #fafafa; ">
 
-			<h3>회원가입수정</h3>
 			<form action="rivise" method="post" class="photo" enctype="multipart/form-data" >
-				<table class="userimpo" style="text-align: center;" ">
 
-					<tr>
-						<td style="text-align: center;"><label for="inputPhoto"
-							class="inputPhoto" style="cursor: pointer;">
-								<img class="photo" src="../image/per__son.png"
-								>
-						</label> <input type="file" id="inputPhoto" name="upload_photo"
-							accept=".jpg, .jpeg, .png" style="opacity: 0; font-size: 0px;"
-							class="form-control" required="required"></td>
-					</tr>
-					
-					<tr>
+
+				<fieldset style="border: 5px solid gray; background-color:white; border-radius: 5%;">
+					<legend>
+						<h1>MY PAGE 수정</h1>
+						<font style="vertical-align: inherit; font-size: 1.7rem; "><${dto.name}회원님의 정보를 수정하십시오.></font>
+					</legend><br>
+					<div class="box" style="border-radius:50%; " >
+					  <div class="shape" ></div>
+		
+					 <label for="inputPhoto"
+                     class="inputPhoto" style="cursor: pointer; border-radius:50%; width: 500px; height: 300px;">
+                        <img class="photo" src="../image/per__son.png" style="width: 500px; height: 330px;">
+                   			
+                  </label> 
+                  <input type="file" id="inputPhoto" name="upload_photo" value="${dto.photo}"
+                     accept=".jpg, .jpeg, .png" style="opacity: 0; font-size: 0px; width: 500px;"
+                     class="form-control" required="required">
+                     <p style="clear: none;"></p>
+					    <br><p>${dto.name}님은 현재</p><p style="color: #c12231; font-weight: bold;"> 모두의 밥상 </p><p>회원입니다.</p>
+					</div>
+
+			
+					<table class="table table-default" style="text-align: left; background-color: white;">
+
+						<tr>
 							<th style="width: 600px; text-align: center;">아이디</th>
 							<td><input type="text" name="userid" id="userid"
-								class="form-control" value="${dto.userid}" 
+								class="form-control" value="${dto.userid}" readonly="readonly"
 								style="width: 250px; text-align: left;"></td>
 						</tr>
+
+						<tr rowspan="2">
+			   				<th style="width: 600px; text-align: center;">비밀번호<span class="required">*</span></th>
+			   				<td>
+			   					<input type="password" name="password" id="password1" style="width: 300px;" class="form-control"
+			   					required="required" placeholder="비밀번호를 입력해주세요">
+							<br><br>
+			   					<input type="password" id="password2" style="width: 300px;" class="form-control"
+			   					required="required" placeholder="비밀번호 확인">
+			   					&nbsp;
+			   					<br>
+			   					<b class="passok"></b>
+			   				</td>
+			   			</tr>
 
 						<tr>
 							<th style="width: 600px; text-align: center;">핸드폰</th>
@@ -133,39 +205,34 @@ $("#inputPhoto").change(function() {
 							<td><input type="text" name="email" class="form-control" 
 								style="width: 250px;" value="${dto.email}"></td>
 						</tr>
-
-					
-					<tr>
+						<tr>
 						<th style="width: 500px; text-align: center;">주소</th>
 						<td><input type="text" id="address_search" name="address1"
 							class="form-control" placeholder="주소를 입력해주세요"
-							style="width: 250px;" /> &nbsp;
-							<button type="button" class="btn btn-sm btn-primary"
-								id="search_btn" style="width: 100px;">
-								주소 검색&nbsp;&nbsp;<span class="glyphicon glyphicon-search"></span>
+							style="width: 250px;" > &nbsp;
+							<button type="button" class="btn btn-sm " 
+								id="search_btn" style="width: 100px; position: relative; left: 50px; bottom: 30px; border: 2px solid #9D9393; " >
+								주소 검색&nbsp;&nbsp;<span class="glyphicon glyphicon-search" style="color: #c12231;"></span>
 							</button> &nbsp; <br>
-						<br> <input type="text" name="address2"
+						 <input type="text" name="address2"
 							class="form-control
 			   					required="
 							required" placeholder="상세주소를 입력하세요" style="width: 250px;"
 							value="${dto.address}"> &nbsp; <br></td>
 					</tr>
-					<tr>
-						<th style="width: 500px; text-align: center;">본인소개</th>
-						<td colspan="3"><input name="intro"
-							style="resize: none; width: 400px; height: 75px;"
-							class="form-control" placeholder="본인을 소개해주세요" required="required">
-
-						</td>
-					</tr>
-				</table>
-				<br>
-				<button type="submit" class="btn btn-warning" id="revise"
-					style="width: 700px; height: 50px; margin: 20px 40px; text-align: center;"
-					>회원수정</button>
+						<tr>
+							<th style="width: 600px; text-align: center;;">본인소개</th>
+							<td colspan="3"><input name="intro" class="form-control" value="${dto.intro}"  style="height: 80px;"></td>
+						</tr>
+					</table>
+					<br>
+					<button type="submit" class="btn btn-warning" id="rivise"
+					style="width: 700px; height: 50px; margin: 20px 40px; text-align: center;">회원수정</button>
+				</fieldset>
 			</form>
 		</div>
-
+	</div>
+	
 
 		<script
 			src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

@@ -29,7 +29,7 @@ body * {
 /* 보여줄 구간의 높이와 넓이 설정 */
 #slideShow {
 	width: 1500px;
-	height: 300px;
+	height: 500px;
 	position: relative;
 	margin: 50px auto;
 	overflow: hidden;
@@ -40,7 +40,7 @@ body * {
 
 #slideShow_two {
 	width: 1500px;
-	height: 300px;
+	height: 500px;
 	position: relative;
 	margin: 50px auto;
 	overflow: hidden;
@@ -137,6 +137,11 @@ body * {
 	left: 10px;
 }
 
+font{
+	font-size: 1.7rem;
+	font-weight: bold;
+}
+
 /* 이전 화살표에 마우스 커서가 올라가 있을때 
 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
 .prev:hover {
@@ -172,23 +177,31 @@ div.hh3 {
 }
 
 .inputPhoto {
-  padding: 20px;
-  margin: 20px;
-  border: 10px solid black;
-  border-radius: 50%;
-  float: left;
+  
   shape-outside: margin-box;
+  border-radius: 50%;
+}
+
+h1{
+	font-weight: bold;
+	
+}
+h3{
+background-color: #fafafa;
+font-weight: bold;
+}
+
+.nameis{
+	font-weight: bolder;
+	font-size: 1.5rem;
 }
 </style>
 
 
 <script type="text/javascript">
 
-$(function() {
-	//사진
-	$("#inputPhoto").change(function() {
-		img_preview("#inputPhoto", 800, 450);
-	});
+$(function () {
+	
 
 
 
@@ -270,28 +283,29 @@ $(function() {
 
 
 
-	<div class="bodyer" style="text-align: center;">
+	<div class="bodyer" style="text-align: center;background-color: #fafafa; height: 1500px;" >
 		<br>
 		<div class="container" id="container"
-			style="text-align: center; width: 1200px; height: 1000px; background-color: white;">
+			style="text-align: center; width: 1200px; height: 1000px; background-color: white; border-radius: 5%;">
 
 			<form action="updateform" method="post" class="inline"
 				enctype="multipart/form-data">
-				<fieldset>
+				<fieldset style="border: 5px solid gray; background-color:white; border-radius: 5%; height: 1000px;">
 					<legend>
 						<h1>MY PAGE</h1>
-						<font style="vertical-align: inherit;">${dto.name}회원님 반갑습니다!</font>
+						<font style="vertical-align: inherit;">[${dto.name}회원님 반갑습니다!]</font>
 					</legend>
 					<div class="box">
 					  <div class="shape"></div>
-					<label for="inputPhoto" style="cursor: pointer;"> <img
-						src="../image/per__son.png" style=" width: 300px; height: 250px;">
-					</label>
-					    <p>${dto.name}님은 현재 모두의 레시피 회원입니다.</p>
+					
+					<img
+						src="../upload/${dto.photo}"  class="img-circle" style=" width: 300px; height: 300px; ">
+						<br>
+					    <p class="nameis"><br>${dto.name}님은 현재 모두의 밥상 회원입니다.</p>
 					</div>
 					
 					
-					<h4 class="glyphicon glyphicon-hand-right icon_photo">&nbsp;나의 랭킹은?<br><br><br><p>${dto.tier}입니다</p></h4>
+					<h4 class="glyphicon glyphicon-hand-right icon_photo" style="font-weight: bolder;">&nbsp;나의 랭킹은? ${dto.tier}입니다</h4>
 					
 					
 			
@@ -360,8 +374,9 @@ $(function() {
 	<div id="slideShow">
 		<ul class="slides">
 			<c:forEach var="a" items="${ownrecipeList}">
-				<li><img src="../img/main/${a.main_photo}" alt="사진없음"
-					style="width: 350px; height: 300px;"></li>
+				<li><img src="../upload/${a.main_photo}" alt="사진없음"
+					style="width: 350px; height: 300px;"> <p>
+					${a.name}</p> <p>${a.writeday}</p></li>
 
 			</c:forEach>
 
@@ -379,9 +394,9 @@ $(function() {
 		<br>
 		<br>
 		<ul class="slides_two">
-			<c:forEach var="a" items="${ownrecipeList}">
-				<li><img src="../img/main/${a.main_photo}" alt="사진없음"
-					style="width: 350px; height: 300px;"></li>
+			<c:forEach var="a" items="${scraprecipeList}">
+				<li><img src="../upload/${a.main_photo}" alt="사진없음"
+					style="width: 350px; height: 300px;"><p>${a.name}</p> <p>${a.writeday}</p></li>
 
 			</c:forEach>
 

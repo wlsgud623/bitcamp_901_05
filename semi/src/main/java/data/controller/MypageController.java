@@ -107,7 +107,7 @@ public class MypageController {
 			HttpServletRequest request) {
    
 		//현재 로그인한 userID
-			String UserID="test"; //(String)session.getAttribute("로그인아이디EL");
+			String UserID= (String)session.getAttribute("loginid");
 			dto.setUserid(UserID);
 			System.out.println(dto.getName());
 	
@@ -116,6 +116,7 @@ public class MypageController {
 			String photo=fileUpload.fileUploadEvent(upload_photo, request);
 			 
 			dto.setPhoto(photo);
+			System.out.println(dto);
 			mypageService.updateUser(dto);
 			
 		return "redirect:/mypage/mypage?UserID="+UserID;
