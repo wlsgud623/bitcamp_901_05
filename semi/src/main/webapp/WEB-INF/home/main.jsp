@@ -263,8 +263,7 @@ $(function() {
 	  }
 	});
 
-	var kakao="${kakao}";
-	if(kakao=="yes"){
+	if(${kakao=="yes"}){
 		alert("login 카카오 로그인 성공");
 			var s = "";
 		s += "<div class='kakao_logout' style='text-align: center;'>";
