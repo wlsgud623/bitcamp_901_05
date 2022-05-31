@@ -152,11 +152,7 @@ ul.menu li{
 	 display: block;
 	 clear: both;
  }
- 
- a{
- 	float: left;
- }
- 
+
 
  .hider{
 	display: none;
@@ -169,6 +165,7 @@ ul.menu li{
  	margin-right: 10px;
  	word-spacing : 6rem;
  	text-decoration: none;
+ 	float: left;
 
     line-height: 25px;
     color: #777777;
@@ -185,6 +182,10 @@ ul.menu li{
 	}
  	
  }
+ 
+.dropdown-item >li > a{ 
+	text-align: center;
+}
  
 .dropdown-item:hover{
 	background-color: #E0E0E0; 
