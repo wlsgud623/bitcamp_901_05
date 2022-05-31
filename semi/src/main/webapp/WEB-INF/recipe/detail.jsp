@@ -92,12 +92,7 @@ $(function(){
 	});
 	
 	$("#scrap_button").click(function() {
-		if (login == null || login !='yes'){
-			$("#loginModal").modal('show');
-		}
-		else{
-			scrapRecipe();
-		}
+		scrapRecipe();
 	});
 	
 	$("#editrecbtn").click(function() {
@@ -143,6 +138,28 @@ function addRecommend() {
 			}
 			$("#total_recommendation").html(data.recom);
 			$("#recom_button").addClass("disabled");
+		}
+	});
+}
+
+function scrapRecipe(){
+	if ("${sessionScope.loginok}" == null || "${sessionScope.loginok}" !='yes'){
+		$("#loginModal").modal('show');
+		return;
+	}
+	$.ajax({
+		type: "POST",
+		dataType: "JSON",
+		url: "scrap" ,
+		data: {"idx":${dto.RECIPE_IDX}, "userid":"${sessionScope.loginid}"},
+		success: function(data) {
+			if (data==false){
+				alert("구독 내역이 있습니다");
+				return;
+			}
+			$("#scrap_button").html("찜!");
+			$("#scarp_button").css("color", "red");
+			$("#scarp_button").addClass("disabled");
 		}
 	});
 }
@@ -280,7 +297,7 @@ function showEditInput(num,userID){
 		$("#loginModal").modal('show');
 		return;
 	}
-	else if ("${sessionScope.loginid}" != id){
+	else if ("${sessionScope.loginid}" != userID){
 		alert("본인이 작성한 댓글만 수정할 수 있습니다");
 		return;
 	}
@@ -397,22 +414,6 @@ function updateComment(){
 		data: formdata,
 		success: function(data) {
 			showComment();
-		}
-	});
-}
-
-
-function scrapRecipe(){
-	var id = '${sessionScope.login}';
-	$.ajax({
-		type: "GET",
-		dataType: "JSON",
-		url: "scrap" ,
-		data: {"idx":${dto.RECIPE_IDX}, "id":id},
-		success: function() {
-			$("#scrap_button").html("찜!");
-			$("#scarp_button").css("color", "red");
-			$("#scarp_button").addClass("disabled");
 		}
 	});
 }

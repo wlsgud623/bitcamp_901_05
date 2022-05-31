@@ -73,10 +73,16 @@ public class RecipeController {
 	
 	
 	//스크랩, 추천, 평점
-	@GetMapping("/scrap") // 레시피 스크랩
-	public void scrapRecipe(@RequestParam int idx, @RequestParam String id) {
-		recommendationService.addScrap(idx, id);
-		memberService.updateScrapRecipe(idx, id);
+	@PostMapping("/scrap") // 레시피 스크랩
+	@ResponseBody
+	public boolean scrapRecipe(@RequestParam int idx, @RequestParam String userid) {
+		if (recommendationService.searchScrap(idx, userid)==1) {
+			return false;
+		}
+		
+		recommendationService.addScrap(idx, userid);
+		memberService.updateScrapRecipe(idx, userid);
+		return true;
 	}
 	
 	
