@@ -10,10 +10,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Song+Myung&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/160180dc06.js" crossorigin="anonymous"></script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 
 <style type="text/css">
 body * {
@@ -22,7 +23,7 @@ body * {
 
 div.container {
 	text-align: center;
-	width: 1500px;
+	
 }
 
 .rec_img img{
@@ -41,32 +42,39 @@ div.container {
     width: 1000px; 
     position: absolute;
     left: 50%;
-    top: 30%;
-   	margin-left: -1100px; 
+    top: 25%;
+   	margin-left: -900px; 
     text-decoration: none;
     color: white;
-    font-size: 60px;
+    font-size: 40px;
     padding-bottom: 0;
     font-family: 'Song Myung';
 }
+
+h3{
+	font-family: 'Song Myung';
+}
+
 
 .tag{
 	padding: 0;
 }
 
 .tag span{
-	font-size: 25px;
-	font-family: 'Song Myung';
+	font-size: 18px;
+	font-family: 'Gowun Dodum'; 
+	color: black;
 }
+
 
 .info_tag span{
 /* font-family: 'Jua' */
-	font-size: 20px;
+	font-size: 12px;
 	color: gray;
 }
 
 .info_title span{
-	font-size: 30px;
+	font-size: 25px;
 	color: black;
 	font-family: 'Gowun Dodum';
 }
@@ -83,14 +91,25 @@ div.container {
 
 .clickbtn{	
 	width: 200px;
+	height: 50px;
 	padding: 5px 10px;
 	border: 1px solid white;
-	border-radius: 10px;
 	background-color: white;
+	border-radius: 20px;
 	color: black;
 	font-size: 20px;	
+	font-family: 'Gowun Dodum'; 
+	margin-top: 40px;
 }
-  
+
+.clickbtn:hover{
+	border: 1px solid #c12231;
+	background-color: #c12231;
+	border-radius: 20px;
+	color: white;
+}
+
+
 .wrap {
 	text-align: center;
 	margin-left: auto;
@@ -105,23 +124,43 @@ div.container {
 	margin-left: 50px;
 }
 
+img.line{
+	 width: 1200px;
+}
+
+img.logo{
+	float: right; 
+	width: 200px;
+}
+
 .content_text {
-	margin-top: 1200px;
-	height: 750px;
-	width: 1300px;
-	padding: 100px 100px;
-	border: 7px solid #CD1F48;
+	margin-top: 1000px;
+	height: 600px;
+	width: 1180px;
+	padding-top: 50px;
+	/* border: 2px solid #CD1F48; */
 	text-align: left;
-	border-radius: 30px;
+	/* border-radius: 30px; */
+	margin-left: 60px;
+	/* border-top: 1px solid #CD1F48; */
 }
 
 .content_text b {
-	font-size: 38px;
+	font-size: 23px;
 	font-family: 'East Sea Dokdo';
+	color: #c12231;
 }
 
 div {
 	display: block;
+}
+
+h2{
+	font-weight: bold;
+}
+
+h2 i{
+	font-size: 30px;
 }
 
 /* 하단 슬라이드  */
@@ -138,8 +177,8 @@ li {
 
 /* 보여줄 구간의 높이와 넓이 설정 */
 #slideShow {
-	width: 1320px;
-	height: 300px;
+	width: 1190px;
+	height: 200px;
 	position: relative;
 	margin: 50px auto;
 	overflow: hidden; 
@@ -151,7 +190,7 @@ li {
 
 .slides {
 	position: absolute;
-	left: 100px;
+	left: 50px;
 	top: 0;
 	width: 100%; /* 슬라이드할 사진과 마진 총 넓이 */
 	transition: left 0.5s ease-out;
@@ -181,8 +220,14 @@ li {
 
 .slides a li {
 	float: left;
-	font-size: 30px;
-	font-family: 'Song Myung';
+	font-size: 15px;
+	font-family: 'Gowun Dodum'; 
+}
+
+.slides img{
+	border-radius: 50%; 
+	width: 120px;
+	margin-bottom: 10px;
 }
 
 .controller span {
@@ -193,7 +238,7 @@ li {
 	border-radius: 50%;
 	padding: 10px 20px;
 	top: 20%;
-	font-size: 50px;
+	font-size: 30px;
 	cursor: pointer;
 }
 
@@ -213,7 +258,7 @@ li {
 }
 
 .next {
-	right: 10px;
+	right: 0px;
 }
 
 /* 다음 화살표에 마우스 커서가 올라가 있을때 
@@ -222,16 +267,16 @@ li {
 	transform: translateX(10px);
 }
 
-
-
 </style>
+
+
 
 <script type="text/javascript">
 $(function() {
 	const slides = document.querySelector('.slides'); //전체 슬라이드 컨테이너
 	const slideImg = document.querySelectorAll('.slides li'); //모든 슬라이드들
 	let currentIdx = 0; //현재 슬라이드 index
-	const slideCount = slideImg.length; // 슬라이드 개수
+	const slideCount = 4; // 슬라이드 개수
 	const prev = document.querySelector('.prev'); //이전 버튼
 	const next = document.querySelector('.next'); //다음 버튼
 	const slideWidth = 1500; //한개의 슬라이드 넓이
@@ -278,7 +323,7 @@ $(function() {
 </script>
 </head>
 <body>
- 		<!-- 홈페이지 로그인 -->
+ 	<%-- 	<!-- 홈페이지 로그인 -->
 
 		<c:if test="${sessionScope.loginok == null}">
 			<div class="loginbtn" style="text-align: center;">
@@ -295,7 +340,7 @@ $(function() {
 			<button type="button" class="btn btn btn-sm" onclick="logout()">로그아웃</button>
 		</c:if>
 		</div>
-	<br><br>  
+	<br><br>   --%>
 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; ">
 			<!-- <!-- Indicators -->
@@ -309,10 +354,10 @@ $(function() {
 			<div class="carousel-inner" style="width: 100%">
 				<div class="item active" >
 					<div class="sub_item" >
-							<a href="/"> 
+							<a href="/recipe/detail?idx=72"> 
 							<img src="img/main/main_01.jpg" alt="food_img" style="width: 100%">
 							<div class="txt">
-								<h2>색다른 메뉴가 끌릴땐</h2>
+								<h3>색다른 메뉴가 끌릴땐</h3>
 									카레토마토솥밥
 								<div class="tag"><span>#채식</span><span> #이색메뉴</span></div>
 								<button class="clickbtn">레시피 바로 보기<span></span></button>
@@ -322,10 +367,10 @@ $(function() {
 				</div>
 				<div class="item">
 					<div class="sub_item">
-						<a href="/"> 
+						<a href="/recipe/detail?idx=74"> 
 							<img src="img/main/main_03.jpg" alt="food_img"  style="width: 100%">
-							<div class="txt" style="padding-left: 400px;">
-								<h2>특별한 날엔</h2>
+							<div class="txt" style="padding-left: 200px;">
+								<h3>특별한 날엔</h3>
 								카레 샥슈카
 								<div class="tag"><span>#집들이음식</span><span> #양식</span></div>
 								<button class="clickbtn">레시피 바로 보기<span></span></button>
@@ -335,10 +380,10 @@ $(function() {
 				</div>
 				<div class="item">
 					<div class="sub_item">
-						<a href="/"> 
+						<a href="/recipe/detail?idx=73"> 
 							<img src="img/main/main_02.jpg" alt="food_img" style="width: 100%">
 							<div class="txt" >
-								<h2>쌀쌀한 날에 생각나는</h2>
+								<h3>쌀쌀한 날에 생각나는</h3>
 								떡만두국
 						<div class="tag"><span>#떡만둣국</span><span> #뜨끈한국물</span></div>
 						<button class="clickbtn">레시피 바로 보기<i></i></button>	
@@ -374,24 +419,21 @@ $(function() {
 		<h1>&nbsp;추천 레시피</h1>
 		<br>
 		<br>
-		<div class="rec_recipe" style="width: 1500px;">
-			<c:forEach var="dto" items="${list}" varStatus="i" begin="2" end="10">
-				<div class="box" style="float: left; width: 400px;">
+		<div class="rec_recipe" style="width: 1200px;">
+			<c:forEach var="dto" items="${list}" varStatus="i" begin="25" end="40">
+				<div class="box" style="float: left; width: 300px;">
 					<div class="rec_img">
 						<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> 
-						<img src="../img/main/${dto.main_photo}" class="mainimage"
+						<img src="../upload/${dto.main_photo}" class="mainimage"
 							style="width: 90%;">
 						</a>
 					</div>
 					<br>
-				<!-- 	<div class="icon">
-						<i class="icon_chu"></i> <i class="icon_best"></i>
-					</div> -->
 					<div class="info">
 						<div class="info_tag">
 							<span><script type="text/javascript">
 						var tags = "<c:out value='${dto.tags}'/>";
-						arr = tags.split(":");
+						arr = tags.split(",");
 						for(var tag of arr){
 							document.write("#" + tag + " ");
 						} 
@@ -407,35 +449,66 @@ $(function() {
 			</c:forEach>
 		</div>
 		<!-- 추천레시피 끝 -->
-
+		
+		
 		<!-- 소개글 시작-->
 		<div class="content_text">
+		<img class="line" src="../img/main/line.png">
+		<br><br><br>
 			<b>모두의 밥상은 수만가지의 레시피를 종류별, 재료별, 난이도별로 분류하여, <br>각자의 라이프스타일에 맞는 레시피를 쉽고
 				편리하게 찾을 수 있는 서비스를 제공하고 있습니다. <br>백주부님 레시피를 하나하나 찾기 힘든 주부님들을 위해!
 				배달 음식으로 지갑이 가벼워진 자취생들을 위해! <br>번거로운 재료준비는 줄이고 쉽고 간단한 방법으로 모두의
 				밥상이 풍요로워지는 경험을 해보세요!
-			</b> <img src="img/main/logo2.png" style="float: right">
+			</b><img class="logo" src="img/main/logo2.png">
+			<img class="line" src="../img/main/line.png">
 		</div>
-
+		<h2>Category <i class="fa-brands fa-bilibili"></i></h2>
+		<br>
+		
 <!-- 카테고리 시작 -->
 		<div id="slideShow">
 			<ul class="slides">
-				<a href="/">
-					<li><img src="img/main/c01.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>반찬</li>
+				<a href="/collection/category?category=category&item=밥/죽&currentPage=1">
+					<li><img src="img/main/c02.jpg"><br>밥/죽</li>
 				</a>
-				<a href="/">
-					<li><img src="img/main/c02.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>밥</li>
+				<a href="/collection/category?category=category&item=반찬&currentPage=1">
+					<li><img src="img/main/c01.jpg"><br>반찬</li>
 				</a>
-				<a href="/">
-					<li><img src="img/main/c04.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>면</li>
+				<a href="/collection/category?category=category&item=국물&currentPage=1">
+					<li><img src="img/main/국.jpg"><br>국물</li>
 				</a>
+				<a href="/collection/category?category=category&item=면&currentPage=1">
+					<li><img src="img/main/c04.jpg"><br>면</li>
+				</a> 	
+				<a href="/collection/category?category=category&item=디저트&currentPage=1">
+					<li><img src="img/main/c03.jpg"><br>디저트</li>
 				</a>
-				<a href="/">
-					<li><img src="img/main/c05.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>튀김</li>
+				<a href="/collection/category?category=category&item=양식&currentPage=1">
+					<li><img src="img/main/양식.jpg"><br>양식</li>
 				</a>
+				<a href="/collection/category?category=category&item=일식&currentPage=1">
+					<li><img src="img/main/일식.jpg"><br>일식</li>
 				</a>
-				<a href="/">
-					<li><img src="img/main/c03.jpg" alt="" style="border-radius: 50%; width: 230px;"><br>디저트</li>
+				<a href="/collection/category?category=category&item=중식&currentPage=1">
+					<li><img src="img/main/중식.jpg"><br>중식</li>
+				</a>
+				<a href="/collection/category?category=category&item=퓨전&currentPage=1">
+					<li><img src="img/main/퓨전.jpg"><br>퓨전</li>
+				</a>
+				<a href="/collection/category?category=category&item=떡/만두&currentPage=1">
+					<li><img src="img/main/만두.jpg"><br>떡/만두</li>
+				</a>
+				<a href="/collection/category?category=category&item=양념/소스&currentPage=1">
+					<li><img src="img/main/소스.jpg"><br>양념/소스</li>
+				</a>
+				<a href="/collection/category?category=category&item=샐러드&currentPage=1">
+					<li><img src="img/main/샐러드.jpg"><br>샐러드</li>
+				</a>
+				<a href="/collection/category?category=category&item=음료&currentPage=1">
+					<li><img src="img/main/음료.jpg"><br>음료</li>
+				</a>
+				<a href="/collection/category?category=category&item=기타&currentPage=1">
+					<li><img src="img/main/기타.jpg"><br>기타</li>
 				</a>
 			</ul>
 			<p class="controller">
