@@ -247,7 +247,7 @@ $(function () {
   
 });
 </script>
-<c:set var="root" value="<%=request.getContextPath() %>"/> <!-- 절대경로... -->
+<c:set var="root" value="<%=request.getContextPath() %>"/> <!-- 절//대경로... -->
 <body>
 <br><br>
 
