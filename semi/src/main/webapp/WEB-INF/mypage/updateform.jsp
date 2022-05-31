@@ -117,7 +117,7 @@ function check(){
        $("#pass1").val("");
        $("#pass2").val("");
        $("#pass1").focus("");
-       return false; //action 호출되지 않음
+       return false; //action 호출되지 않음..
     } else {
        return true;
     }

@@ -43,14 +43,19 @@ body * {
 	color : black;
 }
 
-.heshi > li > a {
-
+.heshi > li {
+	margin-top: -80px;
 	
-	top: 100px;
-	font-size: 20px;
+}
+
+.heshi > li > a {
+float: right;
+	/* margin-top: -80px; */
+	 top: 50px;
+	/*font-size: 20px;
 	left: 86%;
-	cursor: pointer;
-	float: right;
+	cursor: pointer; */
+	
 	text-decoration: none;
  	color: black;
 }
@@ -61,11 +66,11 @@ body * {
 	
 }
 
- .search {
+/*  .search {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-} 
+}  */
 
 *{
     
@@ -169,7 +174,7 @@ ul.menu li{
 
     line-height: 25px;
     color: #777777;
-    padding: 5px 20px 7px;
+  
     border: 1px solid #c1c1c1;
     	
     border-radius: 50px;
@@ -216,14 +221,49 @@ a:active {
 margin-top: 10px;
 box-shadow: 2px 2px 2px 2px gray;
 }
+
+.nav-link
+{
+	margin-top: -1px;
+}
+
+.nav-link:hover{
+	text-decoration: none;
+}
+
+
+
+.list_icon{
+	color: white;
+	text-decoration: none;
+	font-size: 20px;s
+	
+}
+
+.list_icon:hover{
+	color: white;
+	text-decoration: none;
+	font-size: 20px;
+	height: 18px;
+	cursor: pointer;
+}
+
+
 </style>
 <script type="text/javascript">
 
 $(function () {
 	
 	$(".search").click(function () {
-		var push = $("#s_value").val();
-		location.href='${root}/search?research='+push;
+		var val= $("#s_value").val();
+		
+		if(val != ""){
+			var push = $("#s_value").val();
+			location.href='${root}/search?research='+push;
+		}else{
+			alert("검색어를 입력해주세요!");
+		}
+		
 	});
 
 
@@ -250,22 +290,17 @@ $(function () {
 <c:set var="root" value="<%=request.getContextPath() %>"/> <!-- 절//대경로... -->
 <body>
 <br><br>
+<div class="container">
 
-		<!-- 로고 -->
-	<header  class="page-header" role="banner"  >  
-		<div>
-		<a href="/"> 
-		<img  alt="logo" src="../img/logo.png"  style="width:250px; position: absolute; top:70px; right: 86%; "  >
-		</div>
-		<!-- 검색창 -->
-		<div class="searchbar"  style="text-align: center;">
+
 		
+		<!-- 헤더 -->
+		<div class="searchbar"  style="text-align: center;  width: 1170px; margin-bottom: 50px; margin-top: 50px;">
+		<img alt="logo" src="../img/logo.png" style="width:200px; float: left; margin-right: -100px; margin-top: -30px; ">
 			<input type="text"  id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." style="width: 700px;height: 70px;border-radius: 50px; border: 2px solid gray; text-align: center;">&nbsp;&nbsp;&nbsp;
 			<button type="button" class="search" style="border-style: none; 
-			background-color:white;"><b class="glyphicon glyphicon-search " style="width: 70px; height: 70px;"></b> </button>
-			
+			background-color:transparent;"><b class="glyphicon glyphicon-search " style="font-size: 30px; margin-left: -150px;'"></b> </button>
 		
-		<!-- 테그ㅇ -->
 		
 			<ul class="heshi" >
 				<li>
@@ -276,7 +311,7 @@ $(function () {
 			<br><br>
 				
 		</div> 
-		</header>
+		</div>
 		
 		<nav class="navbar navbar-expand-sm" style="background-color: #c12231;">
 
@@ -287,16 +322,10 @@ $(function () {
             <ul class="navbar-nav navbar-dark">
                 <li class="nav-item dropdown" style="padding-right: 25px;">
                     <!-- 드롭다운 메뉴-->
-                    <a class="navbar-toggler-icon nav-link dropdown-toggle" data-toggle="dropdown" style="widows: 50px; height: 50px; font-weight: bold; padding-left: 25px;" ></a>
-                    <div class="dropdown-menu" >
-                    
-                        
-                        <ul class="side_item" style="width: 1650px;">
-                        
+                    <a class="list_icon glyphicon glyphicon-align-justify" data-toggle="dropdown" style=" font-weight: bold; position: relative; left: 700%;" ></a>
+                    <div class="dropdown-menu" >                 
+                        <ul class="side_item" style="width: 1650px;">               
                        		 <li class="dropdown-item" style="font-size: 2rem; color: gray;">종류</li>
-			                 
-                         
-                     			
 
                                  <li><a href="/search?research=밥/죽">#밥/죽</a></li>
                                  <li><a href="/search?research=반찬">#반찬</a></li>
@@ -370,15 +399,15 @@ $(function () {
                     
 			     <p style=clear:both;></p>
                 
-                <li class="nav-item" style="color: white  ; font-size: 2rem; ">
-                    <a class="nav-link" href="ranking/ranking"  style="position: absolute; color:white; left: 10%;">랭킹</a>
+                <li class="nav-item" style="color: white  ; font-size: 1.7rem; ">
+                    <a class="nav-link" href="ranking/ranking"  style="position: absolute; color:white; left: 20%;">랭킹</a>
                 </li>
  		
-                <li class="nav-item" style="color: white; float: right; font-size: 2rem;">
-                    <a class="nav-link" href="member/signup" style="position: absolute; color:white; right: 0;">회원가입</a>
+                <li class="nav-item" style="color: white; float: right; font-size: 1.7rem;">
+                    <a class="nav-link" href="member/signup" style="position: absolute; color:white; right: 10%;">회원가입</a>
                 </li>
-                <li class="nav-item" style="color: white; float: right; font-size: 2rem;">
-                    <a class="nav-link " href="/login" style="position: absolute; color:white; right: 10%;">로그인</a>
+                <li class="nav-item" style="color: white; float: right; font-size: 1.7rem;">
+                    <a class="nav-link " href="/login" style="position: absolute; color:white; right: 20%;">로그인</a>
                 </li>
            
             </ul>  
