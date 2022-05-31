@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Song+Myung&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/160180dc06.js" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -23,6 +22,7 @@ body * {
 
 div.container {
 	text-align: center;
+	width: 1170px;
 	
 }
 
@@ -109,6 +109,10 @@ h3{
 	color: white;
 }
 
+img.recipes_icon{
+	width: 35px;
+	position: relative;
+}
 
 .wrap {
 	text-align: center;
@@ -125,18 +129,21 @@ h3{
 }
 
 img.line{
-	 width: 1200px;
+	 width: 1000px;
+	 margin-top: 20px;
 }
 
 img.logo{
 	float: right; 
 	width: 200px;
+	bottom: 0;
 }
 
 .content_text {
 	margin-top: 1000px;
+	margin-bottom: 250px;
 	height: 600px;
-	width: 1180px;
+	width: 1000px;
 	padding-top: 50px;
 	/* border: 2px solid #CD1F48; */
 	text-align: left;
@@ -155,8 +162,9 @@ div {
 	display: block;
 }
 
-h2{
-	font-weight: bold;
+b.title{
+	/* font-family: 'Gowun Batang'; */
+	font-size: 30px;
 }
 
 h2 i{
@@ -177,7 +185,7 @@ li {
 
 /* 보여줄 구간의 높이와 넓이 설정 */
 #slideShow {
-	width: 1190px;
+	width: 1000px;
 	height: 200px;
 	position: relative;
 	margin: 50px auto;
@@ -203,7 +211,7 @@ li {
 }
 
 .slides li{
-	padding-left: 50px;
+	
 }
 
 /* 첫 번째 슬라이드 가운데에 정렬하기위해
@@ -216,6 +224,10 @@ li {
 .slides li:not(:last-child) {
 	float: left;
 	margin-right: 100px;
+}
+
+.slides a{
+	text-decoration: none;
 }
 
 .slides a li {
@@ -276,7 +288,7 @@ $(function() {
 	const slides = document.querySelector('.slides'); //전체 슬라이드 컨테이너
 	const slideImg = document.querySelectorAll('.slides li'); //모든 슬라이드들
 	let currentIdx = 0; //현재 슬라이드 index
-	const slideCount = 4; // 슬라이드 개수
+	const slideCount = 5; // 슬라이드 개수
 	const prev = document.querySelector('.prev'); //이전 버튼
 	const next = document.querySelector('.next'); //다음 버튼
 	const slideWidth = 1500; //한개의 슬라이드 넓이
@@ -323,7 +335,7 @@ $(function() {
 </script>
 </head>
 <body>
- 	<%-- 	<!-- 홈페이지 로그인 -->
+ 	 	<!-- 홈페이지 로그인 -->
 
 		<c:if test="${sessionScope.loginok == null}">
 			<div class="loginbtn" style="text-align: center;">
@@ -340,8 +352,7 @@ $(function() {
 			<button type="button" class="btn btn btn-sm" onclick="logout()">로그아웃</button>
 		</c:if>
 		</div>
-	<br><br>   --%>
-
+	<br><br>   
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; ">
 			<!-- <!-- Indicators -->
 			<ol class="carousel-indicators">
@@ -408,7 +419,7 @@ $(function() {
 		
 		<br>
 		<br>
-		<br>
+	
 		<script type="text/javascript">
 	let arr;
 	</script>
@@ -416,17 +427,18 @@ $(function() {
 
 		
 		<!-- 추천레시피 시작 -->
-		<h1>&nbsp;추천 레시피</h1>
+		<b class="title">&nbsp;추천레시피<!-- <img src="img/main/recipes.png" class="recipes_icon"> --></b>
 		<br>
 		<br>
-		<div class="rec_recipe" style="width: 1200px;">
-			<c:forEach var="dto" items="${list}" varStatus="i" begin="25" end="40">
-				<div class="box" style="float: left; width: 300px;">
+		<br>
+		<div class="rec_recipe" style="width: 1170px;">
+			<c:forEach var="dto" items="${list}" varStatus="i" begin="25" end="39">
+				<div class="box" style="float: left; width: 30%">
 					<div class="rec_img">
 						<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"> 
-						<img src="../upload/${dto.main_photo}" class="mainimage"
-							style="width: 90%;">
+						<img src="../upload/${dto.main_photo}" class="mainimage" style="width: 90%;">
 						</a>
+					<%-- 	<c:if test="${dto.main_photo%4 == 0}"><br></c:if>  --%>
 					</div>
 					<br>
 					<div class="info">
@@ -462,7 +474,7 @@ $(function() {
 			</b><img class="logo" src="img/main/logo2.png">
 			<img class="line" src="../img/main/line.png">
 		</div>
-		<h2>Category <i class="fa-brands fa-bilibili"></i></h2>
+		<b class="title">카테고리<!-- <i class="fa-brands fa-bilibili"></i> --></b>
 		<br>
 		
 <!-- 카테고리 시작 -->
@@ -572,45 +584,41 @@ $(function() {
 			closePopUp();	
 			location.reload();
 			}, 500);
-		
 		history.replaceState({}, null, location.pathname); //url 숨기기
-	
 	}
-         //홈페이지 로그아웃
-         function logout()
- 		{
- 			$.ajax({
- 				type: "get",
- 				dataType: "text",
- 				url: "/logout",
- 				success: function(){
- 					location.href="/login";
- 					alert("로그아웃되었습니다")
- 				}
- 			});
- 		}
+	
+	//홈페이지 로그아웃
+	function logout(){
+		$.ajax({
+			type: "get",
+			dataType: "text",
+			url: "/logout",
+			success: function(){
+				location.href="/login";
+				alert("로그아웃되었습니다")
+			}
+		});
+	}
          
-	         
-	       //카카오 로그인
-	        $.ajax({
-                  			type: "post",
-                  			dataType: "text",
-                  			url: "/kakao_login",
-                  			data: {"id":id},
-                  			success: function(data) {
-                  				alert("login 카카오 로그인 성공"); 
-                  				var s = "";
-            					s += "<div class='kakao_logout' style='text-align: center;'>";
-            					s += "<button class='btn btn-success' onclick='kakaoLogout()'>";
-            			        s += "<span>로그아웃</span></button></div>";
-            				    $(".logoutbtn").html(s);
-            				    
-            				    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
-                  				
-                  			}	
-                  		});      
-       
-         
+        
+      //카카오 로그인
+       $.ajax({
+   			type: "post",
+   			dataType: "text",
+   			url: "/kakao_login",
+   			data: {"id":id},
+   			success: function(data) {
+   				alert("login 카카오 로그인 성공"); 
+   				var s = "";
+		s += "<div class='kakao_logout' style='text-align: center;'>";
+		s += "<button class='btn btn-success' onclick='kakaoLogout()'>";
+        s += "<span>로그아웃</span></button></div>";
+	    $(".logoutbtn").html(s);
+	    
+	    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기			
+   			}	
+   		});      
+ 
        //카카오 로그아웃
      	var testPopUp;
      	function openPopUp() {
@@ -624,11 +632,9 @@ $(function() {
      		openPopUp();
      		setTimeout(function() {
      			closePopUp();	
-     			location.reload();
+     			location.href="/";
      			}, 500);
-     		
      		history.replaceState({}, null, location.pathname); //url 숨기기
-     	
      	}
 </script>
 </body>
