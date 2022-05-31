@@ -88,9 +88,22 @@ public class LoginController {
 		Map<String, String> map = new HashMap<>();
 		map.put("name", name);
 
-		return map; //다시 로그인 폼으로 이동
+		return map; 
 	}   
 	
+	//카카오 로그인
+		@PostMapping("/kakao_login")
+		@ResponseBody
+		public Map<String, String> kakaoLogin(
+					@RequestParam String id
+					) 
+		{
+			System.out.println(id);
+			Map<String, String> map = new HashMap<>();
+			map.put("kakao_id", id);
+
+			return map;
+		}   
 	
 }
 
