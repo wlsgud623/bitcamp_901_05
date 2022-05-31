@@ -175,6 +175,7 @@
 	#explain_area h1 {
 		float: right;
 		font-weight: bold;
+		color : #eee;
 	}
 	
 	#ingredient_area {
@@ -185,6 +186,10 @@
 		position: relative;
 		padding-left: 50px;
 		padding-top: 20px;
+	}
+	
+	#ingredient_area div p{
+		color: #eee;
 	}
 	/*
 	#ingredient_area:before{

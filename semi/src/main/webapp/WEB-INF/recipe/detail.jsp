@@ -115,8 +115,12 @@ function addRate() {
 		type: "POST",
 		dataType : "JSON",
 		url: "addrate",
-		data: {"idx":${dto.RECIPE_IDX},"rate":$("input[name='rating']:checked").val()},
+		data: {"idx":${dto.RECIPE_IDX},"rate":$("input[name='rating']:checked").val(), "userid":"${sessionScope.loginid}"},
 		success : function(data) {
+			if (data.rate==null){
+				alert("이미 평점을 부여하셨습니다");
+				return;
+			}
 			//console.log(data.volunteer);
 			//console.log(data.rate);
 			$("#total_rate").html((data.rate / data.volunteer).toFixed(1));
@@ -131,8 +135,12 @@ function addRecommend() {
 		type: "POST",
 		dataType : "JSON",
 		url: "addrecom",
-		data: {"idx":${dto.RECIPE_IDX}},
+		data: {"idx":${dto.RECIPE_IDX}, "userid":"${sessionScope.loginid}"},
 		success : function(data) {
+			if (data.recom==null){
+				alert("이미 추천한 레시피입니다");
+				return;
+			}
 			$("#total_recommendation").html(data.recom);
 			$("#recom_button").addClass("disabled");
 		}
@@ -534,7 +542,7 @@ function deleteRecipe(){
 					</div>
 					<div style="margin-left: auto; padding-right: 50px; padding-top: 20px;">
 						<c:forEach var="ing" items="${ingredients}">
-							<span style="display: flex; border-bottom: 1px solid #eee;"><p>${ing.name}</p><p style="margin-left: auto;">${ing.quantity}</p></span><br>
+							<span style="display: flex; border-bottom: 1px dotted #eee;"><p>${ing.name}</p><p style="margin-left: auto;">${ing.quantity}</p></span><br>
 						</c:forEach>
 					</div>
 				</div>
@@ -582,12 +590,12 @@ function deleteRecipe(){
 				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ':')}" varStatus="i">
 				  		<c:if test="${i.count ==1 }">
 				  			<div class="item active">
-				      			<img src="${photo}" alt="${i.count}번째 사진">
+				      			<img src="upload/${photo}" alt="${i.count}번째 사진">
 				    		</div>
 				  		</c:if>
 				  		<c:if test="${i.count !=1 }">
 				  			<div class="item">
-				      			<img src="${photo}" alt="${i.count}번째 사진">
+				      			<img src="upload/${photo}" alt="${i.count}번째 사진">
 				    		</div>
 				  		</c:if>
 				  	</c:forEach>
