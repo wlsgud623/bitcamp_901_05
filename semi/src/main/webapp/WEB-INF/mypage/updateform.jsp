@@ -122,7 +122,7 @@ function check(){
        return true;
     }
  }
-//비밀번호 일치하는지 체크
+//비밀번호 일치하는지 체크//
 	$("#password2").keyup(function (){
 		var pass1 = $("#password1").val();
 		var pass2 = $(this).val();

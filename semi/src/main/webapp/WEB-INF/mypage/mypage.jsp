@@ -333,7 +333,7 @@ $(function() {
 						</tr>
 						<tr>
 							<th style="width: 500px; text-align: center;">주소</th>
-							<td><input type="text" id="address_search" name="address1" readonly style="width: 300px;" class="form-control"
+							<td><input type="text" id="address" name="address"  style="width: 300px;" class="form-control"
 			   					value="${dto.address}" readonly="readonly" />		
 			   					&nbsp;
 			   					
@@ -353,21 +353,7 @@ $(function() {
 		</div>
 	</div>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script>
-	    window.onload = function(){
-	   		$("#address_search,#search_btn").click(function(){	
-	   	 	//주소입력칸을 클릭하면ㅎ
-	        //카카오 지도 발생
-	        new daum.Postcode({
-	            	oncomplete: function(data) { //선택시 입력값 세팅
-	                document.getElementById("address_search").value = data.address; // 주소 넣기
-	                document.querySelector("input[name=address2]").focus(); //상세입력 포커싱
-	                console.log(data);
-	            }
-	        }).open();
-	    });
-	   }
-</script>
+
 	
 	<p style="border-top: 1px solid black;"></p>
 	<!-- <div class="down" style="position: absolute; top: 80%;"> -->
