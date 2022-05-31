@@ -335,7 +335,7 @@ $(function() {
 </script>
 </head>
 <body>
- 	 	<!-- 홈페이지 로그인 -->
+ 	 	<%-- <!-- 홈페이지 로그인 -->
 
 		<c:if test="${sessionScope.loginok == null}">
 			<div class="loginbtn" style="text-align: center;">
@@ -351,8 +351,8 @@ $(function() {
 			&nbsp;
 			<button type="button" class="btn btn btn-sm" onclick="logout()">로그아웃</button>
 		</c:if>
-		</div>
-	<br><br>   
+		</div> --%>
+
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; ">
 			<!-- <!-- Indicators -->
 			<ol class="carousel-indicators">
