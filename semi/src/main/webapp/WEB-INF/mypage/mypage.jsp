@@ -286,11 +286,12 @@ $(function() {
 	<div class="bodyer" style="text-align: center;background-color: #fafafa; height: 1500px;" >
 		<br>
 		<div class="container" id="container"
-			style="text-align: center; width: 1200px; height: 1000px; background-color: white; border-radius: 5%;">
+			style="text-align: center; width: 1200px; height: 1000px; background-color: white; border-radius: 5%;
+			border: 5px solid gray; background-color:white; ">
 
 			<form action="updateform" method="post" class="inline"
 				enctype="multipart/form-data">
-				<fieldset style="border: 5px solid gray; background-color:white; border-radius: 5%; height: 1000px;">
+				<fieldset style=" height: 1000px;">
 					<legend>
 						<h1>MY PAGE</h1>
 						<font style="vertical-align: inherit;">[${dto.name}회원님 반갑습니다!]</font>
