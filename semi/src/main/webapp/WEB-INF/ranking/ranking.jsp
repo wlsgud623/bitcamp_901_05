@@ -37,7 +37,6 @@
 		position: relative;
 		text-align: center;
 		width: 80%;
-		background-color: white;
 	}
 	
 	#first_div_1:before{
@@ -71,7 +70,7 @@
 	}
 	
 	.first_div img{
-		
+		margin-bottom: 20px;
 	}
 	
 	.info_tag{
@@ -206,7 +205,7 @@
 								</ul>
 							</div>
 						</div>
-						<h1>${recipe.name }</h1>
+						<h1 style="font-size: 40px; font-weight: bold;">${recipe.name }</h1>
 					</div>
 				</c:forEach>
 				<hr>
