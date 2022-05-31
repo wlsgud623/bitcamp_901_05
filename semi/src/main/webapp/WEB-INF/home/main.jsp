@@ -50,6 +50,15 @@ div.container {
     font-family: 'Song Myung';
 }
 
+.tag{
+	padding: 0;
+}
+
+.tag span{
+	font-size: 25px;
+	font-family: 'Song Myung';
+}
+
 .info_tag span{
 /* font-family: 'Jua' */
 	font-size: 20px;
@@ -81,7 +90,7 @@ div.container {
 	color: black;
 	font-size: 20px;	
 }
-
+  
 .wrap {
 	text-align: center;
 	margin-left: auto;
@@ -134,6 +143,7 @@ li {
 	position: relative;
 	margin: 50px auto;
 	overflow: hidden; 
+	
 	/*리스트 형식으로 이미지를 일렬로 
   정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은
   hidden으로 숨겨줘야됨*/
@@ -150,15 +160,11 @@ li {
 }
 
 .slides a{
-	color: black;
+	text-decoration: none;
 }
 
 .slides li{
 	padding-left: 50px;
-}
-
-.slides li b{
-	padding-top: 20px;
 }
 
 /* 첫 번째 슬라이드 가운데에 정렬하기위해
@@ -216,6 +222,8 @@ li {
 	transform: translateX(10px);
 }
 
+
+
 </style>
 
 <script type="text/javascript">
@@ -261,11 +269,12 @@ $(function() {
 </script>
 </head>
 <body>
-<%-- 		<!-- 홈페이지 로그인 -->
+ 		<!-- 홈페이지 로그인 -->
+
 		<c:if test="${sessionScope.loginok == null}">
 			<div class="loginbtn" style="text-align: center;">
 				<button type="button" class="btn btn-warning btn-sm" 
-					style="width: 100px;" onclick="location.href='/login/login'">로그인</button>
+					style="width: 100px;" onclick="location.href='/login'">로그인</button>
 			</div>
 		</c:if>
 		
@@ -277,7 +286,7 @@ $(function() {
 			<button type="button" class="btn btn btn-sm" onclick="logout()">로그아웃</button>
 		</c:if>
 		</div>
-	<br><br>  --%>
+	<br><br>  
 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; ">
 			<!-- <!-- Indicators -->
@@ -292,7 +301,7 @@ $(function() {
 				<div class="item active" >
 					<div class="sub_item" >
 							<a href="/"> 
-							<img src="img/main/main_01.jpg" alt="food_img"  style="width: 100%">
+							<img src="img/main/main_01.jpg" alt="food_img" style="width: 100%">
 							<div class="txt">
 								<h2>색다른 메뉴가 끌릴땐</h2>
 									카레토마토솥밥
@@ -307,8 +316,8 @@ $(function() {
 						<a href="/"> 
 							<img src="img/main/main_03.jpg" alt="food_img"  style="width: 100%">
 							<div class="txt" style="padding-left: 400px;">
-								<h2>집에서 즐기는</h2>
-								토마토 파스타
+								<h2>특별한 날엔</h2>
+								카레 샥슈카
 								<div class="tag"><span>#집들이음식</span><span> #양식</span></div>
 								<button class="clickbtn">레시피 바로 보기<span></span></button>
 							</div>
@@ -350,6 +359,8 @@ $(function() {
 	let arr;
 	</script>
 <div class="container">
+
+		
 		<!-- 추천레시피 시작 -->
 		<h1>&nbsp;추천 레시피</h1>
 		<br>
@@ -397,7 +408,7 @@ $(function() {
 			</b> <img src="img/main/logo2.png" style="float: right">
 		</div>
 
-		<!-- 카테고리 시작 -->
+<!-- 카테고리 시작 -->
 		<div id="slideShow">
 			<ul class="slides">
 				<a href="/">
@@ -449,14 +460,14 @@ $(function() {
 	    $.ajax({
 			type: "post",
 			dataType: "json",
-			url: "/login/naver_login",
+			url: "/naver_login",
 			data: {"name":name},
 			success: function(data) {
-				alert("네이버 로그인 성공")
+				alert("네이버 로그인 성공");
 					var s = "";
 					s += "<div class='naver_logout' style='text-align: center;'>";
 					s += "<button class='btn btn-success' onclick='naverLogout()'>";
-			        s += "<span>네이버 로그아웃</span></button></div>";
+			        s += "<span>로그아웃</span></button></div>";
 				    $(".logoutbtn").html(s);
 				    
 				    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
@@ -489,13 +500,54 @@ $(function() {
  			$.ajax({
  				type: "get",
  				dataType: "text",
- 				url: "/login/logout",
+ 				url: "/logout",
  				success: function(){
- 					location.reload();
+ 					location.href="/login";
  					alert("로그아웃되었습니다")
  				}
  			});
  		}
+         
+	         
+	       //카카오 로그인
+	        $.ajax({
+                  			type: "post",
+                  			dataType: "text",
+                  			url: "/kakao_login",
+                  			data: {"id":id},
+                  			success: function(data) {
+                  				alert("login 카카오 로그인 성공"); 
+                  				var s = "";
+            					s += "<div class='kakao_logout' style='text-align: center;'>";
+            					s += "<button class='btn btn-success' onclick='kakaoLogout()'>";
+            			        s += "<span>로그아웃</span></button></div>";
+            				    $(".logoutbtn").html(s);
+            				    
+            				    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
+                  				
+                  			}	
+                  		});      
+       
+         
+       //카카오 로그아웃
+     	var testPopUp;
+     	function openPopUp() {
+     	    testPopUp= window.open("http://developers.kakao.com/logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
+     	}
+     	function closePopUp(){
+     	    testPopUp.close();
+     	}
+     	
+     	function kakaoLogout() {	
+     		openPopUp();
+     		setTimeout(function() {
+     			closePopUp();	
+     			location.reload();
+     			}, 500);
+     		
+     		history.replaceState({}, null, location.pathname); //url 숨기기
+     	
+     	}
 </script>
 </body>
 </html>

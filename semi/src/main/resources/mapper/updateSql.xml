@@ -24,7 +24,7 @@
 		WHERE RECIPE_IDX = #{RECIPE_IDX}
 	</update>
 	<update id="updateIngredient" parameterType="ingredient">
-		UPDATE Ingredient SET bundle=#{bundle}, name=#{name}, 
+		UPDATE Ingredient SET writeorder=#{writeorder}, bundle=#{bundle}, name=#{name}, 
 		quantity=#{quantity} WHERE num = #{num}
 	</update>
 	<update id="updateSteps" parameterType="steps">

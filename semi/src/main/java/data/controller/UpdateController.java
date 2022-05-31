@@ -64,9 +64,11 @@ public class UpdateController {
 			@RequestParam String ingName,
 			@RequestParam String stepSec,
 			@RequestParam String ingNum,
+			@RequestParam String ingOrder,
 			@RequestParam String stepNum,
 			@RequestParam String ingDel,
 			@RequestParam String stepDel,
+			@RequestParam String stepPhotoDel,
 			@RequestParam String compDel,
 			@RequestParam ArrayList<MultipartFile> upload_main,
 			@RequestParam ArrayList<MultipartFile> upload_step,
@@ -115,6 +117,7 @@ public class UpdateController {
 		
 		//재료 정보 모음을 1개씩 분리
 		String[] ingredientNum=ingNum.split(",");
+		String[] writeorder=ingOrder.split(",");
 		String[] bundle=inDto.getBundle().split(",");
 		String[] ingredientName=ingName.split(",");
 		String[] quantity=inDto.getQuantity().split(",");
@@ -123,6 +126,7 @@ public class UpdateController {
 		//재료를 1개씩 업데이트
 		for (int i = 0; i < quantity.length; i++) {
 			IngredientDto dto=new IngredientDto();
+			dto.setWriteorder(Integer.parseInt(writeorder[i]));
 			dto.setBundle(bundle[i]);
 			dto.setName(ingredientName[i]);
 			dto.setQuantity(quantity[i]);
@@ -144,15 +148,16 @@ public class UpdateController {
 		String[] text=stDto.getText().split(",split,");
 		String[] stepsNum=stepNum.split(",");
 		String[] ifStepDel=stepDel.split(",");
+		String[] ifPhotoDel=stepPhotoDel.split(",");
 		String[] newStepPhoto=new String[ifStepDel.length];
 		
 		//단계별 사진 업데이트
 		for (int i = 0; i < ifStepDel.length; i++) {
-			if (ifStepDel[i].equals("d")) {
+			if (ifStepDel[i].equals("d") || ifPhotoDel[i].equals("d")) {
 				String oldStepPhoto=updateService.getPhotoByNum(Integer.parseInt(stepsNum[i]));
 				fileUpload.deleteFile(oldStepPhoto, request);
-				newStepPhoto[i]="deleted";
-			} else if (ifStepDel[i].equals("u")) {
+				newStepPhoto[i]="no image";
+			} else if (ifStepDel[i].equals("u") && ifPhotoDel[i].equals("u")) {
 				String oldStepPhoto=updateService.getPhotoByNum(Integer.parseInt(stepsNum[i]));
 				newStepPhoto[i]=fileUpload.fileUpdateEvent(oldStepPhoto,
 						upload_step.get(i), request);

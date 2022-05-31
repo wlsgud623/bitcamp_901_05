@@ -207,15 +207,6 @@ input[type=submit] {
 }
 
 .button-login img{
-	/* height: 60px;
-	width: 280px;
-	margin-top: 10px;
-	border: 1px solid #FFCD28; 
-    color: white; 
-    background-color: #FFCD28; 
-    border-radius: 5px; 
-    font-size: 20px;
-    right: 0; */
     margin-top: 10px;
     height: 60px;
     width: 280px;
@@ -327,9 +318,26 @@ input[type=submit] {
                      success: function(res) {
                        console.log(res);
                        var id = res.id;
-         			  scope : 'account_email';
-         			alert('로그인성공');
+         			   scope : 'account_email';
+         			   /* alert('로그인성공'); */
                        location.href="http://localhost:9000/";
+                       $.ajax({
+                  			type: "post",
+                  			dataType: "json",
+                  			url: "/kakao_login",
+                  			data: {"id":id},
+                  			success: function(data) {
+                  				alert("login 카카오 로그인 성공");
+                  				var s = "";
+            					s += "<div class='kakao_logout' style='text-align: center;'>";
+            					s += "<button class='btn btn-success' onclick='kakaoLogout()'>";
+            		   	        s += "<span>로그아웃</span></button></div>";
+            				    $(".logoutbtn").html(s);
+            				    
+            				    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
+                  				
+                  			}	
+                  		});
                  }
                    })
                    console.log(authObj);
