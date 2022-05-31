@@ -320,21 +320,21 @@ input[type=submit] {
                        var id = res.id;
          			   scope : 'account_email';
          			   /* alert('로그인성공'); */
-                       location.href="http://localhost:9000/";
+                       //location.href="http://localhost:9000/";
                        $.ajax({
                   			type: "post",
                   			dataType: "json",
                   			url: "/kakao_login",
                   			data: {"id":id},
                   			success: function(data) {
-                  				alert("login 카카오 로그인 성공");
-                  				var s = "";
+                  				location.href="/kakao_main";
+                  				/*var s = "";
             					s += "<div class='kakao_logout' style='text-align: center;'>";
             					s += "<button class='btn btn-success' onclick='kakaoLogout()'>";
             		   	        s += "<span>로그아웃</span></button></div>";
             				    $(".logoutbtn").html(s);
             				    
-            				    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
+            				    $(".loginbtn").css('visibility', 'hidden');*/  //로그인 버튼 숨기기
                   				
                   			}	
                   		});

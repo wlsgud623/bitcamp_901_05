@@ -104,6 +104,12 @@ public class LoginController {
 
 			return map;
 		}   
+		
+		@GetMapping("/kakao_main")
+		public String kakaomain(Model model) {
+			model.addAttribute("kakao", "yes");
+			return "/";
+		}
 	
 }
    

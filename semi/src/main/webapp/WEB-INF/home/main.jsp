@@ -263,7 +263,17 @@ $(function() {
 	  }
 	});
 
-	
+	var kakao="${kakao}";
+	if(kakao=="yes"){
+		alert("login 카카오 로그인 성공");
+			var s = "";
+		s += "<div class='kakao_logout' style='text-align: center;'>";
+		s += "<button class='btn btn-success' onclick='kakaoLogout()'>";
+	        s += "<span>로그아웃</span></button></div>";
+	    $(".logoutbtn").html(s);
+	    
+	    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
+	}
 		
 });
 </script>
