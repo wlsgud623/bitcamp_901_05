@@ -12,6 +12,9 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <link rel="stylesheet" href="/css/update.css">
 <style type="text/css">
+	div.inputMain *{
+		letter-spacing: 0px;
+	}
 	button.ingPlus{
 		margin-bottom: 30px;
 	}
@@ -59,6 +62,18 @@
 
 /***************************각종 이벤트***************************/
 	$(function() {
+		//로그인 체크
+		if (${sessionScope.loginok != 'yes'}) {
+			alert("로그인 후 이용해주세요");
+			location.href="/login";
+		}
+		
+		//아이디 체크
+		if (${sessionScope.loginid != recipe.userID}) {
+			alert("레시피 수정은 작성자만 가능합니다");
+			location.href="/";
+		}
+		
 		//태그 불러오기
 		showTag("${recipe.tags}");
 		
