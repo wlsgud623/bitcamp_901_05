@@ -319,39 +319,12 @@ $(function() {
 	    moveSlide(currentIdx + 1);
 	  }
 	});
-
-	if(${kakao=="yes"}){
-		alert("login 카카오 로그인 성공");
-			var s = "";
-		s += "<div class='kakao_logout' style='text-align: center;'>";
-		s += "<button class='btn btn-success' onclick='kakaoLogout()'>";
-	        s += "<span>로그아웃</span></button></div>";
-	    $(".logoutbtn").html(s);
-	    
-	    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
-	}
 		
 });
 </script>
 </head>
 <body>
- 	 	<%-- <!-- 홈페이지 로그인 -->
-
-		<c:if test="${sessionScope.loginok == null}">
-			<div class="loginbtn" style="text-align: center;">
-				<button type="button" class="btn btn-warning btn-sm" 
-					style="width: 100px;" onclick="location.href='/login'">로그인</button>
-			</div>
-		</c:if>
-		
-		<!-- 홈페이지 로그아웃 -->
-		<div class="logoutbtn" style="text-align: center;">
-		<c:if test="${sessionScope.loginok != null}">
-			<b style="font-family: 'Gowun Batang'">${sessionScope.loginname}(${sessionScope.loginid}) 님</b>
-			&nbsp;
-			<button type="button" class="btn btn btn-sm" onclick="logout()">로그아웃</button>
-		</c:if>
-		</div> --%>
+ 	 
 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%; ">
 			<!-- <!-- Indicators -->
@@ -531,111 +504,6 @@ $(function() {
 		<!-- 카테고리 끝 -->
 		
 	</div>
-	
-	
-	
-<!-- 네이버 아이디로 로그인 -->
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script type="text/javascript">
 
-	var naver_id_login = new naver_id_login("bE43jdaj6ZKwPRwdWSzJ", "http://localhost:9000/");
-	// 접근 토큰 값 출력
-	/* alert(naver_id_login.oauthParams.access_token); 토큰 넘어오는지 확인*/
-	// 네이버 사용자 프로필 조회
-	naver_id_login.get_naver_userprofile("naverSignInCallback()");
-	
-	// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-	function naverSignInCallback() {
-	/*  alert(naver_id_login.getProfileData('name')); 값 넘어오는지 확인 */ 
-		
-	    var name = naver_id_login.getProfileData('name');
-	    
-	    $.ajax({
-			type: "post",
-			dataType: "json",
-			url: "/naver_login",
-			data: {"name":name},
-			success: function(data) {
-				alert("네이버 로그인 성공");
-					var s = "";
-					s += "<div class='naver_logout' style='text-align: center;'>";
-					s += "<button class='btn btn-success' onclick='naverLogout()'>";
-			        s += "<span>로그아웃</span></button></div>";
-				    $(".logoutbtn").html(s);
-				    
-				    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
-			}	
-		});
-	}
-
-	//네이버 로그아웃
-	var testPopUp;
-	function openPopUp() {
-	    testPopUp= window.open("https://nid.naver.com/nidlogin.logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
-	}
-	function closePopUp(){
-	    testPopUp.close();
-	}
-	
-	function naverLogout() {	
-		openPopUp();
-		setTimeout(function() {
-			closePopUp();	
-			location.reload();
-			}, 500);
-		history.replaceState({}, null, location.pathname); //url 숨기기
-	}
-	
-	//홈페이지 로그아웃
-	function logout(){
-		$.ajax({
-			type: "get",
-			dataType: "text",
-			url: "/logout",
-			success: function(){
-				location.href="/login";
-				alert("로그아웃되었습니다")
-			}
-		});
-	}
-         
-        
-      //카카오 로그인
-       $.ajax({
-   			type: "post",
-   			dataType: "text",
-   			url: "/kakao_login",
-   			data: {"id":id},
-   			success: function(data) {
-   				alert("login 카카오 로그인 성공"); 
-   				var s = "";
-		s += "<div class='kakao_logout' style='text-align: center;'>";
-		s += "<button class='btn btn-success' onclick='kakaoLogout()'>";
-        s += "<span>로그아웃</span></button></div>";
-	    $(".logoutbtn").html(s);
-	    
-	    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기			
-   			}	
-   		});      
- 
-       //카카오 로그아웃
-     	var testPopUp;
-     	function openPopUp() {
-     	    testPopUp= window.open("http://developers.kakao.com/logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
-     	}
-     	function closePopUp(){
-     	    testPopUp.close();
-     	}
-     	
-     	function kakaoLogout() {	
-     		openPopUp();
-     		setTimeout(function() {
-     			closePopUp();	
-     			location.href="/";
-     			}, 500);
-     		history.replaceState({}, null, location.pathname); //url 숨기기
-     	}
-</script>
 </body>
 </html>
