@@ -117,12 +117,12 @@ function check(){
        $("#pass1").val("");
        $("#pass2").val("");
        $("#pass1").focus("");
-       return false; //action 호출되지 않음
+       return false; //action 호출되지 않음..
     } else {
        return true;
     }
  }
-//비밀번호 일치하는지 체크
+//비밀번호 일치하는지 체크/////
 	$("#password2").keyup(function (){
 		var pass1 = $("#password1").val();
 		var pass2 = $(this).val();
@@ -156,10 +156,18 @@ function check(){
 					</legend><br>
 					<div class="box" style="border-radius:50%; " >
 					  <div class="shape" ></div>
-		
-					 <label for="inputPhoto"
+		 			 <c:if test="${dto.photo != null}">
+					<img
+						src="../upload/${dto.photo}"  class="img-circle" style=" width: 300px; height: 300px; ">
+					
+					</c:if>
+					<c:if test="${dto.photo==null}">
+					  <img class="photo" src="../image/per__son.png"  style=" width: 300px; height: 300px;">
+					</c:if>
+					
+					 <label for="inputPhoto" 
                      class="inputPhoto" style="cursor: pointer; border-radius:50%; width: 500px; height: 300px;">
-                        <img class="photo" src="../image/per__son.png" style="width: 500px; height: 330px;">
+                     
                    			
                   </label> 
                   <input type="file" id="inputPhoto" name="upload_photo" value="${dto.photo}"
