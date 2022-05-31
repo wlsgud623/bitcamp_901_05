@@ -292,8 +292,18 @@ $(function () {
 <br><br>
 <div class="container">
 		<!-- 로고 -->
+<<<<<<< HEAD
 <!-- 	<header class="page-header" role="banner" >  -->
 		
+=======
+	<header  class="page-header" role="banner"  >  
+		<div>
+		<a href="/"> 
+		<img  alt="logo" src="../img/logo.png"  style="width:250px; position: absolute; top:70px; right: 86%; "  >
+		</div>
+		<!-- 검색창 -->
+		<div class="searchbar"  style="text-align: center;">
+>>>>>>> branch 'main' of https://github.com/wlsgud623/bitcamp_901_05.git
 		
 		<!-- 헤더 -->
 		<div class="searchbar"  style="text-align: center;  width: 1170px; margin-bottom: 50px; margin-top: 50px;">
