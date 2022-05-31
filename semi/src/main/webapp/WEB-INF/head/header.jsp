@@ -252,9 +252,11 @@ $(function () {
 <br><br>
 
 		<!-- 로고 -->
-	<header class="page-header" role="banner" > 
-		
-		<img alt="logo" src="../img/logo.png" style="width:250px; position: absolute; top:70px; right: 86%; " >
+	<header  class="page-header" role="banner"  >  
+		<div>
+		<a href="/"> 
+		<img  alt="logo" src="../img/logo.png"  style="width:250px; position: absolute; top:70px; right: 86%; "  >
+		</div>
 		<!-- 검색창 -->
 		<div class="searchbar"  style="text-align: center;">
 		
