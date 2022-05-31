@@ -148,6 +148,7 @@
 	
 	.normal_tag li{
 		color: gray;
+		white-space: nowrap;
 	}
 	
 	#page_selector {
@@ -200,7 +201,7 @@
 							<div class="info_tag" style="text-align: center;">
 								<ul>
 								<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
-									<li><a href="#">#${tag}</a></li>
+									<li><a href='/search?research=${tag}'>#${tag}</a></li>
 								</c:forEach>
 								</ul>
 							</div>
@@ -256,7 +257,7 @@
 							</div>
 							<div class="info" style="text-align: left;">
 								<ul style="display: flex;" class="normal_tag">
-									<c:forEach var="tag" items="${fn:split(recipe.tags, ':')}">
+									<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
 										<li>#${tag}&nbsp;&nbsp;</li>
 									</c:forEach>
 								</ul>
