@@ -127,7 +127,7 @@ input[type=submit]{
 			</a>
 		</header>
 		<h2>회원가입이 완료되었습니다.</h2>
-		<h2><a href="../login/login">로그인하러 가기</a></h2>
+		<h2><a href="../login">로그인하러 가기</a></h2>
 		
 	</div>
 </body>
