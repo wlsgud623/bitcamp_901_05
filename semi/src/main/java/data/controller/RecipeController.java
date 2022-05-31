@@ -143,7 +143,7 @@ public class RecipeController {
 	@GetMapping("/delete") //레시피 삭제
 	public String deleteRecipe(@RequestParam int idx) {
 		recipeService.deleteRecipe(idx);
-		return "../collection/collection";
+		return "redirect:/collection/category";
 	}
 	
 	//comment

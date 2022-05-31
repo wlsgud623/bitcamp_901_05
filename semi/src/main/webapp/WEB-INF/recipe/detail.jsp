@@ -430,7 +430,7 @@ function editRecipe(){
 	
 	var ans = confirm("레시피를 수정하시겠습니까?");
 	if (ans){ 
-		location.href = "/updateform?idx=${idx}"
+		location.href = "/update/updateform?RECIPE_IDX=${dto.RECIPE_IDX}"
 	}
 }
 
@@ -446,7 +446,7 @@ function deleteRecipe(){
 	
 	var ans = confirm("레시피를 삭제하시겠습니까?");
 	if (ans){ 
-		location.href = "/delete";
+		location.href = "/recipe/delete?idx=${dto.RECIPE_IDX}";
 	}
 }
 
