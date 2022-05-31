@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -189,7 +188,7 @@ public class UpdateController {
 			}
 		}
 		
-		return "redirect:/"; //리다이렉트 디테일페이지(예정)
+		return "redirect:/recipe/detail?idx="+idx;
 	}
 	
 }

@@ -12,6 +12,9 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <link rel="stylesheet" href="/css/input.css">
 <style type="text/css">
+	div.inputMain *{
+		letter-spacing: 0px;
+	}
 	button.ingPlus{
 		margin-bottom: 30px;
 	}
@@ -59,6 +62,12 @@
 
 /***************************각종 이벤트***************************/
 	$(function() {
+		//로그인 체크
+		if (${sessionScope.loginok != 'yes'}) {
+			alert("로그인 후 이용해주세요");
+			location.href="/login";
+		}
+		
 		//메인 사진
 		$("#inputPhoto").change(function() {
 			img_preview("#inputPhoto", 800, 450);

@@ -1,6 +1,8 @@
 package data.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +18,19 @@ public class SearchService implements SearchServiceInter {
 	SearchMapperInter mapper;
 
 	@Override
-	public List<RecipeDto> searchRecipe(String searchWord) {
+	public int getTotalCount(String searchWord) {
 		// TODO Auto-generated method stub
-		return mapper.searchRecipe(searchWord);
+		return mapper.getTotalCount(searchWord);
+	}
+	
+	@Override
+	public List<RecipeDto> searchRecipe(String searchWord, int startNum, int perPage) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map=new HashMap<>();
+		map.put("searchWord", searchWord);
+		map.put("startNum", startNum);
+		map.put("perPage", perPage);
+		return mapper.searchRecipe(map);
 	}
 
 }

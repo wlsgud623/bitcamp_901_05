@@ -20,12 +20,29 @@ public class SearchController {
 	private SearchService service;
 	
 	@GetMapping("/search")
-	public String search(@RequestParam String research , Model model) {
+	public String search(@RequestParam String research,
+			@RequestParam(defaultValue = "1") int currentPage,
+			Model model) {
+		
+		int totalCount=service.getTotalCount(research);
+		int perPage=12;
+		int startNum=(currentPage-1)*perPage;
+		
 		List<RecipeDto> list = new Vector<>();
-		list = service.searchRecipe(research); //sql결과값을 넣음
-		int tot=list.size(); //총갯수 int 형태
+		list = service.searchRecipe(research, startNum, perPage);
+		
+		int perBlock=5;
+		int totalPage=(int)Math.ceil((double)totalCount/perPage);
+		int startPage=((currentPage-1)/perBlock)*perBlock+1;
+		int endPage=(startPage+perBlock-1)<totalPage?(startPage+perBlock-1):totalPage;
+		
 		model.addAttribute("list",list);
-		model.addAttribute("tot", tot);
+		model.addAttribute("tot", totalCount);
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("startNum", startNum);
 		model.addAttribute("research",research);
 		
 		return ("/collection/search");
