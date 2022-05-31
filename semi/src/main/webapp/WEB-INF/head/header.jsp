@@ -103,7 +103,7 @@ ul.menu li{
 	 text-align: center;
  }
  
- .li{ 
+ /* .li{ 
      float: left;
 	 width: 150px;
 	 height: 48px;
@@ -111,7 +111,7 @@ ul.menu li{
 	 position: relative;
 	 font-size: 40px; 
 	 text-align: center;
- }
+ } */
  
     ul.menu li a{
      display: block;
@@ -163,22 +163,30 @@ ul.menu li{
 	display: none;
  }
  
+  .side_item{
+  	/* padding-left: 10px; */
+  }
 
+  
  .side_item a{
 	font-weight:bold;
- 	font-size: 1.5rem;
+ 	font-size: 1.7rem;
  	margin-right: 10px;
  	word-spacing : 6rem;
  	text-decoration: none;
  	float: left;
+ 
 
     line-height: 25px;
     color: #777777;
   
-    border: 1px solid #c1c1c1;
+    
     	
-    border-radius: 50px;
+	}
+	.side_item li{
+	/* border: 1px solid #c1c1c1; */
     	
+   /*  border-radius: 50px; */
 	}
  .side_item a:hover{
 	background: #c12231; 
@@ -186,22 +194,40 @@ ul.menu li{
 	border:1px solid #c12231;
 	}
  	
+ .side_item li{
+ 	padding-left: 20px;
+ 	padding-right: 50px;
+ 
+ 	
  }
  
+  .side_item li:hover{
+ 	background-color: gray;
+ 
+ 	
+ }
+ 
+ .dropdown-item{
+ 	width: 1000px;
+
+ 	font-size: 2rem;
+ 	font-weight: bold;
+	float: left;
+	height: 45px;
+	line-height: 45px;
+	
+ }
+  
+.dropdown-item:hover{
+	background-color: gray;
+}
+
 .dropdown-item >li > a{ 
 	text-align: center;
-}
- 
-.dropdown-item:hover{
-	background-color: #E0E0E0; 
-}
- 
-
-.dropdown-item{
-font-weight: bold;
-float: left;
+	
 }
 
+ 
 
 a:link {
   color : black;
@@ -218,8 +244,11 @@ a:active {
 }
 
 .dropdown-menu{
-margin-top: 10px;
+margin-top: 12px;
 box-shadow: 2px 2px 2px 2px gray;
+margin-left: 50px;
+height: 300px;
+
 }
 
 .nav-link
@@ -236,7 +265,8 @@ box-shadow: 2px 2px 2px 2px gray;
 .list_icon{
 	color: white;
 	text-decoration: none;
-	font-size: 20px;s
+	font-size: 20px;
+	height: 18px;
 	
 }
 
@@ -284,6 +314,9 @@ $(function () {
 	});
     
     
+   
+    
+    
   
 });
 </script>
@@ -292,22 +325,14 @@ $(function () {
 <br><br>
 <div class="container">
 		<!-- 로고 -->
-<<<<<<< HEAD
 <!-- 	<header class="page-header" role="banner" >  -->
 		
-=======
-	<header  class="page-header" role="banner"  >  
-		<div>
-		<a href="/"> 
-		<img  alt="logo" src="../img/logo.png"  style="width:250px; position: absolute; top:70px; right: 86%; "  >
-		</div>
-		<!-- 검색창 -->
-		<div class="searchbar"  style="text-align: center;">
->>>>>>> branch 'main' of https://github.com/wlsgud623/bitcamp_901_05.git
+
 		
 		<!-- 헤더 -->
 		<div class="searchbar"  style="text-align: center;  width: 1170px; margin-bottom: 50px; margin-top: 50px;">
-		<img alt="logo" src="../img/logo.png" style="width:200px; float: left; margin-right: -100px; margin-top: -30px; ">
+		
+		<img alt="logo" src="../img/logo.png" onclick="location.href='/'" style="width:200px; float: left; margin-right: -100px; margin-top: -30px; ">
 			<input type="text"  id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." style="width: 700px;height: 70px;border-radius: 50px; border: 2px solid gray; text-align: center;">&nbsp;&nbsp;&nbsp;
 			<button type="button" class="search" style="border-style: none; 
 			background-color:transparent;"><b class="glyphicon glyphicon-search " style="font-size: 30px; margin-left: -150px;'"></b> </button>
@@ -324,7 +349,7 @@ $(function () {
 		</div> 
 		</div>
 		
-		<nav class="navbar navbar-expand-sm" style="background-color: #c12231;">
+		<nav class="navbar navbar-expand-sm" style="background-color: #c12231; margin-bottom: 10px;">
 
        
         
@@ -334,9 +359,9 @@ $(function () {
                 <li class="nav-item dropdown" style="padding-right: 25px;">
                     <!-- 드롭다운 메뉴-->
                     <a class="list_icon glyphicon glyphicon-align-justify" data-toggle="dropdown" style=" font-weight: bold; position: relative; left: 700%;" ></a>
-                    <div class="dropdown-menu" >                 
-                        <ul class="side_item" style="width: 1650px;">               
-                       		 <li class="dropdown-item" style="font-size: 2rem; color: gray;">종류</li>
+                    <div class="dropdown-menu" style="margin-left: 165px; margin-top: 5px;">                 
+                        <ul class="side_item">               
+                       		 <li class="dropdown-item" style="margin-top: 5px;">종류</li>
 
                                  <li><a href="/search?research=밥/죽">#밥/죽</a></li>
                                  <li><a href="/search?research=반찬">#반찬</a></li>
@@ -358,8 +383,8 @@ $(function () {
 								
 							</ul>
 							
-							 <ul class="side_item" style="width: 1650px;">
-							 <li class="dropdown-item" style="font-size: 2rem; color: gray;">재료</li>
+							 <ul class="side_item">
+							 <li class="dropdown-item">재료</li>
 			                 
                          
                      			 <li><a href="/search?research=소고기">#소고기</a></li>
@@ -379,9 +404,9 @@ $(function () {
 								
 							</ul>
 							
-							 <ul class="side_item" style="width: 1650px;">
+							 <ul class="side_item" >
                         
-                       		 <li class="dropdown-item" style="font-size: 2rem; color: gray;">방법</li>
+                       		 <li class="dropdown-item">방법</li>
 			                  
 		                         <li><a href="/search?research=구이">#구이</a></li>
 		                         <li><a href="/search?research=찜">#찜</a></li>
@@ -418,7 +443,23 @@ $(function () {
                     <a class="nav-link" href="member/signup" style="position: absolute; color:white; right: 10%;">회원가입</a>
                 </li>
                 <li class="nav-item" style="color: white; float: right; font-size: 1.7rem;">
-                    <a class="nav-link " href="/login" style="position: absolute; color:white; right: 20%;">로그인</a>
+                    <a class="nav-link">
+				        <!-- 홈페이지 로그인 -->
+						<c:if test="${sessionScope.loginok == null}">
+							<div class="loginbtn" style="position: absolute; color:white; right: 20%;">
+								<a href="/login">로그인</a>
+							</div>
+						</c:if>
+						
+						<!-- 홈페이지 로그아웃 -->
+						<div class="logoutbtn" style="position: absolute; color:white; right: 20%;">
+						<c:if test="${sessionScope.loginok != null}">
+							<b style="font-family: 'Gowun Batang'">${sessionScope.loginname}(${sessionScope.loginid}) 님</b>
+							&nbsp;
+							<button type="button" class="btn btn btn-sm" onclick="logout()">로그아웃</button>
+						</c:if>
+						</div>
+                    </a>
                 </li>
            
             </ul>  
@@ -427,7 +468,124 @@ $(function () {
     </nav>
 
 				
-		
+  <!-- 네이버 아이디로 로그인 -->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+
+    	var naver_id_login = new naver_id_login("bE43jdaj6ZKwPRwdWSzJ", "http://localhost:9000/");
+    	// 접근 토큰 값 출력
+    	/* alert(naver_id_login.oauthParams.access_token); 토큰 넘어오는지 확인*/
+    	// 네이버 사용자 프로필 조회
+    	naver_id_login.get_naver_userprofile("naverSignInCallback()");
+    	
+    	// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+    	function naverSignInCallback() {
+    	/*  alert(naver_id_login.getProfileData('name')); 값 넘어오는지 확인 */ 
+    		
+    	    var name = naver_id_login.getProfileData('name');
+    	    
+    	    $.ajax({
+    			type: "post",
+    			dataType: "json",
+    			url: "/naver_login",
+    			data: {"name":name},
+    			success: function(data) {
+    				alert("네이버 로그인 성공");
+    					var s = "";
+    					s += "<div class='naver_logout' style='text-align: center;'>";
+    					s += "<button class='btn btn-success' onclick='naverLogout()'>";
+    			        s += "<span>로그아웃</span></button></div>";
+    				    $(".logoutbtn").html(s);
+    				    
+    				    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
+    			}	
+    		});
+    	}
+
+    	//네이버 로그아웃
+    	var testPopUp;
+    	function openPopUp() {
+    	    testPopUp= window.open("https://nid.naver.com/nidlogin.logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
+    	}
+    	function closePopUp(){
+    	    testPopUp.close();
+    	}
+    	
+    	function naverLogout() {	
+    		openPopUp();
+    		setTimeout(function() {
+    			closePopUp();	
+    			location.reload();
+    			}, 500);
+    		history.replaceState({}, null, location.pathname); //url 숨기기
+    	}
+    	
+    	//홈페이지 로그아웃
+    	function logout(){
+    		$.ajax({
+    			type: "get",
+    			dataType: "text",
+    			url: "/logout",
+    			success: function(){
+    				location.href="/login";
+    				alert("로그아웃되었습니다")
+    			}
+    		});
+    	}
+             
+            
+          //카카오 로그인
+          /*  $.ajax({
+       			type: "post",
+       			dataType: "text",
+       			url: "/kakao_login",
+       			data: {"id":id},
+       			success: function(data) {
+       				alert("login 카카오 로그인 성공"); 
+       				var s = "";
+    		s += "<div class='kakao_logout' style='text-align: center;'>";
+    		s += "<button class='btn btn-success' onclick='kakaoLogout()'>";
+            s += "<span>로그아웃</span></button></div>";
+    	    $(".logoutbtn").html(s);
+    	    
+    	    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기			
+       			}	
+       		});   */    
+     
+           if(${kakao=="yes"}){
+       		alert("login 카카오 로그인 성공");
+       			var s = "";
+       		s += "<div class='kakao_logout' style='text-align: center;'>";
+       		s += "<button class='btn btn-success' onclick='kakaoLogout()'>";
+       	        s += "<span>로그아웃</span></button></div>";
+       	    $(".logoutbtn").html(s);
+       	    
+       	    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
+       	}
+           
+           
+           
+           //카카오 로그아웃
+         	var testPopUp;
+         	function openPopUp() {
+         	    testPopUp= window.open("http://developers.kakao.com/logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
+         	}
+         	function closePopUp(){
+         	    testPopUp.close();
+         	}
+         	
+         	function kakaoLogout() {	
+         		openPopUp();
+         		setTimeout(function() {
+         			closePopUp();	
+         			location.href="/";
+         			}, 500);
+         		history.replaceState({}, null, location.pathname); //url 숨기기
+         	}
+         	
+         	
+    </script>		
 
 </body>
 </html>
