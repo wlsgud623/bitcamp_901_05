@@ -68,6 +68,12 @@
 			location.href="/login";
 		}
 		
+		//아이디 체크
+		if (${sessionScope.loginid != recipe.userID}) {
+			alert("레시피 수정은 작성자만 가능합니다");
+			location.href="/";
+		}
+		
 		//태그 불러오기
 		showTag("${recipe.tags}");
 		

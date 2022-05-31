@@ -25,7 +25,7 @@ public class SearchController {
 			Model model) {
 		
 		int totalCount=service.getTotalCount(research);
-		int perPage=12;
+		int perPage=9;
 		int startNum=(currentPage-1)*perPage;
 		
 		List<RecipeDto> list = new Vector<>();
@@ -36,14 +36,14 @@ public class SearchController {
 		int startPage=((currentPage-1)/perBlock)*perBlock+1;
 		int endPage=(startPage+perBlock-1)<totalPage?(startPage+perBlock-1):totalPage;
 		
-		model.addAttribute("list",list);
+		model.addAttribute("list", list);
 		model.addAttribute("tot", totalCount);
-		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("startNum", startNum);
-		model.addAttribute("research",research);
+		model.addAttribute("research", research);
 		
 		return ("/collection/search");
 	}
