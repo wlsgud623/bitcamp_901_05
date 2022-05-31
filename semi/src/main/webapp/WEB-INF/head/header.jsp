@@ -278,7 +278,7 @@ $(function () {
 		
 		<nav class="navbar navbar-expand-sm" style="background-color: #c12231;">
 
-        <!-- Toggler/collapsibe Button -->
+       
         
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <!-- 리스트 : 부트스트랩은 모바일 우선이라 화면이 작으면 아래로 쌓아서 내려온다 -->
