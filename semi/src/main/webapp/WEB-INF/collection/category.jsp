@@ -34,7 +34,7 @@
 	
 	#cate_table td {
 		line-height : 50px;
-		padding-left: 30px;
+		padding-left: 10px;
 	}
 	#menu_area{
 		text-align: center;
@@ -57,9 +57,8 @@
 	.cate_icon{
 		width: 96px;
     	height: 96px;
+    	display: block;
 	}
-	
-	
 	#cate_icon01{
 		background: url("/image/icon-all.png");
 	}
@@ -130,8 +129,12 @@
 		border-spacing: 2px;
 	}
 	
+	#cate_table td{
+		text-align: left;
+	}
+	
 	#cate_table a{
-		font-size: 19px;
+		font-size: 20px;
     	color: #666;
     	text-decoration: none;
 	}
@@ -260,8 +263,8 @@ $(function() {
 		}	
 	}
 	
-	function loadPage(category, item, currentPage){
-		location.href = "?category=" + category + "&item=" + item + "&currentPage=" + currentPage;	
+	function loadPage(category, item){
+		location.href = "?category=" + category + "&item=" + item;	
 	}
 });
 </script>
@@ -399,7 +402,7 @@ $(function() {
 				<div class="box" style="float: left; width: 400px;">
 					<div class="rec_img" style="text-align: center;">
 						<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"> 
-						<img src="../img/main/${recipe.main_photo}" class="main_image img-thumbnail">
+						<img src="../upload/${recipe.main_photo}" class="main_image img-thumbnail">
 						</a>
 					</div>
 					<div class="icon">

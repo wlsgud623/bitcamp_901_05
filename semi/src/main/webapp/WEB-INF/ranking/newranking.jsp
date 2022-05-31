@@ -187,7 +187,7 @@
 				<div class="box" style="float: left; width: 400px;">
 					<div class="rec_img" style="text-align: center;">
 						<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"> 
-							<img src="../img/main/${recipe.main_photo}" class="main_image img-thumbnail">
+							<img src="../upload/${recipe.main_photo}" class="main_image img-thumbnail">
 						</a>
 					</div>
 					<div class="icon">
@@ -195,7 +195,7 @@
 					</div>
 					<div class="info" style="text-align: left;">
 						<ul style="display: flex;" class="normal_tag">
-							<c:forEach var="tag" items="${fn:split(recipe.tags, ':')}">
+							<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
 								<li>#${tag}&nbsp;&nbsp;</li>
 							</c:forEach>
 						</ul>

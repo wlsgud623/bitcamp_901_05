@@ -9,7 +9,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/detail.css">
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <c:set var="root" value="<%=request.getContextPath()%>"/>
 <style type="text/css">	
@@ -98,6 +100,14 @@ $(function(){
 		}
 	});
 	
+	$("#editrecbtn").click(function() {
+		editRecipe();
+	});
+	
+	$("#delrecbtn").click(function() {
+		deleteRecipe();
+	});
+	
 });
 
 function addRate() {
@@ -105,12 +115,17 @@ function addRate() {
 		type: "POST",
 		dataType : "JSON",
 		url: "addrate",
-		data: {"idx":${dto.RECIPE_IDX},"rate":$("input[name='rating']:checked").val()},
+		data: {"idx":${dto.RECIPE_IDX},"rate":$("input[name='rating']:checked").val(), "userid":"${sessionScope.loginid}"},
 		success : function(data) {
+			if (data.rate==null){
+				alert("이미 평점을 부여하셨습니다");
+				return;
+			}
 			//console.log(data.volunteer);
 			//console.log(data.rate);
 			$("#total_rate").html((data.rate / data.volunteer).toFixed(1));
 			$("#total_volunteer").html(data.volunteer);
+			$("#rate_button").addClass("disabled");
 		}
 	});
 }
@@ -120,9 +135,14 @@ function addRecommend() {
 		type: "POST",
 		dataType : "JSON",
 		url: "addrecom",
-		data: {"idx":${dto.RECIPE_IDX}},
+		data: {"idx":${dto.RECIPE_IDX}, "userid":"${sessionScope.loginid}"},
 		success : function(data) {
+			if (data.recom==null){
+				alert("이미 추천한 레시피입니다");
+				return;
+			}
 			$("#total_recommendation").html(data.recom);
+			$("#recom_button").addClass("disabled");
 		}
 	});
 }
@@ -390,26 +410,53 @@ function scrapRecipe(){
 		url: "scrap" ,
 		data: {"idx":${dto.RECIPE_IDX}, "id":id},
 		success: function() {
-			$("#scrap_button").html("구독");
+			$("#scrap_button").html("찜!");
+			$("#scarp_button").css("color", "red");
+			$("#scarp_button").addClass("disabled");
 		}
 	});
 }
 
 function editRecipe(){
-	location.href = "/updateform?idx=${idx}"
+	if ("${sessionScope.loginok}" == null || "${sessionScope.loginok}" !='yes'){
+		$("#loginModal").modal('show');
+		return;
+	}
+	if ("${sessionScope.loginid}" != userID){
+		alert("작성자가 아니면 수정할 수 없습니다");
+		return;
+	}
+	
+	var ans = confirm("레시피를 수정하시겠습니까?");
+	if (ans){ 
+		location.href = "/updateform?idx=${idx}"
+	}
 }
 
 function deleteRecipe(){
-	location.href = "/delete?idx=${idx}"
+	if ("${sessionScope.loginok}" == null || "${sessionScope.loginok}" !='yes'){
+		$("#loginModal").modal('show');
+		return;
+	}
+	if ("${sessionScope.loginid}" != userID){
+		alert("작성자가 아니면 삭제할 수 없습니다");
+		return;
+	}
+	
+	var ans = confirm("레시피를 삭제하시겠습니까?");
+	if (ans){ 
+		location.href = "/delete";
+	}
 }
 
 
 </script>
 </head>
+
 <body>
-	<!-- 모달 부분 -->
+<!-- 모달 부분 -->
 	<!-- Modal -->
-	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal" id="loginModal"  role="dialog" aria-labelledby="myModalLabel">
   		<div class="modal-dialog" role="document">
     		<div class="modal-content">
       			<div class="modal-header">
@@ -420,7 +467,7 @@ function deleteRecipe(){
       			</div>
       			<div class="modal-footer">
         		<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-        		<button type="button" class="btn btn-success" onclick="location.href='../login/login'">로그인</button>
+        		<button type="button" class="btn btn-success" onclick="location.href='../login'">로그인</button>
         		<button type="button" class="btn btn-primary" onclick="location.href='../member/signup'">회원가입</button>
       			</div>
     		</div>
@@ -430,6 +477,7 @@ function deleteRecipe(){
 	<!-- 레시피 부분 -->
 	<div id="content">
 		<!-- 레시피 소개 부분 -->
+		
 		<div id ="main_area">
 			<div id="subject_area">
 				<div id="name_section"><h1>${dto.name}</h1></div>
@@ -449,6 +497,7 @@ function deleteRecipe(){
 						</c:if>
 						평가인원: <span id="total_volunteer">${dto.total_volunteer}</span>
 					</div>
+					&nbsp;&nbsp;&nbsp;
 					<div class="star-rating">
 						<input type="radio" id="5-stars" name="rating" value="5" checked="checked"/>
   						<label for="5-stars" class="star">&#9733;</label>
@@ -462,24 +511,30 @@ function deleteRecipe(){
   						<label for="1-star" class="star">&#9733;</label>
 					</div>
 					<div>
-						<button type="button" id="rate_button">평점 주기</button>
+						<button type="button" id="rate_button" class="btn">평점 주기</button>
 					</div>
 				</div>
 				<div>
-					<button id="scrap_button" type="button"><span class="glyphicon glyphicon-heart"></span>찜하기</button>
+					<button id="scrap_button" type="button" class="btn"><span class="glyphicon glyphicon-heart"></span>찜하기</button>
 				</div>
 			</div>
 			<hr style="background-color: black; height: 1px;">
 			<div id="tag_area">
 				<ul>
-					<c:forEach var="tag" items="${fn:split(dto.tags, ':')}">
-						<li><a href=''>#${tag}</a></li>
+					<c:forEach var="tag" items="${fn:split(dto.tags, ',')}">
+						<li><a href='/search?research=${tag}'>#${tag}</a></li>
 					</c:forEach>
 				</ul>
 			</div>
+	
 			<div id="image_area">
-				<img src="${dto.main_photo}" id="main_photo">
+				<img src="../upload/${dto.main_photo}" id="main_photo">
 			</div>
+			
+			<div class="well" id="intro_area">
+				<h3>${dto.intro }</h3>
+			</div>
+			
 			<div id="explain_area">
 				<div id="ingredient_area">
 					<div>
@@ -487,7 +542,7 @@ function deleteRecipe(){
 					</div>
 					<div style="margin-left: auto; padding-right: 50px; padding-top: 20px;">
 						<c:forEach var="ing" items="${ingredients}">
-							<span style="display: flex; border-bottom: 1px solid #eee;"><p>${ing.name}</p><p style="margin-left: auto;">${ing.quantity}</p></span><br>
+							<span style="display: flex; border-bottom: 1px dotted #eee;"><p>${ing.name}</p><p style="margin-left: auto;">${ing.quantity}</p></span><br>
 						</c:forEach>
 					</div>
 				</div>
@@ -496,8 +551,6 @@ function deleteRecipe(){
 						<h3>분량</h3>
 						<h1>${dto.portion }인분</h1>
 					</div>
-					<hr>
-					
 					<div id="portion_section">
 						<h3>난이도</h3>
 						<h1>${dto.level }</h1>
@@ -510,11 +563,11 @@ function deleteRecipe(){
 		<!-- 레시피 설명 부분  -->
 		<div id="recipe_area">
 			<div id="recipe_board">
-				<h3>조리순서</h3>
+				<h1>조리순서</h1>
 				<c:forEach var="step" items="${steps}" varStatus="i">
 					<p class="step_section"><br><b>Step ${step.step}</b></p>
 					<p class="explain_section">${step.text}<br><br></p>
-					<p class="image_section"><img src="${step.photo}"></p>
+					<p class="image_section"><img src="../upload/${step.photo}"></p>
 				</c:forEach>		
 			</div>
 			<c:if test="${dto.complete_photo != Null}">
@@ -522,7 +575,7 @@ function deleteRecipe(){
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				  <!-- Indicators -->
 				  <ol class="carousel-indicators">
-				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ':')}" varStatus="i">
+				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ',')}" varStatus="i">
 				  		<c:if test="${i.count ==1 }">
 				  			<li data-target="#myCarousel" data-slide-to="${i.index}" class="active"></li>
 				  		</c:if>
@@ -534,15 +587,15 @@ function deleteRecipe(){
 				
 				  <!-- Wrapper for slides -->
 				  <div class="carousel-inner">
-				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ':')}" varStatus="i">
+				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ',')}" varStatus="i">
 				  		<c:if test="${i.count ==1 }">
 				  			<div class="item active">
-				      			<img src="${photo}" alt="${i.count}번째 사진">
+				      			<img src="../upload/${photo}" alt="${i.count}번째 사진">
 				    		</div>
 				  		</c:if>
 				  		<c:if test="${i.count !=1 }">
 				  			<div class="item">
-				      			<img src="${photo}" alt="${i.count}번째 사진">
+				      			<img src="../upload/${photo}" alt="${i.count}번째 사진">
 				    		</div>
 				  		</c:if>
 				  	</c:forEach>
@@ -569,11 +622,11 @@ function deleteRecipe(){
 			</button>
 		</div>
 		<div class="btn-group btn-group-justified">
-    			<a href="#" class="btn btn-danger recipebtn" id=""><span>목록</span></a>
-    			<a href="#" class="btn btn-danger recipebtn" id="editbtn"><span>수정</span></a>
-    			<a href="#" class="btn btn-danger recipebtn" id="delbtn"><span>삭제</span></a>
+    			<a href="/collection/category" class="btn btn-danger recipebtn"><span>목록</span></a>
+    			<a href="#" class="btn btn-danger recipebtn" id="editrecbtn"><span>수정</span></a>
+    			<a href="#" class="btn btn-danger recipebtn" id="delrecbtn"><span>삭제</span></a>
   		</div>
-	</div>		</div>
+	</div>		
 		<div id="comment_area">
 			<h3><span class="glyphicon glyphicon-comment"></span> <span id="comment_count">댓글 (${fn:length(comments)})</span></h3>
 			<hr style="height: 2px; background-color: black;">

@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +26,7 @@ import data.service.CommentService;
 import data.service.IngredientService;
 import data.service.MemberService;
 import data.service.RecipeService;
+import data.service.RecommendationService;
 import data.service.StepsService;
 
 @Controller
@@ -47,7 +49,10 @@ public class RecipeController {
 	@Autowired
 	private MemberService memberService;
 	
-	@GetMapping("/detail") // 디테일 페이지, 세션은 삭제 예정
+	@Autowired
+	private RecommendationService recommendationService;
+	
+	@GetMapping("/detail") // 디테일 페이지
 	public ModelAndView showRecipe(@RequestParam int idx) {
 		ModelAndView mView = new ModelAndView();
 		
@@ -70,15 +75,22 @@ public class RecipeController {
 	//스크랩, 추천, 평점
 	@GetMapping("/scrap") // 레시피 스크랩
 	public void scrapRecipe(@RequestParam int idx, @RequestParam String id) {
+		recommendationService.addScrap(idx, id);
 		memberService.updateScrapRecipe(idx, id);
 	}
 	
 	
 	@PostMapping("/addrecom") //레시피 추천
 	@ResponseBody
-	public Map<String, Integer> addRecommend(@RequestParam int idx) {
-		recipeService.addRecommend(idx);
+	public Map<String, Integer> addRecommend(@RequestParam int idx, @RequestParam String userid) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
+		
+		if (recommendationService.searchRecommend(idx, userid)==1) {
+			map.put("recom", null);
+			return map;
+		}
+		recommendationService.addRecommend(idx, userid);
+		recipeService.addRecommend(idx);
 		
 		int recom = recipeService.getRecipeRec(idx);
 		map.put("recom", recom);
@@ -87,9 +99,15 @@ public class RecipeController {
 	
 	@PostMapping("/addrate") //레시피 평점 추가
 	@ResponseBody
-	public Map<String, Integer> addRate(@RequestParam int idx, @RequestParam int rate) {
-		recipeService.addRate(idx, rate);
+	public Map<String, Integer> addRate(@RequestParam int idx, @RequestParam int rate, @RequestParam String userid) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
+		
+		if(recommendationService.searchRate(idx, userid)==1) {
+			map.put("rate", null);
+			return map;
+		}
+		recipeService.addRate(idx, rate);
+		recommendationService.addRate(idx, userid);
 		
 		int currate = recipeService.getRecipeRate(idx);
 		int volunteer = recipeService.getRecipeVolunteer(idx);
@@ -106,7 +124,7 @@ public class RecipeController {
 		ModelAndView mView = new ModelAndView();
 		RecipeDto dto = recipeService.getRecipe(idx);
 		mView.addObject("dto", dto);
-		mView.setViewName("/recipe/updateform");
+		mView.setViewName("/recipe/update");
 		return mView;
 	}
 	

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mapper.RecommendationMapperInter">
+	<insert id="addRecommend"> 
+		INSERT INTO Recommendation (RECIPE_IDX, USERID, typename) VALUES (#{RECIPE_IDX}, #{USERID}, 'recommend')
+	</insert>
+	
+	<insert id="addRate">
+		INSERT INTO Recommendation (RECIPE_IDX, USERID, typename) VALUES (#{RECIPE_IDX}, #{USERID}, 'rate')
+	</insert>
+	
+	<insert id="addScrap">
+		INSERT INTO Recommendation (RECIPE_IDX, USERID, typename) VALUES (#{RECIPE_IDX}, #{USERID}, 'scrap')
+	</insert>
+	
+	<select id="searchRecommend" resultType="int">
+		SELECT COUNT(*) FROM Recommendation WHERE RECIPE_IDX = #{RECIPE_IDX} AND USERID=#{USERID} AND typename = 'recommend'
+	</select>
+	
+	<select id="searchRate" resultType="int">
+		SELECT COUNT(*) FROM Recommendation WHERE RECIPE_IDX = #{RECIPE_IDX} AND USERID=#{USERID} AND typename = 'rate'
+	</select>
+	
+	<select id="searchScrap" resultType="int">
+		SELECT COUNT(*) FROM Recommendation WHERE RECIPE_IDX = #{RECIPE_IDX} AND USERID=#{USERID} AND typename = 'scrap'
+	</select>
+</mapper>
