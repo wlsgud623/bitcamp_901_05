@@ -528,7 +528,7 @@ function deleteRecipe(){
 			</div>
 	
 			<div id="image_area">
-				<img src="${dto.main_photo}" id="main_photo">
+				<img src="../upload/${dto.main_photo}" id="main_photo">
 			</div>
 			
 			<div class="well" id="intro_area">
@@ -567,7 +567,7 @@ function deleteRecipe(){
 				<c:forEach var="step" items="${steps}" varStatus="i">
 					<p class="step_section"><br><b>Step ${step.step}</b></p>
 					<p class="explain_section">${step.text}<br><br></p>
-					<p class="image_section"><img src="${step.photo}"></p>
+					<p class="image_section"><img src="../upload/${step.photo}"></p>
 				</c:forEach>		
 			</div>
 			<c:if test="${dto.complete_photo != Null}">
@@ -575,7 +575,7 @@ function deleteRecipe(){
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				  <!-- Indicators -->
 				  <ol class="carousel-indicators">
-				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ':')}" varStatus="i">
+				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ',')}" varStatus="i">
 				  		<c:if test="${i.count ==1 }">
 				  			<li data-target="#myCarousel" data-slide-to="${i.index}" class="active"></li>
 				  		</c:if>
@@ -587,15 +587,15 @@ function deleteRecipe(){
 				
 				  <!-- Wrapper for slides -->
 				  <div class="carousel-inner">
-				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ':')}" varStatus="i">
+				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ',')}" varStatus="i">
 				  		<c:if test="${i.count ==1 }">
 				  			<div class="item active">
-				      			<img src="upload/${photo}" alt="${i.count}번째 사진">
+				      			<img src="../upload/${photo}" alt="${i.count}번째 사진">
 				    		</div>
 				  		</c:if>
 				  		<c:if test="${i.count !=1 }">
 				  			<div class="item">
-				      			<img src="upload/${photo}" alt="${i.count}번째 사진">
+				      			<img src="../upload/${photo}" alt="${i.count}번째 사진">
 				    		</div>
 				  		</c:if>
 				  	</c:forEach>

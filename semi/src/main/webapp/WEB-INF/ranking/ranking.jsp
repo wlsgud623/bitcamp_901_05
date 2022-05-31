@@ -194,7 +194,7 @@
 				<c:forEach var="recipe" items="${list}" varStatus="i" begin="0" end="2">
 					<div class="first_div" id="first_div_${i.count }">
 						<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}">
-							<img src="${recipe.main_photo}" class="img-thumbnail" style="width: 80%;">
+							<img src="../upload/${recipe.main_photo}" class="img-thumbnail" style="width: 80%;">
 						</a>
 						<div class="info">
 							<div class="info_tag" style="text-align: center;">
@@ -220,7 +220,7 @@
 						</div>
 						<div class="rec_img" style="text-align: center;">
 							<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"> 
-							<img src="../img/main/${recipe.main_photo}" class="main_image img-thumbnail">
+							<img src="../upload/${recipe.main_photo}" class="main_image img-thumbnail">
 							</a>
 						</div>
 						<div class="icon">
