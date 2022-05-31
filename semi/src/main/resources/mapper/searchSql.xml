@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.mapper.SearchMapperInter">
+	<select id="searchRecipe" parameterType="String" resultType="recipe">
+		SELECT * from Recipe where INSTR(tags, #{searchWord}) or INSTR(name, #{searchWord}) 
+		or INSTR(intro, #{searchWord}) or INSTR(category, #{searchWord}) 
+		or INSTR(main_ing, #{searchWord}) or INSTR(cooking, #{searchWord}) 
+		or INSTR(portion, #{searchWord}) or INSTR(level, #{searchWord}) 
+		or INSTR(USERID, #{searchWord})
+	</select>
+</mapper>

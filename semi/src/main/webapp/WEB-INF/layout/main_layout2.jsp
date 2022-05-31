@@ -11,9 +11,9 @@
 </head>
 <body>
 <div class="layout">
-	<!--  <div class="head">
+	<div class="head">
 		<tiles:insertAttribute name="head"/>
-	</div>-->
+	</div>
 	<div class="main">
 		<tiles:insertAttribute name="main"/>
 	</div>

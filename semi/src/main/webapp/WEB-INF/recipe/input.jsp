@@ -153,21 +153,6 @@
 			}
 		})
 		
-		//재료 묶음 중간 추가
-		$(document).on("click", ".tab_add", function() {
-			var table=$(this).parent().parent().parent().parent();
-			var idx=stepIdx(tr)+1;
-			var nextTr=tr.next();
-			
-			while(nextTr.length!=0) {
-				stepOrder(nextTr, +1);
-				nextTr=nextTr.next();
-			}
-
-			$(tr).after(stepTr(idx));
-			stepCount++;
-		});
-		
 		//요리 단계 지우기
 		$(document).on("click", ".step_del", function() {
 			var tr=$(this).parent().parent();
@@ -448,8 +433,7 @@
 			return '<tr>'
 				+'<th id="choose_class'+idx+'" rowspan="2">'
 				+'<input type="text" class="ing_class" idx="'+idx+'" required="required"'
-				+'placeholder="재료묶음">'
-				+'<br><br>'
+				+'placeholder="재료묶음"><br>'
 				+'<button type="button" class="btn btn-default tab_delete"'
 	    		+'style="font-size: 0.8rem; height: 25px;">삭제</button>'
 	    		+'<button type="button" class="btn btn-default tab_up"'
@@ -532,7 +516,7 @@
 <div class="inputMain">
 	<h1 class="inputTitle">레시피 작성하기</h1>
 	<br>
-	<form action="insert" method="post" class="form-inline" enctype="multipart/form-data">
+	<form action="insert" method="post" id="iForm" class="form-inline" enctype="multipart/form-data">
 		<label for="inputPhoto" class="inputMainLabel">
 			<img src="../img/blog-6.jpg" class="inputMainLabel">
 			<span style="font-size: 40px;">대표 사진을 등록해주세요</span>
@@ -653,7 +637,7 @@
 		    	<tr>
 		    		<th id="choose_class1" rowspan="2">
 		    			<input type="text" class="ing_class" idx="1" required="required"
-		    			placeholder="재료묶음">
+		    			placeholder="재료묶음"><br>
 		    			<button type="button" class="btn btn-default tab_delete"
 	    				style="font-size: 0.8rem; height: 25px;">삭제</button>
 	    				<button type="button" class="btn btn-default tab_up"
@@ -768,7 +752,6 @@
 	    <br><br><br><br>
 	    
 	    <div style="text-align: center; width: 850px;">
-	    	<button type="button" class="btn btn-default" disabled="disabled">중간저장(?)</button>&emsp;
 	    	<button type="submit" class="btn btn-default">업로드</button>&emsp;
 	    	<button type="button" class="btn btn-default" onclick="location.href='/'">취소</button>
 	    </div>

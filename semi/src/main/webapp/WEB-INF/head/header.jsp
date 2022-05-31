@@ -36,7 +36,7 @@ s .page-header{
 
 body * {
 	font-size: 15px;
-	margin: 0px;
+	
 	padding: 0px;
 	list-style: none;
 	font-family: 'Gowun Dodum'; 
@@ -48,7 +48,7 @@ body * {
 	
 	top: 100px;
 	font-size: 20px;
-	left: 90%;
+	left: 86%;
 	cursor: pointer;
 	float: right;
 	text-decoration: none;
@@ -68,7 +68,7 @@ body * {
 } 
 
 *{
-    margin: 0;
+    
  	padding: 0;
  	list-style-type: none;
  	letter-spacing : 0.2em;
@@ -117,7 +117,7 @@ ul.menu li{
 	 font-weight: bold;
 	 color: #eee;
 	 text-decoration: none;	
-	 font-size: 20px;
+	 font-size: 2px;
  	 
  }
  
@@ -126,10 +126,10 @@ ul.menu li{
 	 width: 150px;
 	 height: 48px;
 	 margin-left: 150px;
-	 margin-top: 0px;
+	 margin-top: 5px;
 	 background-color:  #c12231; 
 	 /* position: relative; */
-	 font-size: 40px; 
+	 font-size: 1.5rem; 
 	 text-align: center;
 
  }
@@ -142,6 +142,7 @@ ul.menu li{
    
  }
     ul.menu{
+    margin-top:10px;
      zoom: 1;
  }
     ul.menu:after{
@@ -158,17 +159,30 @@ ul.menu li{
  
 
  .hider{
-	 visibility: hidden;
+	display: none;
  }
  
 
  .side_item a{
 	font-weight:bold;
- 	font-size: 1.7rem;
- 	
+ 	font-size: 1.5rem;
+ 	margin-right: 10px;
  	word-spacing : 6rem;
  	text-decoration: none;
- 	color: black;
+
+    line-height: 25px;
+    color: #777777;
+    padding: 5px 20px 7px;
+    border: 1px solid #c1c1c1;
+    	
+    border-radius: 50px;
+    	
+	}
+ .side_item a:hover{
+	background: #c12231; 
+	color: #fff;
+	border:1px solid #c12231;
+	}
  	
  }
  
@@ -195,6 +209,11 @@ a:hover {
 a:active {
   color : black;
   text-decoration: none;
+}
+
+.dropdown-menu{
+margin-top: 10px;
+box-shadow: 2px 2px 2px 2px gray;
 }
 </style>
 <script type="text/javascript">
@@ -234,7 +253,7 @@ $(function () {
 		<!-- 로고 -->
 	<header class="page-header" role="banner" > 
 		
-		<img alt="logo" src="../img/logo.png" style="width:150px; position: absolute; top:70px; right: 90%; " >
+		<img alt="logo" src="../img/logo.png" style="width:250px; position: absolute; top:70px; right: 86%; " >
 		<!-- 검색창 -->
 		<div class="searchbar"  style="text-align: center;">
 		
@@ -269,9 +288,9 @@ $(function () {
                     <div class="dropdown-menu" >
                     
                         
-                        <ul class="side_item" style="width: 1200px;">
+                        <ul class="side_item" style="width: 1650px;">
                         
-                       		 <li class="dropdown-item" style="font-size: 2rem; ">종류</li>
+                       		 <li class="dropdown-item" style="font-size: 2rem; color: gray;">종류</li>
 			                 
                          
                      			
@@ -283,7 +302,7 @@ $(function () {
                                  <li><a href="/search?research=디저트">#디저트</a></li>
                                  <li><a href="/search?research=양식">#양식</a></li>
                                  <li><a href="/search?research=일식">#일식</a></li>
-                                 <li><a href="/search?research=중식">#중식</a></li>
+                                 <li><a href="/search?research=중식">#중식</a></li> 
                                  <li><a href="/search?research=퓨전">#퓨전</a></li>
                                  <li><a href="/search?research=떡/만두">#떡/만두</a></li>
                                  <li><a href="/search?research=빵/과자">#빵/과자</a></li>
@@ -296,8 +315,8 @@ $(function () {
 								
 							</ul>
 							
-							 <ul class="side_item" style="width: 1200px;">
-							 <li class="dropdown-item" style="font-size: 2rem; color: black;">재료</li>
+							 <ul class="side_item" style="width: 1650px;">
+							 <li class="dropdown-item" style="font-size: 2rem; color: gray;">재료</li>
 			                 
                          
                      			 <li><a href="/search?research=소고기">#소고기</a></li>
@@ -317,9 +336,9 @@ $(function () {
 								
 							</ul>
 							
-							 <ul class="side_item" style="width: 1200px;">
+							 <ul class="side_item" style="width: 1650px;">
                         
-                       		 <li class="dropdown-item" style="font-size: 2rem; color: black;">방법</li>
+                       		 <li class="dropdown-item" style="font-size: 2rem; color: gray;">방법</li>
 			                  
 		                         <li><a href="/search?research=구이">#구이</a></li>
 		                         <li><a href="/search?research=찜">#찜</a></li>
@@ -340,7 +359,7 @@ $(function () {
 			             
                         
                         <!--  <a class="dropdown-item" href="#">재료</a>
-                        <a class="dropdown-item" href="#">방법</a>-->
+                        <a class="dropdown-item" href="#">방법ㄹㄹ</a>-->
                       
                       
                       </div>
@@ -349,11 +368,11 @@ $(function () {
 			     <p style=clear:both;></p>
                 
                 <li class="nav-item" style="color: white  ; font-size: 2rem; ">
-                    <a class="nav-link" href="ranking/ranking"  style="position: absolute; left: 10%;">랭킹</a>
+                    <a class="nav-link" href="ranking/ranking"  style="position: absolute; color:white; left: 10%;">랭킹</a>
                 </li>
  		
                 <li class="nav-item" style="color: white; float: right; font-size: 2rem;">
-                    <a class="nav-link" href="member/signup" style="position: absolute; right: 0;">회원가입</a>
+                    <a class="nav-link" href="member/signup" style="position: absolute; color:white; right: 0;">회원가입</a>
                 </li>
                 <li class="nav-item" style="color: white; float: right; font-size: 2rem;">
                     <a class="nav-link " href="/login" style="position: absolute; color:white; right: 10%;">로그인</a>

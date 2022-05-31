@@ -30,6 +30,7 @@ height: 100%;
 min-height: 100%;
 position: relative;
 padding-bottom: 19px;
+text-align: center;
 }
 
 .footer {
@@ -92,7 +93,7 @@ section {
 	color: white;
 }
 
-.icons p {
+.icons{
 	text-align: center;
 }
 
@@ -104,9 +105,9 @@ section {
 </head>
 
 <body>
-<!-- footer 시작 -->
+<!-- footer 시작 ㄹ-->
 
- 
+ <div cl></div>
    <div id="wrap" class="wrap">
       <section>
          <br> <a href="/" style="text-align: center;">모두의밥상</a>

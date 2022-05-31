@@ -270,7 +270,7 @@
 			</c:if>
 		</div>
 	</div>
-	<div>
+		<div>
 			<ul class="pagination">
 				<c:if test="${currentPage != '1'}">
 					<li>

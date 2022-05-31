@@ -50,5 +50,5 @@ public class InputService implements InputServiceInter {
 		map.put("userID", userID);
 		mapper.updateOwnRecipe(map);
 	}
-
+	
 }

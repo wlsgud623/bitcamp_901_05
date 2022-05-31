@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import data.dto.RecipeDto;
 
@@ -34,4 +35,6 @@ public interface RecipeMapperInter {
 	public List<RecipeDto> getViewRankingList(Map<String, Integer> map);
 	public List<RecipeDto> getNewRankingList(Map<String, Integer> map);
 	
+	public List<RecipeDto> getCategoryList(@Param("category") String category, @Param("item") String item, @Param("startnum") int startnum, @Param("limit") int limit);
+	public int getCategoryCount(@Param("category") String category, @Param("item") String item);
 }
