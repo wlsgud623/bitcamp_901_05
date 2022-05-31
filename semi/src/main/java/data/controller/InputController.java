@@ -45,7 +45,7 @@ public class InputController {
 			HttpSession session,
 			HttpServletRequest request) {
 		//현재 로그인한 userID
-		String userID="tester"; //(String)session.getAttribute("로그인아이디");
+		String userID=(String)session.getAttribute("loginid");
 		reDto.setUserID(userID);
 		
 		//메인, 완성사진 업로드
@@ -107,7 +107,7 @@ public class InputController {
 		//user의 ownrecipe 목록 업데이트
 		service.updateOwnRecipe(RECIPE_IDX, userID);
 		
-		return "redirect:/"; //리다이렉트 디테일페이지(예정)
+		return "redirect:/recipe/detail?idx="+RECIPE_IDX;
 	}
 	
 }

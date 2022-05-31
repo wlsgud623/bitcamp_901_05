@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.mapper.SearchMapperInter">
-	<select id="searchRecipe" parameterType="String" resultType="recipe">
-		SELECT * from Recipe where INSTR(tags, #{searchWord}) or INSTR(name, #{searchWord}) 
-		or INSTR(intro, #{searchWord}) or INSTR(category, #{searchWord}) 
-		or INSTR(main_ing, #{searchWord}) or INSTR(cooking, #{searchWord}) 
-		or INSTR(portion, #{searchWord}) or INSTR(level, #{searchWord}) 
-		or INSTR(USERID, #{searchWord})
+	<select id="getTotalCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) from Recipe where INSTR(tags, #{searchWord}) OR INSTR(name, #{searchWord}) 
+		OR INSTR(intro, #{searchWord}) OR INSTR(category, #{searchWord}) 
+		OR INSTR(main_ing, #{searchWord}) OR INSTR(cooking, #{searchWord}) 
+		OR INSTR(portion, #{searchWord}) OR INSTR(level, #{searchWord}) 
+		OR INSTR(USERID, #{searchWord})
+	</select>
+	<select id="searchRecipe" parameterType="Map" resultType="recipe">
+		SELECT * from Recipe where INSTR(tags, #{searchWord}) OR INSTR(name, #{searchWord}) 
+		OR INSTR(intro, #{searchWord}) OR INSTR(category, #{searchWord}) 
+		OR INSTR(main_ing, #{searchWord}) OR INSTR(cooking, #{searchWord}) 
+		OR INSTR(portion, #{searchWord}) OR INSTR(level, #{searchWord}) 
+		OR INSTR(USERID, #{searchWord}) ORDER BY RECIPE_IDX DESC LIMIT #{startNum}, #{perPage}
 	</select>
 </mapper>
