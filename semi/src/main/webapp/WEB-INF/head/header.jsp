@@ -152,11 +152,7 @@ ul.menu li{
 	 display: block;
 	 clear: both;
  }
- 
- a{
- 	float: left;
- }
- 
+
 
  .hider{
 	display: none;
@@ -169,6 +165,7 @@ ul.menu li{
  	margin-right: 10px;
  	word-spacing : 6rem;
  	text-decoration: none;
+ 	float: left;
 
     line-height: 25px;
     color: #777777;
@@ -185,6 +182,10 @@ ul.menu li{
 	}
  	
  }
+ 
+.dropdown-item >li > a{ 
+	text-align: center;
+}
  
 .dropdown-item:hover{
 	background-color: #E0E0E0; 
@@ -246,7 +247,7 @@ $(function () {
   
 });
 </script>
-<c:set var="root" value="<%=request.getContextPath() %>"/> <!-- 절대경로 -->
+<c:set var="root" value="<%=request.getContextPath() %>"/> <!-- 절//대경로... -->
 <body>
 <br><br>
 
@@ -277,7 +278,7 @@ $(function () {
 		
 		<nav class="navbar navbar-expand-sm" style="background-color: #c12231;">
 
-        <!-- Toggler/collapsibe Button -->
+       
         
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <!-- 리스트 : 부트스트랩은 모바일 우선이라 화면이 작으면 아래로 쌓아서 내려온다 -->
