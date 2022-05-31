@@ -570,6 +570,8 @@ function deleteRecipe(){
 					<p class="image_section"><img src="../upload/${step.photo}"></p>
 				</c:forEach>		
 			</div>
+			<br>
+			<br>
 			<c:if test="${dto.complete_photo != Null}">
 				<h3>완성 사진</h3>
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -590,12 +592,22 @@ function deleteRecipe(){
 				  	<c:forEach var="photo" items="${fn:split(dto.complete_photo, ',')}" varStatus="i">
 				  		<c:if test="${i.count ==1 }">
 				  			<div class="item active">
-				      			<img src="../upload/${photo}" alt="${i.count}번째 사진">
+				  				<c:if test="${photo!='no image'}">
+				  					<img src="../upload/${photo}" alt="${i.count }번째 이미지">
+				  				</c:if>
+				  				<c:if test="${photo=='no image'}">
+				  					<img src="/image/noimage.png">
+				  				</c:if>
 				    		</div>
 				  		</c:if>
 				  		<c:if test="${i.count !=1 }">
 				  			<div class="item">
-				      			<img src="../upload/${photo}" alt="${i.count}번째 사진">
+				      			<c:if test="${photo!='no image'}">
+				  					<img src="../upload/${photo}" alt="${i.count }번째 이미지">
+				  				</c:if>
+				  				<c:if test="${photo=='no image'}">
+				  					<img src="/image/noimage.png">
+				  				</c:if>
 				    		</div>
 				  		</c:if>
 				  	</c:forEach>
