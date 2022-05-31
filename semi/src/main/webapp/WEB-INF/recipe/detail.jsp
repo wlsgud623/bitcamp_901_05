@@ -423,7 +423,7 @@ function editRecipe(){
 		$("#loginModal").modal('show');
 		return;
 	}
-	if ("${sessionScope.loginid}" != userID){
+	if ("${sessionScope.loginid}" != "${dto.userID}"){
 		alert("작성자가 아니면 수정할 수 없습니다");
 		return;
 	}
@@ -439,7 +439,7 @@ function deleteRecipe(){
 		$("#loginModal").modal('show');
 		return;
 	}
-	if ("${sessionScope.loginid}" != userID){
+	if ("${sessionScope.loginid}" != "${dto.userID}"){
 		alert("작성자가 아니면 삭제할 수 없습니다");
 		return;
 	}
