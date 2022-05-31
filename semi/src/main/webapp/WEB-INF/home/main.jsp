@@ -90,7 +90,7 @@ div.container {
 	color: black;
 	font-size: 20px;	
 }
-
+  
 .wrap {
 	text-align: center;
 	margin-left: auto;
