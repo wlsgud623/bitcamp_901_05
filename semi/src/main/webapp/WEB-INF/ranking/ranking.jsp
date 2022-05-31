@@ -81,7 +81,7 @@
 	}
 	
 	.info_tag b{
-		font-size: 20px;
+		font-size: 15px;
 		font-weight: bold;
 	}
 	
@@ -92,8 +92,8 @@
 	}
 	
 	.info_tag li a {
-    	font-size: 20px;
-    	line-height: 25px;
+    	font-size: 15px;
+    	line-height: 15px;
     	color: #777777;
     	padding: 5px 20px 7px;
     	border: 1px solid #c1c1c1;
@@ -205,7 +205,7 @@
 								</ul>
 							</div>
 						</div>
-						<h3>${recipe.name }</h3>
+						<h1>${recipe.name }</h1>
 					</div>
 				</c:forEach>
 				<hr>

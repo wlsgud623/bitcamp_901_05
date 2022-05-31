@@ -95,8 +95,8 @@
 	}
 	
 	.info_tag li a {
-    	font-size: 20px;
-    	line-height: 25px;
+    	font-size: 15px;
+    	line-height: 15px;
     	color: #777777;
     	padding: 5px 20px 7px;
     	border: 1px solid #c1c1c1;
@@ -203,7 +203,7 @@
 						<div class="info">
 							<div class="info_tag" style="text-align: center;">
 								<ul>
-								<c:forEach var="tag" items="${fn:split(recipe.tags, ':')}">
+								<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
 									<li><a href="#">#${tag}</a></li>
 								</c:forEach>
 								</ul>
@@ -232,7 +232,7 @@
 						</div>
 						<div class="info" style="text-align: left;">
 							<ul style="display: flex;" class="normal_tag">
-								<c:forEach var="tag" items="${fn:split(recipe.tags, ':')}">
+								<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
 									<li>#${tag}&nbsp;&nbsp;</li>
 								</c:forEach>
 							</ul>

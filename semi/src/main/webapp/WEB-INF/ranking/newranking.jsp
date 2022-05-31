@@ -195,7 +195,7 @@
 					</div>
 					<div class="info" style="text-align: left;">
 						<ul style="display: flex;" class="normal_tag">
-							<c:forEach var="tag" items="${fn:split(recipe.tags, ':')}">
+							<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
 								<li>#${tag}&nbsp;&nbsp;</li>
 							</c:forEach>
 						</ul>

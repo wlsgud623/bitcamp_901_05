@@ -260,8 +260,8 @@ $(function() {
 		}	
 	}
 	
-	function loadPage(category, item, currentPage){
-		location.href = "?category=" + category + "&item=" + item + "&currentPage=" + currentPage;	
+	function loadPage(category, item){
+		location.href = "?category=" + category + "&item=" + item;	
 	}
 });
 </script>

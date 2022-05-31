@@ -10,7 +10,7 @@
     	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BinggraeMelona-Bold.woff') format('woff');
     	font-weight: normal;
     	font-style: normal;
-	}
+	}	
 	
 	@font-face {
     	font-family: 'BinggraeMelona';
@@ -20,7 +20,7 @@
 	}
 	
 	body {
-		bgcolor :  black;
+
 	}
 	
 	ul {
@@ -34,8 +34,12 @@
 	img{
 		max-width: 100%;
 	}
+	#loginModal{
+	
+	}
 			
 	#content{
+		min-width : 860px;
 		padding-top: 50px;
 		padding-bottom: 50px;
 		padding-left: 100px;
@@ -81,7 +85,6 @@
   		justify-content:space-around;
   		padding:0 .2em;
   		width:5em;
-  		border: 1px solid black;
 	}
 
 	.star-rating input {
@@ -149,6 +152,10 @@
 		color: #fff;
 		border:1px solid #f64646;
 	}
+	
+	#intro_area{
+		margin-top : 50px;
+	}
 		
 	#explain_area {
 		display: grid;
@@ -159,6 +166,7 @@
 		margin-top : 50px;
 		margin-bottom: 40px;
 	}
+	
 	
 	#explain_area h3 {
 		color: #e9ecef;
@@ -178,7 +186,7 @@
 		padding-left: 50px;
 		padding-top: 20px;
 	}
-	
+	/*
 	#ingredient_area:before{
 		position: absolute; 
 		left:10px; top:-5px; 
@@ -188,11 +196,12 @@
 		content: ''; 
 		background:url('/image/stats_i.png')no-repeat;
 	}
+	*/
 	
 	#level_area {
 		display : grid;
 		grid-template-rows: 1fr 1fr;
-		align-items : center;
+		/*align-items : center;*/
 		font-size: 20px;
 		color : #fff;
 		background: #bf132b;
@@ -202,7 +211,7 @@
 		padding-top: 20px;
 		padding-bottom : 20px;
 	}
-	
+	/*
 	#level_area:before{
 		position: absolute; 
 		left:10px; top:-5px; 
@@ -212,25 +221,32 @@
 		content: ''; 
 		background:url('/image/stats_i.png')no-repeat; 
 	}
+	*/
 	#level_area h1 {
 		float: right;
 		margin-left: auto;	
 	}
-	
 	#level_section {
 		display: flex;
+		align-items : center;
+		border-bottom : 1px solid white;
 	}
 	
 	#portion_section { 
 		display: flex;
+		align-items : center;
 	}
-	
+		
 	#recipe_area {
 		font-family : 'BinggraeMelona';
 		margin-bottom: 30px;
 		padding-left: 55px;
 		padding-right: 55px;
 		padding-bottom: 30px;		
+	}
+	
+	#recipe_board {
+	
 	}
 	
 	#recipe_board p {
@@ -243,10 +259,15 @@
 	}
 	
 	.explain_section {
+	
 	}
 	
 	.image_section {
 		
+	}
+	
+	.text_area{
+		margin-top: 15px;
 	}
 	
 
@@ -262,6 +283,7 @@
 	}
 	
 	#comment_area {
+		min-width : 860px;
 		font-family : 'BinggraeMelona';
 		border: 2px solid #ff001d;
 		margin-left: 300px;
@@ -279,6 +301,10 @@
 		padding-bottom: 30px;
 		padding-left: 20px;
 		padding-right: 20px; 
+	}
+	
+	.comment_content{
+		text-align : left;
 	}
 	
 	
