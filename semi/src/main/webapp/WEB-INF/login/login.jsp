@@ -258,7 +258,6 @@ input[type=submit] {
 
 				<!-- login form -->
 				<form action="loginprocess" method="post">
-					<input type="hidden" name="ref" value="${ref}">
 					<div class="input-box">
 						<input id="userid" type="text" name="userid" placeholder="아이디"
 							value="${loginid}"> <label for="userid">아이디</label>
@@ -328,19 +327,11 @@ input[type=submit] {
                   			url: "/kakao_login",
                   			data: {"id":id},
                   			success: function(data) {
-                  				location.href="/kakao_main";
-                  				/*var s = "";
-            					s += "<div class='kakao_logout' style='text-align: center;'>";
-            					s += "<button class='btn btn-success' onclick='kakaoLogout()'>";
-            		   	        s += "<span>로그아웃</span></button></div>";
-            				    $(".logoutbtn").html(s);
-            				    
-            				    $(".loginbtn").css('visibility', 'hidden');*/  //로그인 버튼 숨기기
-                  				
+                  				location.href="/kakao_main";                  				
                   			}	
-                  		});
-                 }
-                   })
+                  	   });
+                		}
+                   });
                    console.log(authObj);
                    var token = authObj.access_token;
                  },
