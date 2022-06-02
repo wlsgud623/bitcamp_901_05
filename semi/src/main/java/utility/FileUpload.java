@@ -14,6 +14,7 @@ public class FileUpload {
 	//파일명 설정 : 년_월일_시분초_밀리초.확장자
 	public String fileUploadName(String originalName) {
 		int dot=originalName.lastIndexOf(".");
+		System.out.println("dot"+dot);
 		String extension=originalName.substring(dot, originalName.length());
 		
 		Calendar now=Calendar.getInstance();
@@ -37,12 +38,13 @@ public class FileUpload {
 		if (upload.size()==0) {
 			return "no image";
 		}
+		System.out.println(upload.get(0).getOriginalFilename());
 		
 		String imgList="";
 		String path=request.getServletContext().getRealPath("/upload");
 		
 		for (int i = 0; i < upload.size(); i++) {
-			if (upload.get(i).getOriginalFilename()=="") {
+			if (upload.get(i).getOriginalFilename().equals("")) {
 				imgList+="no image,";
 			} else {
 				String name=fileUploadName(upload.get(i).getOriginalFilename());
