@@ -11,19 +11,18 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <title>레시피 랭킹</title>
 <style type="text/css">
-	body {
-
+		.container{
+		margin-top: 80px;
+		margin-bottom: 80px;
 	}
 	
 	.nav li a{
 		font-weight : bold;
 		color: black;
-		background-color: #f3f3f3;
 		cursor: pointer;
 	}
 	
 	.nav li.active a{
-  		background-color: #f3f3f3;
   		color:red;
 	} 
 	
@@ -35,7 +34,6 @@
 		column-gap: 30px;
 		padding-top : 30px;
 		padding-bottom : 30px;
-		background-color: #f3f3f3;
 	}
 	
 	.first_div{
@@ -111,6 +109,10 @@
 		border:1px solid #f64646;
 	}
 	
+	.normal_tag li{
+		font-size: 11px;
+	}
+	
 	
 	#normal_ranking {
 	width: 100%;
@@ -118,7 +120,6 @@
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     gap: 20px 20px;
-    background-color: #f3f3f3;
     padding-top: 20px;
 	}
 	.rec_img {
