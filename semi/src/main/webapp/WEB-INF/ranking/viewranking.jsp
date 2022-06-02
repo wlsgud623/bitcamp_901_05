@@ -9,10 +9,6 @@
 <meta charset="UTF-8">
 <title>레시피 랭킹</title>
 <style type="text/css">
-	.container{
-		
-	}
-	
 	.nav li a{
 		font-weight : bold;
 		color: black;
@@ -26,6 +22,7 @@
 	} 
 	
 		
+			
 	#first_ranking {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
@@ -33,49 +30,168 @@
 		column-gap: 30px;
 		padding-top : 30px;
 		padding-bottom : 30px;
-		background-color: #f3f3f3;
+	/* 	background-color: #f3f3f3; */
+		width: 1140px;
 	}
 	
 	.first_div{
 		position: relative;
 		text-align: center;
-		
-		background-color: white;
+		padding-top: 100px;
+		width: 1140px;
+		/* width: 80%; */
+	/* 	background-color: white; */
 	}
 	
 	#first_div_1:before{
 		position: absolute; 
 		left:5px; top:-5px; 
-		
-		height: 96px; 
+		width:250px; 
+		height: 250px;
 		display: block; 
 		content: ''; 
 		background:url('/image/icons-1st-medal.png')no-repeat;
-	}
-	
-	#first_div_2:before{
-		position: absolute; 
-		left:5px; top:-5px; 
+		background-size: 70%;
+		background-position: -10px 30px;
 		
-		height: 96px; 
-		display: block; 
-		content: ''; 
-		background:url('/image/icons-2nd-medal.png')no-repeat;
 	}
 	
-	#first_div_3:before{
-		position: absolute; 
-		left: 5px; top:-5px; 
-		 
-		height: 96px; 
-		display: block; 
-		content: ''; 
-		background:url('/image/icons-3rd-medal.png')no-repeat;
-	}
 	
 	.first_div img{
 		
 	}
+	
+	#second_ranking {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		justify-items: center;
+		column-gap: 30px;
+		padding-top : 30px;
+		padding-bottom : 30px;
+	}
+	
+	.second_div{
+		position: relative;
+		text-align: center;
+		/* width: 80%; */
+		width: 555px;
+		padding-top: 70px;
+	/* 	background-color: white; */
+		height: 550px;
+	}
+	
+	#second_div_1:before{
+		position: absolute; 
+		left:5px; top:-5px; 
+		width:100%; 
+		height: 200px; 
+		display: block; 
+		content: ''; 
+		background:url('/image/icons-2nd-medal.png')no-repeat;
+		background-size: 25%;
+		background-position: -10px 30px;
+	}
+	
+	#second_div_2:before{
+		position: absolute; 
+		left:5px; top:-5px; 
+		width:100%; 
+		height: 200px; 
+		display: block; 
+		content: ''; 
+		background:url('/image/icons-3rd-medal.png')no-repeat;
+		background-size: 25%;
+		background-position: -10px 30px;
+	}
+	
+	
+	
+	
+	
+	.info_tag{
+		display : flex;
+		padding-left: 30px;
+		justify-content: center;
+		padding-top: 50px;
+	}
+	
+	.info_tag b{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	
+	.info_tag li {
+    	display: inline-block;
+    	margin: 5px 2px;
+    	min-height: 40px;
+	}
+	
+	.info_tag li a {
+    	font-size: 25px;
+    	line-height: 15px;
+    	color: #777777;
+    	padding: 5px 20px 7px;
+    	border: 1px solid #c1c1c1;
+    	background: #fff;
+    	border-radius: 50px;
+    	text-decoration: none;
+	}
+	
+	.info_tag li a:hover{
+		background: #f64646; 
+		color: #fff;
+		border:1px solid #f64646;
+	}
+	
+	.info_tag2{
+		display : flex;
+		padding-left: 30px;
+		justify-content: center;
+		padding-top: 50px;
+	}
+	
+	.info_tag2 b{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	
+	.info_tag2 li {
+    	display: inline-block;
+    	margin: 5px 2px;
+    	min-height: 40px;
+	}
+	
+	.info_tag2 li a {
+    	font-size: 25px;
+    	line-height: 15px;
+    	color: #777777;
+    	padding: 5px 20px 7px;
+    	border: 1px solid #c1c1c1;
+    	background: #fff;
+    	border-radius: 50px;
+    	text-decoration: none;
+	}
+	
+	.info_tag2 li a:hover{
+		background: #f64646; 
+		color: #fff;
+		border:1px solid #f64646;
+	}
+	
+	
+	#normal_ranking {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		justify-items: center;
+		gap: 20px 20px;
+	
+	    width: 1140px;
+	    display: grid;
+	    grid-template-columns: 1fr 1fr 1fr;
+	    justify-items: center;
+	    gap: 20px 20px;
+	    padding-top: 20px;
+}
 	
 	.info_tag{
 		display : flex;
@@ -118,23 +234,14 @@
 		grid-template-columns: 1fr 1fr 1fr; 
 		justify-items: center;
 		gap: 20px 20px;
-		background-color: #f3f3f3;
 		padding-top: 20px;
 	}
 	.rec_img {
 		overflow:hidden;
 	}
 	
-	.main_image{
-		
-	}
-	
 	.main_image:hover{
 		transform:scale(1.2);
-	}
-	
-	.box{
-		
 	}
 	
 	.info_title a{
@@ -200,7 +307,7 @@
 	<div id="wrap_ranking">
 		<div id="first_ranking">
 			<c:if test="${currentPage==1}">
-				<c:forEach var="recipe" items="${list}" varStatus="i" begin="0" end="2">
+				<c:forEach var="recipe" items="${list}" varStatus="i" begin="0" end="0">
 					<div class="first_div" id="first_div_${i.count }">
 						<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}">
 							<img src="${recipe.main_photo}" class="img-thumbnail" style="width: 80%;">
@@ -215,6 +322,31 @@
 							</div>
 						</div>
 						<h3>${recipe.name }</h3>
+					</div>
+				</c:forEach>
+				<hr>
+			</c:if>
+		</div>
+		<div id="wrap_ranking">
+		<div id="second_ranking">
+			<c:if test="${currentPage==1}">
+				<c:forEach var="recipe" items="${list}" varStatus="i" begin="1" end="2">
+					<div class="second_div" id="second_div_${i.count }">
+						<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}">
+							<img src="../upload/${recipe.main_photo}" class="img-thumbnail" style="width: 100%;">
+						</a>
+						<div class="info">
+							<div class="info_tag2" style="text-align: center;">
+								<ul>
+								<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
+									<li><a href="#">#${tag}</a></li>
+								</c:forEach>
+								</ul>
+							</div>
+						</div>
+						<div class="info_title" style="padding-left: 20px;">
+								<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"><span style="font-size: 30px;">${recipe.name}</span></a>
+						</div>
 					</div>
 				</c:forEach>
 				<hr>
