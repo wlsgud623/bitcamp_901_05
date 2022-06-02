@@ -38,7 +38,7 @@ public class FileUpload {
 		if (upload.size()==0) {
 			return "no image";
 		}
-		System.out.println(upload.get(0).getOriginalFilename());
+		System.out.println(upload.get(0).getOriginalFilename());//
 		
 		String imgList="";
 		String path=request.getServletContext().getRealPath("/upload");
