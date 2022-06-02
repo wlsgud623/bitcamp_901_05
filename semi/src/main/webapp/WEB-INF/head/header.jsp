@@ -679,7 +679,7 @@ $(function () {
                   <!-- 홈페이지 로그아웃 -->
                   <c:if test="${sessionScope.loginok != null}">
                      <li class="nav-item" style="color: black; font-size: 1.7rem; ">
-                    	<a class="nav-link" style="font-family: 'Gowun Batang'; position: absolute; color: black; right: 37.5%; font-weight: bold;">${sessionScope.loginname}(${sessionScope.loginid}) 님</a>
+                    	<a class="nav-link" style="font-family: 'Gowun Batang'; position: absolute; color: white; right: 37.5%; font-weight: bold;">${sessionScope.loginname}(${sessionScope.loginid}) 님</a>
                		 </li>
                      <li class="nav-item" style="color: white; font-size: 1.7rem; ">
                     	<a class="nav-link menupoint" onclick="logout()" style="position: absolute; color: white; right: 30%; cursor: pointer;">로그아웃</a>
