@@ -258,6 +258,7 @@ input[type=submit] {
 
 				<!-- login form -->
 				<form action="loginprocess" method="post">
+				<input type="hidden" name="ref" value="${ref}">
 					<div class="input-box">
 						<input id="userid" type="text" name="userid" placeholder="아이디"
 							value="${loginid}"> <label for="userid">아이디</label>
@@ -288,7 +289,6 @@ input[type=submit] {
     					</a>
             		</div>
            			<br> 	
-            <a href="http://developers.kakao.com/logout">카카오 로그아웃</a>
 				</div>
 			</div>
 		</div>

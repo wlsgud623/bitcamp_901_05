@@ -3,10 +3,10 @@ package data.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.cassandra.CassandraProperties.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,12 +28,9 @@ public class LoginController {
 	private MemberMapperInter memberMapperInter;
 	
 	@GetMapping("/login")
-	public String login(Model model,
-						HttpServletRequest request)
+	public String login(Model model)
 	{
 		model.addAttribute("msg", "0");
-		String referer = request.getHeader("Referer");
-		model.addAttribute("ref", referer);
 		return "/sign/login/login";
 	}
 	
@@ -47,7 +44,6 @@ public class LoginController {
 	public String loginprocess(
 				@RequestParam String userid,
 				@RequestParam String password,
-				@RequestParam String ref,
 				@RequestParam (required = false) String chkid, //아이디 저장 버튼 
 				HttpSession session,
 				Model model) 
@@ -65,11 +61,10 @@ public class LoginController {
 			session.setAttribute("loginname", name);
 			session.setAttribute("saveid", chkid == null?"no":"yes"); //chkid가 null일때 'no'
 			session.setAttribute("loginok", "yes"); //로그인 성공할 경우 value="yes"
-			return "redirect:" + ref; //보던 페이지로 이동
+			return "redirect:/"; //메인페이지로 이동
 		}else {
 			//아이디와 비밀번호가 다른 경우 
 			model.addAttribute("msg", "아이디 또는 비밀번호가 잘못되었습니다.");
-			model.addAttribute("ref", ref);
 			return "/sign/login/login"; //다시 로그인 폼으로 이동
 		}
 	}   

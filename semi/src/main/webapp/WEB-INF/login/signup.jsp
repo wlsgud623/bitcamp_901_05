@@ -18,7 +18,7 @@
 <style type="text/css">
 /* css 기본설정 */
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
+/* html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
    margin: 0; 
    padding: 0; 
    border: 0; 
@@ -38,13 +38,13 @@ ol, ul {
 table { 
    border-collapse: collapse; 
    border-spacing: 0; 
-}
+} 
 
 /* css 시작 */
  
  .body{
-	 font-family: 'Hahmlet';
-	 height: 1300px;
+	 font-family: 'Gowun Dodum';
+	 height: 1450px;
 } 
 
 header{
@@ -68,6 +68,7 @@ header{
 .container{
 	height: 500px;
 	padding-top: 50px;
+	font-family: 'Gowun Dodum';
 }
 
  .memberform{
@@ -84,7 +85,8 @@ form{
 h1{
    	 padding-left: 55%;
      font-size: 40px;
-     font-weight: bold;
+ 
+     
    }
    
 table tr td{
@@ -97,15 +99,15 @@ table tr td{
 }
     
 .required{
-	color: red;
+	color: 	#FF6A89;
 	font-size: 15px;
 }
  
 #idcheck,#search_btn{
  	 width: 150px; 
      height:30px; 
-     border: 1px solid #c12231; 
-     color: #c12231; 
+     border: 1px solid #FF6A89; 
+     color: #FF6A89; 
      background-color: white; 
      border-radius: 20px; 
      font-size: 13px;
@@ -118,6 +120,7 @@ label {
 .agree{
 	border-top: 2px solid gray;
 	width: 100%;
+
 }
 
 .signupbtn{
@@ -128,7 +131,7 @@ label {
     border: 2px solid #c12231; 
     color: #c12231; 
     background-color: white; 
-    border-radius: 20px; 
+    border-radius: 10px; 
     font-size: 25px;
 }   	
 
@@ -140,7 +143,7 @@ label {
   	border: 1px solid #c12231; 
     color: white; 
     background-color: #c12231; 
-    border-radius: 20px; 
+    border-radius: 10px; 
     font-size: 25px;
 }
 
@@ -158,8 +161,77 @@ h4.modal-title{
 	font-size: 25px;
 	font-weight: bold;
 	text-align: center;
-}		
+}	
+
+/* .agree_all1{
+	margin-left: 30px;
+ 	font-size: px;
+}	
+ */
+.agree_all1 span{
+ 	margin-left: 40px;
  
+ }
+
+ 
+
+
+.agree1{
+	width: 100%;
+	
+ }
+ 
+ .agree1 span{
+ 	margin-left: 30px;
+ 	font-size: 17px;
+ }
+ 
+ input[type=checkbox] + label {
+	display: inline-block;
+	width: 23px;
+	height: 23px;
+	border: 1px solid #bcbcbc;
+	border-radius: 50%;
+	cursor: pointer;
+	position: absolute;
+	margin-right: 20px;
+	 
+}
+
+input[type=checkbox] {
+	display: none;
+}
+
+input[type=checkbox]:checked + label::after {
+	content:'✓';
+	position: absolute;
+	left: 30%;
+}
+
+input[id="agree_all"] {
+	display: none;
+}
+
+input[id="agree_all"]:checked + label::after {
+	content:'✓';
+	font-size: 25px;
+	position: absolute;
+	top: -6px;
+	left: 7px;
+}
+ 
+input[id="agree_all"] + label {
+	display: inline-block;
+	width: 29px;
+	height: 29px;
+	border: 1px solid #bcbcbc;
+	border-radius: 50%;
+	cursor: pointer;
+	position: absolute;
+	margin-right: 20px;
+	 
+}
+
 </style>
 <script type="text/javascript">
 $(function() {	 
@@ -172,9 +244,9 @@ $(function() {
 			data: {"UserID":$("#UserID").val()},
 			success: function(data) {
 				if(data.count == 0){
-					$("b.idok").text("사용 가능한 아이디 입니다.").css("color","blue");
+					$("b.idok").text("사용 가능한 아이디 입니다.").css("color","#B7A4EE");
 				}else {
-					$("b.idok").text("이미 존재하는 아이디 입니다.").css("color","red");
+					$("b.idok").text("이미 존재하는 아이디 입니다.").css("color","#FF6A89");
 					$("#UserID").val("");
 					$("#UserID").focus();
 				}	
@@ -187,9 +259,9 @@ $(function() {
 		var pass1 = $("#password1").val();
 		var pass2 = $("#password2").val();
 		if(pass1 == pass2){
-			$("b.passok").text("비밀번호가 일치합니다.").css("color","blue");
+			$("b.passok").text("비밀번호가 일치합니다.").css("color","#B7A4EE");
 		}else{
-			$("b.passok").text("비밀번호가 일치하지 않습니다.").css("color","red");
+			$("b.passok").text("비밀번호가 일치하지 않습니다.").css("color","#FF6A89");
 		}
 	});
 //이메일 선택
@@ -327,44 +399,56 @@ function check() {
 
 			   					<hr>
 			   					<br>
-			   					<label for="agree_all">
+			   					<!-- <div class="agree"> -->
+			   					  <div class="agree_all1">
 								  <input type="checkbox" name="agree_all" id="agree_all">
+								  <label for="agree_all"></label>
 								  <span class="agree_all">전체 동의합니다</span>
 								  <br><br>
 								  <span>선택항목에 동의하지 않은 경우에도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</span>
-								</label><br>
-								<label for="agree">
-								  <input type="checkbox" name="agree" value="1" required="required">
+								</div>
+								<br>
+								<div class="agree1">
+								  <input type="checkbox" name="agree" id="agree1" value="1" required="required">
+								  <label for="agree1"></label>
 								  <span>이용약관 동의<strong>(필수)</strong>
 								  		&nbsp;&nbsp;
 								  		<!-- Trigger the modal with a button -->
   										<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal" style="border-radius: 10%; float: right;">약관보기</button>
   								  </span>
-								</label><br>
-								<label for="agree">
-								  <input type="checkbox" name="agree" value="2" required="required">
+  								  </div>
+								<br>
+								  <div class="agree1">
+								  <input type="checkbox" name="agree" id="agree2"  value="2" required="required">
+								  <label for="agree2"></label>
 								  <span>개인정보 수집, 이용 동의<strong>(필수)</strong>
 								  		&nbsp;&nbsp;
 								  		<!-- Trigger the modal with a button -->
   										<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal">약관보기</button>
   								  </span>
-								</label><br>
-								<label for="agree">
-								  <input type="checkbox" name="agree" value="3" required="required">
+  								  </div>
+								<br>
+								  <div class="agree1">
+								  <input type="checkbox" name="agree" id="agree3" value="3" required="required">
+								  <label for="agree3"></label>
 								  <span>개인정보 이용 동의<strong>(필수)</strong>
 										
 								  		<!-- Trigger the modal with a button -->
   										<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal">약관보기</button>
   								  </span>
-								</label><br>
-								<label for="agree">
-								  <input type="checkbox" name="agree" value="4">
+  								  </div>
+								<br>
+								<div class="agree1">
+								  <input type="checkbox" name="agree" id="agree4" value="4">
+								  <label for="agree4"></label>
 								  <span>이벤트, 혜택정보 수신동의<strong class="select_disable">(선택)</strong>
 								  		&nbsp;&nbsp;	
 								  		<!-- Trigger the modal with a button -->
   										<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal">약관보기</button>
   								  </span>
-								</label><br><br>
+  								  </div>
+								<br><br>
+								
 			   				</td>
 			   			</tr>
 			   		</table>

@@ -56,6 +56,7 @@
 <c:set var="root" value="<%=request.getContextPath()%>"/>
 <body>
 <div class="container">
+<div class="gallery11">
 	<h1 class="main"><b class="searchWord">"${research}"</b>&nbsp;검색 결과</h1>
 	<h3>총 ${tot} 개의 검색결과가 있습니다.</h3><br>
 	<table class="searchResults">
@@ -94,6 +95,7 @@
 			<li><a href="search?research=${research}&currentPage=${endPage+1}">다음▶</a></li>
 		</c:if>
 	</ul>
+</div>
 </div>
 </div>
 </body>

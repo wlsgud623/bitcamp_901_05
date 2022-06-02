@@ -107,7 +107,7 @@ section {
 <body>
 <!-- footer 시작 ㄹ-->
 
- <div cl></div>
+ <div class="containar/ " %>></div>
    <div id="wrap" class="wrap">
       <section>
          <br> <a href="/" style="text-align: center;">모두의밥상</a>

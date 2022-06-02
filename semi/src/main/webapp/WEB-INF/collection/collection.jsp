@@ -10,11 +10,12 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
 </head>
 
 <c:set var="root" value="<%=request.getContextPath() %>"/> <!-- 절대경로 -->
 <body>
-
+<div class="contaniner">
 	<div class="header">
 		<div class="main11">
 		</div>
@@ -45,6 +46,7 @@
 		
 		
 	</div>
+</div>
 </body>
 
 </html>

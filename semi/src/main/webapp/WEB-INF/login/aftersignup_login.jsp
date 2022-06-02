@@ -8,127 +8,99 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Nanum+Myeongjo&family=Song+Myung&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <style type="text/css">
-
-/* css 기본설정 */
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { 
-   margin: 0; 
-   padding: 0; 
-   border: 0; 
-   font-size: 100%; 
-   font: inherit; 
-   vertical-align: baseline; 
-} 
-
-body { 
-   line-height: 1; 
-} 
-
-ol, ul { 
-   list-style: none; 
-} 
-
-table { 
-   border-collapse: collapse; border-spacing: 0; 
-}
-
-/* css 시작 */
- 
-.body{
+.body {
 	text-align: center;
+	height: 700px;
 }
 
-header{
-	padding-top: 50px;
+header {
+	padding-top: 20px;
 }
 
-.container{
+.logo{
+	margin-left: 450px;
+	width: 150px;
+}
+
+i{
+	color: red;
+	font-size: 120px;
+}
+
+.container {
 	height: 600px;
+	padding-top: 40px;
 }
 
-#login_wrap{
-	padding-top: 50px;
+.p{
+	font-size: 19px;
+	margin-bottom: 30px;
 }
 
-/*로그인 폼*/
-
-for m{
-    padding:10px;
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
 }
 
-.input-box{
-    position:relative;
-    margin:10px 0;
-}
-.input-box > input{
-    background:transparent;
-    border:none;
-    border-bottom: solid 1px #ccc;
-    padding:20px 0px 5px 0px;
-    font-size:14pt;
-    width:100%;
+.btn{
+	margin-top: 10px;
+	width: 200px;
+	height: 40px;
+	/* font-family: 'Song Myung'; */
+	font-size: 17px;
+	border: 1px solid #c12231;
+	color: #c12231;
+	background-color: white;
 }
 
-input::placeholder{
-    color:transparent;
+.btn:hover{
+	margin-top: 10px;
+	width: 200px;
+	height: 40px;
+/* 	font-family: 'Song Myung'; */
+	font-size: 17px;
+	background-color: #c12231;
+	color: white;
 }
 
-input:placeholder-shown + label{
-    color:#aaa;
-    font-size:14pt;
-    top:15px;
+
+/* .btn a:hover{
+	color: white;
+} */
+
+.btn a{
+	text-decoration: none;
+	color: black;
 }
 
-input:focus + label, label{
-    color:#8aa1a1;
-    font-size:10pt;
-    pointer-events: none;
-    position: absolute;
-    left:0px;
-    top:0px;
-    transition: all 0.2s ease ;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-}
-
-input:focus, input:not(:placeholder-shown){
-    border-bottom: solid 1px #8aa1a1;
-    outline:none;
-}
-
-input[type=submit]{
-    background-color: #8aa1a1;
-    border:none;
-    color:white;
-    border-radius: 5px;
-    width:100%;
-    height:35px;
-    font-size: 14pt;
-    margin-top:100px;
-}
-
-#forgot{
-    text-align: right;
-    font-size:12pt;
-    color:rgb(164, 164, 164);
-    margin:10px 0px;
-}
 </style>
 
 </head>
 <body>
 	<div class="body">
 		<header class="header">
-			<a href="../">
-			<img src="../img/logo.png">
+			<a href="../"> 
+				<img class="logo" src="../img/logo.png">
 			</a>
 		</header>
-		<h2>회원가입이 완료되었습니다.</h2>
-		<h2><a href="../login">로그인하러 가기</a></h2>
-		
+		<div class="container">
+	<!-- 		<i class="fa-regular fa-circle-check"></i> -->
+			<i class="fa-solid fa-check"></i>
+			<h1>회원가입이 <b>완료</b> 되었습니다.</h1>
+			<br>
+			<p class="p"><c:out value="${dto.name}"/><b>김주희</b>님 회원가입을 축하합니다.<br>지금 로그인하고 레시피를 공유해보세요!</p>
+			<hr>
+			<h3></h3>
+				
+			<button class="btn" onclick="location.href='http://localhost:9000/login'">로그인하러 가기</button>	
+			&nbsp;	
+			<button class="btn" onclick="location.href='http://localhost:9000/'">홈으로</button>
+			
+		</div>
 	</div>
 </body>
 </html>

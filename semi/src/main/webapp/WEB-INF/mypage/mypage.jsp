@@ -210,18 +210,11 @@ $(function() {
 	}
 
 	prev.addEventListener('click', function () {
-	  /*첫 번째 슬라이드로 표시 됐을때는 
-	  이전 버튼 눌러도 아무런 반응 없게 하기 위해 
-	  currentIdx !==0일때만 moveSlide 함수 불러옴 */
-
 	  if (currentIdx !== 0) moveSlide(currentIdx - 1);
 	});
 
 	next.addEventListener('click', function () {
-	  /* 마지막 슬라이드로 표시 됐을때는 
-	  다음 버튼 눌러도 아무런 반응 없게 하기 위해
-	  currentIdx !==slideCount - 1 일때만 
-	  moveSlide 함수 불러옴 */
+	 
 	  if (currentIdx !== slideCount - 1) {
 	    moveSlide(currentIdx + 1);
 	  }
@@ -259,6 +252,11 @@ $(function() {
 	    moveSlide(currentIdxs + 1);
 	  }
 	});
+	
+	
+	
+
+	
 	});	
 
 	
@@ -270,10 +268,9 @@ $(function() {
 
 
 
-	<div class="bodyer" style="text-align: center;">
-		<br>
-		<div class="container" id="container"
-			style="text-align: center; width: 1200px; height: 1000px; background-color: white;">
+	
+		<div class="container" id="container" 
+			style="text-align: center; width: 1200px; height: 1000px; background-color: white; border: 3px solid gray;border-radius: 5%;">
 
 			<form action="updateform" method="post" class="inline"
 				enctype="multipart/form-data">
@@ -284,8 +281,15 @@ $(function() {
 					</legend>
 					<div class="box">
 					  <div class="shape"></div>
-					<label for="inputPhoto" style="cursor: pointer;"> <img
-						src="../image/per__son.png" style=" width: 300px; height: 250px;">
+					   <c:if test="${dto.photo != null}">
+					<img
+						src="../upload/${dto.photo}"  class="img-circle" style=" width: 300px; height: 300px; ">
+					
+					</c:if>
+					<c:if test="${dto.photo==null}">
+					  <img class="photo" src="../image/per__son.png"  style=" width: 300px; height: 300px;">
+					</c:if>
+					<label for="inputPhoto" style="cursor: pointer;"> 
 					</label>
 					    <p>${dto.name}님은 현재 모두의 레시피 회원입니다.</p>
 					</div>
@@ -318,7 +322,7 @@ $(function() {
 						</tr>
 						<tr>
 							<th style="width: 500px; text-align: center;">주소</th>
-							<td><input type="text" id="address_search" name="address1" readonly style="width: 300px;" class="form-control"
+							<td><input type="text" id="address" name="address"  style="width: 300px;" class="form-control"
 			   					value="${dto.address}" readonly="readonly" />		
 			   					&nbsp;
 			   					
@@ -335,24 +339,10 @@ $(function() {
 						style="width: 700px; height: 50px; text-align: center;">회원수정하러가기</button>
 				</fieldset>
 			</form>
-		</div>
-	</div>
+		</div><br><br>
+
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script>
-	    window.onload = function(){
-	   		$("#address_search,#search_btn").click(function(){	
-	   	 	//주소입력칸을 클릭하면ㅎ
-	        //카카오 지도 발생
-	        new daum.Postcode({
-	            	oncomplete: function(data) { //선택시 입력값 세팅
-	                document.getElementById("address_search").value = data.address; // 주소 넣기
-	                document.querySelector("input[name=address2]").focus(); //상세입력 포커싱
-	                console.log(data);
-	            }
-	        }).open();
-	    });
-	   }
-</script>
+
 	
 	<p style="border-top: 1px solid black;"></p>
 	<!-- <div class="down" style="position: absolute; top: 80%;"> -->

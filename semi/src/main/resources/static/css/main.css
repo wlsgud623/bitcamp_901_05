@@ -1,0 +1,300 @@
+
+
+#myCarousel *, .container * {
+	font-family:'Song Myung';  
+}
+
+div.container {
+	text-align: center;
+	width: 1170px;
+	
+	
+}
+
+.rec_img img{
+	overflow: hidden; 
+}
+
+ 
+.rec_img img:hover{
+	transform:scale(1.1); 
+	/* transition: 5s; 	 */
+	/* overflow: hidden;  */
+} 
+
+.sub_item img{
+	width: 100%;
+}
+
+.txt {
+    width: 1000px; 
+    position: absolute;
+    left: 50%;
+    top: 25%;
+   	margin-left: -900px; 
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    padding-bottom: 0;
+    font-family: 'Song Myung';
+}
+
+.txt_2{
+	width: 1000px; 
+    position: absolute;
+    left: 50%;
+    top: 25%;
+   	margin-left: -900px; 
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    padding-bottom: 0;
+    font-family: 'Song Myung';
+	padding-left: 200px;
+}
+
+h3{
+	font-family: 'Song Myung';
+}
+
+.mainimage{
+	width: 90%;
+}
+
+.tag{
+	padding: 0;
+}
+
+.tag span{
+	font-size: 18px;
+	/* font-family: 'Gowun Dodum';  */
+	color: black;
+}
+
+
+.info_tag span{
+/* font-family: 'Jua' */
+	font-size: 12px;
+	color: gray;
+}
+
+.info_title span{
+	font-size: 25px;
+	color: black;
+/* 	font-family: 'Gowun Dodum'; */
+}
+
+.info_title a:hover{
+	text-decoration: none;
+}
+
+.info_title span:hover{
+	color: red;
+	font-weight: bold;
+	
+}
+
+.clickbtn{	
+	width: 200px;
+	height: 50px;
+	padding: 5px 10px;
+	border: 1px solid white;
+	background-color: white;
+	border-radius: 20px;
+	color: black;
+	font-size: 20px;	
+	font-family: 'Gowun Dodum'; 
+	margin-top: 40px;
+}
+
+.clickbtn:hover{
+	border: 1px solid #c12231;
+	background-color: #c12231;
+	border-radius: 20px;
+	color: white;
+}
+
+img.recipes_icon{
+	width: 35px;
+	position: relative;
+}
+
+.wrap {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.wrap2 {
+	padding-left: 20px;
+}
+
+.rec_recipe {
+	margin-left: 50px;
+	width: 1170px;
+}
+
+img.line{
+	 width: 1000px;
+	 margin-top: 20px;
+}
+
+img.logo{
+	float: right; 
+	width: 200px;
+	bottom: 0;
+}
+
+.content_text {
+	margin-top: 1000px;
+	margin-bottom: 250px;
+	height: 600px;
+	width: 1000px;
+	padding-top: 50px;
+	/* border: 2px solid #CD1F48; */
+	text-align: left;
+	/* border-radius: 30px; */
+	margin-left: 60px;
+	/* border-top: 1px solid #CD1F48; */
+}
+
+.content_text b {
+	font-size: 23px;
+	font-family: 'East Sea Dokdo'; 
+	color: #c12231;
+}
+
+div {
+	display: block;
+}
+
+b.title{
+	/* font-family: 'Gowun Batang'; */
+	font-size: 30px;
+}
+
+h2 i{
+	font-size: 30px;
+}
+
+/* 하단 슬라이드  */
+/* 초기화 */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+li {
+	list-style-type: none;
+}
+
+/* 보여줄 구간의 높이와 넓이 설정 */
+#slideShow {
+	width: 900px;
+	height: 200px;
+	position: relative;
+	margin: 50px auto;
+	padding-right: 0;
+	overflow: hidden; 
+	
+	/*리스트 형식으로 이미지를 일렬로 
+  정렬할 것이기 때문에, 500px 밖으로 튀어 나간 이미지들은
+  hidden으로 숨겨줘야됨*/
+}
+
+.slides {
+	position: absolute;
+	left: 10px; 
+	right: 30px;
+	top: 0;
+	width: 100%; /* 슬라이드할 사진과 마진 총 넓이 */
+	transition: left 0.5s ease-out;
+/* 	overflow: hidden; */
+	/*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+}
+
+.slides li a{
+	text-decoration: none;
+	color: black;
+}
+
+.slides li{
+	margin-right: 30px;
+}
+
+/* 첫 번째 슬라이드 가운데에 정렬하기위해
+첫번째 슬라이드만 margin-left조정 */
+.slides li:first-child {
+/* 	margin-left: 10px; */
+}
+
+/* 슬라이드들 옆으로 정렬 */
+.slides li:not(:last-child) {
+	float: left;
+	/* margin-right: 100px; */
+}
+
+.slides a{
+	text-decoration: none;
+}
+
+.slides a li {
+	float: left;
+	font-size: 17px;
+	/* font-family: 'Gowun Dodum';  */
+/* 	padding-left: 5px; */
+}
+
+.slides img{
+	border-radius: 50%; 
+	width: 120px;
+	margin-bottom: 10px;
+}
+
+.category{
+	width: 100%;
+	height: 200px;
+	margin-bottom: 80px;
+}
+
+.controller span {
+ 	position: relative;
+	background-color: transparent;
+	color: black;
+	border-radius: 50%;
+	padding: 10px 20px;
+	margin-top: -500px;
+	font-size: 30px;
+	cursor: pointer; 
+}
+
+/* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
+.controller span:hover {
+	background-color: rgba(128, 128, 128, 0.11);
+}
+
+.prev {
+	left: -450px;
+	top: -200px;
+	
+
+	
+}
+
+/* 이전 화살표에 마우스 커서가 올라가 있을때 
+이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev:hover {
+	transform: translateX(-10px);
+}
+
+.next {
+	right: -450px;
+	top: -200px;
+}
+
+/* 다음 화살표에 마우스 커서가 올라가 있을때 
+이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next:hover {
+	transform: translateX(10px);
+}

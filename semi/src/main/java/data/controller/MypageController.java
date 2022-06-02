@@ -105,16 +105,18 @@ public class MypageController {
 			@RequestParam String address2, @RequestParam String address1,
 			HttpSession session,
 			HttpServletRequest request) {
-   
+			
 		//현재 로그인한 userID
-			String UserID="test"; //(String)session.getAttribute("로그인아이디EL");
+			String UserID=(String)session.getAttribute("loginid");
 			dto.setUserid(UserID);
 			System.out.println(dto.getName());
 	
 			//사진 업로드ek
 			FileUpload fileUpload=new FileUpload();
 			String photo=fileUpload.fileUploadEvent(upload_photo, request);
-			 
+			
+			String address=address1+address2;
+			dto.setAddress(address);
 			dto.setPhoto(photo);
 			mypageService.updateUser(dto);
 			

@@ -9,10 +9,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 <style type="text/css">
 
+	.container{
+		margin-top: 80px;
+	}
+	
+	#menu_area{
+		margin-bottom: 50px;
+	}
+	
 	#cate_table{
-		width: 1420px;
+		width: 100%;
+		margin-bottom: 20px;
 	}
 	
 	#cate_table tr{
@@ -160,11 +170,13 @@
 	}
 	
 	#list_area {
+		width: 100%;
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr; 
 		justify-items: center;
 		gap: 20px 20px;
 		background-color: #f3f3f3;
+		padding-top: 20px;
 	}
 	
 	.info_title a{
@@ -210,6 +222,11 @@
 	
 	#menu table tr td a{
 	}	
+	
+	.pagination{
+		margin-bottom: 150px;
+	}
+	
 </style>
 <script type="text/javascript">
 $(function() {
@@ -270,6 +287,7 @@ $(function() {
 </script>
 </head>
 <body>
+<div class="container">
 	<div id="menu_area">
 		<table id="menu_table">
 			<tr>
@@ -399,19 +417,19 @@ $(function() {
 		</div>
 		<div id="list_area">
 			<c:forEach var="recipe" items="${list}" varStatus="i">
-				<div class="box" style="float: left; width: 400px;">
+				<div class="box" style="float: left;">
 					<div class="rec_img" style="text-align: center;">
 						<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"> 
-						<img src="../upload/${recipe.main_photo}" class="main_image img-thumbnail">
+						<img src="../upload/${recipe.main_photo}" class="main_image img-thumbnail" style="width: 90%;">
 						</a>
 					</div>
 					<div class="icon">
 						<i class="icon_chu"></i><i class="icon_best"></i>
 					</div>
-					<div class="info" style="text-align: left;">
-						<ul style="display: flex;" class="normal_tag">
+					<div class="info" >
+						<ul  class="normal_tag" style="display: flex;">
 							<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
-								<li>#${tag}&nbsp;&nbsp;</li>
+								<li style="float: left; font-size: 20%;">#${tag}&nbsp;&nbsp;</li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -422,7 +440,7 @@ $(function() {
 				</div>
 			</c:forEach>
 		</div>
-		
+		<br><br>
 		<div>
 			<ul class="pagination">
 				<c:if test="${currentPage != '1'}">
@@ -509,6 +527,7 @@ $(function() {
 				</c:if>
 			</ul>
 		</div>
+</div>
 </body>
 
 </html>
