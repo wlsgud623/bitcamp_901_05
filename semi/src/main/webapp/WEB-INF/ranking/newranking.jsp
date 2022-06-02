@@ -181,9 +181,9 @@
 <body>
 <div class="container">
 	<ul class="nav nav-tabs justify-content-end">
-	  <li><a data-toggle="tab" href="ranking?currentPage=${currentPage}">추천순</a></li>
-	  <li><a data-toggle="tab" href="view_ranking?currentPage=${currentPage}">조회순</a></li>
-	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="new_ranking?currentPage=${currentPage}">최신순</a></li>
+	  <li><a data-toggle="tab" href="ranking?currentPage=1">추천순</a></li>
+	  <li><a data-toggle="tab" href="view_ranking?currentPage=1">조회순</a></li>
+	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="new_ranking?currentPage=1">최신순</a></li>
 	</ul>
 	<div id="wrap_ranking">
 		<div id="normal_ranking" style=" text-align: center;">

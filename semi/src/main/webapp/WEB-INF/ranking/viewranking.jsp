@@ -9,6 +9,12 @@
 <meta charset="UTF-8">
 <title>레시피 랭킹</title>
 <style type="text/css">
+
+
+	.container{
+		margin-top: 80px;
+		margin-bottom: 80px;
+	}
 	.nav li a{
 		font-weight : bold;
 		color: black;
@@ -38,7 +44,7 @@
 		position: relative;
 		text-align: center;
 		padding-top: 100px;
-		width: 1140px;
+		width: 1300px;
 		/* width: 80%; */
 	/* 	background-color: white; */
 	}
@@ -74,10 +80,10 @@
 		position: relative;
 		text-align: center;
 		/* width: 80%; */
-		width: 555px;
+		width: 630px;
 		padding-top: 70px;
 	/* 	background-color: white; */
-		height: 550px;
+
 	}
 	
 	#second_div_1:before{
@@ -106,27 +112,25 @@
 	
 	
 	
-	
-	
-	.info_tag{
+	.info_tag1{
 		display : flex;
 		padding-left: 30px;
 		justify-content: center;
 		padding-top: 50px;
 	}
 	
-	.info_tag b{
+	.info_tag1 b{
 		font-size: 15px;
 		font-weight: bold;
 	}
 	
-	.info_tag li {
+	.info_tag1 li {
     	display: inline-block;
     	margin: 5px 2px;
     	min-height: 40px;
 	}
 	
-	.info_tag li a {
+	.info_tag1 li a {
     	font-size: 25px;
     	line-height: 15px;
     	color: #777777;
@@ -137,7 +141,7 @@
     	text-decoration: none;
 	}
 	
-	.info_tag li a:hover{
+	.info_tag1 li a:hover{
 		background: #f64646; 
 		color: #fff;
 		border:1px solid #f64646;
@@ -298,9 +302,9 @@
 <body>
 <div class="container" >
 	<ul class="nav nav-tabs justify-content-end">
-	  <li><a data-toggle="tab" href="ranking?currentPage=${currentPage}">추천순</a></li>
-	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="view_ranking?currentPage=${currentPage}">조회순</a></li>
-	  <li><a data-toggle="tab" href="new_ranking?currentPage=${currentPage}">최신순</a></li>
+	  <li><a data-toggle="tab" href="ranking?currentPage=1">추천순</a></li>
+	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="view_ranking?currentPage=1">조회순</a></li>
+	  <li><a data-toggle="tab" href="new_ranking?currentPage=1">최신순</a></li>
 	</ul>
 	
 	
@@ -310,10 +314,10 @@
 				<c:forEach var="recipe" items="${list}" varStatus="i" begin="0" end="0">
 					<div class="first_div" id="first_div_${i.count }">
 						<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}">
-							<img src="${recipe.main_photo}" class="img-thumbnail" style="width: 80%;">
+							<img src="../upload/${recipe.main_photo}" class="img-thumbnail" style="width: 100%;">
 						</a>
 						<div class="info">
-							<div class="info_tag" style="text-align: center;">
+							<div class="info_tag1" style="text-align: center;">
 								<ul>
 								<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
 									<li><a href="#">#${tag}</a></li>
@@ -321,7 +325,9 @@
 								</ul>
 							</div>
 						</div>
-						<h3>${recipe.name }</h3>
+						<div class="info_title" style="padding-left: 70px;">
+							<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"><span style="font-size: 40px;">${recipe.name}</span></a>
+						</div>
 					</div>
 				</c:forEach>
 				<hr>
@@ -357,7 +363,7 @@
 				<c:forEach var="recipe" items="${list}" varStatus="i" begin="3">
 					<div class="box" style="float: left; width: 400px;">
 						<div>
-							<h3 style="text-shadow:2px 2px 5px #f64646; color: white; font-weight: bold;">${i.index + 1}.</h3>
+							<h1 style="color: black; font-size: 15px;">${i.index + 1}위</h1>
 						</div>
 						<div class="rec_img" style="text-align: center;">
 							<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"> 
@@ -385,7 +391,7 @@
 				<c:forEach var="recipe" items="${list}" varStatus="i">
 						<div class="box" style="float: left; width: 400px;">
 							<div>
-								<h3 style="text-shadow:2px 2px 5px #f64646; color: white; font-weight: bold;">${i.count + (currentPage-1) * 12 + 3}.</h3>
+								<h1 style="color: black; font-size: 15px;">${i.count + (currentPage-1) * 12 + 3}위</h1>
 							</div>
 							<div class="rec_img" style="text-align: center;">
 								<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"> 

@@ -273,9 +273,9 @@
 <body>
 <div class="container"> 
 	<ul class="nav nav-tabs justify-content-end">
-	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="ranking?currentPage=${currentPage}">추천순</a></li>
-	  <li><a data-toggle="tab" onclick="changeRank('view_ranking');" href="view_ranking?currentPage=${currentPage}">조회순</a></li>
-	  <li><a data-toggle="tab" onclick="changeRank('new_ranking');" href="new_ranking?currentPage=${currentPage}">최신순</a></li>
+	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="ranking?currentPage=1">추천순</a></li>
+	  <li><a data-toggle="tab" onclick="changeRank('view_ranking');" href="view_ranking?currentPage=1">조회순</a></li>
+	  <li><a data-toggle="tab" onclick="changeRank('new_ranking');" href="new_ranking?currentPage=1">최신순</a></li>
 	</ul>
 	<div id="wrap_ranking1">
 		<div id="first_ranking" >
@@ -364,7 +364,7 @@
 							</div>
 							<div class="rec_img" style="text-align: center;">
 								<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"> 
-								<img src="../img/main/${recipe.main_photo}" class="main_image img-thumbnail">
+								<img src="../upload/${recipe.main_photo}" class="main_image img-thumbnail">
 								</a>
 							</div>
 							<div class="icon">
