@@ -11,47 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <link rel="stylesheet" href="/css/update.css">
-<style type="text/css">
-	div.inputMain *{
-		letter-spacing: 0px;
-	}
-	button.ingPlus{
-		margin-bottom: 30px;
-	}
-	#stepPopup{
-		position: relative;
-		float: right;
-		margin-top: -165px;
-		margin-right: 15px;
-		z-index: 10;
-		color: crimson;
-		font-size: 25px;
-		cursor: pointer;
-	}
-	#delPopup{
-		position: relative;
-		float: right;
-		margin-top: -160px;
-		margin-right: 10px;
-		z-index: 10;
-		color: crimson;
-		font-size: 25px;
-		cursor: pointer;
-	}
-	.inputCompLabel{
-		z-index: 1;
-	}
-	#steps th{
-		text-align: center;
-	}
-	.step_up, .step_down{
-		color: orange;
-		font-size: 30px;
-		cursor: pointer;
-		padding-right: 15px;
-		padding-top: 15px;
-	}
-</style>
+<link rel="stylesheet" href="/css/button.css">
 <script type="text/javascript">
 /***************************전역 변수***************************/
 	var ingClass=${ingClass+1}; //다음에 추가될 재료묶음(idx)
@@ -342,21 +302,6 @@
 			}
 		})
 		
-		//요리 단계 중간 추가
-		$(document).on("click", ".step_insert", function() {
-			var tr=$(this).parent().parent();
-			var idx=stepIdx(tr)+1;
-			var nextTr=tr.next();
-			
-			while(nextTr.length!=0) {
-				stepOrder(nextTr, +1, 0);
-				nextTr=nextTr.next();
-			}
-
-			$(tr).after(stepTr(idx));
-			stepCount++;
-		});
-		
 		//단계사진 삭제 버튼생성
 		$(document).on("mouseenter", ".stepPhoto", function() {
 			$(this).append("<span class='glyphicon glyphicon-remove'"
@@ -374,8 +319,8 @@
 			
 			$(this).prev().val("");
 			$(this).prev().prev()
-				.html('<br><img src="../image/Upload-Icon.png" style="width: 70px;">'
-					+'<br><br><span style="font-size: 20px;">사진을 등록해주세요</span>');
+				.html('<img src="../img/gray.jpg" class="inputStepLabel">'
+						+'<span class="stepImgHere">사진을 등록해주세요</span>');
 		});
 		
 		//완성사진 삭제 버튼생성
@@ -391,8 +336,8 @@
 			$(this).prev().val("d");
 			$(this).prev().prev().val("");
 			$(this).prev().prev().prev()
-				.html('<br><img src="../image/Upload-Icon.png" style="width: 70px;">'
-					+'<br><br><span style="font-size: 19px;">사진을 등록해주세요</span>');
+				.html('<img src="../img/gray.jpg" class="compStepLabel">'
+						+'<span class="stepImgHere">사진을 등록해주세요</span>');
 		});
 		
 		//태그
@@ -479,6 +424,47 @@
 	    		$(this).val(value.replace("#",""));
 	    	}
 		});
+		
+		//엔터키 막기
+		$('input[type="text"]').keydown(function() {
+			  if (event.keyCode === 13) {
+			    event.preventDefault();
+			  };
+		});
+		
+		//드롭다운 메뉴바
+		const label = document.querySelectorAll('.label');
+		label.forEach(function(lb){
+		    lb.addEventListener('click', e => {
+		        let optionList = lb.nextElementSibling;
+		        let optionItems = optionList.querySelectorAll('.optionItem');
+		        clickLabel(lb, optionItems);
+		    })
+		});
+		const clickLabel = (lb, optionItems) => {
+		    if(lb.parentNode.classList.contains('active')) {
+		        lb.parentNode.classList.remove('active');
+		        optionItems.forEach((opt) => {
+		            opt.removeEventListener('click', () => {
+		                handleSelect(lb, opt)
+		            })
+		        })
+		    } else {
+		        lb.parentNode.classList.add('active');
+		        optionItems.forEach((opt) => {
+		            opt.addEventListener('click', () => {
+		                handleSelect(lb, opt)
+		            })
+		        })
+		    }
+		}
+		const handleSelect = (label, item) => {
+		    label.value = item.textContent;
+		    label.parentNode.classList.remove('active');
+		}
+		$(".selectBox2").mouseleave(function() {
+			$(".selectBox2").removeClass("active");
+		})
 	});
 
 /***************************전역 함수***************************/
@@ -519,7 +505,7 @@
 				+ingTr(ingClass, "", 0)
 				+ingTr(ingClass, "", writeOrder)
 				+'</table>'
-				+'<button type="button" class="btn btn-default ingPlus"'
+				+'<button type="button" class="custom-btn btn-5 ingPlus"'
 				+'onclick="col_append('+ingClass+')">재료 추가</button>';
 		$("#ingredient").append(str);
 		ingClass++;
@@ -611,17 +597,20 @@
 				+'<th id="choose_class'+idx+'" rowspan="2">'
 				+'<input type="text" class="ing_class" idx="'+idx+'" required="required"'
 				+'placeholder="재료묶음"><br>'
-				+'<button type="button" class="btn btn-default tab_delete"'
-    			+'style="font-size: 0.8rem; height: 25px;">삭제</button>'
-    			+'<button type="button" class="btn btn-default tab_up"'
-    			+'style="font-size: 0.8rem; height: 25px;">위로</button>'
-    			+'<button type="button" class="btn btn-default tab_down"'
-    			+'style="font-size: 0.8rem; height: 25px;">아래로</button>'
+				+'<button type="button" class="custom-btn btn-3 tab_delete">'
+				+'<span>삭제</span>'
+				+'</button>&nbsp;'
+	    		+'<button type="button" class="custom-btn btn-3 tab_up">'
+	    		+'<span>위로</span>'
+	    		+'</button>&nbsp;'
+	    		+'<button type="button" class="custom-btn btn-3 tab_down">'
+	    		+'<span>삭제</span>'
+	    		+'</button>'
 				+'</th>'
 				+'<td>'
 				+'<input type="hidden" name="bundle"'
 				+'class="forms ing_hidden'+idx+'" value="">'
-				+'<input type="text" name="ingOrder" value="'+writeOrder+'">'
+				+'<input type="hidden" name="ingOrder" value="'+writeOrder+'">'
 				+'<input type="text" name="ingName" class="forms ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
@@ -639,7 +628,7 @@
 				+'<td>'
 				+'<input type="hidden" name="bundle"'
 				+'class="forms ing_hidden'+idx+'" value="'+val+'">'
-				+'<input type="text" name="ingOrder" value="'+ingorder+'">'
+				+'<input type="hidden" name="ingOrder" value="'+ingorder+'">'
 				+'<input type="text" name="ingName" class="forms ing_name"'
 				+'required="required" placeholder="예)돼지고기">'
 				+'</td>'
@@ -650,8 +639,8 @@
 				+'</td>'
 				+'<td>'
 				+'<input type="hidden" name="ingDel" class="forms" value="n">'
-				+'<button type="button" class="col_delete btn btn-danger">'
-				+'<span class="glyphicon glyphicon-remove"></span>'
+				+'<button type="button" class="col_delete custom-btn btn-8">'
+				+'<span>&ensp;X&ensp;</span>'
 				+'</button>'
 	    		+'</td>'
 				+'</tr>';
@@ -687,17 +676,8 @@
 			+'style="opacity: 0; font-size: 0px;" accept=".jpg, .jpeg, .png">'
 			+'</td>'
 			+'<td>'
-			+'<button type="button" class="step_up btn btn-info">'
-			+'<span class="glyphicon glyphicon-triangle-top"></span>'
-			+'</button>'
-			+'<button type="button" class="step_down btn btn-success">'
-			+'<span class="glyphicon glyphicon-triangle-bottom"></span>'
-			+'</button>'
-			+'<button type="button" class="step_del btn btn-danger">'
-			+'<span class="glyphicon glyphicon-remove"></span>'
-			+'</button>'
-			+'<button type="button" class="step_insert btn btn-warning">'
-			+'<span class="glyphicon glyphicon-plus"></span>'
+			+'<button type="button" class="step_del custom-btn btn-8">'
+			+'<span>&ensp;X&ensp;</span>'
 			+'</button>'
 			+'</td>'
 			+'</tr>';
@@ -705,7 +685,7 @@
 </script>
 </head>
 <body>
-<div class="inputMain">
+<div class="container inputMain">
 	<h1 class="inputTitle">레시피 수정</h1>
 	<form action="update" method="post" class="form-inline" enctype="multipart/form-data">
 		<input type="hidden" name="RECIPE_IDX" class="forms" value="${recipe.RECIPE_IDX}">
@@ -733,88 +713,98 @@
 	    	</tr>
 	    	<tr>
 	    		<th>카테고리</th>
-	    		<td>
-	    			<select name="category" class="forms" required="required">
-	    				<option value="${recipe.category}" selected="selected"
-	    				style="display: none;">${recipe.category}</option>
-	    				<option value="밥/죽">밥/죽</option>
-	    				<option value="반찬">반찬</option>
-	    				<option value="국물">국물</option>
-	    				<option value="면">면</option>
-	    				<option value="디저트">디저트</option>
-	    				<option value="양식">양식</option>
-	    				<option value="일식">일식</option>
-	    				<option value="중식">중식</option>
-	    				<option value="퓨전">퓨전</option>
-	    				<option value="떡/만두">떡/만두</option>
-	    				<option value="빵/과자">빵/과자</option>
-	    				<option value="양념/소스">양념/소스</option>
-	    				<option value="샐러드">샐러드</option>
-	    				<option value="음료">음료</option>
-	    				<option value="기타">기타</option>
-	    			</select>
+	    		<td width="240">
+	    			<div class="selectBox2 ">
+						<input type="text" name="category" class="label" value="${recipe.category}"
+						placeholder="종류별" readonly="readonly">
+						<ul class="optionList">
+							<li class="optionItem">밥/죽</li>
+							<li class="optionItem">반찬</li>
+							<li class="optionItem">국물</li>
+							<li class="optionItem">면</li>
+							<li class="optionItem">디저트</li>
+							<li class="optionItem">양식</li>
+							<li class="optionItem">일식</li>
+							<li class="optionItem">중식</li>
+							<li class="optionItem">퓨전</li>
+							<li class="optionItem">떡/만두</li>
+							<li class="optionItem">빵/과자</li>
+							<li class="optionItem">양념/소스</li>
+							<li class="optionItem">샐러드</li>
+							<li class="optionItem">음료</li>
+							<li class="optionItem">기타</li>
+						</ul>
+					</div>
+	    		</td>
+	    		<td width="240">
+	    			<div class="selectBox2 ">
+						<input type="text" name="main_ing" class="label" value="${recipe.main_ing}"
+						placeholder="재료별" readonly="readonly">
+						<ul class="optionList">
+							<li class="optionItem">소고기</li>
+							<li class="optionItem">돼지고기</li>
+							<li class="optionItem">닭고기</li>
+							<li class="optionItem">육류</li>
+							<li class="optionItem">해물</li>
+							<li class="optionItem">채소류/버섯</li>
+							<li class="optionItem">계란/유제품</li>
+							<li class="optionItem">쌀</li>
+							<li class="optionItem">밀가루</li>
+							<li class="optionItem">콩/견과류</li>
+							<li class="optionItem">기타</li>
+						</ul>
+					</div>
 	    		</td>
 	    		<td>
-	    			<select name="main_ing" class="forms" required="required">
-	    				<option value="${recipe.main_ing}" selected="selected"
-	    				style="display: none;">${recipe.main_ing}</option>
-	    				<option value="소고기">소고기</option>
-	    				<option value="돼지고기">돼지고기</option>
-	    				<option value="닭고기">닭고기</option>
-	    				<option value="육류">육류</option>
-	    				<option value="해물">해물</option>
-	    				<option value="채소류/버섯">채소류/버섯</option>
-	    				<option value="계란/유제품">계란/유제품</option>
-	    				<option value="쌀">쌀</option>
-	    				<option value="밀가루">밀가루</option>
-	    				<option value="콩/견과류">콩/견과류</option>
-	    				<option value="기타">기타</option>
-	    			</select>
-	    		</td>
-	    		<td>
-	    			<select name="cooking" class="forms" required="required">
-	    				<option value="${recipe.cooking}" selected="selected"
-	    				style="display: none;">${recipe.cooking}</option>
-	    				<option value="구이">구이</option>
-	    				<option value="찜">찜</option>
-	    				<option value="끓임">끓임</option>
-	    				<option value="볶음">볶음</option>
-	    				<option value="튀김">튀김</option>
-	    				<option value="조림">조림</option>
-	    				<option value="부침">부침</option>
-	    				<option value="무침">무침</option>
-	    				<option value="비빔">비빔</option>
-	    				<option value="삶음">삶음</option>
-	    				<option value="회">회</option>
-	    				<option value="절임">절임</option>
-	    				<option value="데치기">데치기</option>
-	    				<option value="기타">기타</option>
-	    			</select>
+	    			<div class="selectBox2 ">
+						<input type="text" name="cooking" class="label" value="${recipe.cooking}"
+						placeholder="방법별" readonly="readonly">
+						<ul class="optionList">
+							<li class="optionItem">구이</li>
+							<li class="optionItem">찜</li>
+							<li class="optionItem">끓임</li>
+							<li class="optionItem">볶음</li>
+							<li class="optionItem">튀김</li>
+							<li class="optionItem">조림</li>
+							<li class="optionItem">부침</li>
+							<li class="optionItem">무침</li>
+							<li class="optionItem">비빔</li>
+							<li class="optionItem">삶음</li>
+							<li class="optionItem">회</li>
+							<li class="optionItem">절임</li>
+							<li class="optionItem">데치기</li>
+							<li class="optionItem">기타</li>
+						</ul>
+					</div>
 	    		</td>
 	    	</tr>
 	    	<tr>
 	    		<th>요리 정보</th>
 	    		<td>
-	    			<select name="portion" class="forms" required="required">
-	    				<option value="${recipe.portion}" selected="selected"
-	    				style="display: none;">${recipe.portion}인분</option>
-	    				<option value=1>1인분</option>
-	    				<option value=2>2인분</option>
-	    				<option value=3>3인분</option>
-	    				<option value=4>4인분 이상</option>
-	    			</select>
+	    			<div class="selectBox2 ">
+						<input type="text" name="portion" class="label" value=""${recipe.portion}
+						placeholder="양" readonly="readonly">
+						<ul class="optionList">
+							<li class="optionItem">1인분</li>
+							<li class="optionItem">2인분</li>
+							<li class="optionItem">3인분</li>
+							<li class="optionItem">4인분 이상</li>
+						</ul>
+					</div>
 	    		</td>
 	    		<td>
-	    			<select name="level" class="forms" required="required">
-	    				<option value="${recipe.level}" selected="selected"
-	    				style="display: none;">${recipe.level}</option>
-	    				<option value="입문">입문</option>
-	    				<option value="초급">초급</option>
-	    				<option value="중급">중급</option>
-	    				<option value="숙련자">숙련자</option>
-	    				<option value="어려움">어려움</option>
-	    				<option value="전문가">전문가</option>
-	    			</select>
+	    			<div class="selectBox2 ">
+						<input type="text" name="level" class="label" value="${recipe.level}"
+						placeholder="난이도" readonly="readonly">
+						<ul class="optionList">
+							<li class="optionItem">입문</li>
+							<li class="optionItem">초급</li>
+							<li class="optionItem">중급</li>
+							<li class="optionItem">숙련자</li>
+							<li class="optionItem">어려움</li>
+							<li class="optionItem">전문가</li>
+						</ul>
+					</div>
 	    		</td>
 	    		<td></td>
 	    	</tr>
@@ -833,18 +823,21 @@
 					    	<tr>
 					    		<th id="choose_class${writeNo}" rowspan="${bundleCount[i.count-1]}">
 					    			<input type="text" class="ing_class" idx="${writeNo}"
-					    			required="required" value="${ing.bundle}">
-					    			<button type="button" class="btn btn-default tab_delete"
-				    				style="font-size: 0.8rem; height: 25px;">삭제</button>
-				    				<button type="button" class="btn btn-default tab_up"
-				    				style="font-size: 0.8rem; height: 25px;">위로</button>
-				    				<button type="button" class="btn btn-default tab_down"
-				    				style="font-size: 0.8rem; height: 25px;">아래로</button>
+					    			required="required" value="${ing.bundle}"><br>
+					    			<button type="button" class="custom-btn btn-3 tab_delete">
+					    				<span>삭제</span>
+					    			</button>
+					    			<button type="button" class="custom-btn btn-3 tab_up">
+					    				<span>올리기</span>
+					    			</button>
+					    			<button type="button" class="custom-btn btn-3 tab_down">
+					    				<span>내리기</span>
+					    			</button>
 					    		</th>
 					    		<td>
 					    			<input type="hidden" name="bundle" value="${ing.bundle}"
 					    			class="forms ing_hidden${writeNo}">
-					    			<input type="text" name="ingOrder" value="${ing.writeorder}">
+					    			<input type="hidden" name="ingOrder" value="${ing.writeorder}">
 					    			<input type="text" name="ingName" value="${ing.name}"
 					    			class="forms ing_name" required="required">
 					    		</td>
@@ -865,7 +858,7 @@
 						    	<td>
 						    		<input type="hidden" name="bundle" value="${ing.bundle}"
 						    		class="forms ing_hidden${writeNo}">
-						    		<input type="text" name="ingOrder" value="${ing.writeorder}">
+						    		<input type="hidden" name="ingOrder" value="${ing.writeorder}">
 						    		<input type="text" name="ingName" value="${ing.name}"
 						    		class="forms ing_name" required="required">
 						    	</td>
@@ -878,21 +871,23 @@
 						    	<td>
 						    		<input type="hidden" name="ingDel" class="forms"
 						    		value="u">
-						    		<button type="button" class="col_delete btn btn-danger">
-						    			<span class="glyphicon glyphicon-remove"></span>
+						    		<button type="button" class="col_delete custom-btn btn-8">
+						    			<span>&ensp;X&ensp;</span>
 						    		</button>
 						    	</td>
 						    </tr>
 					    </c:if>
 				    </c:forEach>
 			    </table>
-		    	<button type="button" class="btn btn-default ingPlus"
+		    	<button type="button" class="custom-btn btn-5 ingPlus"
 		    	onclick="col_append(${writeNo})">재료 추가</button>
 		    	<c:set var="begin" value="${begin+bundleCount[i.count-1]}"/>
 	    		<c:set var="end" value="${end+bundleCount[i.count]}"/>
 	    	</c:forEach>
 	    </div>
-	    <button type="button" class="btn btn-default" onclick="tab_append()">재료 묶음 추가</button>
+	    <button type="button" class="custom-btn btn-7" onclick="tab_append()">
+	    	<span>&ensp;묶음 추가&ensp;</span>
+	    </button>
 	    <br><br><br>
 	    
 	    <h3 class="stepTitle">요리 순서</h3>
@@ -922,25 +917,22 @@
 						</c:if>
 						<c:if test="${step.photo=='no image'}">
 							<img src="../img/stepex${i.count%5}.jpg" class="inputStepLabel">
-							<span style="font-size: 20px;">사진을 등록해주세요</span>
+							<span class="stepImgHere">사진을 등록해주세요</span>
 						</c:if>
 					</label>
 	    			<input type="file" name="upload_step" id="${i.count}" accept=".jpg, .jpeg, .png"
 	    			style="opacity: 0; font-size: 0px;" class="forms smallPhoto">
 	    		</td>
 	    		<td style="width: 40px;">
-					<button type="button" class="step_del btn btn-danger">
-	    				<span class="glyphicon glyphicon-remove"></span>
-	    			</button>
-	    			<button type="button" class="step_insert btn btn-warning">
-	    				<span class="glyphicon glyphicon-plus"></span>
+					<button type="button" class="step_del custom-btn btn-8">
+	    				<span>&ensp;X&ensp;</span>
 	    			</button>
 	    		</td>
 	    	</tr>
 	    	</c:forEach>
 	    </table>
 	    <div style="text-align: center; width: 850px;">
-	    	<button type="button" class="btn btn-default" onclick="step_append()">step 추가</button>
+	    	<button type="button" class="custom-btn btn-5" onclick="step_append()">step 추가</button>
 	    </div>
 	    <br><br>
 
@@ -973,7 +965,8 @@
 		<div class="content">
       		<div style="display: flex;">
     			<h3 class="tagTitle">태그 입력</h3>
-     			<input type="text" id="tag" placeholder="입력한 태그 저장하기 : spacebar">
+     			<input type="text" id="tag"
+     			placeholder="태그를 입력 후 [스페이스바]를 눌러서 저장해주세요">
         	</div>
         	<input type="hidden" id="tag-hidden" name="tags" class="forms" value="${recipe.tags}">
         	<ul id="tag-list">
@@ -982,8 +975,8 @@
 	    <br><br><br><br>
 	    
 	    <div style="text-align: center; width: 850px;">
-	    	<button type="submit" class="btn btn-default">수정</button>&emsp;
-	    	<button type="button" class="btn btn-default" onclick="location.href='/'">취소</button>
+	    	<button type="submit" class="custom-btn btn-15">수정 완료</button>&emsp;
+	    	<button type="button" class="custom-btn btn-14" onclick="location.href='/'">취소</button>
 	    </div>
 	</form>
 </div>

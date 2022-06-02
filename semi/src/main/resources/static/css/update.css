@@ -22,22 +22,21 @@
 	    font-weight: normal;
 	    font-style: normal;
 	}
+	div.inputMain *{
+		letter-spacing: 0px;
+	}
 	div.inputMain{
-		position: relative;
 		margin-bottom: 70px;
 		width: 850px;
-		top: 30px;
-		left: 50%;
-		margin-left:-400px;
 	}
 	h1.inputTitle{
 		font-family: 'CookieRun-Regular';
 		font-size: 50px;
 	}
 	label.inputMainLabel, label.inputStepLabel, label.inputCompLabel{
-		font-family: 'Cafe24SsurroundAir';
 		text-align: center;
 		cursor: pointer;
+		background-color: lightgray;
 	}
 	label.inputMainLabel{
 		width: 800px;
@@ -72,7 +71,7 @@
 		opacity: 0.3;
 		margin-bottom: -85px;
 	}
-	span.stepImgHere{
+	.stepImgHere{
 		font-size: 20px;
 		font-family: 'Cafe24SsurroundAir';
 	}
@@ -81,8 +80,8 @@
 		border-spacing: 0 30px;
 	}
 	.ingFt{
-		border-top: 1px solid lightgray;
-		border-bottom: 1px solid lightgray;
+		border-top: 1px solid lightcoral;
+		border-bottom: 1px solid lightcoral;
 		margin-bottom: 10px;
 	}
 	.mainFt th{
@@ -93,7 +92,7 @@
 	.ingFt th{
 		font-family: 'Cafe24Ohsquareair';
 		font-size: 25px;
-		width: 200px;
+		width: 175px;
 		vertical-align: top;
 	}
 	.compFt td{
@@ -104,6 +103,7 @@
 		font-family: 'Cafe24Ohsquareair';
 		font-size: 25px;
 		width: 125px;
+		text-align: center;
 	}
 	#steps td label{
 		margin-top: 8px;
@@ -120,20 +120,21 @@
 		border-radius: 22.5px;
 		padding-left: 15px;
 		padding-right: 15px;
-		background-color: fuchsia;
+		background-color: lightcoral;
 		color: snow;
+		font-weight: bold;
 	}
 	#tag{
-		 width: 320px;
-		 border: 1px solid lightgray;
+		 width: 470px;
+		 border: 1px solid lightcoral;
 		 font-size: 20px;
 		 font-family: 'Cafe24Ohsquareair';
 		 margin-top: 10px;
 		 padding-left: 10px;
 	}
 	.ing_class{
-		border: 1px solid lightgray;
-		width: 150px;
+		border: 1px solid lightcoral;
+		width: 165px;
 		padding-left: 15px;
 	}
 	.ingTitle, .stepTitle, .compTitle, .tagTitle{
@@ -150,32 +151,142 @@
 		padding-left: 15px;
 		font-family: 'Donoun-Medium';
 		font-size: 20px;
+		font-weight: bold;
 	}
 	.stepSec{
 		border: none;
 		background-color: transparent;
 		width: 40px;
 	}
+	.step_up, .step_down{
+		color: orange;
+		font-size: 30px;
+		cursor: pointer;
+		padding-right: 15px;
+		padding-top: 15px;
+	}
+	.step_down:hover, .step_up:hover{
+		font-size: 40px;
+	}
 	.forms, .ing_class, .stepSec, #tag:focus{
 		outline: none;
 	}
-	select.forms {
-   		-webkit-appearance:none; /* for chrome */
-   		-moz-appearance:none; /*for firefox*/
-  		appearance:none;
-  		cursor: pointer;
-  		width: 150px;
+	button.ingPlus{
+		margin-bottom: 30px;
 	}
-	select.forms::-ms-expand{
-		display:none;/*for IE10,11*/
+	#stepPopup{
+		position: relative;
+		float: right;
+		margin-top: -165px;
+		margin-right: 15px;
+		z-index: 10;
+		color: crimson;
+		font-size: 25px;
+		cursor: pointer;
 	}
-	select.forms {
-		background:url('../img/dropdown-icon.png') no-repeat 97% 50%/15px auto;
+	#delPopup{
+		position: relative;
+		float: right;
+		margin-top: -160px;
+		margin-right: 10px;
+		z-index: 10;
+		color: crimson;
+		font-size: 25px;
+		cursor: pointer;
 	}
-	select.forms option{
-		font-size: 18px;
+	#stepPopup:hover, #delPopup:hover{
+		font-size: 30px;
 	}
 	.compDet{
 		font-size: 20px;
 		font-family: 'Cafe24SsurroundAir';
+		text-indent: 15px;
 	}
+	#inputMainLabel{
+		font-family: 'Cafe24SsurroundAir';
+		font-size: 40px;
+	}
+		
+	.selectBox2 * { box-sizing: border-box; }
+.selectBox2 {
+  position: relative;
+  width: 160px;
+  height: 35px;
+  border-radius: 20px;
+  border: 3px solid crimson;
+  background: url('../img/dropdown-icon.png') calc(100% - 7px) center no-repeat;
+  background-size: 20px;
+  cursor: pointer;
+}
+.selectBox2.active{
+	z-index: 10;
+}
+
+.selectBox2:after {
+  content: '';
+  display: block; 
+  width: 2px;
+  height: 100%; 
+  position: absolute; 
+  top: 0; 
+  right: 35px;
+  background: lightcoral;
+}
+
+.selectBox2 .label {
+  display: flex;
+  text-align: left;
+  width: inherit;
+  height: inherit;
+  border: 0 none;
+  outline: 0 none;
+  padding-left: 25px;
+  background: transparent;
+  cursor: pointer;
+  color: black;
+  font-size: 20px;
+  padding-bottom: 10px;
+  font-family: 'Donoun-Medium';
+}
+
+.selectBox2 .optionList {
+  position: absolute; 
+  top: 28px;
+  left: 0;
+  width: 100%;
+  background: lightcoral;
+  color: #fff;
+  list-style-type: none;
+  padding: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  max-height: 0;
+  transition: .3s ease-in;
+}
+
+.selectBox2.active .optionList {
+  max-height: 500px;
+}
+
+.selectBox2 .optionItem {
+  border-bottom: 1px dashed rgb(170, 72, 72);
+  padding: 5px 25px 5px;
+  transition: .1s;
+  color: white;
+  font-family: 'Donoun-Medium';
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.selectBox2 .optionItem:hover {
+  background: rgb(175, 93, 93);
+}
+
+.selectBox2 .optionItem:last-child {
+  border-bottom: 0 none;
+}
+
+.selectBox2 .optionList::-webkit-scrollbar {width: 6px;}
+.selectBox2 .optionList::-webkit-scrollbar-track {background: transparent; }
+.selectBox2 .optionList::-webkit-scrollbar-thumb {background: #303030; border-radius: 45px;}
+.selectBox2 .optionList::-webkit-scrollbar-thumb:hover {background: #303030;}
