@@ -431,7 +431,46 @@ height: 200px;
 	font-size: 1.7rem;
 	left: 250px;
 }
+
+#searchAuto{
+	width: 700px;
+	height: 10px;
+	display: block;
+	z-index: 10;
+	position: relative;
+	left: 23.3%;
+}
+#searchAuto li{
+	list-style: none;
+	background-color:white;
+	opacity: 90%;
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+	text-align: left;
+	height: 35px;
+	line-height: 35px;
+}
+#searchAuto li a{
+	text-decoration: none;
+	color: black;
+	margin-left: 25px;
+}
+#searchAuto li a:hover{
+	text-decoration: none;
+	color: black;
+}
+#searchAuto li:hover{
+	background-color: #e9ecef;
+}
+.searchIcon{
+	width: 20px;
+	margin-left: 225px;
+}
+#searchAuto li:last-child{
+	border-bottom: 1px solid gray;
+}
 </style>
+<c:set var="root" value="<%=request.getContextPath() %>"/> <!-- 절//대경로... -->
 <script type="text/javascript">
 
 $(function () {
@@ -467,12 +506,35 @@ $(function () {
     
     
    
-    
-    
+    //검색어 추천 리스트
+    $("#s_value").keyup(function() {
+		$("#searchAuto").css("visibility", "visible");
+		var s="";
+		$.ajax({
+			type:"get",
+			dataType:"json",
+			data:{"searchWord":$("#s_value").val()},
+			url:"${root}/searchauto",
+			success:function(data) {
+				if(data.length>=1 && $("#s_value").val()!=""){
+					data.forEach(function(i) {
+						s+="<li><img src='../img/search-icon.jpg' class='searchIcon'>"
+							+"<a href='/search?research="+i+"'>"+i+"</a></li>";
+					});
+					$("#searchAuto").html(s);
+				} else{
+					$("#searchAuto").html("");
+				}
+			}
+		});
+	});
+	$("#searchAuto").mouseleave(function() {
+		$("#searchAuto").css("visibility", "hidden");
+	});
   
 });
 </script>
-<c:set var="root" value="<%=request.getContextPath() %>"/> <!-- 절//대경로... -->
+
 <body>
 <br><br>
 <div class="container">
@@ -485,10 +547,11 @@ $(function () {
       <div class="searchbar"  style="text-align: center;  width: 1170px; margin-bottom: 50px; margin-top: 50px;">
       
       <img alt="logo" src="../img/logo.png" onclick="location.href='/'" style="width:200px; float: left; margin-right: -100px; margin-top: -30px; ">
-         <input type="text"  id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." style="width: 700px;height: 70px; border: 2px solid gray; text-align: center;">&nbsp;&nbsp;&nbsp;
+         <input type="text"  id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." style="width: 700px;height: 70px; border: 2px solid gray; text-align: center;" autocomplete="off">&nbsp;&nbsp;&nbsp;
          <button type="button" class="search" style="border-style: none; 
          background-color:transparent;"><b class="glyphicon glyphicon-search " style="font-size: 30px; margin-left: -150px;'"></b> </button>
-      
+      	<ul id="searchAuto">
+		</ul>
       
          <ul class="heshi" >
             <li>

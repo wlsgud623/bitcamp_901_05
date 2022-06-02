@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import data.dto.RecipeDto;
 import data.service.SearchService;
@@ -46,6 +47,14 @@ public class SearchController {
 		model.addAttribute("research", research);
 		
 		return ("/collection/search");
+	}
+	
+	@GetMapping("/searchauto")
+	@ResponseBody
+	public List<String> searchAuto(@RequestParam String searchWord) {
+		List<String> list=new Vector<>();
+		list=service.searchAuto(searchWord);
+		return list;
 	}
 	
 }

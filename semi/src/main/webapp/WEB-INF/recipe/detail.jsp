@@ -101,11 +101,11 @@ $(function(){
 	});
 	
 	$("#editrecbtn").click(function() {
-		editRecipe();
+		editRecipe("${dto.userID}");
 	});
 	
 	$("#delrecbtn").click(function() {
-		deleteRecipe();
+		deleteRecipe("${dto.userID}");
 	});
 	
 });
@@ -417,7 +417,7 @@ function scrapRecipe(){
 	});
 }
 
-function editRecipe(){
+function editRecipe(userID){
 	if ("${sessionScope.loginok}" == null || "${sessionScope.loginok}" !='yes'){
 		$("#loginModal").modal('show');
 		return;
@@ -429,11 +429,11 @@ function editRecipe(){
 	
 	var ans = confirm("레시피를 수정하시겠습니까?");
 	if (ans){ 
-		location.href = "/updateform?idx=${idx}"
+		location.href = "/update/updateform?RECIPE_IDX=${dto.RECIPE_IDX}"
 	}
 }
 
-function deleteRecipe(){
+function deleteRecipe(userID){
 	if ("${sessionScope.loginok}" == null || "${sessionScope.loginok}" !='yes'){
 		$("#loginModal").modal('show');
 		return;
@@ -445,7 +445,7 @@ function deleteRecipe(){
 	
 	var ans = confirm("레시피를 삭제하시겠습니까?");
 	if (ans){ 
-		location.href = "/delete";
+		location.href = "/recipe/delete?idx=${dto.RECIPE_IDX}";
 	}
 }
 
@@ -636,7 +636,7 @@ function deleteRecipe(){
 		<div class="btn-group btn-group-justified">
     			<a href="/collection/category" class="btn btn-danger recipebtn"><span>목록</span></a>
     			<a href="#" class="btn btn-danger recipebtn" id="editrecbtn"><span>수정</span></a>
-    			<a onclick="deleteRecipe()" class="btn btn-danger recipebtn" id="delrecbtn"><span>삭제</span></a>
+    			<a href="#" class="btn btn-danger recipebtn" id="delrecbtn"><span>삭제</span></a>
   		</div>
 	</div>		
 		<div id="comment_area">

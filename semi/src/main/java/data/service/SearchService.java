@@ -32,5 +32,11 @@ public class SearchService implements SearchServiceInter {
 		map.put("perPage", perPage);
 		return mapper.searchRecipe(map);
 	}
+	
+	@Override
+	public List<String> searchAuto(String searchWord) {
+		// TODO Auto-generated method stub
+		return mapper.searchAuto(searchWord);
+	}
 
 }

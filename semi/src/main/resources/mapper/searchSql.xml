@@ -15,4 +15,7 @@
 		OR INSTR(portion, #{searchWord}) OR INSTR(level, #{searchWord}) 
 		OR INSTR(USERID, #{searchWord}) ORDER BY RECIPE_IDX DESC LIMIT #{startNum}, #{perPage}
 	</select>
+	<select id="searchAuto" parameterType="String" resultType="String">
+		SELECT name FROM Recipe WHERE INSTR(name, #{searchWord})
+	</select>
 </mapper>
