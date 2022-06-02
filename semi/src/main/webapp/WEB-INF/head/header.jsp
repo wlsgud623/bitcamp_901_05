@@ -60,9 +60,12 @@ float: right;
     color: black;
 }
 
-.s_value{
-   font-size: 20px;
-
+#s_value{
+   font-size: 25px;
+	width: 700px;
+	height: 70px;
+	border: 2px solid gray;
+	padding-left: 75px;
    
 }
 
@@ -454,6 +457,7 @@ height: 200px;
 	text-decoration: none;
 	color: black;
 	margin-left: 25px;
+	font-size: 17px;
 }
 #searchAuto li a:hover{
 	text-decoration: none;
@@ -464,7 +468,8 @@ height: 200px;
 }
 .searchIcon{
 	width: 20px;
-	margin-left: 225px;
+	margin-left: 25px;
+	padding-bottom: 5px;
 }
 #searchAuto li:last-child{
 	border-bottom: 1px solid gray;
@@ -546,8 +551,8 @@ $(function () {
       <!-- 헤더 -->
       <div class="searchbar"  style="text-align: center;  width: 1170px; margin-bottom: 50px; margin-top: 50px;">
       
-      <img alt="logo" src="../img/logo.png" onclick="location.href='/'" style="width:200px; float: left; margin-right: -100px; margin-top: -30px; ">
-         <input type="text"  id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." style="width: 700px;height: 70px; border: 2px solid gray; text-align: center;" autocomplete="off">&nbsp;&nbsp;&nbsp;
+      <img alt="logo" src="../img/logo.png" onclick="location.href='/'" style="width:200px; float: left; margin-right: -100px; margin-top: -30px; cursor: pointer;">
+         <input type="text"  id="s_value" maxlength="20" placeholder="검색어를 입력해주세요." autocomplete="off">&nbsp;&nbsp;&nbsp;
          <button type="button" class="search" style="border-style: none; 
          background-color:transparent;"><b class="glyphicon glyphicon-search " style="font-size: 30px; margin-left: -150px;'"></b> </button>
       	<ul id="searchAuto">
