@@ -68,7 +68,7 @@ public class FileUpload {
 		String img=existingFile;
 		String path=request.getServletContext().getRealPath("/upload");
 		
-		if (upload.getOriginalFilename().equals("")) {
+		if (!upload.getOriginalFilename().equals("")) {
 			deleteFile(existingFile, request);
 			String name=fileUploadName(upload.getOriginalFilename());
 			img=name;
