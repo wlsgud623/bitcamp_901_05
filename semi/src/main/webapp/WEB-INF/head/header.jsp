@@ -420,17 +420,17 @@ height: 200px;
    right: 150px;
 }
 
-.page{
+/*.page{
  position: absolute;
  font-size: 1.7rem;
  right: 30px;
-}
+}*/
 
-.menupoint{
+/*.menupoint{
 	position: absolute;
 	font-size: 1.7rem;
 	left: 250px;
-}
+}*/
 
 #searchAuto{
 	width: 700px;
@@ -571,9 +571,9 @@ $(function () {
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <!-- 리스트 : 부트스트랩은 모바일 우선이라 화면이 작으면 아래로 쌓아서 내려온다 -->
             <ul class="navbar-nav navbar-dark">
-                <li class="nav-item dropdown" style="padding-right: 25px;">
+                <li class="nav-item dropdown" style="padding-right: 25px; height: 48px;">
                     <!-- 드롭다운 메뉴-->
-                    <a class="list_icon glyphicon glyphicon-align-justify" data-toggle="dropdown" style=" font-weight: bold; position: relative; left: 700%;" ></a>
+                    <a class="list_icon glyphicon glyphicon-align-justify" data-toggle="dropdown" style=" font-weight: bold; position: absolute; left: 400%;" ></a>
                     <div class="dropdown-menu" style="margin-left: -20px; margin-top: 5px; background-color:white; opacity: 90%">                 
                         <ul class="side_item">               
                               <li class="dropdown-item" style="margin-top: 10px;  ">종류
@@ -654,32 +654,39 @@ $(function () {
               <p style=clear:both;></p>
                 
                 <li class="nav-item" style="color: white  ; font-size: 1.7rem; ">
-                    <a class="nav-link" onclick="location.href='http://localhost:9000/ranking/ranking'"  style="position: absolute; color:white; left: 20%;">랭킹</a>
+                    <a class="nav-link" href='http://localhost:9000/ranking/ranking' style="position: absolute; color:white; left: 20%;">랭킹</a>
+                </li>
+                <li class="nav-item" style="color: white  ; font-size: 1.7rem; ">
+                    <a class="nav-link" href='http://localhost:9000/collection/category' style="position: absolute; color:white; left: 30%;">컬렉션</a>
                 </li>
        
-                
-                <li class="nav-item" style="color: white; float: right; font-size: 1.7rem;">
-                    <a class="nav-link">
-                    <!-- 홈페이지 로그인 -->
-                  <c:if test="${sessionScope.loginok == null}">
-                     <div class="loginbtn" style="position: absolute; color:white; right: 20%;">
-                        <a href="/login" style="  float: left;">로그인</a>
-                           <button type="button" style="clear: none;" class="btn" onclick="location.href='${root}/member/signup?UserID=${sessionScope.loginid}'">회원가입</button>
-                     </div>
-                  </c:if>
+       
+       			<!-- 홈페이지 로그인 -->
+                <c:if test="${sessionScope.loginok == null}">
+                <li class="nav-item" style="color: white; font-size: 1.7rem; ">
+                    <a class="nav-link" href="/login" style="position: absolute; color: white; right: 20%;">로그인</a>
+                </li> 
+                <li class="nav-item" style="color: white; font-size: 1.7rem; ">
+                    <a class="nav-link" href='${root}/member/signup?UserID=${sessionScope.loginid}' style="position: absolute; color: white; right: 10%;">회원가입</a>
+                </li>  
+                </c:if>
                   
                   <!-- 홈페이지 로그아웃 -->
-                  <div class="logoutbtn" style="position: absolute; color:white; right: 20%;">
                   <c:if test="${sessionScope.loginok != null}">
-                     <b style="font-family: 'Gowun Batang'">${sessionScope.loginname}(${sessionScope.loginid}) 님</b>
-                     &nbsp;
-                     <button type="button" class="btn menupoint" onclick="logout()">로그아웃</button>
-                     <button type="button" class="btn page"  onclick="location.href='${root}/mypage/mypage?UserID=${sessionScope.loginid}'">MY PAGE</button>
-                     <button type="button" class="btn recipe" onclick="location.href='${root}/input/input?UserID=${sessionScope.loginid}'">MY RECIPE</button>
+                     <li class="nav-item" style="color: black; font-size: 1.7rem; ">
+                    	<a class="nav-link" style="font-family: 'Gowun Batang'; position: absolute; color: black; right: 37.5%; font-weight: bold;">${sessionScope.loginname}(${sessionScope.loginid}) 님</a>
+               		 </li>
+                     <li class="nav-item" style="color: white; font-size: 1.7rem; ">
+                    	<a class="nav-link menupoint" onclick="logout()" style="position: absolute; color: white; right: 30%; cursor: pointer;">로그아웃</a>
+               		 </li>
+               		 <li class="nav-item" style="color: white; font-size: 1.7rem; ">
+                    	<a class="nav-link page" href='${root}/mypage/mypage?UserID=${sessionScope.loginid}' style="position: absolute; color: white; right: 17.5%;">MY PAGE</a>
+                	 </li>
+                	 <li class="nav-item" style="color: white; font-size: 1.7rem; ">
+                    	<a class="nav-link recipe" href='${root}/input/input?UserID=${sessionScope.loginid}' style="position: absolute; color: white; right: 5%;">MY RECIPE</a>
+                	 </li>
                   </c:if>
-                  </div>
-                    </a>
-                </li>
+              
            
             </ul>  
           
