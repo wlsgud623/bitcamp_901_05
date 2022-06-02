@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <title>레시피 랭킹</title>
 <style type="text/css">
 	body {
@@ -46,7 +48,7 @@
 	#first_div_1:before{
 		position: absolute; 
 		left:5px; top:-5px; 
-		width:96px; 
+		 
 		height: 96px; 
 		display: block; 
 		content: ''; 
@@ -56,7 +58,7 @@
 	#first_div_2:before{
 		position: absolute; 
 		left:5px; top:-5px; 
-		width:96px; 
+		 
 		height: 96px; 
 		display: block; 
 		content: ''; 
@@ -66,16 +68,14 @@
 	#first_div_3:before{
 		position: absolute; 
 		left: 5px; top:-5px; 
-		width:96px; 
+		
 		height: 96px; 
 		display: block; 
 		content: ''; 
 		background:url('/image/icons-3rd-medal.png')no-repeat;
 	}
 	
-	.first_div img{
-		
-	}
+
 	
 	.info_tag{
 		display : flex;
@@ -113,11 +113,13 @@
 	
 	
 	#normal_ranking {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
-		justify-items: center;
-		gap: 20px 20px;
-		background-color: #f3f3f3;
+	width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    gap: 20px 20px;
+    background-color: #f3f3f3;
+    padding-top: 20px;
 	}
 	.rec_img {
 		overflow:hidden;
@@ -132,7 +134,7 @@
 	}
 	
 	.box{
-		
+		width: 360px;
 	}
 	
 	.info_title a{
@@ -145,7 +147,7 @@
 	}
 	
 	.normal_tag {
-		padding-left: 20px;
+		
 		padding-top: 5px;
 	}
 	
@@ -176,18 +178,19 @@
 </script>
 </head>
 <body>
+<div class="container">
 	<ul class="nav nav-tabs justify-content-end">
 	  <li><a data-toggle="tab" href="ranking?currentPage=${currentPage}">추천순</a></li>
 	  <li><a data-toggle="tab" href="view_ranking?currentPage=${currentPage}">조회순</a></li>
 	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="new_ranking?currentPage=${currentPage}">최신순</a></li>
 	</ul>
 	<div id="wrap_ranking">
-		<div id="normal_ranking">
+		<div id="normal_ranking" style=" text-align: center;">
 			<c:forEach var="recipe" items="${list}" varStatus="i">
-				<div class="box" style="float: left; width: 400px;">
-					<div class="rec_img" style="text-align: center;">
+				<div class="box" style="  text-align: center;">
+					<div class="rec_img" style=" vertical-align: middle;  text-align: center;">
 						<a href="/recipe/detail?idx=${recipe.RECIPE_IDX}"> 
-							<img src="../upload/${recipe.main_photo}" class="main_image img-thumbnail">
+							<img src="../upload/${recipe.main_photo}" class="main_image img-thumbnail" style="width:90%;">
 						</a>
 					</div>
 					<div class="icon">
@@ -251,6 +254,7 @@
 					</li>
 				</c:if>
 			</ul>
+		</div>
 		</div>
 </body>
 </html>
