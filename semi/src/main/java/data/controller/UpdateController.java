@@ -60,6 +60,7 @@ public class UpdateController {
 	public String update(@ModelAttribute RecipeDto reDto,
 			@ModelAttribute IngredientDto inDto,
 			@ModelAttribute StepsDto stDto,
+			@RequestParam String portions,
 			@RequestParam String ingName,
 			@RequestParam String stepSec,
 			@RequestParam String ingNum,
@@ -80,6 +81,12 @@ public class UpdateController {
 		
 		//레시피 기본 정보
 		int idx=reDto.getRECIPE_IDX();
+		
+		//양
+		if (portions.length()>=1) {
+			int portion=Integer.parseInt(portions.substring(0, 1));
+			reDto.setPortion(portion);
+		}
 		
 		//태그를 입력하지 않았을 경우
 		if (reDto.getTags()==null) {

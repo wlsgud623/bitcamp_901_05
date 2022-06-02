@@ -607,7 +607,7 @@
 	    		<th>요리 정보</th>
 	    		<td>
 	    			<div class="selectBox2 ">
-						<input type="text" name="portion" class="label" value=""
+						<input type="text" name="portions" class="label" value=""
 						placeholder="양" readonly="readonly">
 						<ul class="optionList">
 							<li class="optionItem">1인분</li>

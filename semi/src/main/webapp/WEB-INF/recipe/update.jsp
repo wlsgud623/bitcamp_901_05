@@ -782,7 +782,14 @@
 	    		<th>요리 정보</th>
 	    		<td>
 	    			<div class="selectBox2 ">
-						<input type="text" name="portion" class="label" value=""${recipe.portion}
+	    				<c:set var="portion" value="${recipe.portion}"/>
+	    				<c:if test="${recipe.portion == 4}">
+	    					<c:set var="portion" value="${recipe.portion}인분 이상"/>
+	    				</c:if>
+	    				<c:if test="${recipe.portion < 4 && recipe.portion > 0}">
+	    					<c:set var="portion" value="${recipe.portion}인분"/>
+	    				</c:if>
+						<input type="text" name="portions" class="label" value="${portion}"
 						placeholder="양" readonly="readonly">
 						<ul class="optionList">
 							<li class="optionItem">1인분</li>

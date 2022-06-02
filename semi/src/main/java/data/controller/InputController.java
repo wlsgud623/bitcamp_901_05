@@ -36,6 +36,7 @@ public class InputController {
 	public String insert(@ModelAttribute RecipeDto reDto,
 			@ModelAttribute IngredientDto inDto,
 			@ModelAttribute StepsDto stDto,
+			@RequestParam String portions,
 			@RequestParam String ingOrder,
 			@RequestParam String ingName,
 			@RequestParam String stepSec,
@@ -47,6 +48,12 @@ public class InputController {
 		//현재 로그인한 userID
 		String userID=(String)session.getAttribute("loginid");
 		reDto.setUserID(userID);
+		
+		//양
+		if (portions.length()>=1) {
+			int portion=Integer.parseInt(portions.substring(0, 1));
+			reDto.setPortion(portion);
+		}
 		
 		//메인, 완성사진 업로드
 		FileUpload fileUpload=new FileUpload();
