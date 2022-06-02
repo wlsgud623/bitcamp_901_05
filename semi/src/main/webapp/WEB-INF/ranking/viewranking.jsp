@@ -9,8 +9,8 @@
 <meta charset="UTF-8">
 <title>레시피 랭킹</title>
 <style type="text/css">
-	body {
-
+	.container{
+		
 	}
 	
 	.nav li a{
@@ -39,14 +39,14 @@
 	.first_div{
 		position: relative;
 		text-align: center;
-		width: 80%;
+		
 		background-color: white;
 	}
 	
 	#first_div_1:before{
 		position: absolute; 
 		left:5px; top:-5px; 
-		width:96px; 
+		
 		height: 96px; 
 		display: block; 
 		content: ''; 
@@ -56,7 +56,7 @@
 	#first_div_2:before{
 		position: absolute; 
 		left:5px; top:-5px; 
-		width:96px; 
+		
 		height: 96px; 
 		display: block; 
 		content: ''; 
@@ -66,7 +66,7 @@
 	#first_div_3:before{
 		position: absolute; 
 		left: 5px; top:-5px; 
-		width:96px; 
+		 
 		height: 96px; 
 		display: block; 
 		content: ''; 
@@ -113,18 +113,20 @@
 	
 	
 	#normal_ranking {
+		width: 100%;
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr; 
 		justify-items: center;
 		gap: 20px 20px;
 		background-color: #f3f3f3;
+		padding-top: 20px;
 	}
 	.rec_img {
 		overflow:hidden;
 	}
 	
 	.main_image{
-		width: 85%;
+		
 	}
 	
 	.main_image:hover{
@@ -187,11 +189,14 @@
 </script>
 </head>
 <body>
+<div class="container" >
 	<ul class="nav nav-tabs justify-content-end">
 	  <li><a data-toggle="tab" href="ranking?currentPage=${currentPage}">추천순</a></li>
 	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="view_ranking?currentPage=${currentPage}">조회순</a></li>
 	  <li><a data-toggle="tab" href="new_ranking?currentPage=${currentPage}">최신순</a></li>
 	</ul>
+	
+	
 	<div id="wrap_ranking">
 		<div id="first_ranking">
 			<c:if test="${currentPage==1}">
@@ -259,7 +264,7 @@
 								<i class="icon_chu"></i><i class="icon_best"></i>
 							</div>
 							<div class="info" style="text-align: left;">
-								<ul style="display: flex;" class="normal_tag">
+								<ul class="normal_tag">
 									<c:forEach var="tag" items="${fn:split(recipe.tags, ':')}">
 										<li>#${tag}&nbsp;&nbsp;</li>
 									</c:forEach>
@@ -275,9 +280,9 @@
 		</div>
 	</div>
 	<div>
-			<ul class="pagination">
+			<ul class="pagination" style="text-align: center; justify-content: center">
 				<c:if test="${currentPage != '1'}">
-					<li>
+					<li style="text-align: center;">
 					<a href="view_ranking?currentPage=1">
 						 <span class="glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
 					</a>
@@ -318,6 +323,7 @@
 				</c:if>
 			</ul>
 		</div>
+	</div>
 </body>
 </html>
 
