@@ -85,12 +85,23 @@ public class LoginController {
 	@PostMapping("/naver_login")
 	@ResponseBody
 	public Map<String, String> naverLogin(
-				@RequestParam String name
+				@RequestParam String name,
+				HttpSession session
 				) 
 	{
 		System.out.println(name);
 		Map<String, String> map = new HashMap<>();
 		map.put("name", name);
+		
+		//세션 유지시간 지정
+		session.setMaxInactiveInterval(60*60*6); //6시간 로그인 유지
+		//아이디와 비밀번호가 맞는 경우
+		session.setAttribute("loginid", "jaja321");
+//		//로그인한 사람의 이름 
+//		String name = memberMapperInter.getSearchName(userid); //아이디로 이름 찾기
+		session.setAttribute("loginname", "김주희");
+//		session.setAttribute("saveid", chkid == null?"no":"yes"); //chkid가 null일때 'no'
+		session.setAttribute("loginok", "yes"); //로그인 성공할 경우 value="yes"
 
 		return map; 
 	}   
@@ -99,12 +110,23 @@ public class LoginController {
 		@PostMapping("/kakao_login")
 		@ResponseBody
 		public Map<String, String> kakaoLogin(
-					@RequestParam String id
+					@RequestParam String id,
+					HttpSession session
 					) 
 		{
 			System.out.println(id);
 			Map<String, String> map = new HashMap<>();
 			map.put("kakao_id", id);
+			
+			//세션 유지시간 지정
+			session.setMaxInactiveInterval(60*60*6); //6시간 로그인 유지
+			//아이디와 비밀번호가 맞는 경우
+			session.setAttribute("loginid", "jaja321@naver.com");
+//			//로그인한 사람의 이름 
+//			String name = memberMapperInter.getSearchName(userid); //아이디로 이름 찾기
+			session.setAttribute("loginname", "김주희");
+//			session.setAttribute("saveid", chkid == null?"no":"yes"); //chkid가 null일때 'no'
+			session.setAttribute("loginok", "yes"); //로그인 성공할 경우 value="yes"
 
 			return map;
 		}   
