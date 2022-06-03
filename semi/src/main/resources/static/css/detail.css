@@ -27,7 +27,7 @@
 		list-style: none;
 	}
 	
-	div {
+	#loginModal div, #content div, #comment_area div {
 		max-width: 100%;
 	}
 	
@@ -282,9 +282,15 @@
 		
 	}
 	
+	.carousel-inner .item.active img{
+		height : 400px;
+		line-height: 400px;
+		text-align : center;
+		object-fit : cover;
+	}
 	.carousel-inner .item img{
-		height : 480px;
-		line-height: 480px;
+		height : 400px;
+		line-height: 400px;
 		text-align : center;
 	}
 

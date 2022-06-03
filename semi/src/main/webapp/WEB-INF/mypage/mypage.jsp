@@ -12,8 +12,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- <script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link
@@ -29,7 +29,7 @@ body * {
 /* 보여줄 구간의 높이와 넓이 설정 */
 #slideShow {
 	width: 1500px;
-	height: 300px;
+	height: 330px;
 	position: relative;
 	margin: 50px auto;
 	overflow: hidden;
@@ -40,7 +40,7 @@ body * {
 
 #slideShow_two {
 	width: 1500px;
-	height: 300px;
+	height: 330px;
 	position: relative;
 	margin: 50px auto;
 	overflow: hidden;
@@ -179,6 +179,10 @@ div.hh3 {
   float: left;
   shape-outside: margin-box;
 }
+#slideShow li, #slideShow_two li{
+	cursor: pointer;
+}
+
 </style>
 
 
@@ -253,8 +257,6 @@ $(function() {
 	  }
 	});
 	
-	
-	
 
 	
 	});	
@@ -321,9 +323,9 @@ $(function() {
 								style="width: 250px;" value="${dto.email}"></td>
 						</tr>
 						<tr>
-							<th style="width: 500px; text-align: center;">주소</th>
-							<td><input type="text" id="address" name="address"  style="width: 300px;" class="form-control"
-			   					value="${dto.address}" readonly="readonly" />		
+							<th style="width: 600px; text-align: center;">주소</th>
+							<td><input type="text" id="address" name="address"  style="width: 600px;" class="form-control"
+			   					value="${dto.address}" readonly="readonly" />	
 			   					&nbsp;
 			   					
 							 
@@ -350,9 +352,10 @@ $(function() {
 	<div id="slideShow">
 		<ul class="slides">
 			<c:forEach var="a" items="${ownrecipeList}">
-				<li><img src="../img/main/${a.main_photo}" alt="사진없음"
-					style="width: 350px; height: 300px;"></li>
-
+				<li onclick="location.href='../recipe/detail?idx=${a.RECIPE_IDX}'" style="cursor: pointer;">
+				<img src="../upload/${a.main_photo}" alt="사진없음" style="width: 350px; height: 300px; object-fit: cover;">
+				<br><b style="font-size: 25px;">${a.name}</b>
+				</li>
 			</c:forEach>
 
 		</ul>
@@ -369,10 +372,11 @@ $(function() {
 		<br>
 		<br>
 		<ul class="slides_two">
-			<c:forEach var="a" items="${ownrecipeList}">
-				<li><img src="../img/main/${a.main_photo}" alt="사진없음"
-					style="width: 350px; height: 300px;"></li>
-
+			<c:forEach var="a" items="${scraprecipeList}">
+				<li onclick="location.href='../recipe/detail?idx=${a.RECIPE_IDX}'" style="cursor: pointer;">
+				<img src="../upload/${a.main_photo}" alt="사진없음" style="width: 350px; height: 300px; object-fit: cover;">
+				<br><b style="font-size: 25px;">${a.name}</b>
+				</li>
 			</c:forEach>
 
 		</ul>

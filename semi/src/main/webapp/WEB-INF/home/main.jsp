@@ -12,10 +12,9 @@
 <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Nanum+Myeongjo&family=Song+Myung&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
 <script src="main.js"> </script>
 <link rel="stylesheet" href="/css/main.css">
-
 <script type="text/javascript">
 $(function() {
 	const slides = document.querySelector('.slides'); //전체 슬라이드 컨테이너
@@ -74,7 +73,7 @@ let arr;
 	<div class="carousel-inner" style="width: 100%">
 		<div class="item active" >
 			<div class="sub_item" >
-					<a href="/recipe/detail?idx=72"> 
+					<a href="/recipe/detail?idx=79"> 
 					<img src="img/main/main_01.jpg" alt="food_img">
 					<div class="txt">
 						<h3>색다른 메뉴가 끌릴땐</h3>
@@ -87,7 +86,7 @@ let arr;
 		</div>
 		<div class="item">
 			<div class="sub_item">
-				<a href="/recipe/detail?idx=74"> 
+				<a href="/recipe/detail?idx=81"> 
 					<img src="img/main/main_03.jpg" alt="food_img">
 					<div class="txt_2">
 						<h3>특별한 날엔</h3>
@@ -100,7 +99,7 @@ let arr;
 		</div>
 		<div class="item">
 			<div class="sub_item">
-				<a href="/recipe/detail?idx=73"> 
+				<a href="/recipe/detail?idx=80"> 
 					<img src="img/main/main_02.jpg" alt="food_img">
 					<div class="txt">
 						<h3>쌀쌀한 날에 생각나는</h3>
@@ -136,8 +135,7 @@ let arr;
 					<img src="../upload/${dto.main_photo}" class="mainimage">
 					</a>
 				</div>
-				<br>
-				<div class="info">
+				<div class="info" style="margin-top: 5px;">
 					<div class="info_tag">
 						<span><script type="text/javascript">
 					var tags = "<c:out value='${dto.tags}'/>";
@@ -149,7 +147,7 @@ let arr;
 					</div>
 				</div>
 				<div class="info_title">
-					<a href="/recipe/detail?idx=${RECIPE_IDX}"><span>${dto.name}</span>
+					<a href="/recipe/detail?idx=${dto.RECIPE_IDX}"><span>${dto.name}</span>
 					</a>
 				</div>
 				<br>

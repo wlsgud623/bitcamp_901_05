@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Song+Myung&display=swap" rel="stylesheet">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
- <link rel="stylesheet" href="   https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="css" href="css.css">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="UTF-8">
@@ -264,7 +264,7 @@ ul.menu li{
    height: 45px;
    line-height: 45px;
    color: #c12231;
-   margin-left: 150px;
+   margin-left: 50px;
   
 /*    margin-left: 500px; */
 /* color: #c12231; */
@@ -312,7 +312,7 @@ a:active {
 
 /*전체 박스*/
 .dropdown-menu{
-width: 3000px;
+width: 1520px;
 background-color:    #bbb0a500; 
 margin-top: 12px;
 /* box-shadow: 2px 2px 2px 2px gray; */
@@ -688,7 +688,7 @@ $(function () {
                     	<a class="nav-link page" href='${root}/mypage/mypage?UserID=${sessionScope.loginid}' style="position: absolute; color: white; right: 17.5%;">MY PAGE</a>
                 	 </li>
                 	 <li class="nav-item" style="color: white; font-size: 1.7rem; ">
-                    	<a class="nav-link recipe" href='${root}/input/input?UserID=${sessionScope.loginid}' style="position: absolute; color: white; right: 5%;">MY RECIPE</a>
+                    	<a class="nav-link recipe" href='${root}/input/input' style="position: absolute; color: white; right: 5%;">MY RECIPE</a>
                 	 </li>
                   </c:if>
               

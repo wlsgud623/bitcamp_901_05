@@ -12,11 +12,8 @@
 
 <style type="text/css">
 
-	.container{
-		margin-top: 80px;
-	}
-	
 	#menu_area{
+		margin-top: 80px;
 		margin-bottom: 50px;
 	}
 	
@@ -182,16 +179,22 @@
 	.info_title a{
 		color: black;
 	}
+	.info_title a:hover{
+		text-decoration: none;
+	}
 	
 	.info_title a span{
 		font-weight: bold;
 		font-size: 2.5rem;
 	}
+	.info_title a span:hover{
+		color: red;
+	}
 	
 	
 	.normal_tag {
 		padding-left: 20px;
-		padding-top: 5px;
+		padding-top: 10px;
 	}
 	
 	.normal_tag li{
@@ -223,10 +226,25 @@
 	#menu table tr td a{
 	}	
 	
-	.pagination{
-		margin-bottom: 150px;
+	.ca.pagination > .active > a, .ca.pagination > .active > a:focus,
+	.ca.pagination > .active > a:hover, .ca.pagination > .active > span,
+	.ca.pagination > .active > span:focus, .ca.pagination > .active > span:hover{
+		background-color: crimson;
+		border-color: crimson;
+		color: white;
 	}
-	
+	.ca.pagination > li > a, .ca.pagination > li > span{
+		color: crimson;
+		font-size: 20px;
+		margin-left: 10px;
+	}
+	.arrow{
+		color: crimson;
+		font-size: 20px;
+	}
+	div.ca{
+		margin-bottom: 80px;
+	}
 </style>
 <script type="text/javascript">
 $(function() {
@@ -427,9 +445,9 @@ $(function() {
 						<i class="icon_chu"></i><i class="icon_best"></i>
 					</div>
 					<div class="info" >
-						<ul  class="normal_tag" style="display: flex;">
+						<ul class="normal_tag" style="display: flex;">
 							<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
-								<li style="float: left; font-size: 20%;">#${tag}&nbsp;&nbsp;</li>
+								<li style="float: left; font-size: 70%; font-weight: bold;">#${tag}&nbsp;&nbsp;</li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -441,18 +459,18 @@ $(function() {
 			</c:forEach>
 		</div>
 		<br><br>
-		<div>
-			<ul class="pagination">
+		<div class="ca">
+			<ul class="ca pagination">
 				<c:if test="${currentPage != '1'}">
 					<li>
 						<c:if test="${category!=null}">
 							<a href="?currentPage=1&category=${category}&item=${item}">
-								<span class="glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
+								<span class="arrow glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
 							</a>
 						</c:if>
 						<c:if test="${category==null }">
 							<a href="?currentPage=1">
-								<span class="glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
+								<span class="arrow glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
 							</a>
 						</c:if>
 					</li>
@@ -462,12 +480,12 @@ $(function() {
 					<li>
 						<c:if test="${category!=null}">
 							<a href="?currentPage=${startPage - 1}&category=${category}&item=${item}">
-								<span class="glyphicon glyphicon-chevron-left"></span>
+								<span class="arrow glyphicon glyphicon-chevron-left"></span>
 							</a>
 						</c:if>
 						<c:if test="${category==null }">
 							<a href="?currentPage=${startPage - 1}">
-								<span class="glyphicon glyphicon-chevron-left"></span>
+								<span class="arrow glyphicon glyphicon-chevron-left"></span>
 							</a>
 						</c:if>
 					</li>
@@ -500,12 +518,12 @@ $(function() {
 					<li>
 						<c:if test="${category!=null}">
 						<a href="?currentPage=${endPage + 1}&category=${category}&item=${item}">
-							<span class="glyphicon glyphicon-chevron-right"></span>
+							<span class="arrow glyphicon glyphicon-chevron-right"></span>
 						</a>
 						</c:if>
 						<c:if test="${category==null }">
 							<a href="?currentPage=${endPage + 1}">
-								<span class="glyphicon glyphicon-chevron-right"></span>
+								<span class="arrow glyphicon glyphicon-chevron-right"></span>
 							</a>
 						</c:if>
 					</li>
@@ -515,12 +533,12 @@ $(function() {
 					<li>
 					<c:if test="${category!=null}">
 						<a href="?currentPage=${totalPage}&category=${category}&item=${item}">
-							<span class="glyphicon glyphicon-forward"></span>
+							<span class="arrow glyphicon glyphicon-forward"></span>
 						</a>
 					</c:if>
 					<c:if test="${category==null }">
 						<a href="?currentPage=${totalPage}">
-							<span class="glyphicon glyphicon-forward"></span>
+							<span class="arrow glyphicon glyphicon-forward"></span>
 						</a>
 					</c:if>
 					</li>

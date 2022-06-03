@@ -9,10 +9,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/detail.css">
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 <c:set var="root" value="<%=request.getContextPath()%>"/>
 <style type="text/css">	
 	.noborderbtn{
@@ -542,7 +541,7 @@ function deleteRecipe(userID){
 					</div>
 					<div style="margin-left: auto; padding-right: 50px; padding-top: 20px;">
 						<c:forEach var="ing" items="${ingredients}">
-							<span style="display: flex; border-bottom: 1px dotted #eee;"><p>${ing.name}</p><p style="margin-left: auto;">${ing.quantity}</p></span><br>
+							<span style="display: flex; border-bottom: 1px dotted #eee;"><p>${ing.name}</p>&emsp;<p style="margin-left: auto;">${ing.quantity}</p></span><br>
 						</c:forEach>
 					</div>
 				</div>
@@ -596,7 +595,7 @@ function deleteRecipe(userID){
 				  					<img src="../upload/${photo}" alt="${i.count }번째 이미지">
 				  				</c:if>
 				  				<c:if test="${photo=='no image'}">
-				  					<img src="/image/noimage.png">
+				  					<img src="/image/gray.jpg">
 				  				</c:if>
 				    		</div>
 				  		</c:if>
@@ -606,7 +605,7 @@ function deleteRecipe(userID){
 				  					<img src="../upload/${photo}" alt="${i.count }번째 이미지">
 				  				</c:if>
 				  				<c:if test="${photo=='no image'}">
-				  					<img src="/image/noimage.png">
+				  					<img src="/image/gray.jpg">
 				  				</c:if>
 				    		</div>
 				  		</c:if>

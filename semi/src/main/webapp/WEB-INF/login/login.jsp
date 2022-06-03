@@ -9,8 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Song+Myung&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Nanum+Myeongjo&family=Song+Myung&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <style type="text/css">
@@ -33,7 +32,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 
 body {
 	line-height: 1;
-	font-family: 'Gowun Dodum';
 }
 
 ol, ul {
@@ -59,6 +57,7 @@ table {
 .body {
 	text-align: center;
 	height: 1100px;
+	font-family: 'Gowun Dodum';
 }
 
 header {
