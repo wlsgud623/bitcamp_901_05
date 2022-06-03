@@ -130,6 +130,11 @@ public class MypageController {
 			String UserID=(String)session.getAttribute("loginid");
 			dto.setUserid(UserID);
 			System.out.println(dto.getName());
+			
+			if (dto.getPassword().equals("")) {
+				String password=mypageService.getUser(UserID).getPassword();
+				dto.setPassword(password);
+			}
 	
 			//사진 업로드ek
 			FileUpload fileUpload=new FileUpload();
