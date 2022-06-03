@@ -28,7 +28,7 @@ body * {
 
 /* 보여줄 구간의 높이와 넓이 설정 */
 #slideShow {
-	width: 1500px;
+	width: 1440px;
 	height: 330px;
 	position: relative;
 	margin: 50px auto;
@@ -39,7 +39,7 @@ body * {
 }
 
 #slideShow_two {
-	width: 1500px;
+	width: 1440px;
 	height: 330px;
 	position: relative;
 	margin: 50px auto;

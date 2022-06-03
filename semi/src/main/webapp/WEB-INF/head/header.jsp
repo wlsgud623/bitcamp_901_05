@@ -668,11 +668,9 @@ $(function () {
        
        			<!-- 홈페이지 로그인 -->
                 <c:if test="${sessionScope.loginok == null}">
-                <div class="loginbtn">
                 <li class="nav-item" style="color: white; font-size: 1.7rem; ">
                     <a class="nav-link" href="/login" style="position: absolute; color: white; right: 20%;">로그인</a>
-                </li> 
-                </div>
+                </li>
                 <li class="nav-item" style="color: white; font-size: 1.7rem; ">
                     <a class="nav-link" href='${root}/member/signup?UserID=${sessionScope.loginid}' style="position: absolute; color: white; right: 10%;">회원가입</a>
                 </li>   

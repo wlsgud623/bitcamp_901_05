@@ -35,23 +35,24 @@ public class MemberController {
 		}
 		
 		@GetMapping("/aftersignup_login")
-		public String aftersignup_login(@RequestParam String name, Model model)
+		public String aftersignup_login()
 		{
-			model.addAttribute("name", name);
-			System.out.println(name);
+			
 			return "/sign/login/aftersignup_login";
 		}
 	
 		@PostMapping("/insert")
 		public String insert(@ModelAttribute UserDto dto,
 				@RequestParam String email1, @RequestParam String email2,
-				@RequestParam String address1, @RequestParam String address2) 
+				@RequestParam String address1, @RequestParam String address2,
+				Model model) 
 		{
 				dto.setEmail(email1 + "@" + email2);
 				dto.setAddress(address1 + "," + address2);
-				service.insertMember(dto);		
+				service.insertMember(dto);
 				String name=dto.getName();
-				return "redirect:/aftersignup_login?name="+name; // 회원가입을 완료하면 로그인 페이지로 이동
+				model.addAttribute("name", name);
+				return "/sign/login/aftersignup_login"; // 회원가입을 완료하면 로그인 페이지로 이동
 		}
 		
 		@GetMapping("/idcheck")
