@@ -29,7 +29,7 @@ public class InputController {
 	
 	@GetMapping("/input")
 	public String input() {
-		return "/main2/recipe/input";
+		return "/recipe/input";
 	}
 	
 	@PostMapping("/insert")

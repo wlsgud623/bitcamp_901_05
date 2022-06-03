@@ -52,7 +52,7 @@ public class UpdateController {
 		mav.addObject("ingClass", bdCount.size());
 		mav.addObject("stepCount", stList.size());
 		
-		mav.setViewName("/main2/recipe/update");
+		mav.setViewName("/recipe/update");
 		return mav;
 	}
 	

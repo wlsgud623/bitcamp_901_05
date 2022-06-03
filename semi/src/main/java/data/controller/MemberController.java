@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +35,10 @@ public class MemberController {
 		}
 		
 		@GetMapping("/aftersignup_login")
-		public String aftersignup_login()
+		public String aftersignup_login(@RequestParam String name, Model model)
 		{
+			model.addAttribute("name", name);
+			System.out.println(name);
 			return "/sign/login/aftersignup_login";
 		}
 	
@@ -45,9 +48,10 @@ public class MemberController {
 				@RequestParam String address1, @RequestParam String address2) 
 		{
 				dto.setEmail(email1 + "@" + email2);
-				dto.setAddress(address1 + " " + address2);
+				dto.setAddress(address1 + "," + address2);
 				service.insertMember(dto);		
-				return "redirect:aftersignup_login"; // 회원가입을 완료하면 로그인 페이지로 이동
+				String name=dto.getName();
+				return "redirect:/aftersignup_login?name="+name; // 회원가입을 완료하면 로그인 페이지로 이동
 		}
 		
 		@GetMapping("/idcheck")

@@ -198,13 +198,18 @@ function check(){
 						<label for="inputPhoto"
 							class="inputPhoto" style="cursor: pointer; border-radius:50%; width: 500px; height: 300px;">
 								<img src="../upload/${dto.photo}"  class="img-circle" style=" width: 300px; height: 300px; ">
-						</label> <input type="file" id="inputPhoto" name="upload_photo" value="${dto.photo}"
+						</label> <input type="file" id="inputPhoto" name="upload_photo"
 							accept=".jpg, .jpeg, .png" style="opacity: 0; font-size: 0px; width: 500px;"
-							class="form-control" required="required">
+							class="form-control">
 					
 					</c:if>
 					<c:if test="${dto.photo==null}">
-					  <img class="photo" src="../image/per__son.png"  style=" width: 300px; height: 300px;">
+					  <label for="inputPhoto"
+							class="inputPhoto" style="cursor: pointer; border-radius:50%; width: 500px; height: 300px;">
+								<img src="../image/per__son.png"  class="img-circle" style=" width: 300px; height: 300px; ">
+						</label> <input type="file" id="inputPhoto" name="upload_photo"
+							accept=".jpg, .jpeg, .png" style="opacity: 0; font-size: 0px; width: 500px;"
+							class="form-control">
 					</c:if>
 					
 
@@ -229,7 +234,7 @@ function check(){
                            placeholder="새 비밀번호를 입력해주세요">
 							<br>
 			   					<input type="password" id="password2" style="width: 300px;" class="form-control"
-			   					required="required" placeholder="비밀번호 확인">
+			   					placeholder="비밀번호 확인">
 			   					
 			   					&nbsp;
 			   					<br>
@@ -253,16 +258,15 @@ function check(){
 						<th style="width: 500px; text-align: center;">주소</th>
 						<td><input type="text" id="address_search" name="address1"
 							class="form-control" placeholder="주소를 입력해주세요"
-							style="width: 250px;" > &nbsp;
+							style="width: 250px;" value="${address1}"> &nbsp;
 							<button type="button" class="btn btn-sm " 
 								id="search_btn" style="width: 100px; position: relative; left: 50px; bottom: 30px; border: 2px solid #9D9393; " >
 								주소 검색&nbsp;&nbsp;<span class="glyphicon glyphicon-search" style="color: #c12231;"></span>
 							</button> &nbsp; <br>
 						 <input type="text" name="address2"
-							class="form-control
-			   					required="
-							required" placeholder="상세주소를 입력하세요" style="width: 250px;"
-							value="${dto.address}"> &nbsp; <br></td>
+							class="form-control"
+			   					required="required" placeholder="상세주소를 입력하세요" style="width: 250px;"
+							value="${address2}"> &nbsp; <br></td>
 					</tr>
 						<tr>
 							<th style="width: 600px; text-align: center;;">본인소개</th>

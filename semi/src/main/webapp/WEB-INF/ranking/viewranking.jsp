@@ -10,10 +10,8 @@
 <title>레시피 랭킹</title>
 <style type="text/css">
 
-
-	.container{
+	ul.select{
 		margin-top: 80px;
-		margin-bottom: 80px;
 	}
 	.nav li a{
 		font-weight : bold;
@@ -44,7 +42,7 @@
 		position: relative;
 		text-align: center;
 		padding-top: 100px;
-		width: 1300px;
+		width: 1140px;
 		/* width: 80%; */
 	/* 	background-color: white; */
 	}
@@ -80,9 +78,10 @@
 		position: relative;
 		text-align: center;
 		/* width: 80%; */
-		width: 630px;
+		width: 555px;
 		padding-top: 70px;
 	/* 	background-color: white; */
+		height: 550px;
 
 	}
 	
@@ -232,16 +231,12 @@
 	}
 	
 	
-	#normal_ranking {
-		width: 100%;
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr; 
-		justify-items: center;
-		gap: 20px 20px;
-		padding-top: 20px;
-	}
 	.rec_img {
 		overflow:hidden;
+	}
+	
+	.main_image{
+		width: 85%;
 	}
 	
 	.main_image:hover{
@@ -251,10 +246,16 @@
 	.info_title a{
 		color: black;
 	}
+	.info_title a:hover{
+		text-decoration: none;
+	}
 	
 	.info_title a span{
 		font-weight: bold;
 		font-size: 2.5rem;
+	}
+	.info_title a span:hover{
+		color: crimson;
 	}
 	
 	.normal_tag {
@@ -269,7 +270,25 @@
 	#page_selector {
 		text-align: center;
 	}
-	
+	.vi.pagination > .active > a, .vi.pagination > .active > a:focus,
+	.vi.pagination > .active > a:hover, .vi.pagination > .active > span,
+	.vi.pagination > .active > span:focus, .vi.pagination > .active > span:hover{
+		background-color: crimson;
+		border-color: crimson;
+		color: white;
+	}
+	.vi.pagination > li > a, .vi.pagination > li > span{
+		color: crimson;
+		font-size: 20px;
+		margin-left: 10px;
+	}
+	.arrow{
+		color: crimson;
+		font-size: 20px;
+	}
+	div.vi{
+		margin-bottom: 80px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -301,7 +320,7 @@
 </head>
 <body>
 <div class="container" >
-	<ul class="nav nav-tabs justify-content-end">
+	<ul class="select nav nav-tabs justify-content-end">
 	  <li><a data-toggle="tab" href="ranking?currentPage=1">추천순</a></li>
 	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="view_ranking?currentPage=1">조회순</a></li>
 	  <li><a data-toggle="tab" href="new_ranking?currentPage=1">최신순</a></li>
@@ -361,7 +380,7 @@
 		<div id="normal_ranking">
 			<c:if test="${currentPage==1}">
 				<c:forEach var="recipe" items="${list}" varStatus="i" begin="3">
-					<div class="box" style="float: left; width: 400px;">
+					<div class="box" style="float: left; width: 370px;">
 						<div>
 							<h1 style="color: black; font-size: 15px;">${i.index + 1}위</h1>
 						</div>
@@ -376,7 +395,7 @@
 						<div class="info" style="text-align: left;">
 							<ul style="display: flex;" class="normal_tag">
 								<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
-									<li>#${tag}&nbsp;&nbsp;</li>
+									<li style="font-size: 50%; font-weight: bold;">#${tag}&nbsp;&nbsp;</li>
 								</c:forEach>
 							</ul>
 						</div>
@@ -389,7 +408,7 @@
 			</c:if>
 			<c:if test="${currentPage!=1}">
 				<c:forEach var="recipe" items="${list}" varStatus="i">
-						<div class="box" style="float: left; width: 400px;">
+						<div class="box" style="float: left; width: 370px;">
 							<div>
 								<h1 style="color: black; font-size: 15px;">${i.count + (currentPage-1) * 12 + 3}위</h1>
 							</div>
@@ -402,9 +421,9 @@
 								<i class="icon_chu"></i><i class="icon_best"></i>
 							</div>
 							<div class="info" style="text-align: left;">
-								<ul class="normal_tag">
-									<c:forEach var="tag" items="${fn:split(recipe.tags, ':')}">
-										<li>#${tag}&nbsp;&nbsp;</li>
+								<ul style="display: flex;" class="normal_tag">
+									<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
+										<li style="font-size: 50%; font-weight: bold;">#${tag}&nbsp;&nbsp;</li>
 									</c:forEach>
 								</ul>
 							</div>
@@ -417,12 +436,12 @@
 			</c:if>
 		</div>
 	</div>
-	<div>
-			<ul class="pagination" style="text-align: center; justify-content: center">
+	<div class="vi">
+			<ul class="vi pagination" style="text-align: center; justify-content: center">
 				<c:if test="${currentPage != '1'}">
 					<li style="text-align: center;">
 					<a href="view_ranking?currentPage=1">
-						 <span class="glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
+						 <span class="arrow glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
 					</a>
 					</li>
 				</c:if>
@@ -430,7 +449,7 @@
 				<c:if test="${startPage != 1}">
 					<li>
 					<a href="view_ranking?currentPage=${startPage - 1}">
-						<span class="glyphicon glyphicon-chevron-left"></span>
+						<span class="arrow glyphicon glyphicon-chevron-left"></span>
 					</a>
 					</li>
 				</c:if>
@@ -447,7 +466,7 @@
 				<c:if test="${endPage != totalPage}">
 					<li>
 					<a href="view_ranking?currentPage=${endPage + 1}">
-						 <span class="glyphicon glyphicon-chevron-right"></span>
+						 <span class="arrow glyphicon glyphicon-chevron-right"></span>
 					</a>
 					</li>
 				</c:if>
@@ -455,12 +474,13 @@
 				<c:if test="${currentPage != totalPage}">
 					<li>
 					<a href="view_ranking?currentPage=${totalPage}">
-						 <span class="glyphicon glyphicon-forward"></span>
+						 <span class="arrow glyphicon glyphicon-forward"></span>
 					</a>
 					</li>
 				</c:if>
 			</ul>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

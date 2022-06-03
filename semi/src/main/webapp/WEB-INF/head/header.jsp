@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Gowun+Batang&family=Gowun+Dodum&family=Hahmlet:wght@100&family=Jua&family=Song+Myung&display=swap" rel="stylesheet">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
- <link rel="stylesheet" href="   https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="css" href="css.css">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="UTF-8">
@@ -264,7 +264,7 @@ ul.menu li{
    height: 45px;
    line-height: 45px;
    color: #c12231;
-   margin-left: 150px;
+   margin-left: 50px;
   
 /*    margin-left: 500px; */
 /* color: #c12231; */
@@ -312,7 +312,7 @@ a:active {
 
 /*전체 박스*/
 .dropdown-menu{
-width: 3000px;
+width: 1520px;
 background-color:    #bbb0a500; 
 margin-top: 12px;
 /* box-shadow: 2px 2px 2px 2px gray; */
@@ -668,12 +668,14 @@ $(function () {
        
        			<!-- 홈페이지 로그인 -->
                 <c:if test="${sessionScope.loginok == null}">
+                <div class="loginbtn">
                 <li class="nav-item" style="color: white; font-size: 1.7rem; ">
                     <a class="nav-link" href="/login" style="position: absolute; color: white; right: 20%;">로그인</a>
                 </li> 
+                </div>
                 <li class="nav-item" style="color: white; font-size: 1.7rem; ">
                     <a class="nav-link" href='${root}/member/signup?UserID=${sessionScope.loginid}' style="position: absolute; color: white; right: 10%;">회원가입</a>
-                </li>  
+                </li>   
                 </c:if>
                   
                   <!-- 홈페이지 로그아웃 -->
@@ -688,7 +690,7 @@ $(function () {
                     	<a class="nav-link page" href='${root}/mypage/mypage?UserID=${sessionScope.loginid}' style="position: absolute; color: white; right: 17.5%;">MY PAGE</a>
                 	 </li>
                 	 <li class="nav-item" style="color: white; font-size: 1.7rem; ">
-                    	<a class="nav-link recipe" href='${root}/input/input?UserID=${sessionScope.loginid}' style="position: absolute; color: white; right: 5%;">MY RECIPE</a>
+                    	<a class="nav-link recipe" href='${root}/input/input' style="position: absolute; color: white; right: 5%;">MY RECIPE</a>
                 	 </li>
                   </c:if>
               
@@ -722,14 +724,16 @@ $(function () {
              url: "/naver_login",
              data: {"name":name},
              success: function(data) {
-                alert("네이버 로그인 성공");
+             /*    alert("로그인되었습니다"); */
+                   $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
+                   location.href="http://localhost:9000/";
                    var s = "";
-                   s += "<div class='naver_logout' style='text-align: center;'>";
-                   s += "<button class='btn' onclick='naverLogout()'>";
-                     s += "<span>로그아웃</span></button></div>";
-                    $(".logoutbtn").html(s);
+                 
+                   s += "<li class='nav-item' style='color: white; font-size: 1.7rem;'>";
+                   s += "<a class='nav-link' onclick='naverLogout()'";
+                   s += "style='position: absolute; color: white; right: 20%;'>로그아웃</a></li>"; 
+                   $(".loginbtn").html(s);
                     
-                    $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
              }   
           });
        }
@@ -785,14 +789,15 @@ $(function () {
              });   */    
      
            if(${kakao=="yes"}){
-             alert("login 카카오 로그인 성공");
-                var s = "";
-             s += "<div class='kakao_logout' style='text-align: center;'>";
-             s += "<button class='btn' onclick='kakaoLogout()'>";
-                  s += "<span>로그아웃</span></button></div>";
-              $(".logoutbtn").html(s);
-              
-              $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
+             /*alert("카카오 로그인 성공"); */
+             $(".loginbtn").css('visibility', 'hidden');  //로그인 버튼 숨기기
+             location.href="http://localhost:9000/";
+             var s = "";
+           
+             s += "<li class='nav-item' style='color: white; font-size: 1.7rem;'>";
+             s += "<a class='nav-link' onclick='kakaoLogout()'";
+             s += "style='position: absolute; color: white; right: 20%;'>로그아웃</a></li>"; 
+             $(".loginbtn").html(s);
           }
            
            

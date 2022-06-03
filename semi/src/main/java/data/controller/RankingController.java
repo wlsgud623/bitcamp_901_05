@@ -24,7 +24,7 @@ public class RankingController {
 	public ModelAndView recommendRanking(@RequestParam(defaultValue = "1") int currentPage) {
 		ModelAndView mView = new ModelAndView();
 		
-		int perPage = 12;
+		int perPage = 9;
 		int perBlock = 5;
 		int totalcount; // 모든 레시피 수
 		int totalPage; // 총 페이지수
@@ -66,7 +66,7 @@ public class RankingController {
 	public ModelAndView viewRanking(@RequestParam(defaultValue = "1") int currentPage) {
 		ModelAndView mView = new ModelAndView();
 		
-		int perPage = 12;
+		int perPage = 9;
 		int perBlock = 5;
 		int totalcount; // 모든 레시피 수
 		int totalPage; // 총 페이지수
@@ -107,7 +107,7 @@ public class RankingController {
 	public ModelAndView newRanking(@RequestParam(defaultValue = "1") int currentPage) {
 		ModelAndView mView = new ModelAndView();
 		
-		int perPage = 12;
+		int perPage = 9;
 		int perBlock = 5;
 		int totalcount; // 모든 레시피 수
 		int totalPage; // 총 페이지수

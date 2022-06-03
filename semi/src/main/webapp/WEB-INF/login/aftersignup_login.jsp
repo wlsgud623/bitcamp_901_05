@@ -15,6 +15,7 @@
 .body {
 	text-align: center;
 	height: 700px;
+	font-family: 'Gowun Dodum';
 }
 
 header {
@@ -40,13 +41,7 @@ i{
 	font-size: 19px;
 	margin-bottom: 30px;
 }
-
-.btn:focus,.btn:active {
-   outline: none !important;
-   box-shadow: none;
-}
-
-.btn{
+.sign.btn{
 	margin-top: 10px;
 	width: 200px;
 	height: 40px;
@@ -56,6 +51,12 @@ i{
 	color: #c12231;
 	background-color: white;
 }
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
+}
+
+
 
 .btn:hover{
 	margin-top: 10px;
@@ -92,13 +93,13 @@ i{
 			<i class="fa-solid fa-check"></i>
 			<h1>회원가입이 <b>완료</b> 되었습니다.</h1>
 			<br>
-			<p class="p"><c:out value="${dto.name}"/><b>김주희</b>님 회원가입을 축하합니다.<br>지금 로그인하고 레시피를 공유해보세요!</p>
+			<p class="p"><b>${name}</b>님 회원가입을 축하합니다.<br>지금 로그인하고 레시피를 공유해보세요!</p>
 			<hr>
 			<h3></h3>
 				
-			<button class="btn" onclick="location.href='http://localhost:9000/login'">로그인하러 가기</button>	
+			<button class="sign btn" onclick="location.href='http://localhost:9000/login'">로그인하러 가기</button>	
 			&nbsp;	
-			<button class="btn" onclick="location.href='http://localhost:9000/'">홈으로</button>
+			<button class="sign btn" onclick="location.href='http://localhost:9000/'">홈으로</button>
 			
 		</div>
 	</div>

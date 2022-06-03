@@ -11,9 +11,8 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <title>레시피 랭킹</title>
 <style type="text/css">
-		.container{
+	ul.select{
 		margin-top: 80px;
-		margin-bottom: 80px;
 	}
 	
 	.nav li a{
@@ -141,10 +140,16 @@
 	.info_title a{
 		color: black;
 	}
+	.info_title a:hover{
+		text-decoration: none;
+	}
 	
 	.info_title a span{
 		font-weight: bold;
 		font-size: 2.5rem;
+	}
+	.info_title a span:hover{
+		color: crimson;
 	}
 	
 	.normal_tag {
@@ -159,7 +164,25 @@
 	#page_selector {
 		text-align: center;
 	}
-	
+	.ne.pagination > .active > a, .ne.pagination > .active > a:focus,
+	.ne.pagination > .active > a:hover, .ne.pagination > .active > span,
+	.ne.pagination > .active > span:focus, .ne.pagination > .active > span:hover{
+		background-color: crimson;
+		border-color: crimson;
+		color: white;
+	}
+	.ne.pagination > li > a, .ne.pagination > li > span{
+		color: crimson;
+		font-size: 20px;
+		margin-left: 10px;
+	}
+	.arrow{
+		color: crimson;
+		font-size: 20px;
+	}
+	div.ne{
+		margin-bottom: 80px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -180,7 +203,7 @@
 </head>
 <body>
 <div class="container">
-	<ul class="nav nav-tabs justify-content-end">
+	<ul class="select nav nav-tabs justify-content-end">
 	  <li><a data-toggle="tab" href="ranking?currentPage=1">추천순</a></li>
 	  <li><a data-toggle="tab" href="view_ranking?currentPage=1">조회순</a></li>
 	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="new_ranking?currentPage=1">최신순</a></li>
@@ -200,7 +223,7 @@
 					<div class="info" style="text-align: left;">
 						<ul style="display: flex;" class="normal_tag">
 							<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
-								<li>#${tag}&nbsp;&nbsp;</li>
+								<li style="font-size: 50%; font-weight: bold;">#${tag}&nbsp;&nbsp;</li>
 							</c:forEach>
 						</ul>
 					</div>
@@ -212,12 +235,12 @@
 			</c:forEach>
 		</div>
 	</div>
-	<div>
-			<ul class="pagination">
+	<div class="ne">
+			<ul class="ne pagination">
 				<c:if test="${currentPage != '1'}">
 					<li>
 					<a href="new_ranking?currentPage=1">
-						 <span class="glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
+						 <span class="arrow glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
 					</a>
 					</li>
 				</c:if>
@@ -225,7 +248,7 @@
 				<c:if test="${startPage != 1}">
 					<li>
 					<a href="new_ranking?currentPage=${startPage - 1}">
-						<span class="glyphicon glyphicon-chevron-left"></span>
+						<span class="arrow glyphicon glyphicon-chevron-left"></span>
 					</a>
 					</li>
 				</c:if>
@@ -242,7 +265,7 @@
 				<c:if test="${endPage != totalPage}">
 					<li>
 					<a href="new_ranking?currentPage=${endPage + 1}">
-						 <span class="glyphicon glyphicon-chevron-right"></span>
+						 <span class="arrow glyphicon glyphicon-chevron-right"></span>
 					</a>
 					</li>
 				</c:if>
@@ -250,7 +273,7 @@
 				<c:if test="${currentPage != totalPage}">
 					<li>
 					<a href="new_ranking?currentPage=${totalPage}">
-						 <span class="glyphicon glyphicon-forward"></span>
+						 <span class="arrow glyphicon glyphicon-forward"></span>
 					</a>
 					</li>
 				</c:if>

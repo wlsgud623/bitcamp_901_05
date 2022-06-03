@@ -11,12 +11,9 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <title>레시피 랭킹</title>
 <style type="text/css">
-	
-	.container{
+	ul.select{
 		margin-top: 80px;
-		margin-bottom: 80px;
 	}
-	
 	.nav li a{
 		font-weight : bold;
 		color: black;
@@ -29,11 +26,8 @@
   		color:red;
 	} 
 	
-	.wrap_ranking1{
-	
-	}
-	
 		
+			
 	#first_ranking {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
@@ -89,6 +83,7 @@
 		padding-top: 70px;
 	/* 	background-color: white; */
 		height: 550px;
+
 	}
 	
 	#second_div_1:before{
@@ -117,27 +112,25 @@
 	
 	
 	
-	
-	
-	.info_tag{
+	.info_tag1{
 		display : flex;
 		padding-left: 30px;
 		justify-content: center;
 		padding-top: 50px;
 	}
 	
-	.info_tag b{
+	.info_tag1 b{
 		font-size: 15px;
 		font-weight: bold;
 	}
 	
-	.info_tag li {
+	.info_tag1 li {
     	display: inline-block;
     	margin: 5px 2px;
     	min-height: 40px;
 	}
 	
-	.info_tag li a {
+	.info_tag1 li a {
     	font-size: 25px;
     	line-height: 15px;
     	color: #777777;
@@ -148,7 +141,7 @@
     	text-decoration: none;
 	}
 	
-	.info_tag li a:hover{
+	.info_tag1 li a:hover{
 		background: #f64646; 
 		color: #fff;
 		border:1px solid #f64646;
@@ -203,7 +196,42 @@
 	    gap: 20px 20px;
 	    padding-top: 20px;
 }
+	
+	.info_tag{
+		display : flex;
+		padding-left: 30px;
+		justify-content: center;
 	}
+	
+	.info_tag b{
+		font-size: 20px;
+		font-weight: bold;
+	}
+	
+	.info_tag li {
+    	display: inline-block;
+    	margin: 5px 2px;
+    	min-height: 40px;
+	}
+	
+	.info_tag li a {
+    	font-size: 15px;
+    	line-height: 15px;
+    	color: #777777;
+    	padding: 5px 20px 7px;
+    	border: 1px solid #c1c1c1;
+    	background: #fff;
+    	border-radius: 50px;
+    	text-decoration: none;
+	}
+	
+	.info_tag li a:hover{
+		background: #f64646; 
+		color: #fff;
+		border:1px solid #f64646;
+	}
+	
+	
 	.rec_img {
 		overflow:hidden;
 	}
@@ -216,17 +244,19 @@
 		transform:scale(1.2);
 	}
 	
-	.box{
-		
-	}
-	
 	.info_title a{
 		color: black;
+	}
+	.info_title a:hover{
+		text-decoration: none;
 	}
 	
 	.info_title a span{
 		font-weight: bold;
 		font-size: 2.5rem;
+	}
+	.info_title a span:hover{
+		color: crimson;
 	}
 	
 	.normal_tag {
@@ -241,7 +271,25 @@
 	#page_selector {
 		text-align: center;
 	}
-	
+	.ra.pagination > .active > a, .ra.pagination > .active > a:focus,
+	.ra.pagination > .active > a:hover, .ra.pagination > .active > span,
+	.ra.pagination > .active > span:focus, .ra.pagination > .active > span:hover{
+		background-color: crimson;
+		border-color: crimson;
+		color: white;
+	}
+	.ra.pagination > li > a, .ra.pagination > li > span{
+		color: crimson;
+		font-size: 20px;
+		margin-left: 10px;
+	}
+	.arrow{
+		color: crimson;
+		font-size: 20px;
+	}
+	div.ra{
+		margin-bottom: 80px;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -271,8 +319,8 @@
 </script>
 </head>
 <body>
-<div class="container"> 
-	<ul class="nav nav-tabs justify-content-end">
+<div class="container">
+	<ul class="select nav nav-tabs justify-content-end">
 	  <li class="active"><a data-toggle="tab" style="color: #f64646;" href="ranking?currentPage=1">추천순</a></li>
 	  <li><a data-toggle="tab" onclick="changeRank('view_ranking');" href="view_ranking?currentPage=1">조회순</a></li>
 	  <li><a data-toggle="tab" onclick="changeRank('new_ranking');" href="new_ranking?currentPage=1">최신순</a></li>
@@ -345,7 +393,7 @@
 						<div class="info" style="text-align: left;">
 							<ul style="display: flex;" class="normal_tag">
 								<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
-									<li style="font-size: 12px;">#${tag}&nbsp;&nbsp;</li>
+									<li style="font-size: 50%; font-weight: bold;">#${tag}&nbsp;&nbsp;</li>
 								</c:forEach>
 							</ul>
 						</div>
@@ -358,7 +406,7 @@
 			</c:if>
 			<c:if test="${currentPage!=1}">
 				<c:forEach var="recipe" items="${list}" varStatus="i">
-						<div class="box" style="float: left; width: 400px;">
+						<div class="box" style="float: left; width: 370px;">
 							<div>
 								<h3>${i.count + (currentPage-1) * 12 + 3}위</h3>
 							</div>
@@ -372,8 +420,8 @@
 							</div>
 							<div class="info" style="text-align: left;">
 								<ul style="display: flex;" class="normal_tag">
-									<c:forEach var="tag" items="${fn:split(recipe.tags, ':')}">
-										<li>#${tag}&nbsp;&nbsp;</li>
+									<c:forEach var="tag" items="${fn:split(recipe.tags, ',')}">
+										<li style="font-size: 50%; font-weight: bold;">#${tag}&nbsp;&nbsp;</li>
 									</c:forEach>
 								</ul>
 							</div>
@@ -386,12 +434,12 @@
 			</c:if>
 		</div>
 	</div>
-		<div>
-			<ul class="pagination">
+		<div class="ra">
+			<ul class="ra pagination">
 				<c:if test="${currentPage != '1'}">
 					<li>
 					<a href="ranking?currentPage=1">
-						 <span class="glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
+						 <span class="arrow glyphicon glyphicon-forward" style="transform:scaleX(-1);"></span>
 					</a>
 					</li>
 				</c:if>
@@ -399,7 +447,7 @@
 				<c:if test="${startPage != 1}">
 					<li>
 					<a href="ranking?currentPage=${startPage - 1}">
-						<span class="glyphicon glyphicon-chevron-left"></span>
+						<span class="arrow glyphicon glyphicon-chevron-left"></span>
 					</a>
 					</li>
 				</c:if>
@@ -416,7 +464,7 @@
 				<c:if test="${endPage != totalPage}">
 					<li>
 					<a href="ranking?currentPage=${endPage + 1}">
-						 <span class="glyphicon glyphicon-chevron-right"></span>
+						 <span class="arrow glyphicon glyphicon-chevron-right"></span>
 					</a>
 					</li>
 				</c:if>
@@ -424,13 +472,14 @@
 				<c:if test="${currentPage != totalPage}">
 					<li>
 					<a href="ranking?currentPage=${totalPage}">
-						 <span class="glyphicon glyphicon-forward"></span>
+						 <span class="arrow glyphicon glyphicon-forward"></span>
 					</a>
 					</li>
 				</c:if>
 			</ul>
 		</div>
 	</div>
+</div>
 </body>
 </html>
 

@@ -1,37 +1,17 @@
-	@font-face {
-	    font-family: 'CookieRun-Regular';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	@font-face {
-	    font-family: 'Donoun-Medium';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Donoun-Medium.woff2') format('woff2');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	@font-face {
-	    font-family: 'Cafe24SsurroundAir';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	@font-face {
-	    font-family: 'Cafe24Ohsquareair';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
 	div.inputMain *{
 		letter-spacing: 0px;
+	}
+	#input>*{
+		text-align: left;
 	}
 	div.inputMain{
 		margin-bottom: 70px;
 		width: 850px;
 	}
 	h1.inputTitle{
-		font-family: 'CookieRun-Regular';
+		font-family: 'Gowun Dodum';
 		font-size: 50px;
+		font-weight: bold;
 	}
 	label.inputMainLabel, label.inputStepLabel, label.inputCompLabel{
 		text-align: center;
@@ -73,7 +53,7 @@
 	}
 	.stepImgHere{
 		font-size: 20px;
-		font-family: 'Cafe24SsurroundAir';
+		font-family: 'Gowun Dodum';
 	}
 	.mainFt, .ingFt, #steps, .compFt{
 		border-collapse: separate;
@@ -85,12 +65,12 @@
 		margin-bottom: 10px;
 	}
 	.mainFt th{
-		font-family: 'Cafe24Ohsquareair';
+		font-family: 'Gowun Dodum';
 		font-size: 25px;
 		width: 200px;
 	}
 	.ingFt th{
-		font-family: 'Cafe24Ohsquareair';
+		font-family: 'Gowun Dodum';
 		font-size: 25px;
 		width: 175px;
 		vertical-align: top;
@@ -100,7 +80,7 @@
 		height: 200px;
 	}
 	#steps th{
-		font-family: 'Cafe24Ohsquareair';
+		font-family: 'Gowun Dodum';
 		font-size: 25px;
 		width: 125px;
 		text-align: center;
@@ -112,7 +92,7 @@
 		list-style: none;
 	}
 	#tag-list li{
-		font-family: 'Donoun-Medium';
+		font-family: 'Gowun Dodum';
 		font-size: 22.5px;
 		float: left;
 		margin-right: 20px;
@@ -128,7 +108,7 @@
 		 width: 470px;
 		 border: 1px solid lightcoral;
 		 font-size: 20px;
-		 font-family: 'Cafe24Ohsquareair';
+		 font-family: 'Gowun Dodum';
 		 margin-top: 10px;
 		 padding-left: 10px;
 	}
@@ -138,8 +118,9 @@
 		padding-left: 15px;
 	}
 	.ingTitle, .stepTitle, .compTitle, .tagTitle{
-		font-family: 'CookieRun-Regular';
+		font-family: 'Gowun Dodum';
 		font-size: 30px;
+		font-weight: bold;
 	}
 	.tagTitle{
 		width: 150px;
@@ -149,9 +130,8 @@
 		border: 3px solid crimson;
 		border-radius: 20px;
 		padding-left: 15px;
-		font-family: 'Donoun-Medium';
+		font-family: 'Gowun Dodum';
 		font-size: 20px;
-		font-weight: bold;
 	}
 	.stepSec{
 		border: none;
@@ -199,11 +179,11 @@
 	}
 	.compDet{
 		font-size: 20px;
-		font-family: 'Cafe24SsurroundAir';
+		font-family: 'Gowun Dodum';
 		text-indent: 15px;
 	}
 	#inputMainLabel{
-		font-family: 'Cafe24SsurroundAir';
+		font-family: 'Gowun Dodum';
 		font-size: 40px;
 	}
 		
@@ -233,7 +213,7 @@
   background: lightcoral;
 }
 
-.selectBox2 .label {
+.selectBox2 .selector {
   display: flex;
   text-align: left;
   width: inherit;
@@ -246,7 +226,7 @@
   color: black;
   font-size: 20px;
   padding-bottom: 10px;
-  font-family: 'Donoun-Medium';
+  font-family: 'Gowun Dodum';
 }
 
 .selectBox2 .optionList {
@@ -273,7 +253,7 @@
   padding: 5px 25px 5px;
   transition: .1s;
   color: white;
-  font-family: 'Donoun-Medium';
+  font-family: 'Gowun Dodum';
   font-size: 15px;
   font-weight: bold;
 }

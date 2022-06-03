@@ -62,6 +62,7 @@ public class MypageController {
 		System.out.println("UserID"+UserID);
 		ModelAndView mView = new ModelAndView();
 		UserDto dto = mypageService.getUser(UserID);
+		
 		mView.addObject("dto",dto);
 		List<RecipeDto> ownrecipeList = mypageService.getUserRecipeList(UserID);
 		System.out.println(ownrecipeList.size());
@@ -91,6 +92,25 @@ public class MypageController {
 	
 		ModelAndView mView = new ModelAndView();
 		UserDto dto = mypageService.getUser(userid);
+		
+		String address=dto.getAddress();
+		String address1, address2;
+		if (address == null) {
+			address1="";
+			address2="";
+		} else {
+			int index=address.indexOf(",");
+			if (index<1) {
+				address1=address;
+				address2="";
+			} else {
+				address1=address.substring(0, index);
+				address2=address.substring(index+1, address.length());
+			}
+		}
+		
+		mView.addObject("address1",address1);
+		mView.addObject("address2",address2);
 		mView.addObject("dto",dto);
 		mView.setViewName("/mypage/updateform");
 		return mView;
@@ -113,9 +133,10 @@ public class MypageController {
 	
 			//사진 업로드ek
 			FileUpload fileUpload=new FileUpload();
-			String photo=fileUpload.fileUploadEvent(upload_photo, request);
 			
-			String address=address1+address2;
+			String photo=fileUpload.fileUpdateEvent(dto.getPhoto(), upload_photo.get(0), request);
+			
+			String address=address1+","+address2;
 			dto.setAddress(address);
 			dto.setPhoto(photo);
 			mypageService.updateUser(dto);
