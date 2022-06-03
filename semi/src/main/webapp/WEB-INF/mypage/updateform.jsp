@@ -198,13 +198,18 @@ function check(){
 						<label for="inputPhoto"
 							class="inputPhoto" style="cursor: pointer; border-radius:50%; width: 500px; height: 300px;">
 								<img src="../upload/${dto.photo}"  class="img-circle" style=" width: 300px; height: 300px; ">
-						</label> <input type="file" id="inputPhoto" name="upload_photo" value="${dto.photo}"
+						</label> <input type="file" id="inputPhoto" name="upload_photo"
 							accept=".jpg, .jpeg, .png" style="opacity: 0; font-size: 0px; width: 500px;"
 							class="form-control">
 					
 					</c:if>
 					<c:if test="${dto.photo==null}">
-					  <img class="photo" src="../image/per__son.png"  style=" width: 300px; height: 300px;">
+					  <label for="inputPhoto"
+							class="inputPhoto" style="cursor: pointer; border-radius:50%; width: 500px; height: 300px;">
+								<img src="../image/per__son.png"  class="img-circle" style=" width: 300px; height: 300px; ">
+						</label> <input type="file" id="inputPhoto" name="upload_photo"
+							accept=".jpg, .jpeg, .png" style="opacity: 0; font-size: 0px; width: 500px;"
+							class="form-control">
 					</c:if>
 					
 
